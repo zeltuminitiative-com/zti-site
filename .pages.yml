@@ -89,6 +89,8 @@ components:
           - { name: points, type: string, list: true, label: Points cochés }
           - { name: mention, type: string, label: Mention en italique }
           - { name: image, type: image, label: Image (facultative) }
+          - { name: image_texte, type: string, label: Description de l'image (pour les malvoyants) }
+          - { name: agrandir, type: boolean, label: Agrandir l'image au clic, description: "Pour un document à lire (exemple de Fiche de Parc…)." }
           - name: image_position
             type: select
             label: Place de l'image
