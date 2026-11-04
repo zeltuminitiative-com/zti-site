@@ -177,3 +177,16 @@ a.reseau:hover, a.reseau:focus-visible { background: rgba(21,101,255,.18); borde
 .sombre .galerie figcaption { color: #fff; }
 @media (max-width: 860px) { .galerie { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .galerie { grid-template-columns: 1fr; } }
+
+/* ——— packs (04/11) : les cartes sont en blanc cassé sur tous les fonds → textes foncés, sinon titres, promesses et délais
+   restaient blancs sur blanc (invisibles) sur un fond bleu ou nuit ——— */
+.pack h3, .sombre .pack h3, .pack .promesse, .sombre .pack .promesse { color: var(--logo); }
+.pack, .sombre .pack, .pack .liste-coches li, .sombre .pack .liste-coches li { color: var(--ardoise); }
+.pack .delai, .sombre .pack .delai { color: var(--vif); }
+.pack .badge, .sombre .pack .badge { background: var(--pale); color: var(--logo); }
+.sombre .pack .liste-coches li::before { background-color: var(--pale); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2302008A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+
+/* ——— image à agrandir au clic (exemple de Fiche de Parc) ——— */
+.visuel .agrandir { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: inherit; }
+.visuel .agrandir img { width: 100%; height: auto; box-shadow: 0 0 0 1px #E1E6F3, 0 24px 60px rgba(2,0,138,.14); border-radius: 12px; transition: transform .25s ease; }
+.visuel .agrandir:hover img, .visuel .agrandir:focus-visible img { transform: translateY(-4px); }
