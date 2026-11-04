@@ -190,3 +190,8 @@ a.reseau:hover, a.reseau:focus-visible { background: rgba(21,101,255,.18); borde
 .visuel .agrandir { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: inherit; }
 .visuel .agrandir img { width: 100%; height: auto; box-shadow: 0 0 0 1px #E1E6F3, 0 24px 60px rgba(2,0,138,.14); border-radius: 12px; transition: transform .25s ease; }
 .visuel .agrandir:hover img, .visuel .agrandir:focus-visible img { transform: translateY(-4px); }
+/* ——— légende sous les images (04/11) ——— */
+figure.visuel { margin: 0; }
+.legende-image { margin-top: 12px; font-size: 14px; line-height: 1.5; font-style: italic; color: var(--gris); text-align: center; }
+.sombre .legende-image { color: var(--brume); }.texte-image figure.visuel { border-radius: 0; overflow: visible; box-shadow: none; }
+.texte-image figure.visuel > img, .texte-image figure.visuel .agrandir img { border-radius: 24px; box-shadow: 0 24px 50px rgba(1,0,56,.18); }
