@@ -57,7 +57,7 @@ sections:
     fond: blanc
     etiquette: La Protection ZTi
     titre: Un redémarrage, et le poste redevient propre.
-    texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage."
+    texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage. Elle ne remplace ni l'antivirus ni la sauvegarde de vos dossiers."
     mention: "En salle TIC, les fichiers laissés sur le poste sont aussi effacés. C'est voulu : un travail d'élève se garde sur sa clé."
     image: /images/demarrage.jpg
     image_position: gauche
@@ -78,7 +78,10 @@ sections:
     ancre: packs
     etiquette: Ce que vous obtenez
     titre: Quatre packs, choisis après le diagnostic.
-    texte: Le diagnostic montre l'état réel de chaque poste. Vous choisissez ensuite. La grille tarifaire vous est remise avec la Fiche de Parc.
+    texte: |-
+      Le diagnostic montre l'état réel de chaque poste. Vous choisissez ensuite. La grille tarifaire vous est remise avec la Fiche de Parc.
+
+      *Comment le prix est établi : prix par poste, selon deux grilles — salle TIC et parc administratif —, dégressif selon le nombre de postes, hors taxes, valable pour l'année scolaire. Salle TIC et administration traitées ensemble : − 10 %. Licences commerciales (antivirus, Office) : devis distinct. Établissements publics : cotation distincte.*
     packs:
       - nom: Pack 1 — Stabilité
         promesse: Des postes prêts à travailler, des données sauvegardées.
@@ -118,6 +121,22 @@ sections:
       - Procès-verbal de réception signé poste par poste
       - Charte d'utilisation remise à l'établissement
       - "Administration uniquement : les trois outils ZTi offerts"
+  - type: texte_image
+    fond: ivoire
+    ancre: fiche-de-parc
+    etiquette: Ce que vous recevez
+    titre: "La Fiche de Parc : l'état réel de votre parc, poste par poste."
+    texte: "Après le diagnostic, la direction reçoit un rapport écrit et signé. Si vous confiez l'intervention à ZTi, il sert d'état initial au procès-verbal de réception."
+    points:
+      - "L'essentiel pour la direction : postes opérationnels, postes à remettre en état, priorités"
+      - État de chaque poste et tâches à effectuer
+      - Inventaire matériel et logiciel détaillé, poste par poste
+      - "Environnement électrique : prises, régulateurs, onduleurs"
+      - Constat et recommandations d'usage gratuites, applicables dès maintenant
+    mention: "Exemple illustratif : établissement et chiffres fictifs. Cliquez sur la page pour l'agrandir."
+    image: /images/fiche-de-parc-exemple.jpg
+    image_texte: "Première page d'une Fiche de Parc ZTi, exemple avec des données fictives"
+    agrandir: true
   - type: preuve
     fond: blanc
     etiquette: La preuve
