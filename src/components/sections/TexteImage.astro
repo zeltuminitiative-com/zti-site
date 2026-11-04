@@ -17,9 +17,14 @@ const sombre = ['nuit', 'bleu', 'noir'].includes(fond);
         {s.mention && <p class="mention" style="margin-top:18px">{s.mention}</p>}
         {s.bouton?.texte && <div class="actions"><Bouton texte={s.bouton.texte} href={s.bouton.lien || '#demande'} /></div>}
       </div>
-      {s.image && (s.agrandir
-        ? <div class="visuel rv"><button type="button" class="agrandir" data-visionneuse={lien(s.image)} aria-label={`Agrandir : ${s.image_texte || s.titre || 'image'}`}><img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy"></button></div>
-        : <div class="visuel rv"><img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy"></div>)}
+      {s.image && (
+        <figure class="visuel rv">
+          {s.agrandir
+            ? <button type="button" class="agrandir" data-visionneuse={lien(s.image)} aria-label={`Agrandir : ${s.image_texte || s.titre || 'image'}`}><img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy"></button>
+            : <img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy">}
+          {s.legende && <figcaption class="legende-image">{s.legende}</figcaption>}
+        </figure>
+      )}
     </div>
   </div>
 </section>
