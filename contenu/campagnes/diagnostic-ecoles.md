@@ -53,6 +53,8 @@ sections:
       - Dossiers isolés sur une partition dédiée (Pack 3)
     mention: La récupération de données n'est jamais garantie. La sauvegarde, si.
     image: /images/diagnostic-ecran.jpg
+    image_texte: "Écran d'ordinateur affichant le message Non-System disk or disk error"
+    legende: "« Non-System disk or disk error » : le poste ne trouve plus son disque dur. Sans sauvegarde, tout ce qu'il contenait est en danger."
   - type: texte_image
     fond: blanc
     etiquette: La Protection ZTi
@@ -61,6 +63,7 @@ sections:
     mention: "En salle TIC, les fichiers laissés sur le poste sont aussi effacés. C'est voulu : un travail d'élève se garde sur sa clé."
     image: /images/redemarrage-salle-tic.jpg
     image_texte: "Salle informatique d'école remise en état par ZTi : tous les postes démarrent sur l'écran ZTi"
+    legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
     image_position: gauche
   - type: cartes
     fond: nuit
@@ -134,9 +137,9 @@ sections:
       - Inventaire matériel et logiciel détaillé, poste par poste
       - "Environnement électrique : prises, régulateurs, onduleurs"
       - Constat et recommandations d'usage gratuites, applicables dès maintenant
-    mention: "Exemple illustratif : établissement et chiffres fictifs. Cliquez sur la page pour l'agrandir."
     image: /images/fiche-de-parc-exemple.jpg
     image_texte: "Première page d'une Fiche de Parc ZTi, exemple avec des données fictives"
+    legende: "Exemple de première page d'une Fiche de Parc, avec un établissement et des chiffres fictifs. Cliquez pour l'agrandir."
     agrandir: true
   - type: preuve
     fond: blanc
