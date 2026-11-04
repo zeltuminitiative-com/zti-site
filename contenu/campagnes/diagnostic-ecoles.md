@@ -59,7 +59,8 @@ sections:
     titre: Un redémarrage, et le poste redevient propre.
     texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage. Elle ne remplace ni l'antivirus ni la sauvegarde de vos dossiers."
     mention: "En salle TIC, les fichiers laissés sur le poste sont aussi effacés. C'est voulu : un travail d'élève se garde sur sa clé."
-    image: /images/demarrage.jpg
+    image: /images/redemarrage-salle-tic.jpg
+    image_texte: "Salle informatique d'école remise en état par ZTi : tous les postes démarrent sur l'écran ZTi"
     image_position: gauche
   - type: cartes
     fond: nuit
