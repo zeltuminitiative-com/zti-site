@@ -134,8 +134,9 @@ $$('form[data-demande]').forEach(form => {
     const champ = n => $(`[data-champ="${n}"]`, bloc);
     $$('[data-requis]', bloc).forEach(c => marque(c, !!code(c.dataset.champ)));
     $$('[data-requis-plusieurs]', bloc).forEach(c => marque(c, valeur(c.dataset.champ).length > 0));
+    $$('[data-texte-requis]', bloc).forEach(c => marque(c, (c.querySelector('input, textarea')?.value || '').trim().length >= 3));
     marque(champ('organisation'), v('organisation').length >= 2);
-    marque(champ('nom'), v('nom').length >= 2);
+    marque(champ('nom'), v('nom').length >= 2); marque(champ('quartier'), v('quartier').length >= 2); marque(champ('ville_nom'), v('ville_nom').length >= 2);   // école : quartier et ville obligatoires
     marque(champ('tel'), /^6\d{8}$/.test(v('tel').replace(/\D/g, '')));
     const ec = champ('email');
     if (ec) marque(ec, ec.hasAttribute('data-email-requis') ? /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')) : !v('email') || /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')));
@@ -180,7 +181,7 @@ $$('form[data-demande]').forEach(form => {
       date: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' }), accord: true,
       sujet: form.dataset.sujet, profil: profil(), organisation: v('organisation'), secteur: valeur('secteur').join(''),
       nom: v('nom'), fonction, tel: '+237 ' + chiffres.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5'), email: v('email'),
-      lieu: v('lieu') || valeur('ville').join(''), postes: valeur('postes').join(''), situation: valeur('situation').join(''),
+      lieu: v('lieu') || [v('quartier'), v('ville_nom')].filter(Boolean).join(', ') || valeur('ville').join(''), postes: valeur('postes').join(''), situation: valeur('situation').join(''),
       besoins: valeur('besoins'), accompagnement: valeur('accompagnement').join(''), prestataire: valeur('prestataire').join(''),
       depenses: valeur('depenses').join(''), moment: valeur('moment').join(''), message: v('message'), connu: valeur('connu').join(''),
       page: form.dataset.page || location.pathname, campagne: form.dataset.campagne || '', adresse: location.href.split('#')[0],
