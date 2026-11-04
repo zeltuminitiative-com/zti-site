@@ -132,22 +132,24 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <input id={`${id}-organisation`} name="organisation" autocomplete="organization" maxlength="120" placeholder="Par exemple : Complexe scolaire…">
               <span class="erreur">Indiquez le nom de votre établissement.</span>
             </div>
-            {[q('secteur', "Type d'établissement", typesEcole, { facultatif: '(facultatif)' }),
-              q('fonction_choix', 'Votre fonction', fonctionsEcole, { facultatif: '(facultatif)' }),
-              q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { facultatif: '(facultatif)' })].map(x => (
-              <div class="champ" data-champ={x.nom}>
-                <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre} <span class="facultatif">{x.facultatif}</span></span>
+            {[q('secteur', "Type d'établissement", typesEcole, { requis: true }),
+              q('fonction_choix', 'Votre fonction', fonctionsEcole, { requis: true }),
+              q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { requis: true })].map(x => (
+              <div class="champ" data-champ={x.nom} data-requis={x.requis ? '' : undefined}>
+                <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre}</span>
                 <div class="choix" role="radiogroup" aria-labelledby={`${id}-${x.nom}`} data-choix={x.nom} data-unique>
                   {x.valeurs.map(v => <button type="button" role="radio" aria-checked="false" data-valeur={v}>{v}</button>)}
                 </div>
+                <span class="erreur">Choisissez une réponse.</span>
               </div>
             ))}
             {besoins.length > 0 && (
-              <div class="champ" data-champ="besoins">
+              <div class="champ" data-champ="besoins" data-requis-plusieurs>
                 <span class="titre-champ" id={`${id}-besoins`}>Ce qui vous préoccupe <span class="facultatif">(plusieurs choix possibles)</span></span>
                 <div class="choix" role="group" aria-labelledby={`${id}-besoins`} data-choix="besoins">
                   {besoins.map(b => <button type="button" aria-pressed="false" data-valeur={b}>{b}</button>)}
                 </div>
+                <span class="erreur">Choisissez au moins une réponse.</span>
               </div>
             )}
             <div class="deux">
@@ -163,25 +165,35 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               </div>
             </div>
             <div class="deux">
-              <div class="champ" data-champ="lieu">
-                <label for={`${id}-lieu`}>Quartier et ville <span class="facultatif">(facultatif)</span></label>
-                <input id={`${id}-lieu`} name="lieu" autocomplete="address-level2" maxlength="120" placeholder="Par exemple : Messassi, Yaoundé">
+              <div class="champ" data-champ="quartier">
+                <label for={`${id}-quartier`}>Quartier de l'établissement</label>
+                <input id={`${id}-quartier`} name="quartier" maxlength="80" placeholder="Par exemple : Messassi" required>
+                <span class="erreur">Indiquez le quartier de l'établissement.</span>
               </div>
-              <div class="champ" data-champ="email">
-                <label for={`${id}-email`}>E-mail <span class="facultatif">(facultatif)</span></label>
-                <input id={`${id}-email`} name="email" type="email" autocomplete="email" maxlength="120">
-                <span class="erreur">Cette adresse e-mail n'est pas valide.</span>
+              <div class="champ" data-champ="ville_nom">
+                <label for={`${id}-ville_nom`}>Ville</label>
+                <input id={`${id}-ville_nom`} name="ville_nom" autocomplete="address-level2" maxlength="60" placeholder="Par exemple : Yaoundé" required>
+                <span class="erreur">Indiquez la ville.</span>
               </div>
             </div>
-            <div class="champ" data-champ="moment">
-              <span class="titre-champ" id={`${id}-moment`}>Meilleur moment pour vous rappeler <span class="facultatif">(facultatif)</span></span>
+            <div class="deux">
+              <div class="champ" data-champ="email" data-email-requis>
+                <label for={`${id}-email`}>E-mail</label>
+                <input id={`${id}-email`} name="email" type="email" autocomplete="email" maxlength="120" required>
+                <span class="erreur">Indiquez une adresse e-mail valide.</span>
+              </div>
+            </div>
+            <div class="champ" data-champ="moment" data-requis>
+              <span class="titre-champ" id={`${id}-moment`}>Meilleur moment pour vous rappeler</span>
               <div class="choix" role="radiogroup" aria-labelledby={`${id}-moment`} data-choix="moment" data-unique>
                 {moments.map(m => <button type="button" role="radio" aria-checked="false" data-valeur={m}>{m}</button>)}
               </div>
+              <span class="erreur">Choisissez un moment.</span>
             </div>
-            <div class="champ" data-champ="message">
-              <label for={`${id}-message`}>Un détail à ajouter ? <span class="facultatif">(facultatif)</span></label>
-              <textarea id={`${id}-message`} name="message" maxlength="1500"></textarea>
+            <div class="champ" data-champ="message" data-texte-requis>
+              <label for={`${id}-message`}>Décrivez brièvement votre situation</label>
+              <textarea id={`${id}-message`} name="message" maxlength="1500" required></textarea>
+              <span class="erreur">Décrivez votre situation en quelques mots.</span>
             </div>
           </div>
         )}
