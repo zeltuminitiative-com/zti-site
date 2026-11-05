@@ -231,3 +231,10 @@ figure.visuel { margin: 0; }
 .compris-zti div { position: relative; padding-left: 26px; font-size: 15px; color: #4A5568; } .compris-zti div::before { content: '✓'; position: absolute; left: 0; color: #1565FF; font-weight: 800; }
 @media (max-width: 900px) { .compris-zti { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .pack-zti.vedette { animation: none; } }
+/* ——— visionneuse : zoom au clic sur ordinateur (05/11) ——— */
+.visionneuse { overflow: hidden; }
+.visionneuse img { cursor: zoom-in; transition: transform .25s ease; }
+.visionneuse.zoom img { transform: scale(2.5); cursor: zoom-out; transition: transform .25s ease, transform-origin 0s; }
+.visionneuse .aide-zoom { position: absolute; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; font-size: 13px; color: #D7DCF3; pointer-events: none; }
+.visionneuse.zoom .aide-zoom { opacity: 0; }
+@media (hover: none) { .visionneuse .aide-zoom { display: none; } .visionneuse img { cursor: default; } }
