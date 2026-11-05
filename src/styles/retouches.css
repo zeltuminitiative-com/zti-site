@@ -389,7 +389,7 @@ figure.visuel { margin: 0; }
 .mode-d .entete .marque { display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; transition: margin-top .3s ease; animation: d-descend .7s both; }
 .mode-d .entete.sc .marque { margin-top: 0; }
 .mode-d .entete .marque img { height: 44px; width: auto; }
-.mode-d .entete .marque small { display: flex; align-items: center; margin: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; }
+.mode-d .entete .marque small { display: flex; align-items: center; margin: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; border-left: 0; padding-left: 0; }
 .mode-d .entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
 .mode-d .entete .marque small span + span { margin-left: 12px; }
 .mode-d.fin .entete { transform: translateY(-110%); }
