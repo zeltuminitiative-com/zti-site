@@ -382,31 +382,33 @@ figure.visuel { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .accroche-d *, .accroche-d .ph-d { animation: none !important; } }
 
-/* ——— barre du haut façon modèle D (page avec le héro plein écran) ——— */
-.mode-d .entete { position: fixed; left: 0; right: 0; top: 0; background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; transition: background-color .3s, box-shadow .3s, transform .45s cubic-bezier(.2,.7,.2,1); }
-.mode-d .entete.sc { background: rgba(1,0,56,.62); -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
+/* ——— barre du haut façon modèle D (page avec le héro plein écran) ———
+   appliquée par le CSS dès le premier affichage (sans attendre le script) : pas d'ancienne barre visible au chargement */
+body:has(.accroche-d):not(.mode-d) .entete .marque small { visibility: hidden; }   /* la signature attend d'être mise en forme par le script */
+body:has(.accroche-d) .entete { position: fixed; left: 0; right: 0; top: 0; background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; transition: background-color .3s, box-shadow .3s, transform .45s cubic-bezier(.2,.7,.2,1); }
+body:has(.accroche-d) .entete.sc { background: rgba(1,0,56,.62); -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
 /* ligne du logo comme dans D : logo + « Votre partenaire de confiance | Depuis 2008 », descendue dans le héro, remontée dès qu'on défile */
-.mode-d .entete .marque { display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; transition: margin-top .3s ease; animation: d-descend .7s both; }
-.mode-d .entete.sc .marque { margin-top: 0; }
-.mode-d .entete .marque img { height: 44px; width: auto; }
-.mode-d .entete .marque small { display: flex; align-items: center; margin: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; border-left: 0; padding-left: 0; }
-.mode-d .entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
-.mode-d .entete .marque small span + span { margin-left: 12px; }
-.mode-d.fin .entete { transform: translateY(-110%); }
-.mode-d .accroche-d { padding-top: 204px; }
-.mode-d .accroche-d .se { font-weight: 700; }
+body:has(.accroche-d) .entete .marque { display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; transition: margin-top .3s ease; animation: d-descend .7s both; }
+body:has(.accroche-d) .entete.sc .marque { margin-top: 0; }
+body:has(.accroche-d) .entete .marque img { height: 44px; width: auto; }
+body:has(.accroche-d) .entete .marque small { display: flex; align-items: center; margin: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; border-left: 0; padding-left: 0; }
+body:has(.accroche-d) .entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
+body:has(.accroche-d) .entete .marque small span + span { margin-left: 12px; }
+body:has(.accroche-d).fin .entete { transform: translateY(-110%); }
+body:has(.accroche-d) .accroche-d { padding-top: 204px; }
+body:has(.accroche-d) .accroche-d .se { font-weight: 700; }
 @media (min-width: 561px) {
-  .mode-d .entete .btn { opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity .35s, transform .35s; }
-  .mode-d.apres-hero .entete .btn { opacity: 1; transform: none; pointer-events: auto; }
+  body:has(.accroche-d) .entete .btn { opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity .35s, transform .35s; }
+  body:has(.accroche-d).apres-hero .entete .btn { opacity: 1; transform: none; pointer-events: auto; }
 }
 @media (max-width: 560px) {
-  .mode-d .entete.sc { -webkit-backdrop-filter: none; backdrop-filter: none; background: #010038; }
-  .mode-d .entete .btn { position: fixed; left: 16px; right: 16px; bottom: 14px; justify-content: center; padding: 8px 8px 8px 20px; font-size: 15px; z-index: 45; box-shadow: 0 14px 40px rgba(0,0,0,.5); transform: translateY(140%); opacity: 0; transition: transform .35s, opacity .35s; }
-  .mode-d.cta-on .entete .btn { transform: none; opacity: 1; }
-  .mode-d.fin .entete .btn { transform: translateY(140%); opacity: 0; }
-  .mode-d .accroche-d { padding-top: 130px; }
-  .mode-d .entete .marque { gap: 8px; } .mode-d .entete .marque img { height: 34px; }
-  .mode-d .entete .marque small { font-size: 11px; letter-spacing: .02em; } .mode-d .entete .marque small span { padding-left: 8px; } .mode-d .entete .marque small span + span { margin-left: 8px; }
+  body:has(.accroche-d) .entete.sc { -webkit-backdrop-filter: none; backdrop-filter: none; background: #010038; }
+  body:has(.accroche-d) .entete .btn { position: fixed; left: 16px; right: 16px; bottom: 14px; justify-content: center; padding: 8px 8px 8px 20px; font-size: 15px; z-index: 45; box-shadow: 0 14px 40px rgba(0,0,0,.5); transform: translateY(140%); opacity: 0; transition: transform .35s, opacity .35s; }
+  body:has(.accroche-d).cta-on .entete .btn { transform: none; opacity: 1; }
+  body:has(.accroche-d).fin .entete .btn { transform: translateY(140%); opacity: 0; }
+  body:has(.accroche-d) .accroche-d { padding-top: 130px; }
+  body:has(.accroche-d) .entete .marque { gap: 8px; } body:has(.accroche-d) .entete .marque img { height: 34px; }
+  body:has(.accroche-d) .entete .marque small { font-size: 11px; letter-spacing: .02em; } body:has(.accroche-d) .entete .marque small span { padding-left: 8px; } body:has(.accroche-d) .entete .marque small span + span { margin-left: 8px; }
 }
 .pbar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; background: linear-gradient(90deg, #1565FF, #9FD0FF); transform-origin: 0 50%; transform: scaleX(0); transition: opacity .3s; pointer-events: none; }
-.mode-d.fin .pbar { opacity: 0; }
+body:has(.accroche-d).fin .pbar { opacity: 0; }
