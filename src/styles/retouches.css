@@ -211,7 +211,7 @@ figure.visuel { margin: 0; }
 .pack-zti .points { margin: 12px 0; padding-left: 18px; font-size: 14.5px; color: #C7CDEC; } .pack-zti .points li { margin: 6px 0; }
 .pack-zti .delai { margin: 6px 0 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.2); font: 700 13px var(--titres); color: #FFFFFF; }
 .pack-zti .cond { display: block; margin-top: 6px; font: italic 400 13px/1.45 var(--texte); color: #C7CDEC; }
-.pack-zti .plus-pack { margin-top: auto; padding-top: 14px; font-size: 13.5px; }
+.pack-zti .plus-pack { margin-top: 12px; font-size: 13.5px; }   /* juste après la prise en charge */
 .pack-zti .tout-voir { padding: 0; border: 0; background: none; cursor: pointer; font: 700 13px var(--titres); color: #FFFFFF; }
 .pack-zti .tout-voir::after { content: ' +'; } .pack-zti .tout-voir[aria-expanded="true"]::after { content: ' −'; }
 .pack-zti .detail { margin: 10px 0 0; padding-left: 18px; line-height: 1.5; color: #D7DCF3; } .pack-zti .detail li { margin: 4px 0; }
@@ -222,7 +222,7 @@ figure.visuel { margin: 0; }
 .pack-zti.vedette .delai { color: #02008A; border-top-color: #D7DCF3; } .pack-zti.vedette .tout-voir { color: #1565FF; }
 .pastille-vedette { position: absolute; top: -13px; left: 22px; background: #1565FF; color: #FFFFFF; font: 700 12px var(--titres); padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
 /* ordinateur : les mêmes lignes alignées d'un pack à l'autre */
-@media (min-width: 901px) { .packs-zti { grid-template-rows: repeat(6, auto); } .pack-zti { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; } .pack-zti .plus-pack { align-self: end; } }
+.packs-zti { align-items: start; }   /* chaque carte garde sa hauteur : ouvrir « Tout voir » ne déplace pas les autres */
 /* téléphone et tablette : les packs défilent de côté */
 @media (max-width: 900px) { .packs-zti { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding: 18px 4px 10px; } .pack-zti { flex: 0 0 82%; scroll-snap-align: center; } }
 /* encadré commun */
