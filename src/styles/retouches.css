@@ -308,3 +308,28 @@ figure.visuel { margin: 0; }
 .formulaire .trois { display: grid; grid-template-columns: auto 1fr 1fr; gap: 0 16px; align-items: start; }
 .formulaire .trois .choix { flex-wrap: nowrap; }
 @media (max-width: 600px) { .formulaire .trois { grid-template-columns: 1fr; } }
+
+/* ——— slogan sur une seule ligne (05/11) : pied de page (1re colonne un peu plus large) et signature ——— */
+@media (min-width: 861px) {
+  .pied .colonnes { grid-template-columns: 1.75fr 1fr 1fr 1fr; }
+  .pied .marque p + p { white-space: nowrap; font-size: 14px; }
+}
+@media (min-width: 521px) { .signature .slogan, .section .slogan { white-space: nowrap; } }
+/* ——— « Vos données » : le message d'erreur s'écrit sur l'écran, lettre par lettre, puis le curseur clignote (05/11) ——— */
+.ecran-anime { position: relative; container-type: inline-size; }
+.ecran-anime img { display: block; width: 100%; height: auto; }
+.ecran-texte { position: absolute; left: 6.3%; top: 8.2%; display: grid; gap: 1.6cqw; font: 700 3.55cqw/1 'Courier New', Courier, monospace; color: #F4F6FA; text-shadow: 0 0 .6cqw rgba(231,236,250,.55); letter-spacing: .02em; }
+.ecran-ligne { display: block; width: 0; overflow: hidden; white-space: nowrap; border-right: .14em solid transparent; }
+.vu .ecran-ligne { animation: tape-ecran calc(var(--n) * .055s) steps(var(--n), end) var(--d) forwards; }
+.vu .ecran-ligne:last-child { animation: tape-ecran calc(var(--n) * .055s) steps(var(--n), end) var(--d) forwards, curseur-ecran .8s step-end calc(var(--d) + var(--n) * .055s) infinite; }
+@keyframes tape-ecran { to { width: calc(var(--n) * 1ch + .2ch); } }
+@keyframes curseur-ecran { 0%, 100% { border-right-color: #F4F6FA; } 50% { border-right-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .ecran-ligne { width: auto; animation: none !important; } }
+.sans-js .ecran-ligne { width: auto; }
+
+/* ——— « La preuve » : le portrait descend dans son cadre, la tête n'est plus coupée (fond de la photo prolongé) ——— */
+.portrait-zti { background: #C2C8D6; }
+.portrait-zti img { object-position: 50% 0; transform: translateY(9%); }
+
+/* ——— signature : slogan sur une seule ligne ——— */
+@media (min-width: 700px) { .signature blockquote { white-space: nowrap; } }
