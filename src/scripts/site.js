@@ -14,6 +14,9 @@ if (bMenu && nav) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') fermer(); });
 }
 
+/* ---------- pied de page : animé quand il arrive à l'écran ---------- */
+{ const pied = $('.pied'); if (pied) { if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { pied.classList.add('vu'); o.disconnect(); } }), { threshold: .12 }); o.observe(pied); } else pied.classList.add('vu'); } }
+
 /* ---------- apparition au défilement ---------- */
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
