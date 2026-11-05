@@ -249,6 +249,15 @@ $$('form[data-demande]').forEach(form => {
       () => { etat.textContent = 'Position refusée : le quartier et la ville suffisent.'; }, { enableHighAccuracy: true, timeout: 12000 });
   }));
 
+  // photo du problème (facultatif) : seulement une image ; le nom du fichier choisi est affiché
+  const champPhoto = form.elements.photo;
+  champPhoto?.addEventListener('change', () => {
+    const f = champPhoto.files[0], etat = $('[data-photo-etat]', form), ok = !f || /^image\/(jpeg|png|webp)$/.test(f.type);
+    champPhoto.closest('.champ').classList.toggle('invalide', !ok);
+    if (!ok) { champPhoto.value = ''; return; }
+    if (f && etat) etat.textContent = `✓ ${f.name}`;
+  });
+
   // étapes (formulaire des entreprises) : la fin du formulaire n'apparaît qu'à la dernière
   const etapes = $$('[data-etape]', form), fin = $('[data-fin]', form), progression = $('[data-progression]', form);
   const titres = JSON.parse(progression?.dataset.titres || '[]');
@@ -290,8 +299,16 @@ $$('form[data-demande]').forEach(form => {
       ...JSON.parse(sessionStorage.getItem(SOURCE) || '{}'), parrain: PARRAIN,
     };
     const bouton = $('button[type="submit"]', form); bouton.disabled = true; envoi = true;
+    const fichierPhoto = form.elements.photo?.files?.[0];
+    if (fichierPhoto && form.dataset.photos) {
+      const etat = $('[data-photo-etat]', form); if (etat) etat.textContent = 'Envoi de la photo…';
+      d.photo = await envoyerPhoto(form.dataset.photos, fichierPhoto, d) || 'non reçue (envoi impossible)';
+    }
+    // le serveur ne garde pas la civilité, la position ni la photo : elles passent en tête du message
+    const enTete = [d.position && `Position : ${d.position}`, d.photo && `Photo : ${d.photo}`].filter(Boolean).join('\n');
+    const pourServeur = { ...d, nom: d.civilite ? `${d.civilite} ${d.nom}` : d.nom, message: [enTete, d.message].filter(Boolean).join('\n\n') };
     let enregistree = false;
-    if (form.dataset.endpoint) enregistree = await envoyerDemande(form.dataset.endpoint, d);
+    if (form.dataset.endpoint) enregistree = await envoyerDemande(form.dataset.endpoint, pourServeur);
     suivi('Lead', { content_name: d.sujet, content_category: d.campagne || d.page });
     const lignes = [
       `Bonjour ZTi, voici ma demande (${d.sujet}) :`,
@@ -302,7 +319,7 @@ $$('form[data-demande]').forEach(form => {
       d.situation && `• Situation : ${d.situation}`, d.besoins.length && `• ${d.profil === 'Particulier' ? 'Problème' : 'Besoin'} : ${d.besoins.join(', ')}`,
       d.accompagnement && `• Accompagnement : ${d.accompagnement}`, d.prestataire && `• Prestataire actuel : ${d.prestataire}`,
       d.depenses && `• Dépenses actuelles : ${d.depenses}`, d.moment && `• Meilleur moment : ${d.moment}`,
-      d.message && `• Message : ${d.message}`, d.connu && `• A connu ZTi par : ${d.connu}`,
+      d.message && `• Message : ${d.message}`, d.photo && `• Photo : ${d.photo}`, d.connu && `• A connu ZTi par : ${d.connu}`,
     ].filter(Boolean).join('\n');
     sessionStorage.setItem('zti-demande', JSON.stringify({ enregistree, texte: lignes, sujet: d.sujet, wa: form.dataset.wa, mail: form.dataset.mail }));
     location.href = form.dataset.merci;
@@ -319,6 +336,22 @@ async function envoyerDemande(adresse, d) {
     const r = await fetch(adresse.replace(/\/$/, '') + '/v1/demandes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
     return r.ok;
   } catch (_) { return false; } // réseau coupé : la demande part par WhatsApp
+}
+
+// photo jointe → script Google Drive de ZTi : réduite à 1600 px en JPEG avant l'envoi ; renvoie le lien, ou '' si échec
+async function envoyerPhoto(adresse, fichier, d) {
+  try {
+    const image = await createImageBitmap(fichier);
+    const k = Math.min(1, 1600 / Math.max(image.width, image.height));
+    const toile = document.createElement('canvas'); toile.width = Math.round(image.width * k); toile.height = Math.round(image.height * k);
+    toile.getContext('2d').drawImage(image, 0, 0, toile.width, toile.height);
+    const donnees = toile.toDataURL('image/jpeg', .82).split(',')[1];
+    const arret = new AbortController(); setTimeout(() => arret.abort(), 30000);
+    const r = await fetch(adresse, { method: 'POST', signal: arret.signal, headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ type: 'image/jpeg', donnees, organisation: d.organisation, nom: d.nom }) });
+    const j = await r.json();
+    return j.ok && /^https:\/\/drive\.google\.com\//.test(j.url) ? j.url : '';
+  } catch (_) { return ''; } // photo illisible ou réseau coupé : la demande part quand même
 }
 
 /* ---------- avis des clients ---------- */
