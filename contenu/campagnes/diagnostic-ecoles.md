@@ -187,7 +187,7 @@ sections:
     etiquette: La preuve
     titre: Vous signez un constat, pas une facture.
     texte: "Postes disponibles à l'arrivée, postes disponibles au départ : même calcul, mêmes postes. Avant de payer le solde, vous vérifiez chaque poste."
-    portrait: /images/fondateur.jpg
+    portrait: /images/fondateur-profil.jpg
     nom: Jean Marcelin MEUKAM FOKAM
     fonction: "Fondateur et Directeur Général de ZTi. Maintenance, diagnostic, réseaux et récupération de données depuis 2008."
     attestations:
