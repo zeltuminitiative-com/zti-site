@@ -68,18 +68,6 @@ sections:
     image_texte: "Salle informatique d'école remise en état par ZTi : tous les postes démarrent sur l'écran ZTi"
     legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
     image_position: gauche
-  - type: cartes
-    fond: nuit
-    etiquette: Des outils créés par ZTi
-    titre: ZTi ne se contente pas de solutions importées. Elle les crée quand le besoin l'exige.
-    texte: Trois outils développés au Cameroun, pour les problèmes du Cameroun. Offerts avec tous les packs, à l'administration uniquement.
-    cartes:
-      - titre: ZTi Restauration des fichiers cachés
-        texte: "Une clé USB ou un dossier semble vide après un virus ? L'outil restaure l'accès aux fichiers rendus invisibles."
-      - titre: ZTi Mise en veille prolongée
-        texte: "Pensé pour les coupures de courant : la session de travail est sauvegardée et reprend à l'identique au prochain allumage."
-      - titre: ZTi Arrêt 5S
-        texte: "Le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main."
   - type: texte_image
     fond: ivoire
     ancre: fiche-de-parc
@@ -182,6 +170,18 @@ sections:
       - Procès-verbal de réception signé poste par poste
       - Charte d'utilisation remise à l'établissement
       - "Administration uniquement : les trois outils ZTi offerts"
+  - type: cartes
+    fond: nuit
+    etiquette: Des outils créés par ZTi
+    titre: ZTi ne se contente pas de solutions importées. Elle les crée quand le besoin l'exige.
+    texte: Trois outils développés au Cameroun, pour les problèmes du Cameroun. Offerts avec tous les packs, à l'administration uniquement.
+    cartes:
+      - titre: ZTi Restauration des fichiers cachés
+        texte: "Une clé USB ou un dossier semble vide après un virus ? L'outil restaure l'accès aux fichiers rendus invisibles."
+      - titre: ZTi Mise en veille prolongée
+        texte: "Pensé pour les coupures de courant : la session de travail est sauvegardée et reprend à l'identique au prochain allumage."
+      - titre: ZTi Arrêt 5S
+        texte: "Le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main."
   - type: preuve
     fond: blanc
     etiquette: La preuve
