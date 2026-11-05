@@ -23,7 +23,6 @@ const basPhrase = coupe > 0 ? bas.slice(0, coupe + 1) : bas, basLieu = coupe > 0
   {s.image && <div class="ph-d" aria-hidden="true"><img src={lien(s.image)} alt="" loading="eager" fetchpriority="high"></div>}
   <div class="contenu">
     <div class="texte-d">
-      <p class="ligne-marque"><span>{r.signature || 'Votre partenaire de confiance'}</span><span>Depuis {r.depuis}</span></p>
       {s.pastilles?.length > 0 && <ul class="pastilles-d">{s.pastilles.map((p: string) => <li>{p}</li>)}</ul>}
       <Titre>{avant.trim()}{i >= 0 && <><br /><span class="hl">{accent}</span></>}{apres}</Titre>
       <div class="cta-d">
