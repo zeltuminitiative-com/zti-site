@@ -19,6 +19,8 @@ if (bMenu && nav) {
 { const heroD = $('.accroche-d'), ent = $('.entete');
   if (heroD && ent) {
     document.body.classList.add('mode-d');
+    // comme dans D : « Votre partenaire de confiance | Depuis 2008 » sur la ligne du logo
+    const sig = $('.marque small', ent); if (sig) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join('');
     const barre = document.createElement('div'); barre.className = 'pbar'; document.body.prepend(barre);
     const form = $('#demande'); let formVisible = false;
     const maj = () => { const y = scrollY, H = document.documentElement;
