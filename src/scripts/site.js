@@ -17,11 +17,13 @@ if (bMenu && nav) {
 /* ---------- pied de page : animé quand il arrive à l'écran ---------- */
 { const pied = $('.pied'); if (pied) { if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { pied.classList.add('vu'); o.disconnect(); } }), { threshold: .12 }); o.observe(pied); } else pied.classList.add('vu'); } }
 
-/* ---------- écran « Vos données » : le message s'écrit quand l'image arrive à l'écran, puis recommence toutes les 2 minutes ---------- */
+/* ---------- écran « Vos données » : le message s'écrit quand l'image arrive à l'écran, puis recommence après 3 secondes de pause ---------- */
 $$('.ecran-anime').forEach(el => {
   const jouer = () => { el.classList.remove('joue'); void el.offsetWidth; el.classList.add('joue'); };
   if (!('IntersectionObserver' in window)) { el.classList.add('joue'); return; }
-  const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { jouer(); setInterval(jouer, 120000); o.disconnect(); } }), { threshold: .3 });
+  // à la fin de l'écriture de la dernière ligne, pause de 3 s, puis le message recommence
+  el.querySelector('.ecran-ligne:last-child')?.addEventListener('animationend', e => { if (e.animationName === 'tape-ecran') setTimeout(jouer, 3000); });
+  const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { jouer(); o.disconnect(); } }), { threshold: .3 });
   o.observe(el);
 });
 
