@@ -176,6 +176,8 @@ components:
               - { name: promesse, type: string, label: Promesse }
               - { name: points, type: string, list: true, label: Ce qui est compris }
               - { name: delai, type: string, label: Prise en charge }
+              - { name: condition, type: string, label: Condition (facultative), description: "Ex. : pour les postes ayant reçu le Pack 3." }
+              - { name: detail, type: string, list: true, label: « Tout voir » : liste complète }
           - { name: compris_titre, type: string, label: Titre de l'encadré commun }
           - { name: compris, type: string, list: true, label: Compris dans tous les packs }
       - name: preuve
