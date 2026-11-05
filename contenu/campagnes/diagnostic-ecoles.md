@@ -52,7 +52,10 @@ sections:
       - Sauvegarde automatique en local
       - Dossiers isolés sur une partition dédiée (Pack 3)
     mention: La récupération de données n'est jamais garantie. La sauvegarde, si.
-    image: /images/diagnostic-ecran.jpg
+    image: /images/diagnostic-ecran-vide.jpg
+    ecran:
+      - Non-System disk or disk error
+      - replace and strike any key when ready
     image_texte: "Écran d'ordinateur affichant le message Non-System disk or disk error"
     legende: "« Non-System disk or disk error » : le poste ne trouve plus son disque dur. Sans sauvegarde, tout ce qu'il contenait est en danger."
   - type: texte_image
