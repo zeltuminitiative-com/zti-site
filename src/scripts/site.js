@@ -14,6 +14,25 @@ if (bMenu && nav) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') fermer(); });
 }
 
+/* ---------- barre du haut façon modèle D (pages avec le héro plein écran) : transparente sur la photo, vitrée dès qu'on
+   défile, bouton visible après le héro, cachée au pied de page ; barre de lecture ; sur téléphone, bouton fixe en bas ---------- */
+{ const heroD = $('.accroche-d'), ent = $('.entete');
+  if (heroD && ent) {
+    document.body.classList.add('mode-d');
+    const barre = document.createElement('div'); barre.className = 'pbar'; document.body.prepend(barre);
+    const form = $('#demande'); let formVisible = false;
+    const maj = () => { const y = scrollY, H = document.documentElement;
+      barre.style.transform = `scaleX(${y / Math.max(1, H.scrollHeight - H.clientHeight)})`;
+      ent.classList.toggle('sc', y > 40);
+      document.body.classList.toggle('apres-hero', y > heroD.offsetHeight - 90);
+      document.body.classList.toggle('cta-on', y > heroD.offsetHeight * .7 && !formVisible); };
+    if ('IntersectionObserver' in window) {
+      if (form) new IntersectionObserver(([e]) => { formVisible = e.isIntersecting; maj(); }, { threshold: .05 }).observe(form);
+      const pied = $('.pied'); if (pied) new IntersectionObserver(([e]) => document.body.classList.toggle('fin', e.isIntersecting), { threshold: .15 }).observe(pied);
+    }
+    addEventListener('scroll', maj, { passive: true }); maj();
+  } }
+
 /* ---------- pied de page : animé quand il arrive à l'écran ---------- */
 { const pied = $('.pied'); if (pied) { if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { pied.classList.add('vu'); o.disconnect(); } }), { threshold: .12 }); o.observe(pied); } else pied.classList.add('vu'); } }
 
