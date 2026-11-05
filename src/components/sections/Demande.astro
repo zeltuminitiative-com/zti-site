@@ -81,7 +81,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="champ" data-champ="nom">
                 <label for={`${id}-nom`}>Nom et prénom</label>
                 <input id={`${id}-nom`} name="nom" autocomplete="name" maxlength="80" required>
-                <span class="erreur">Indiquez votre nom.</span>
+                <span class="erreur">Indiquez votre vrai nom (lettres uniquement).</span>
               </div>
               <div class="champ" data-champ="fonction">
                 <label for={`${id}-fonction`}>Fonction <span class="facultatif">(facultatif)</span></label>
@@ -130,7 +130,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
             <div class="champ" data-champ="organisation">
               <label for={`${id}-organisation`}>Nom de l'établissement</label>
               <input id={`${id}-organisation`} name="organisation" autocomplete="organization" maxlength="120" placeholder="Par exemple : Complexe scolaire…">
-              <span class="erreur">Indiquez le nom de votre établissement.</span>
+              <span class="erreur">Indiquez le vrai nom de votre établissement.</span>
             </div>
             {[q('secteur', "Type d'établissement", typesEcole, { requis: true }),
               q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { requis: true })].map(x => (
@@ -155,12 +155,12 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="champ" data-champ="quartier">
                 <label for={`${id}-quartier`}>Quartier de l'établissement</label>
                 <input id={`${id}-quartier`} name="quartier" maxlength="80" placeholder="Par exemple : Messassi" required>
-                <span class="erreur">Indiquez le quartier de l'établissement.</span>
+                <span class="erreur">Indiquez le vrai nom du quartier.</span>
               </div>
               <div class="champ" data-champ="ville_nom">
                 <label for={`${id}-ville_nom`}>Ville</label>
                 <input id={`${id}-ville_nom`} name="ville_nom" autocomplete="address-level2" maxlength="60" placeholder="Par exemple : Yaoundé" required>
-                <span class="erreur">Indiquez la ville.</span>
+                <span class="erreur">Indiquez le vrai nom de la ville (lettres uniquement).</span>
               </div>
             </div>
             <p class="message-erreur" role="alert" hidden></p>
@@ -172,7 +172,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="champ" data-champ="nom">
                 <label for={`${id}-nom`}>Nom et prénom</label>
                 <input id={`${id}-nom`} name="nom" autocomplete="name" maxlength="80" required>
-                <span class="erreur">Indiquez votre nom.</span>
+                <span class="erreur">Indiquez votre vrai nom (lettres uniquement).</span>
               </div>
               <div class="champ" data-champ="tel">
                 <label for={`${id}-tel`}>Téléphone / WhatsApp</label>
@@ -189,6 +189,11 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
                 <span class="erreur">Choisissez une réponse.</span>
               </div>
             ))}
+            <div class="champ" data-champ="fonction" data-si-autre="fonction_choix" hidden>
+              <label for={`${id}-fonction`}>Précisez votre fonction</label>
+              <input id={`${id}-fonction`} name="fonction" autocomplete="organization-title" maxlength="80" placeholder="Par exemple : Économe">
+              <span class="erreur">Précisez votre fonction (lettres uniquement).</span>
+            </div>
             <div class="deux">
               <div class="champ" data-champ="email" data-email-requis>
                 <label for={`${id}-email`}>E-mail</label>
@@ -206,7 +211,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
             <div class="champ" data-champ="message" data-texte-requis>
               <label for={`${id}-message`}>Décrivez brièvement votre situation</label>
               <textarea id={`${id}-message`} name="message" maxlength="1500" required></textarea>
-              <span class="erreur">Décrivez votre situation en quelques mots.</span>
+              <span class="erreur">Décrivez votre situation en quelques vrais mots.</span>
             </div>
           </div>
         </>}
@@ -217,7 +222,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="champ" data-champ="nom">
                 <label for={`${id}-nom`}>Votre prénom et nom</label>
                 <input id={`${id}-nom`} name="nom" autocomplete="name" maxlength="80" required>
-                <span class="erreur">Indiquez votre nom.</span>
+                <span class="erreur">Indiquez votre vrai nom (lettres uniquement).</span>
               </div>
               <div class="champ" data-champ="organisation">
                 <label for={`${id}-organisation`}>Nom de votre entreprise</label>
@@ -318,7 +323,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="champ" data-champ="nom">
                 <label for={`${id}-nom`}>Nom et prénom</label>
                 <input id={`${id}-nom`} name="nom" autocomplete="name" maxlength="80" required>
-                <span class="erreur">Indiquez votre nom.</span>
+                <span class="erreur">Indiquez votre vrai nom (lettres uniquement).</span>
               </div>
               <div class="champ" data-champ="tel">
                 <label for={`${id}-tel`}>Téléphone / WhatsApp</label>
