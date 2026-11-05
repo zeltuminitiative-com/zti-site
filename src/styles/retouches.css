@@ -268,3 +268,12 @@ figure.visuel { margin: 0; }
 .fond-blanc .q-zti, .fond-ivoire .q-zti { background: linear-gradient(#FFFFFF, #FFFFFF) padding-box, linear-gradient(140deg, #D7DCF3, #1565FF) border-box; }
 .fond-blanc .q-zti > button, .fond-ivoire .q-zti > button { color: #02008A; } .fond-blanc .q-reponse, .fond-ivoire .q-reponse { color: #4A5568; }/* attestations : contenu collé en haut de la carte (un bouton centre son contenu verticalement par défaut) */
 .attestations-zti button { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+/* ——— formulaire (05/11) : les titres des champs se distinguent nettement des réponses et des messages ——— */
+.champ > label, .champ > .titre-champ { font: 700 15px/1.3 var(--titres); letter-spacing: .01em; color: #02008A; }
+.champ .facultatif { font: 400 13px var(--texte); color: #4A5568; }
+.choix button { font: 400 14px var(--texte); color: #4A5568; border-color: #D7DCF3; }
+.choix button[aria-checked="true"], .choix button[aria-pressed="true"] { color: #FFFFFF; }
+.champ input, .champ textarea { font-weight: 400; color: #4A5568; }
+.champ .erreur { font: italic 400 13px var(--texte); color: #1565FF; }
+/* ——— pied de page : fond noir (05/11, demande ZTi) ——— */
+.pied { background: #000000; }
