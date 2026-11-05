@@ -134,15 +134,27 @@ $$('form[data-demande]').forEach(form => {
   tel.addEventListener('input', () => { const c = tel.value.replace(/\D/g, '').replace(/^237/, '').slice(0, 9); tel.value = c.replace(/(\d)(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/, (m, a, b, c2, d, e) => [a + b, c2, d, e].filter(Boolean).join(' ')); });
 
   // contrôle d'un bloc (une étape, ou la fin du formulaire) : signale les champs à corriger
+  // saisies fantaisistes refusées (« grdfug 2346 », « aaaa », « xkcdz ») : il faut des voyelles, pas de lettre répétée 4 fois,
+  // pas de suite de 5 consonnes, pas de mot de 5 lettres ou plus presque sans voyelle ; chiffres selon le champ
+  const VOY = /[aeiouyàâäéèêëîïôöùûü]/i, CONS = /[bcdfghjklmnpqrstvwxz]{5,}/i;
+  const vraisemblable = (val, chiffres = 'non') => {
+    const s = (val || '').trim().replace(/\s+/g, ' ');
+    if (s.length < 2 || !VOY.test(s) || /(.)\1{3,}/.test(s)) return false;
+    if (chiffres === 'non' && /\d/.test(s)) return false;
+    if (chiffres === 'peu' && /\d{3,}/.test(s)) return false;
+    return s.split(/[\s'’\-.,/()]+/).every(m => { const l = m.replace(/[^a-zà-öø-ÿ]/gi, ''); if (CONS.test(l)) return false;
+      return l.length < 5 || (l.match(/[aeiouyàâäéèêëîïôöùûü]/gi) || []).length / l.length >= 0.2; });
+  };
   const controler = bloc => {
     const erreurs = [];
     const marque = (champ, ok) => { if (!champ || champ.hidden) return; champ.classList.toggle('invalide', !ok); if (!ok) erreurs.push(champ); };
     const champ = n => $(`[data-champ="${n}"]`, bloc);
     $$('[data-requis]', bloc).forEach(c => marque(c, !!code(c.dataset.champ)));
     $$('[data-requis-plusieurs]', bloc).forEach(c => marque(c, valeur(c.dataset.champ).length > 0));
-    $$('[data-texte-requis]', bloc).forEach(c => marque(c, (c.querySelector('input, textarea')?.value || '').trim().length >= 3));
-    marque(champ('organisation'), v('organisation').length >= 2);
-    marque(champ('nom'), v('nom').length >= 2); marque(champ('quartier'), v('quartier').length >= 2); marque(champ('ville_nom'), v('ville_nom').length >= 2);   // école : quartier et ville obligatoires
+    $('[data-texte-requis]', bloc).forEach(c => { const x = (c.querySelector('input, textarea')?.value || '').trim(); marque(c, x.length >= 3 && vraisemblable(x, 'oui')); });
+    $$('[data-si-autre]', bloc).forEach(c => marque(c, vraisemblable(c.querySelector('input')?.value)));   // « Autre » choisi : la précision est obligatoire
+    marque(champ('organisation'), v('organisation').length >= 3 && vraisemblable(v('organisation'), 'peu'));
+    marque(champ('nom'), vraisemblable(v('nom'))); marque(champ('quartier'), vraisemblable(v('quartier'), 'peu')); marque(champ('ville_nom'), vraisemblable(v('ville_nom')));   // école : quartier et ville obligatoires
     marque(champ('tel'), /^6\d{8}$/.test(v('tel').replace(/\D/g, '')));
     const ec = champ('email');
     if (ec) marque(ec, ec.hasAttribute('data-email-requis') ? /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')) : !v('email') || /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')));
@@ -157,6 +169,10 @@ $$('form[data-demande]').forEach(form => {
     return true;
   };
 
+  // « Autre » : une zone de saisie apparaît sous la question (et disparaît, vidée, si on choisit autre chose)
+  const majAutre = () => $$('[data-si-autre]', form).forEach(c => { const autre = code(c.dataset.siAutre) === 'Autre'; c.hidden = !autre; if (!autre) { const i = c.querySelector('input'); if (i) i.value = ''; c.classList.remove('invalide'); } });
+  form.addEventListener('click', e => { if (e.target.closest('[data-choix] button')) setTimeout(majAutre); });
+  majAutre();
   // étapes (formulaire des entreprises) : la fin du formulaire n'apparaît qu'à la dernière
   const etapes = $$('[data-etape]', form), fin = $('[data-fin]', form), progression = $('[data-progression]', form);
   const titres = JSON.parse(progression?.dataset.titres || '[]');
