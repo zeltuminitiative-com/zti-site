@@ -196,16 +196,35 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
           </div>
           <div class="etape" data-etape="2" hidden>
             <button type="button" class="retour" data-retour>← Étape précédente</button>
-            <div class="deux">
+            <div class="trois">
+              <div class="champ" data-champ="civilite" data-requis>
+                <span class="titre-champ" id={`${id}-civilite`}>Civilité</span>
+                <div class="choix" role="radiogroup" aria-labelledby={`${id}-civilite`} data-choix="civilite" data-unique>
+                  {['Mme', 'Mlle', 'M.'].map(c => <button type="button" role="radio" aria-checked="false" data-valeur={c}>{c}</button>)}
+                </div>
+                <span class="erreur">Choisissez.</span>
+              </div>
               <div class="champ" data-champ="nom">
-                <label for={`${id}-nom`}>Nom et prénom</label>
-                <input id={`${id}-nom`} name="nom" autocomplete="name" maxlength="80" required>
+                <label for={`${id}-nom`}>Nom</label>
+                <input id={`${id}-nom`} name="nom" autocomplete="family-name" maxlength="60" required>
                 <span class="erreur">Indiquez votre vrai nom (lettres uniquement).</span>
               </div>
+              <div class="champ" data-champ="prenom">
+                <label for={`${id}-prenom`}>Prénom</label>
+                <input id={`${id}-prenom`} name="prenom" autocomplete="given-name" maxlength="60" required>
+                <span class="erreur">Indiquez votre vrai prénom (lettres uniquement).</span>
+              </div>
+            </div>
+            <div class="deux">
               <div class="champ" data-champ="tel">
                 <label for={`${id}-tel`}>Téléphone / WhatsApp</label>
                 <div class="telephone"><span>+237</span><input id={`${id}-tel`} name="tel" inputmode="tel" autocomplete="tel-national" maxlength="12" placeholder="6XX XX XX XX" required></div>
                 <span class="erreur">9 chiffres, en commençant par 6.</span>
+              </div>
+              <div class="champ" data-champ="email" data-email-requis>
+                <label for={`${id}-email`}>E-mail</label>
+                <input id={`${id}-email`} name="email" type="email" autocomplete="email" maxlength="120" required>
+                <span class="erreur">Indiquez une adresse e-mail valide.</span>
               </div>
             </div>
             {[q('fonction_choix', 'Votre fonction', fonctionsEcole, { requis: true })].map(x => (
@@ -221,13 +240,6 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <label for={`${id}-fonction`}>Précisez votre fonction</label>
               <input id={`${id}-fonction`} name="fonction" autocomplete="organization-title" maxlength="80" placeholder="Par exemple : Économe">
               <span class="erreur">Précisez votre fonction (lettres uniquement).</span>
-            </div>
-            <div class="deux">
-              <div class="champ" data-champ="email" data-email-requis>
-                <label for={`${id}-email`}>E-mail</label>
-                <input id={`${id}-email`} name="email" type="email" autocomplete="email" maxlength="120" required>
-                <span class="erreur">Indiquez une adresse e-mail valide.</span>
-              </div>
             </div>
             <div class="champ" data-champ="moment" data-requis>
               <span class="titre-champ" id={`${id}-moment`}>Meilleur moment pour vous rappeler</span>
