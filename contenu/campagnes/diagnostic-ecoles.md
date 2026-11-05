@@ -12,12 +12,12 @@ sections:
     titre: Valoriser et préserver votre investissement informatique
     accent: investissement informatique
     bouton:
-      texte: Réserver mon diagnostic offert
+      texte: Réserver mon diagnostic
       lien: "#demande"
     lien_secondaire:
       texte: Calculer le coût réel d'un poste
       lien: "#cout-reel"
-    sous_bouton: Sans engagement
+    sous_bouton: Offert - Sans engagement
     image: /images/dirigeant.jpg
     presentation: plein-ecran
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse. Écoles · Collèges · Lycées"
