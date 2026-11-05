@@ -437,6 +437,7 @@ content:
         fields:
           - { name: endpoint, type: string, label: Adresse du serveur ZTi, description: "Ex. https://api.ztisystem.com. Demandes, avis, statistiques, téléchargements et espace ambassadeurs passent par ce serveur. Vide = la demande part seulement par WhatsApp." }
           - { name: pixel, type: string, label: Identifiant du pixel Meta, description: "Vide = aucun pixel chargé." }
+          - { name: photos, type: string, label: Photos des demandes (Google Drive), description: "Adresse /exec du script Google « ZTi photos demandes » (voir outils/photos-demandes-google-drive.gs). Vide = pas de case photo dans le formulaire." }
 
   - name: references
     label: Références (logos des clients)
