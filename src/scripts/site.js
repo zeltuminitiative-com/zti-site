@@ -32,11 +32,17 @@ const boutonsVision = $$('[data-visionneuse]');
 if (boutonsVision.length) {
   const v = document.createElement('div');
   v.className = 'visionneuse'; v.setAttribute('role', 'dialog'); v.setAttribute('aria-modal', 'true'); v.setAttribute('aria-label', 'Attestation');
-  v.innerHTML = '<img alt="" oncontextmenu="return false"><button class="fermer" type="button" aria-label="Fermer">×</button>';
+  v.innerHTML = '<img alt="" oncontextmenu="return false"><button class="fermer" type="button" aria-label="Fermer">×</button><p class="aide-zoom">Cliquez sur le document pour zoomer, puis déplacez la souris. Cliquez à nouveau pour revenir.</p>';
   document.body.append(v);
   let retour = null;
-  const fermer = () => { v.classList.remove('ouverte'); retour?.focus(); };
-  boutonsVision.forEach(b => b.addEventListener('click', () => { retour = b; $('img', v).src = b.dataset.visionneuse; v.classList.add('ouverte'); $('.fermer', v).focus(); }));
+  // zoom sur ordinateur (×2,5 à l'endroit cliqué, la souris déplace la vue) ; sur téléphone, le pincement suffit
+  const img = $('img', v); let zoom = false, cadre = null;
+  const origine = e => { const r = cadre; img.style.transformOrigin = `${Math.min(100, Math.max(0, (e.clientX - r.left) / r.width * 100))}% ${Math.min(100, Math.max(0, (e.clientY - r.top) / r.height * 100))}%`; };
+  const dezoomer = () => { zoom = false; v.classList.remove('zoom'); img.style.transformOrigin = ''; };
+  img.addEventListener('click', e => { e.stopPropagation(); if (!zoom) { cadre = img.getBoundingClientRect(); origine(e); } zoom = !zoom; v.classList.toggle('zoom', zoom); });
+  img.addEventListener('mousemove', e => { if (zoom) origine(e); });
+  const fermer = () => { dezoomer(); v.classList.remove('ouverte'); retour?.focus(); };
+  boutonsVision.forEach(b => b.addEventListener('click', () => { retour = b; dezoomer(); img.src = b.dataset.visionneuse; v.classList.add('ouverte'); $('.fermer', v).focus(); }));
   v.addEventListener('click', e => { if (e.target === v || e.target.closest('.fermer')) fermer(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && v.classList.contains('ouverte')) fermer(); });
 }
