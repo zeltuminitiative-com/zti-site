@@ -18,8 +18,8 @@ sections:
       texte: Calculer le coût réel d'un poste
       lien: "#cout-reel"
     sous_bouton: Sans engagement
-    image: /images/ecoles-hero.webp
-    cadrage: droite
+    image: /images/dirigeant.jpg
+    presentation: plein-ecran
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse. Écoles · Collèges · Lycées"
   - type: calculateur
     fond: blanc
