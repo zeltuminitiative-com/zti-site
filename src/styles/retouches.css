@@ -266,4 +266,5 @@ figure.visuel { margin: 0; }
 .q-zti > button[aria-expanded="true"]::after { transform: rotate(45deg); }
 .q-reponse { padding-bottom: 18px; color: #C7CDEC; } .q-reponse p { margin: 0; }
 .fond-blanc .q-zti, .fond-ivoire .q-zti { background: linear-gradient(#FFFFFF, #FFFFFF) padding-box, linear-gradient(140deg, #D7DCF3, #1565FF) border-box; }
-.fond-blanc .q-zti > button, .fond-ivoire .q-zti > button { color: #02008A; } .fond-blanc .q-reponse, .fond-ivoire .q-reponse { color: #4A5568; }
+.fond-blanc .q-zti > button, .fond-ivoire .q-zti > button { color: #02008A; } .fond-blanc .q-reponse, .fond-ivoire .q-reponse { color: #4A5568; }/* attestations : contenu collé en haut de la carte (un bouton centre son contenu verticalement par défaut) */
+.attestations-zti button { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
