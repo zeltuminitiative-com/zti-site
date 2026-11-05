@@ -333,3 +333,6 @@ figure.visuel { margin: 0; }
 
 /* ——— signature : slogan sur une seule ligne ——— */
 @media (min-width: 700px) { .signature blockquote { white-space: nowrap; } }
+
+/* portrait du fondateur : la nouvelle photo est déjà cadrée (tête entière) */
+.portrait-zti img { transform: none; object-position: 50% 50%; }
