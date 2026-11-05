@@ -190,13 +190,13 @@ sections:
     attestations:
       - image: /images/attestations/attestation-CNDHL-conf.jpg
         titre: CNDHL
-        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020"
+        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020 (délivrée le 22 mai 2020)"
       - image: /images/attestations/attestation-CALY-conf.jpg
         titre: CALY SARL
-        detail: "Maintenance et réseau, depuis le 1er mars 2014"
+        detail: "Maintenance et réseau, depuis le 1er mars 2014 (délivrée le 5 janvier 2022)"
       - image: /images/attestations/attestation-PACEL-conf.jpg
         titre: Projet PACEL
-        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022"
+        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022 (délivrée le 8 août 2022)"
     mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."
   - type: references
     fond: ivoire
