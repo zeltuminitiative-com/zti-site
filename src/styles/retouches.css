@@ -318,11 +318,11 @@ figure.visuel { margin: 0; }
 /* ——— « Vos données » : le message d'erreur s'écrit sur l'écran, lettre par lettre, puis le curseur clignote (05/11) ——— */
 .ecran-anime { position: relative; container-type: inline-size; }
 .ecran-anime img { display: block; width: 100%; height: auto; }
-.ecran-texte { position: absolute; left: 6.3%; top: 8.2%; display: grid; gap: 1.6cqw; font: 700 3.55cqw/1 'Courier New', Courier, monospace; color: #F4F6FA; text-shadow: 0 0 .6cqw rgba(231,236,250,.55); letter-spacing: .02em; }
+.ecran-texte { position: absolute; left: 6.3%; top: 8.2%; display: grid; gap: 1.6cqw; font: 700 3.55cqw/1 'Courier New', Courier, monospace; color: #F4F6FA; text-shadow: 0 0 .6cqw rgba(231,236,250,.55); }
 .ecran-ligne { display: block; width: 0; overflow: hidden; white-space: nowrap; border-right: .14em solid transparent; }
-.vu .ecran-ligne { animation: tape-ecran calc(var(--n) * .055s) steps(var(--n), end) var(--d) forwards; }
-.vu .ecran-ligne:last-child { animation: tape-ecran calc(var(--n) * .055s) steps(var(--n), end) var(--d) forwards, curseur-ecran .8s step-end calc(var(--d) + var(--n) * .055s) infinite; }
-@keyframes tape-ecran { to { width: calc(var(--n) * 1ch + .2ch); } }
+.ecran-anime.joue .ecran-ligne { animation: tape-ecran calc(var(--n) * .055s) steps(var(--n), end) var(--d) forwards; }
+.ecran-anime.joue .ecran-ligne:last-child { animation: tape-ecran calc(var(--n) * .055s) steps(var(--n), end) var(--d) forwards, curseur-ecran .8s step-end calc(var(--d) + var(--n) * .055s) infinite; }
+@keyframes tape-ecran { to { width: calc(var(--n) * 1ch + .4ch); } }
 @keyframes curseur-ecran { 0%, 100% { border-right-color: #F4F6FA; } 50% { border-right-color: transparent; } }
 @media (prefers-reduced-motion: reduce) { .ecran-ligne { width: auto; animation: none !important; } }
 .sans-js .ecran-ligne { width: auto; }
