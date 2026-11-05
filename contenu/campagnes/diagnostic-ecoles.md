@@ -78,7 +78,7 @@ sections:
       - titre: ZTi Arrêt 5S
         texte: "Le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main."
   - type: packs
-    fond: bleu
+    fond: noir
     ancre: packs
     etiquette: Ce que vous obtenez
     titre: Quatre packs, choisis après le diagnostic.
@@ -94,6 +94,16 @@ sections:
           - Optimisation du disque dur
           - Logiciels standard et antivirus gratuits
         delai: Prise en charge sous 48 h
+        detail:
+          - Optimisation du disque dur
+          - Réinstallation du système (FR / EN) et des pilotes
+          - Logiciels standard gratuits
+          - Antivirus gratuit
+          - Vérification des équipements de sécurité électrique
+          - Constat de sortie poste par poste
+          - "Salle TIC : logiciels scolaires gratuits"
+          - "Administration : sauvegarde et restauration des données, sauvegarde automatique en local, un périphérique additionnel (imprimante / scanner)"
+          - Prise en charge sous 48 h (administration prioritaire)
       - nom: Pack 2 — Fiabilité
         promesse: Moins de pannes, des postes qui durent.
         points:
@@ -101,6 +111,14 @@ sections:
           - "Dépoussiérage complet : clavier, moniteur, unité centrale"
           - Pâte thermique neuve et ventilateurs lubrifiés
         delai: Prise en charge sous 24 h
+        detail:
+          - Tout le Pack 1
+          - Dépoussiérage clavier, moniteur, unité centrale
+          - Remplacement de la pâte thermique
+          - Lubrification des ventilateurs
+          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - "Administration : deux périphériques additionnels par poste"
+          - Prise en charge sous 24 h (administration prioritaire)
       - nom: Pack 3 — Continuité
         badge: Protection ZTi incluse
         promesse: Une protection durable de vos postes et de vos données.
@@ -109,13 +127,33 @@ sections:
           - Nettoyage approfondi (lavage)
           - Protection ZTi, 24 mois
         delai: Prise en charge prioritaire
+        detail:
+          - Tout le Pack 2
+          - Nettoyage approfondi (lavage) clavier, souris, moniteur, unité centrale
+          - Protection ZTi, 24 mois
+          - Arrêt des mises à jour indésirables
+          - Configuration des équipements de sécurité électrique (si disponibles)
+          - "Administration : isolation des données sur une partition dédiée"
+          - Prise en charge prioritaire
       - nom: Pack 4 — Préservation
         promesse: Un parc protégé, entretenu sans réinstallation.
         points:
           - Dépoussiérage, pâte thermique et ventilateurs
           - Nettoyage approfondi (lavage)
           - Contrôle de la Protection ZTi
-        delai: "Prise en charge prioritaire — pour les postes ayant reçu le Pack 3, dans l'année qui suit."
+        delai: Prise en charge prioritaire
+        condition: Pour les postes ayant reçu le Pack 3, dans l'année qui suit.
+        detail:
+          - Dépoussiérage clavier, moniteur, unité centrale
+          - Remplacement de la pâte thermique
+          - Lubrification des ventilateurs
+          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - Nettoyage approfondi (lavage)
+          - Contrôle du bon fonctionnement de la Protection ZTi
+          - Vérification des équipements de sécurité électrique
+          - Contrôle de l'état général et constat de sortie poste par poste
+          - "Administration : contrôle de la sauvegarde automatique et de l'isolation des données"
+          - Prise en charge prioritaire
     compris_titre: Compris dans tous les packs
     compris:
       - Diagnostic sur site et Fiche de Parc, offerts
