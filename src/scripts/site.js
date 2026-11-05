@@ -158,7 +158,7 @@ $$('form[data-demande]').forEach(form => {
     $$('[data-si-autre]', bloc).forEach(c => marque(c, vraisemblable(c.querySelector('input')?.value)));   // « Autre » choisi : la précision est obligatoire
     marque(champ('organisation'), v('organisation').length >= 3 && vraisemblable(v('organisation'), 'peu'));
     if (champ('secteur') && form.typeCoherent && code('secteur')) marque(champ('secteur'), form.typeCoherent());
-    marque(champ('nom'), vraisemblable(v('nom'))); marque(champ('quartier'), vraisemblable(v('quartier'), 'peu')); marque(champ('ville_nom'), vraisemblable(v('ville_nom')));   // école : quartier et ville obligatoires
+    marque(champ('nom'), vraisemblable(v('nom'))); marque(champ('prenom'), vraisemblable(v('prenom'))); marque(champ('quartier'), vraisemblable(v('quartier'), 'peu')); marque(champ('ville_nom'), vraisemblable(v('ville_nom')));   // école : quartier et ville obligatoires
     marque(champ('tel'), /^6\d{8}$/.test(v('tel').replace(/\D/g, '')));
     const ec = champ('email');
     if (ec) marque(ec, ec.hasAttribute('data-email-requis') ? /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')) : !v('email') || /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')));
@@ -244,11 +244,14 @@ $$('form[data-demande]').forEach(form => {
     if (!controler(fin)) return;
 
     const chiffres = v('tel').replace(/\D/g, '');
-    const fonction = v('fonction') || valeur('fonction_choix').join('');
+    // civilité (modèle D) : la fonction s'accorde au féminin pour Mme et Mlle
+    const civilite = valeur('civilite').join(''), FEM = { Fondateur: 'Fondatrice', Promoteur: 'Promotrice', Directeur: 'Directrice', Principal: 'Principale', Proviseur: 'Proviseure', Censeur: 'Censeure' };
+    const fonctionBrute = v('fonction') || valeur('fonction_choix').join('');
+    const fonction = /^M(me|lle)$/.test(civilite) ? (FEM[fonctionBrute] || fonctionBrute) : fonctionBrute;
     const d = {
       date: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' }), accord: true,
       sujet: form.dataset.sujet, profil: profil(), organisation: v('organisation'), secteur: v('secteur_precis') || valeur('secteur').join(''), position: v('position'),
-      nom: v('nom'), fonction, tel: '+237 ' + chiffres.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5'), email: v('email'),
+      civilite, nom: v('prenom') ? `${v('nom').toUpperCase()} ${v('prenom').toLowerCase().replace(/(^|[\s'-])(\p{L})/gu, (m, a, c) => a + c.toUpperCase())}` : v('nom'), fonction, tel: '+237 ' + chiffres.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5'), email: v('email'),
       lieu: v('lieu') || [v('quartier'), v('ville_nom')].filter(Boolean).join(', ') || valeur('ville').join(''), postes: valeur('postes').join(''), situation: valeur('situation').join(''),
       besoins: valeur('besoins'), accompagnement: valeur('accompagnement').join(''), prestataire: valeur('prestataire').join(''),
       depenses: valeur('depenses').join(''), moment: valeur('moment').join(''), message: v('message'), connu: valeur('connu').join(''),
@@ -262,7 +265,7 @@ $$('form[data-demande]').forEach(form => {
     const lignes = [
       `Bonjour ZTi, voici ma demande (${d.sujet}) :`,
       `• Profil : ${d.profil}`, d.organisation && `• ${d.profil === 'Établissement scolaire' ? 'Établissement' : 'Entreprise / organisation'} : ${d.organisation}`,
-      `• Nom : ${d.nom}${d.fonction ? ' (' + d.fonction + ')' : ''}`, `• Téléphone : ${d.tel}`, d.email && `• E-mail : ${d.email}`,
+      `• Nom : ${d.civilite ? d.civilite + ' ' : ''}${d.nom}${d.fonction ? ' (' + d.fonction + ')' : ''}`, `• Téléphone : ${d.tel}`, d.email && `• E-mail : ${d.email}`,
       d.secteur && `• ${d.profil === 'Établissement scolaire' ? 'Type' : 'Secteur'} : ${d.secteur}`, d.lieu && `• Lieu : ${d.lieu}`, d.position && `• Position : ${d.position}`,
       d.postes && `• ${d.profil === 'Particulier' ? 'Appareil' : 'Ordinateurs'} : ${d.postes}`,
       d.situation && `• Situation : ${d.situation}`, d.besoins.length && `• ${d.profil === 'Particulier' ? 'Problème' : 'Besoin'} : ${d.besoins.join(', ')}`,
