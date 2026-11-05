@@ -20,6 +20,14 @@ const besoins: string[] = s.besoins?.length ? s.besoins : (await services()).map
 const moments = variante === 'entreprises' ? ['Matin (8 h – 12 h)', 'Après-midi (12 h – 17 h)', 'Soir (17 h – 19 h)'] : ['Matin', 'Midi', 'Après-midi', 'Soir'];
 // écoles
 const typesEcole = ['Maternelle et primaire', 'Collège ou lycée', 'Université ou institut', 'Centre de formation'];
+// type d'établissement : liste du modèle D, par groupes (le type est aussi reconnu d'après le nom saisi)
+const typesGroupes: [string, string[]][] = [
+  ['Écoles', ['École maternelle', 'École primaire']],
+  ['Secondaire', ['Collège', 'Lycée']],
+  ['Établissements à plusieurs niveaux', ['Groupe scolaire', 'Complexe scolaire', 'Cité scolaire', 'Campus scolaire']],
+  ['Supérieur et formation', ['Institut', 'Centre éducatif', 'Centre de formation']],
+  ['', ['Autre']],
+];
 const fonctionsEcole = ['Fondateur', 'Promoteur', 'Directeur', 'Principal', 'Proviseur', 'Censeur', 'Informaticien', 'Autre'];
 const postesEcole = ['1 à 10', '11 à 20', '21 à 40', 'Plus de 40'];
 // entreprises (ancien Tally)
@@ -132,8 +140,23 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <input id={`${id}-organisation`} name="organisation" autocomplete="organization" maxlength="120" placeholder="Par exemple : Complexe scolaire…">
               <span class="erreur">Indiquez le vrai nom de votre établissement.</span>
             </div>
-            {[q('secteur', "Type d'établissement", typesEcole, { requis: true }),
-              q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { requis: true })].map(x => (
+            <div class="champ" data-champ="secteur" data-requis>
+              <span class="titre-champ" id={`${id}-secteur`}>Type d'établissement</span>
+              <span class="note-type" data-note-type aria-live="polite"></span>
+              <div class="choix choix-groupes" role="radiogroup" aria-labelledby={`${id}-secteur`} data-choix="secteur" data-unique>
+                {typesGroupes.map(([g, vals]) => <>
+                  {g && <span class="groupe-choix">{g}</span>}
+                  {vals.map(v => <button type="button" role="radio" aria-checked="false" data-valeur={v}>{v}</button>)}
+                </>)}
+              </div>
+              <span class="erreur" data-erreur-type>Choisissez le type.</span>
+            </div>
+            <div class="champ" data-champ="secteur_precis" data-si-autre="secteur" hidden>
+              <label for={`${id}-secteur_precis`}>Précisez le type d'établissement</label>
+              <input id={`${id}-secteur_precis`} name="secteur_precis" maxlength="80" placeholder="Par exemple : Séminaire">
+              <span class="erreur">Précisez le type (lettres uniquement).</span>
+            </div>
+            {[q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { requis: true })].map(x => (
               <div class="champ" data-champ={x.nom} data-requis={x.requis ? '' : undefined}>
                 <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre}</span>
                 <div class="choix" role="radiogroup" aria-labelledby={`${id}-${x.nom}`} data-choix={x.nom} data-unique>
@@ -162,6 +185,11 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
                 <input id={`${id}-ville_nom`} name="ville_nom" autocomplete="address-level2" maxlength="60" placeholder="Par exemple : Yaoundé" required>
                 <span class="erreur">Indiquez le vrai nom de la ville (lettres uniquement).</span>
               </div>
+            </div>
+            <div class="champ champ-geo" data-champ="position">
+              <button type="button" class="btn-geo" data-geo><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Partager la position de l'établissement</button>
+              <span class="geo-etat" data-geo-etat>Facultatif : à faire depuis l'établissement.</span>
+              <input type="hidden" name="position">
             </div>
             <p class="message-erreur" role="alert" hidden></p>
             <div><button class="btn" type="button" data-suivant>Continuer<span class="pastille"><Icone nom="fleche" /></span></button></div>
