@@ -80,6 +80,22 @@ sections:
         texte: "Pensé pour les coupures de courant : la session de travail est sauvegardée et reprend à l'identique au prochain allumage."
       - titre: ZTi Arrêt 5S
         texte: "Le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main."
+  - type: texte_image
+    fond: ivoire
+    ancre: fiche-de-parc
+    etiquette: Ce que vous recevez
+    titre: "La Fiche de Parc : l'état réel de votre parc, poste par poste."
+    texte: "Après le diagnostic, la direction reçoit un rapport écrit et signé. Si vous confiez l'intervention à ZTi, il sert d'état initial au procès-verbal de réception."
+    points:
+      - "L'essentiel pour la direction : postes opérationnels, postes à remettre en état, priorités"
+      - État de chaque poste et tâches à effectuer
+      - Inventaire matériel et logiciel détaillé, poste par poste
+      - "Environnement électrique : prises, régulateurs, onduleurs"
+      - Constat et recommandations d'usage gratuites, applicables dès maintenant
+    image: /images/fiche-de-parc-exemple.jpg
+    image_texte: "Première page d'une Fiche de Parc ZTi, exemple avec des données fictives"
+    legende: "Exemple de première page d'une Fiche de Parc, avec un établissement et des chiffres fictifs. Cliquez pour l'agrandir."
+    agrandir: true
   - type: packs
     fond: noir
     ancre: packs
@@ -166,22 +182,6 @@ sections:
       - Procès-verbal de réception signé poste par poste
       - Charte d'utilisation remise à l'établissement
       - "Administration uniquement : les trois outils ZTi offerts"
-  - type: texte_image
-    fond: ivoire
-    ancre: fiche-de-parc
-    etiquette: Ce que vous recevez
-    titre: "La Fiche de Parc : l'état réel de votre parc, poste par poste."
-    texte: "Après le diagnostic, la direction reçoit un rapport écrit et signé. Si vous confiez l'intervention à ZTi, il sert d'état initial au procès-verbal de réception."
-    points:
-      - "L'essentiel pour la direction : postes opérationnels, postes à remettre en état, priorités"
-      - État de chaque poste et tâches à effectuer
-      - Inventaire matériel et logiciel détaillé, poste par poste
-      - "Environnement électrique : prises, régulateurs, onduleurs"
-      - Constat et recommandations d'usage gratuites, applicables dès maintenant
-    image: /images/fiche-de-parc-exemple.jpg
-    image_texte: "Première page d'une Fiche de Parc ZTi, exemple avec des données fictives"
-    legende: "Exemple de première page d'une Fiche de Parc, avec un établissement et des chiffres fictifs. Cliquez pour l'agrandir."
-    agrandir: true
   - type: preuve
     fond: blanc
     etiquette: La preuve
