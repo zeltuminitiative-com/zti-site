@@ -151,9 +151,10 @@ $$('form[data-demande]').forEach(form => {
     const champ = n => $(`[data-champ="${n}"]`, bloc);
     $$('[data-requis]', bloc).forEach(c => marque(c, !!code(c.dataset.champ)));
     $$('[data-requis-plusieurs]', bloc).forEach(c => marque(c, valeur(c.dataset.champ).length > 0));
-    $('[data-texte-requis]', bloc).forEach(c => { const x = (c.querySelector('input, textarea')?.value || '').trim(); marque(c, x.length >= 3 && vraisemblable(x, 'oui')); });
+    $$('[data-texte-requis]', bloc).forEach(c => { const x = (c.querySelector('input, textarea')?.value || '').trim(); marque(c, x.length >= 3 && vraisemblable(x, 'oui')); });
     $$('[data-si-autre]', bloc).forEach(c => marque(c, vraisemblable(c.querySelector('input')?.value)));   // « Autre » choisi : la précision est obligatoire
     marque(champ('organisation'), v('organisation').length >= 3 && vraisemblable(v('organisation'), 'peu'));
+    if (champ('secteur') && form.typeCoherent && code('secteur')) marque(champ('secteur'), form.typeCoherent());
     marque(champ('nom'), vraisemblable(v('nom'))); marque(champ('quartier'), vraisemblable(v('quartier'), 'peu')); marque(champ('ville_nom'), vraisemblable(v('ville_nom')));   // école : quartier et ville obligatoires
     marque(champ('tel'), /^6\d{8}$/.test(v('tel').replace(/\D/g, '')));
     const ec = champ('email');
@@ -173,6 +174,47 @@ $$('form[data-demande]').forEach(form => {
   const majAutre = () => $$('[data-si-autre]', form).forEach(c => { const autre = code(c.dataset.siAutre) === 'Autre'; c.hidden = !autre; if (!autre) { const i = c.querySelector('input'); if (i) i.value = ''; c.classList.remove('invalide'); } });
   form.addEventListener('click', e => { if (e.target.closest('[data-choix] button')) setTimeout(majAutre); });
   majAutre();
+  // type d'établissement reconnu d'après le nom (modèle D) : choisi automatiquement ; un type contraire au nom est refusé
+  const mot = x => new RegExp(`(?:^|[^\\p{L}\\d])(?:${x})(?![\\p{L}\\d])`, 'iu');
+  const TYPES_NOM = [
+    [mot('groupe\\s+scolaire|g\\.?\\s?s\\.?\\s?b?\\.?'), 'Groupe scolaire'],
+    [mot('complexe\\s+scolaire|c\\.?\\s?s\\.?\\s?b?\\.?'), 'Complexe scolaire'],
+    [mot('cit[ée]\\s+scolaire'), 'Cité scolaire'],
+    [mot('campus'), 'Campus scolaire'],
+    [mot('lyc[ée]e|l\\.?\\s?b\\.?|l\\.?\\s?t\\.?'), 'Lycée'],
+    [mot('coll[èe]ge|c\\.?e\\.?s\\.?|c\\.?e\\.?g\\.?|c\\.?e\\.?t\\.?i\\.?c\\.?'), 'Collège'],
+    [mot('[ée]cole\\s+maternelle|maternelle|e\\.?\\s?m\\.?'), 'École maternelle'],
+    [mot('[ée]cole\\s+primaire|e\\.?\\s?p\\.?\\s?b?\\.?'), 'École primaire'],
+    [mot('institut'), 'Institut'],
+    [mot('centre\\s+(?:de\\s+)?formation'), 'Centre de formation'],
+    [mot('centre\\s+[ée]ducatif'), 'Centre éducatif'],
+  ];
+  const typesDuNom = n => TYPES_NOM.filter(([re]) => re.test(n || '')).map(r => r[1]);
+  const champType = $('[data-choix="secteur"]', form)?.closest('.champ');
+  let typeAuto = '';
+  if (champType && $('[data-choix="secteur"] .groupe-choix', form)) {
+    const note = $('[data-note-type]', form), errType = $('[data-erreur-type]', form);
+    const majType = () => {
+      const ts = typesDuNom(v('organisation'));
+      if (ts.length && (!code('secteur') || code('secteur') === typeAuto)) { const bt = $(`[data-choix="secteur"] button[data-valeur="${ts[0]}"]`, form); if (bt && code('secteur') !== ts[0]) bt.click(); typeAuto = ts[0]; }
+      note.textContent = ts.length ? `✓ Type reconnu d'après le nom : ${ts.join(' et ')}` : '';
+    };
+    form.elements.organisation?.addEventListener('input', majType);
+    $$('[data-choix="secteur"] button', form).forEach(bt => bt.addEventListener('click', e => { if (e.isTrusted) typeAuto = ''; }));
+    form.typeCoherent = () => { const ts = typesDuNom(v('organisation')), c = code('secteur');
+      const ok = !c || c === 'Autre' || !ts.length || ts.includes(c);
+      errType.textContent = ok ? 'Choisissez le type.' : `Le nom « ${v('organisation')} » correspond à : ${ts.join(' ou ')}. Corrigez le type ou le nom.`;
+      return ok; };
+  }
+  // position de l'établissement (facultatif, modèle D) : lien Google Maps ajouté à la demande
+  $$('[data-geo]', form).forEach(bt => bt.addEventListener('click', () => {
+    const etat = $('[data-geo-etat]', form), champPos = form.elements.position;
+    if (!navigator.geolocation) { etat.textContent = 'Position non disponible sur cet appareil.'; return; }
+    etat.textContent = 'Recherche de la position…';
+    navigator.geolocation.getCurrentPosition(p => { const { latitude: la, longitude: lo } = p.coords; champPos.value = `https://maps.google.com/?q=${la.toFixed(6)},${lo.toFixed(6)}`; etat.textContent = '✓ Position enregistrée.'; },
+      () => { etat.textContent = 'Position refusée : le quartier et la ville suffisent.'; }, { enableHighAccuracy: true, timeout: 12000 });
+  }));
+
   // étapes (formulaire des entreprises) : la fin du formulaire n'apparaît qu'à la dernière
   const etapes = $$('[data-etape]', form), fin = $('[data-fin]', form), progression = $('[data-progression]', form);
   const titres = JSON.parse(progression?.dataset.titres || '[]');
@@ -191,9 +233,10 @@ $$('form[data-demande]').forEach(form => {
   $$('[data-retour]', form).forEach(b => b.addEventListener('click', () => aller(courante - 1)));
 
   let envoi = false;
+  const ouverture = Date.now();   // sécurité (modèle D) : envoi en moins de 5 s ou champ piège rempli = robot, rien n'est transmis
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    if (envoi || form.elements.site_web.value) return; // déjà en cours, ou robot
+    if (envoi || form.elements.site_web.value || Date.now() - ouverture < 5000) return; // déjà en cours, ou robot
     for (let i = 0; i < etapes.length; i++) if (!controler(etapes[i])) { if (i !== courante) aller(i); else controler(fin) || controler(etapes[i]); return; }
     if (!controler(fin)) return;
 
@@ -201,7 +244,7 @@ $$('form[data-demande]').forEach(form => {
     const fonction = v('fonction') || valeur('fonction_choix').join('');
     const d = {
       date: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' }), accord: true,
-      sujet: form.dataset.sujet, profil: profil(), organisation: v('organisation'), secteur: valeur('secteur').join(''),
+      sujet: form.dataset.sujet, profil: profil(), organisation: v('organisation'), secteur: v('secteur_precis') || valeur('secteur').join(''), position: v('position'),
       nom: v('nom'), fonction, tel: '+237 ' + chiffres.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5'), email: v('email'),
       lieu: v('lieu') || [v('quartier'), v('ville_nom')].filter(Boolean).join(', ') || valeur('ville').join(''), postes: valeur('postes').join(''), situation: valeur('situation').join(''),
       besoins: valeur('besoins'), accompagnement: valeur('accompagnement').join(''), prestataire: valeur('prestataire').join(''),
@@ -217,7 +260,7 @@ $$('form[data-demande]').forEach(form => {
       `Bonjour ZTi, voici ma demande (${d.sujet}) :`,
       `• Profil : ${d.profil}`, d.organisation && `• ${d.profil === 'Établissement scolaire' ? 'Établissement' : 'Entreprise / organisation'} : ${d.organisation}`,
       `• Nom : ${d.nom}${d.fonction ? ' (' + d.fonction + ')' : ''}`, `• Téléphone : ${d.tel}`, d.email && `• E-mail : ${d.email}`,
-      d.secteur && `• ${d.profil === 'Établissement scolaire' ? 'Type' : 'Secteur'} : ${d.secteur}`, d.lieu && `• Lieu : ${d.lieu}`,
+      d.secteur && `• ${d.profil === 'Établissement scolaire' ? 'Type' : 'Secteur'} : ${d.secteur}`, d.lieu && `• Lieu : ${d.lieu}`, d.position && `• Position : ${d.position}`,
       d.postes && `• ${d.profil === 'Particulier' ? 'Appareil' : 'Ordinateurs'} : ${d.postes}`,
       d.situation && `• Situation : ${d.situation}`, d.besoins.length && `• ${d.profil === 'Particulier' ? 'Problème' : 'Besoin'} : ${d.besoins.join(', ')}`,
       d.accompagnement && `• Accompagnement : ${d.accompagnement}`, d.prestataire && `• Prestataire actuel : ${d.prestataire}`,
