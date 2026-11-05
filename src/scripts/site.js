@@ -21,7 +21,7 @@ if ('IntersectionObserver' in window) {
 } else $$('.rv').forEach(e => e.classList.add('vu'));
 
 /* ---------- questions repliables ---------- */
-$$('.question > button, .pack-zti .tout-voir').forEach(b => b.addEventListener('click', () => {
+$$('.question > button, .pack-zti .tout-voir, .q-zti > button').forEach(b => b.addEventListener('click', () => {
   const ouvert = b.getAttribute('aria-expanded') === 'true';
   b.setAttribute('aria-expanded', String(!ouvert));
   document.getElementById(b.getAttribute('aria-controls')).hidden = ouvert;
