@@ -275,6 +275,12 @@ figure.visuel { margin: 0; }
 .choix button[aria-checked="true"], .choix button[aria-pressed="true"] { color: #FFFFFF; }
 .champ input, .champ textarea { font-weight: 400; color: #4A5568; }
 .champ .erreur { font: italic 400 13px var(--texte); color: #1565FF; }
+/* champs à compléter signalés en rouge, pour qu'on les repère tout de suite */
+.champ.invalide > label, .champ.invalide > .titre-champ, .champ.invalide .erreur { color: #D62828; }
+.champ.invalide input, .champ.invalide textarea, .champ.invalide .telephone { border-color: #D62828; box-shadow: 0 0 0 3px rgba(214,40,40,.15); }
+.champ.invalide .choix button:not([aria-checked="true"]):not([aria-pressed="true"]) { border-color: #D62828; }
+.champ.invalide .btn-geo, .champ.invalide input[type=file]::file-selector-button { border-color: #D62828; color: #D62828; }
+.message-erreur { background: #FDECEC; color: #D62828; border: 1px solid #F3B4B4; }
 /* ——— pied de page : fond noir (05/11, demande ZTi) ——— */
 .pied { background: #000000; }
 /* ——— formulaire écoles : menu Type par groupes, type reconnu d'après le nom, bouton de localisation (05/11) ——— */
