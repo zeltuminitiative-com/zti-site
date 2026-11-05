@@ -41,7 +41,7 @@ sections:
       - jusqu_a: 49
         prix: 9500
       - prix: 8000
-    mention: "Ces calculs prennent uniquement en compte le prix d'achat réparti sur la durée d'utilisation. Ils ne garantissent aucune durée de vie : ils indiquent à partir de quand l'entretien est remboursé. Prix hors taxes, par poste, applicables pendant l'année scolaire, pour les établissements privés ; les établissements publics et assimilés font l'objet d'une cotation distincte."
+    mention: "Ces calculs prennent uniquement en compte le prix d'achat réparti sur la durée d'utilisation. Ils comparent le coût de l'entretien au coût mensuel d'utilisation du matériel. Ils donnent un repère économique, mais ne constituent pas une garantie d'économie ou de prolongation de durée de vie. Prix hors taxes, par poste, applicables pendant l'année scolaire, pour les établissements privés ; les établissements publics et assimilés font l'objet d'une cotation distincte."
   - type: texte_image
     fond: ivoire
     etiquette: Vos données
@@ -95,7 +95,7 @@ sections:
       *Comment le prix est établi : prix par poste, selon deux grilles — salle TIC et parc administratif —, dégressif selon le nombre de postes, hors taxes, valable pour l'année scolaire. Salle TIC et administration traitées ensemble : − 10 %. Licences commerciales (antivirus, Office) : devis distinct. Établissements publics : cotation distincte.*
     packs:
       - nom: Pack 1 — Stabilité
-        promesse: Des postes prêts à travailler, des données sauvegardées.
+        promesse: Des postes prêts à travailler ; à l'administration, des données sauvegardées.
         points:
           - Réinstallation du système (FR / EN) et des pilotes
           - Optimisation du disque dur
@@ -138,7 +138,7 @@ sections:
           - Tout le Pack 2
           - Nettoyage approfondi (lavage) clavier, souris, moniteur, unité centrale
           - Protection ZTi, 24 mois
-          - Arrêt des mises à jour indésirables
+          - "Mises à jour maîtrisées : plus de redémarrages en pleine journée, correctifs de sécurité installés lors d'une maintenance planifiée"
           - Configuration des équipements de sécurité électrique (si disponibles)
           - "Administration : isolation des données sur une partition dédiée"
           - Prise en charge prioritaire
@@ -217,7 +217,7 @@ sections:
       - question: Faut-il encore un antivirus ?
         reponse: "Oui. La Protection ZTi agit au redémarrage ; pendant la journée, l'antivirus surveille les clés USB, les téléchargements et les pièces jointes. Ses mises à jour sont conservées d'un jour à l'autre."
       - question: Et les mises à jour de Windows ?
-        reponse: Les mises à jour automatiques, qui ralentissent ou redémarrent les postes en pleine journée, sont désactivées. Les correctifs de sécurité sont installés lors d'une maintenance planifiée avec vous.
+        reponse: "Les mises à jour automatiques, qui ralentissent ou redémarrent les postes en pleine journée, sont désactivées. La sécurité n'est pas abandonnée pour autant : les correctifs de sécurité sont installés lors d'une maintenance planifiée avec vous, afin de préserver la protection des postes."
       - question: Peut-on installer un logiciel soi-même ?
         reponse: "Un logiciel installé sans ZTi disparaît au redémarrage suivant. Pour l'ajouter durablement, contactez ZTi : il est intégré à l'état de référence du poste."
       - question: Et en cas de rançongiciel ?
