@@ -286,6 +286,11 @@ figure.visuel { margin: 0; }
 .btn-geo:hover, .btn-geo:focus-visible { background: #02008A; color: #FFFFFF; }
 .geo-etat { font: italic 400 13px var(--texte); color: #4A5568; }
 .btn-geo { justify-content: center; text-align: center; }   /* texte du bouton de localisation centré */
+/* photo du problème (facultatif) : même style que le bouton de localisation */
+.champ-photo input[type=file] { font: 400 14px var(--texte); color: #4A5568; }
+.champ-photo input[type=file]::file-selector-button { margin-right: 12px; padding: 9px 16px; border: 2px solid #02008A; border-radius: 999px; background: transparent; color: #02008A; font: 600 14px var(--boutons); cursor: pointer; }
+.champ-photo input[type=file]::file-selector-button:hover { background: #02008A; color: #FFFFFF; }
+.photo-etat { font: italic 400 13px var(--texte); color: #4A5568; }
 /* ——— pied de page animé (05/11) : à son arrivée à l'écran, les colonnes montent l'une après l'autre, les réseaux
    apparaissent un à un, la ligne du bas se trace, le grand « ZTi » se révèle puis flotte doucement ——— */
 .pied .colonnes > * { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
