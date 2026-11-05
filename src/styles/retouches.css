@@ -277,3 +277,11 @@ figure.visuel { margin: 0; }
 .champ .erreur { font: italic 400 13px var(--texte); color: #1565FF; }
 /* ——— pied de page : fond noir (05/11, demande ZTi) ——— */
 .pied { background: #000000; }
+/* ——— formulaire écoles : menu Type par groupes, type reconnu d'après le nom, bouton de localisation (05/11) ——— */
+.choix-groupes .groupe-choix { flex-basis: 100%; margin-top: 8px; font: 600 11.5px var(--titres); letter-spacing: .1em; text-transform: uppercase; color: #1565FF; }
+.choix-groupes .groupe-choix:first-child { margin-top: 0; }
+.note-type { display: block; margin: 2px 0 4px; font: italic 400 13px var(--texte); color: #1565FF; } .note-type:empty { display: none; }
+.champ-geo { gap: 6px; }
+.btn-geo { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; padding: 11px 18px; border: 2px solid #02008A; border-radius: 999px; background: transparent; color: #02008A; font: 600 14px var(--boutons); cursor: pointer; transition: background-color .15s, color .15s; }
+.btn-geo:hover, .btn-geo:focus-visible { background: #02008A; color: #FFFFFF; }
+.geo-etat { font: italic 400 13px var(--texte); color: #4A5568; }
