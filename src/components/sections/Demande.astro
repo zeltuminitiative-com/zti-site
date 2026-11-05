@@ -11,6 +11,8 @@ import Icone from '../Icone.astro';
 import { reglages, services, lien } from '../../lib/contenu';
 const { s, premier = false, page, campagne } = Astro.props as { s: any; premier?: boolean; page: string; campagne: string };
 const r = await reglages();
+// photo jointe (formulaire école) : envoyée au script Google Drive de ZTi ; la case n'apparaît que si son adresse est réglée
+const photos = (r.mesures?.photos || '').trim();
 const id = s.ancre || 'demande';
 const variante: string = ['general', 'ecoles', 'entreprises', 'particuliers'].includes(s.formulaire) ? s.formulaire : 'general';
 const profilFixe = ({ ecoles: 'Établissement scolaire', entreprises: 'Entreprise', particuliers: 'Particulier' } as any)[variante] || '';
@@ -67,7 +69,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
         {s.mention && <p class="mention" style="margin-top:18px">{s.mention}</p>}
       </div>
       <form class="formulaire rv" novalidate data-demande data-variante={variante} data-profil={profilFixe}
-        data-endpoint={(r.mesures?.endpoint || '').trim()} data-wa={r.contact.whatsapp} data-mail={r.contact.email}
+        data-endpoint={(r.mesures?.endpoint || '').trim()} data-photos={photos || undefined} data-wa={r.contact.whatsapp} data-mail={r.contact.email}
         data-merci={lien('/merci/')} data-page={page} data-campagne={campagne} data-sujet={s.sujet || 'Demande'}>
         {etapes.length > 1 && <p class="progression" aria-live="polite" data-progression data-titres={JSON.stringify(etapes)}>Étape 1 sur {etapes.length} · {etapes[0]}</p>}
 
@@ -253,6 +255,14 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <textarea id={`${id}-message`} name="message" maxlength="1500" required></textarea>
               <span class="erreur">Décrivez votre situation en quelques vrais mots.</span>
             </div>
+            {photos && (
+              <div class="champ champ-photo" data-champ="photo">
+                <label for={`${id}-photo`}>Une photo du problème <span class="facultatif">(facultatif)</span></label>
+                <input id={`${id}-photo`} name="photo" type="file" accept="image/jpeg,image/png,image/webp">
+                <span class="photo-etat" data-photo-etat>Écran d'erreur, salle, poste en panne… La photo est envoyée à ZTi seulement.</span>
+                <span class="erreur">Choisissez une photo (JPEG, PNG ou WEBP).</span>
+              </div>
+            )}
           </div>
         </>}
 
