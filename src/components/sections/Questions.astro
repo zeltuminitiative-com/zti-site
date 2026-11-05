@@ -1,17 +1,18 @@
 ---
+// Questions fréquentes — présentation du modèle validé par ZTi (modèle D) : cartes vitrées à liseré lumineux,
+// question en Montserrat, « + » qui pivote à l'ouverture ; ouverture par bouton maison (pas de contrôle natif).
 import Cadre from './Cadre.astro';
-import Icone from '../Icone.astro';
 import { md } from '../../lib/contenu';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const liste = (s.questions || []).filter((q: any) => q.question);
 const base = `q-${Math.random().toString(36).slice(2, 7)}`;
 ---
 <Cadre premier={premier} s={s} defaut="nuit" id={s.ancre || 'questions'}>
-  <div class="questions etroit">
+  <div class="faq-zti">
     {liste.map((q: any, i: number) => (
-      <div class="question rv">
-        <button type="button" aria-expanded="false" aria-controls={`${base}-${i}`}>{q.question}<Icone nom="plus" /></button>
-        <div class="reponse texte-riche" id={`${base}-${i}`} hidden set:html={md(q.reponse)} />
+      <div class="q-zti rv">
+        <button type="button" aria-expanded="false" aria-controls={`${base}-${i}`}>{q.question}</button>
+        <div class="q-reponse texte-riche" id={`${base}-${i}`} hidden set:html={md(q.reponse)} />
       </div>
     ))}
   </div>

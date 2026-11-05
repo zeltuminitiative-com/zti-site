@@ -1,24 +1,40 @@
 ---
+// Packs — présentation du modèle validé par ZTi (page « Diagnostic offert », modèle D) : « PACK 1 » puis le nom,
+// promesse, 3 tâches principales, prise en charge (+ condition), « Tout voir » (liste complète), pack mis en avant
+// (badge) sur fond blanc avec liseré animé, encadré « Compris dans tous les packs ».
 import Cadre from './Cadre.astro';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const packs = (s.packs || []).filter((p: any) => p.nom);
+const base = `pk-${Math.random().toString(36).slice(2, 7)}`;
+// « Pack 1 — Stabilité » → numéro « PACK 1 » + titre « Stabilité »
+const coupe = (nom: string) => { const m = nom.match(/^\s*(pack\s*\d+)\s*[—–-]\s*(.+)$/i); return m ? [m[1].toUpperCase(), m[2]] : ['', nom]; };
 ---
 <Cadre premier={premier} s={s} defaut="noir" id={s.ancre || 'packs'}>
-  <div class={`packs n${packs.length}`}>
-    {packs.map((p: any) => (
-      <article class="pack rv">
-        {p.badge && <span class="badge">{p.badge}</span>}
-        <h3>{p.nom}</h3>
-        {p.promesse && <p class="promesse">{p.promesse}</p>}
-        {p.points?.length > 0 && <ul class="liste-coches">{p.points.map((x: string) => <li>{x}</li>)}</ul>}
-        {p.delai && <p class="delai">{p.delai}</p>}
-      </article>
-    ))}
+  <div class={`packs-zti n${packs.length}`}>
+    {packs.map((p: any, i: number) => {
+      const [numero, titre] = coupe(p.nom);
+      return (
+        <article class={`pack-zti rv ${p.badge ? 'vedette' : ''}`}>
+          {p.badge && <span class="pastille-vedette">{p.badge}</span>}
+          <span class="numero">{numero}</span>
+          <h3>{titre}</h3>
+          <p class="promesse">{p.promesse}</p>
+          <ul class="points">{(p.points || []).map((x: string) => <li>{x}</li>)}</ul>
+          <p class="delai">{p.delai}{p.condition && <span class="cond">{p.condition}</span>}</p>
+          {p.detail?.length > 0 ? (
+            <div class="plus-pack">
+              <button type="button" class="tout-voir" aria-expanded="false" aria-controls={`${base}-${i}`}>Tout voir</button>
+              <ul class="detail" id={`${base}-${i}`} hidden>{p.detail.map((x: string) => <li>{x}</li>)}</ul>
+            </div>
+          ) : <span />}
+        </article>
+      );
+    })}
   </div>
   {s.compris?.length > 0 && (
-    <div class="compris rv">
+    <div class="compris-zti rv">
       <h3>{s.compris_titre || 'Compris dans tous les packs'}</h3>
-      <ul class="liste-coches">{s.compris.map((x: string) => <li>{x}</li>)}</ul>
+      {s.compris.map((x: string) => <div>{x}</div>)}
     </div>
   )}
 </Cadre>

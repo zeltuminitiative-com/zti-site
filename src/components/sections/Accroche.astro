@@ -12,7 +12,28 @@ const i = accent ? titre.indexOf(accent) : -1;
 const avant = i >= 0 ? titre.slice(0, i) : titre;
 const apres = i >= 0 ? titre.slice(i + accent.length) : '';
 const Titre = premier ? 'h1' : 'h2';
+// présentation « plein écran » (modèle D) : photo sur toute la hauteur à droite, titre sur deux lignes avec le mot clé
+// sur un bloc blanc, « Sans engagement » sous le bouton, phrase et publics en bas de l'écran
+const pleinEcran = s.presentation === 'plein-ecran';
+const bas = String(s.bas || ''), coupe = bas.indexOf('. ');
+const basPhrase = coupe > 0 ? bas.slice(0, coupe + 1) : bas, basLieu = coupe > 0 ? bas.slice(coupe + 2) : '';
 ---
+{pleinEcran ? (
+<section class="section accroche accroche-d fond-nuit sombre" id={s.ancre || undefined}>
+  {s.image && <div class="ph-d" aria-hidden="true"><img src={lien(s.image)} alt="" loading="eager" fetchpriority="high"></div>}
+  <div class="contenu">
+    <div class="texte-d">
+      {s.pastilles?.length > 0 && <ul class="pastilles-d">{s.pastilles.map((p: string) => <li>{p}</li>)}</ul>}
+      <Titre>{avant.trim()}{i >= 0 && <><br /><span class="hl">{accent}</span></>}{apres}</Titre>
+      <div class="cta-d">
+        {s.bouton?.texte && <div class="col"><Bouton texte={s.bouton.texte} href={s.bouton.lien || '#demande'} />{s.sous_bouton && <span class="se">{s.sous_bouton}</span>}</div>}
+        {s.lien_secondaire?.texte && <div class="col"><a class="lien-d" href={lien(s.lien_secondaire.lien)}><u>{s.lien_secondaire.texte}</u><span class="rond"><Icone nom="fleche" /></span></a></div>}
+      </div>
+    </div>
+  </div>
+  {bas && <div class="pied-d"><p>{basPhrase}</p>{basLieu && <p class="lieu">{basLieu}</p>}</div>}
+</section>
+) : (
 <section class={`section accroche fond-${fond} ${sombre ? 'sombre' : ''} ${s.image ? '' : 'sans-image'}`} id={s.ancre || undefined}>
   {s.image && <div class="orbe" aria-hidden="true"></div>}
   <div class="contenu">
@@ -39,3 +60,4 @@ const Titre = premier ? 'h1' : 'h2';
     {s.bas && <p class={`bas ${premier ? '' : 'rv'}`}>{s.bas}</p>}
   </div>
 </section>
+)}

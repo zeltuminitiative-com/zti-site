@@ -18,8 +18,8 @@ sections:
       texte: Calculer le coût réel d'un poste
       lien: "#cout-reel"
     sous_bouton: Sans engagement
-    image: /images/ecoles-hero.webp
-    cadrage: droite
+    image: /images/dirigeant.jpg
+    presentation: plein-ecran
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse. Écoles · Collèges · Lycées"
   - type: calculateur
     fond: blanc
@@ -52,15 +52,124 @@ sections:
       - Sauvegarde automatique en local
       - Dossiers isolés sur une partition dédiée (Pack 3)
     mention: La récupération de données n'est jamais garantie. La sauvegarde, si.
-    image: /images/diagnostic-ecran.jpg
+    image: /images/diagnostic-ecran-vide.jpg
+    ecran:
+      - Non-System disk or disk error
+      - replace and strike any key when ready
+    image_texte: "Écran d'ordinateur affichant le message Non-System disk or disk error"
+    legende: "« Non-System disk or disk error » : le poste ne trouve plus son disque dur. Sans sauvegarde, tout ce qu'il contenait est en danger."
   - type: texte_image
     fond: blanc
     etiquette: La Protection ZTi
     titre: Un redémarrage, et le poste redevient propre.
-    texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage."
+    texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage. Elle ne remplace ni l'antivirus ni la sauvegarde de vos dossiers."
     mention: "En salle TIC, les fichiers laissés sur le poste sont aussi effacés. C'est voulu : un travail d'élève se garde sur sa clé."
-    image: /images/demarrage.jpg
+    image: /images/redemarrage-salle-tic.jpg
+    image_texte: "Salle informatique d'école remise en état par ZTi : tous les postes démarrent sur l'écran ZTi"
+    legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
     image_position: gauche
+  - type: texte_image
+    fond: ivoire
+    ancre: fiche-de-parc
+    etiquette: Ce que vous recevez
+    titre: "La Fiche de Parc : l'état réel de votre parc, poste par poste."
+    texte: "Après le diagnostic, la direction reçoit un rapport écrit et signé. Si vous confiez l'intervention à ZTi, il sert d'état initial au procès-verbal de réception."
+    points:
+      - "L'essentiel pour la direction : postes opérationnels, postes à remettre en état, priorités"
+      - État de chaque poste et tâches à effectuer
+      - Inventaire matériel et logiciel détaillé, poste par poste
+      - "Environnement électrique : prises, régulateurs, onduleurs"
+      - Constat et recommandations d'usage gratuites, applicables dès maintenant
+    image: /images/fiche-de-parc-exemple.jpg
+    image_texte: "Première page d'une Fiche de Parc ZTi, exemple avec des données fictives"
+    legende: "Exemple de première page d'une Fiche de Parc, avec un établissement et des chiffres fictifs. Cliquez pour l'agrandir."
+    agrandir: true
+  - type: packs
+    fond: noir
+    ancre: packs
+    etiquette: Ce que vous obtenez
+    titre: Quatre packs, choisis après le diagnostic.
+    texte: |-
+      Le diagnostic montre l'état réel de chaque poste. Vous choisissez ensuite. La grille tarifaire vous est remise avec la Fiche de Parc.
+
+      *Comment le prix est établi : prix par poste, selon deux grilles — salle TIC et parc administratif —, dégressif selon le nombre de postes, hors taxes, valable pour l'année scolaire. Salle TIC et administration traitées ensemble : − 10 %. Licences commerciales (antivirus, Office) : devis distinct. Établissements publics : cotation distincte.*
+    packs:
+      - nom: Pack 1 — Stabilité
+        promesse: Des postes prêts à travailler ; à l'administration, des données sauvegardées.
+        points:
+          - Réinstallation du système (FR / EN) et des pilotes
+          - Optimisation du disque dur
+          - Logiciels standard et antivirus gratuits
+        delai: Prise en charge sous 48 h
+        detail:
+          - Optimisation du disque dur
+          - Réinstallation du système (FR / EN) et des pilotes
+          - Logiciels standard gratuits
+          - Antivirus gratuit
+          - Vérification des équipements de sécurité électrique
+          - Constat de sortie poste par poste
+          - "Salle TIC : logiciels scolaires gratuits"
+          - "Administration : sauvegarde et restauration des données, sauvegarde automatique en local, un périphérique additionnel (imprimante / scanner)"
+          - Prise en charge sous 48 h (administration prioritaire)
+      - nom: Pack 2 — Fiabilité
+        promesse: Moins de pannes, des postes qui durent.
+        points:
+          - Tout le Pack 1
+          - "Dépoussiérage complet : clavier, moniteur, unité centrale"
+          - Pâte thermique neuve et ventilateurs lubrifiés
+        delai: Prise en charge sous 24 h
+        detail:
+          - Tout le Pack 1
+          - Dépoussiérage clavier, moniteur, unité centrale
+          - Remplacement de la pâte thermique
+          - Lubrification des ventilateurs
+          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - "Administration : deux périphériques additionnels par poste"
+          - Prise en charge sous 24 h (administration prioritaire)
+      - nom: Pack 3 — Continuité
+        badge: Protection ZTi incluse
+        promesse: Une protection durable de vos postes et de vos données.
+        points:
+          - Tout le Pack 2
+          - Nettoyage approfondi (lavage)
+          - Protection ZTi, 24 mois
+        delai: Prise en charge prioritaire
+        detail:
+          - Tout le Pack 2
+          - Nettoyage approfondi (lavage) clavier, souris, moniteur, unité centrale
+          - Protection ZTi, 24 mois
+          - Arrêt des mises à jour indésirables
+          - Configuration des équipements de sécurité électrique (si disponibles)
+          - "Administration : isolation des données sur une partition dédiée"
+          - Prise en charge prioritaire
+      - nom: Pack 4 — Préservation
+        promesse: Un parc protégé, entretenu sans réinstallation.
+        points:
+          - Dépoussiérage, pâte thermique et ventilateurs
+          - Nettoyage approfondi (lavage)
+          - Contrôle de la Protection ZTi
+        delai: Prise en charge prioritaire
+        condition: Pour les postes ayant reçu le Pack 3, dans l'année qui suit.
+        detail:
+          - Dépoussiérage clavier, moniteur, unité centrale
+          - Remplacement de la pâte thermique
+          - Lubrification des ventilateurs
+          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - Nettoyage approfondi (lavage)
+          - Contrôle du bon fonctionnement de la Protection ZTi
+          - Vérification des équipements de sécurité électrique
+          - Contrôle de l'état général et constat de sortie poste par poste
+          - "Administration : contrôle de la sauvegarde automatique et de l'isolation des données"
+          - Prise en charge prioritaire
+    compris_titre: Compris dans tous les packs
+    compris:
+      - Diagnostic sur site et Fiche de Parc, offerts
+      - Déplacement compris dans la ville de Yaoundé
+      - Assistance à distance pendant 14 jours ouvrables
+      - Deux visites de suivi prévues (Packs 2, 3 et 4)
+      - Procès-verbal de réception signé poste par poste
+      - Charte d'utilisation remise à l'établissement
+      - "Administration uniquement : les trois outils ZTi offerts"
   - type: cartes
     fond: nuit
     etiquette: Des outils créés par ZTi
@@ -73,69 +182,24 @@ sections:
         texte: "Pensé pour les coupures de courant : la session de travail est sauvegardée et reprend à l'identique au prochain allumage."
       - titre: ZTi Arrêt 5S
         texte: "Le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main."
-  - type: packs
-    fond: bleu
-    ancre: packs
-    etiquette: Ce que vous obtenez
-    titre: Quatre packs, choisis après le diagnostic.
-    texte: Le diagnostic montre l'état réel de chaque poste. Vous choisissez ensuite. La grille tarifaire vous est remise avec la Fiche de Parc.
-    packs:
-      - nom: Pack 1 — Stabilité
-        promesse: Des postes prêts à travailler, des données sauvegardées.
-        points:
-          - Réinstallation du système (FR / EN) et des pilotes
-          - Optimisation du disque dur
-          - Logiciels standard et antivirus gratuits
-        delai: Prise en charge sous 48 h
-      - nom: Pack 2 — Fiabilité
-        promesse: Moins de pannes, des postes qui durent.
-        points:
-          - Tout le Pack 1
-          - "Dépoussiérage complet : clavier, moniteur, unité centrale"
-          - Pâte thermique neuve et ventilateurs lubrifiés
-        delai: Prise en charge sous 24 h
-      - nom: Pack 3 — Continuité
-        badge: Protection ZTi incluse
-        promesse: Une protection durable de vos postes et de vos données.
-        points:
-          - Tout le Pack 2
-          - Nettoyage approfondi (lavage)
-          - Protection ZTi, 24 mois
-        delai: Prise en charge prioritaire
-      - nom: Pack 4 — Préservation
-        promesse: Un parc protégé, entretenu sans réinstallation.
-        points:
-          - Dépoussiérage, pâte thermique et ventilateurs
-          - Nettoyage approfondi (lavage)
-          - Contrôle de la Protection ZTi
-        delai: "Prise en charge prioritaire — pour les postes ayant reçu le Pack 3, dans l'année qui suit."
-    compris_titre: Compris dans tous les packs
-    compris:
-      - Diagnostic sur site et Fiche de Parc, offerts
-      - Déplacement compris dans la ville de Yaoundé
-      - Assistance à distance pendant 14 jours ouvrables
-      - Deux visites de suivi prévues (Packs 2, 3 et 4)
-      - Procès-verbal de réception signé poste par poste
-      - Charte d'utilisation remise à l'établissement
-      - "Administration uniquement : les trois outils ZTi offerts"
   - type: preuve
     fond: blanc
     etiquette: La preuve
     titre: Vous signez un constat, pas une facture.
     texte: "Postes disponibles à l'arrivée, postes disponibles au départ : même calcul, mêmes postes. Avant de payer le solde, vous vérifiez chaque poste."
-    portrait: /images/fondateur.jpg
+    portrait: /images/fondateur-profil.jpg
     nom: Jean Marcelin MEUKAM FOKAM
     fonction: "Fondateur et Directeur Général de ZTi. Maintenance, diagnostic, réseaux et récupération de données depuis 2008."
     attestations:
       - image: /images/attestations/attestation-CNDHL-conf.jpg
         titre: CNDHL
-        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020"
+        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020 (délivrée le 22 mai 2020)"
       - image: /images/attestations/attestation-CALY-conf.jpg
         titre: CALY SARL
-        detail: "Maintenance et réseau, depuis le 1er mars 2014"
+        detail: "Maintenance et réseau, depuis le 1er mars 2014 (délivrée le 5 janvier 2022)"
       - image: /images/attestations/attestation-PACEL-conf.jpg
         titre: Projet PACEL
-        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022"
+        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022 (délivrée le 8 août 2022)"
     mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."
   - type: references
     fond: ivoire
