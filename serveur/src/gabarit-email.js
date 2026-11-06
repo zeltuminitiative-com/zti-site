@@ -10,8 +10,19 @@ const TEXTE = "Inter,'Segoe UI',Arial,sans-serif";
 
 // site : adresse du site public (logo et lien) ; whatsapp : numéro international sans « + » ; titre : facultatif
 export function gabaritEmail({ texte, titre = '', site = '', whatsapp = '' }) {
-  const paragraphes = String(texte ?? '').split(/\n{2,}/).map(p => p.trim()).filter(Boolean)
-    .map(p => `<p style="margin:0 0 16px;font:400 15px/1.6 ${TEXTE};color:#4A5568">${echapper(p).replace(/\n/g, '<br>')}</p>`).join('');
+  // un paragraphe de lignes « • … » devient l'encadré « Votre demande » ; un lien wa.me seul devient le bouton WhatsApp vert
+  const bloc = p => {
+    if (/^https:\/\/wa\.me\/\d+\S*$/.test(p)) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
+<td bgcolor="#15803D" style="background:#15803D;border-radius:12px"><a href="${echapper(p)}" style="display:inline-block;padding:14px 26px;font:700 16px ${TITRES};color:#FFFFFF;text-decoration:none">Écrire sur WhatsApp</a></td></tr></table>`;
+    const lignes = p.split('\n');
+    if (lignes.every(l => l.startsWith('• '))) return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 18px">
+<tr><td bgcolor="#E7ECFA" style="background:#E7ECFA;border-radius:12px;padding:16px 18px">
+<p style="margin:0 0 8px;font:700 13px ${TITRES};letter-spacing:.06em;text-transform:uppercase;color:#02008A">Votre demande</p>
+${lignes.map(l => { const [lib, ...val] = l.slice(2).split(' : '); return `<p style="margin:0;font:400 14px/1.7 ${TEXTE};color:#4A5568">${val.length ? `<b style="color:#02008A">${echapper(lib)} :</b> ${echapper(val.join(' : '))}` : echapper(lib)}</p>`; }).join('')}
+</td></tr></table>`;
+    return `<p style="margin:0 0 16px;font:400 15px/1.6 ${TEXTE};color:#4A5568">${echapper(p).replace(/\n/g, '<br>')}</p>`;
+  };
+  const paragraphes = String(texte ?? '').split(/\n{2,}/).map(p => p.trim()).filter(Boolean).map(bloc).join('');
   const logo = site
     ? `<img src="${echapper(site)}/images/logo-blanc.png" width="96" alt="ZTi" style="display:block;width:96px;height:auto;border:0;color:#FFFFFF;font:700 26px ${TITRES}">`
     : `<span style="color:#FFFFFF;font:700 26px ${TITRES}">ZTi</span>`;

@@ -49,11 +49,35 @@ export async function alerter(genre, sujet, lignes) {
   if (!res.ok && config.brevo) console.error('Alerte non envoyée :', res.raison);
 }
 
-// remplace {prenom}, {nom}, {organisation} dans un modèle
+// valeur d'un visiteur reprise dans le récapitulatif : lettres, chiffres, espaces et « ' , + ( ) - . » seulement
+// (ni barre, ni deux-points, ni @, et un point seulement en fin de mot comme « M. » : aucun lien ni adresse ne peut passer)
+const valeurSure = (v, max = 80) => String(v || '').normalize('NFC').replace(/[^\p{L}\p{N}' ,+().-]/gu, '').replace(/\.(?=\S)/g, '')
+  .replace(/\s+/g, ' ').trim().slice(0, max);
+
+// récapitulatif de la demande (lignes « • Libellé : valeur ») — seulement les réponses courtes, jamais le message libre
+export function recapitulatif(d) {
+  const besoins = (Array.isArray(d.besoins) ? d.besoins : []).map(b => valeurSure(b, 60)).filter(Boolean).join(', ');
+  const nom = valeurSure(d.nom, 60), fonction = valeurSure(d.fonction, 60);
+  return [
+    ['Établissement', valeurSure(d.organisation, 80)], ['Type', valeurSure(d.secteur, 60)], ['Ordinateurs', valeurSure(d.postes, 30)],
+    ['Préoccupations', besoins], ['Lieu', valeurSure(d.lieu, 80)], ['Nom', nom && (fonction ? `${nom} (${fonction})` : nom)],
+    ['Téléphone', valeurSure(d.tel, 20)], ['Moment pour vous rappeler', valeurSure(d.moment, 30)],
+  ].filter(([, v]) => v).map(([l, v]) => `• ${l} : ${v}`).join('\n');
+}
+
+// lien WhatsApp vers ZTi, avec la demande déjà rédigée (le client écrit le premier, sans rien ressaisir)
+export function lienWhatsapp(d) {
+  if (!config.whatsapp) return '';
+  const sujet = valeurSure(d.sujet, 60);
+  return `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(`Bonjour ZTi, voici ma demande${sujet ? ` (${sujet})` : ''} :\n${recapitulatif(d)}`)}`;
+}
+
+// remplace {prenom}, {nom}, {organisation}, {demande} (récapitulatif) et {lien_whatsapp} dans un modèle
 export function remplir(modele, d) {
   // seules des lettres passent : un visiteur ne peut pas glisser un lien ou une phrase dans un e-mail signé ZTi
   const nom = motSur(d.nom, 60), prenom = motSur(String(d.nom || '').trim().split(/\s+/).at(-1), 30) || nom.split(' ')[0] || '';
-  return String(modele || '').replace(/\{(prenom|nom|organisation)\}/g, (_, k) => ({ prenom, nom, organisation: motSur(d.organisation, 60) }[k]));
+  const valeurs = { prenom, nom, organisation: motSur(d.organisation, 60), demande: recapitulatif(d), lien_whatsapp: lienWhatsapp(d) };
+  return String(modele || '').replace(/\{(prenom|nom|organisation|demande|lien_whatsapp)\}/g, (_, k) => valeurs[k]);
 }
 
 // accusé de réception automatique au client (s'il a donné son e-mail)
