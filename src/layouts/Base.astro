@@ -17,8 +17,9 @@ import SuivezNous from '../components/SuivezNous.astro';
 import { reglages, lien } from '../lib/contenu';
 
 // sansReseaux : sans la section « ZTi sur les réseaux sociaux » (page Merci : seule la communauté WhatsApp y est proposée)
-interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean; sansReseaux?: boolean }
-const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false } = Astro.props;
+// enteteSimple : barre du haut avec le logo seul, sans menu ni bouton (page Merci) ; le pied de page ne change pas
+interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean; sansReseaux?: boolean; enteteSimple?: boolean }
+const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false, enteteSimple = false } = Astro.props;
 const r = await reglages();
 const titreComplet = titre === r.nom ? `${r.nom} — ${r.slogan}` : `${titre} — ${r.nom}`;
 const desc = description || r.description;
@@ -59,7 +60,7 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 </head>
 <body>
   <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
-  <EnTete sansMenu={sansMenu} />
+  <EnTete sansMenu={sansMenu || enteteSimple} sansBouton={enteteSimple} />
   <main id="contenu"><slot /></main>
   {!sansReseaux && <SuivezNous />}
   <PiedDePage sansMenu={sansMenu} />
