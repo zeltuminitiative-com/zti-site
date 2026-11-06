@@ -16,8 +16,9 @@ import PiedDePage from '../components/PiedDePage.astro';
 import SuivezNous from '../components/SuivezNous.astro';
 import { reglages, lien } from '../lib/contenu';
 
-interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean }
-const { titre, description, image, sansMenu = false, indexer = true } = Astro.props;
+// sansReseaux : sans la section « ZTi sur les réseaux sociaux » (page Merci : seule la communauté WhatsApp y est proposée)
+interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean; sansReseaux?: boolean }
+const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false } = Astro.props;
 const r = await reglages();
 const titreComplet = titre === r.nom ? `${r.nom} — ${r.slogan}` : `${titre} — ${r.nom}`;
 const desc = description || r.description;
@@ -60,7 +61,7 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
   <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
   <EnTete sansMenu={sansMenu} />
   <main id="contenu"><slot /></main>
-  <SuivezNous />
+  {!sansReseaux && <SuivezNous />}
   <PiedDePage sansMenu={sansMenu} />
   <script>import '../scripts/site.js';</script>
 </body>
