@@ -35,6 +35,9 @@ if (bMenu && nav) {
     addEventListener('scroll', maj, { passive: true }); maj();
   } }
 
+/* ---------- page Merci : « Votre partenaire de confiance | Depuis 2008 » sur la ligne du logo, comme sur la page école ---------- */
+if ($('[data-merci-page]')) { const sig = $('.entete .marque small'); if (sig) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join(''); }
+
 /* ---------- pied de page : animé quand il arrive à l'écran ---------- */
 { const pied = $('.pied'); if (pied) { if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { pied.classList.add('vu'); o.disconnect(); } }), { threshold: .12 }); o.observe(pied); } else pied.classList.add('vu'); } }
 
