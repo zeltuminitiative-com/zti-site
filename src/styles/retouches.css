@@ -283,6 +283,34 @@ figure.visuel { margin: 0; }
 .merci .btn[data-wa] .pastille { background: #FFFFFF; color: #15803D; }
 .merci .btn[data-wa]:hover, .merci .btn[data-wa]:focus-visible { background: #166534; color: #FFFFFF; }
 .merci .lien-copier { appearance: none; -webkit-appearance: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none; color: #9FD0FF; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+/* page Merci : un seul bloc d'envoi — bouton WhatsApp vert sur toute la largeur, horaires dessous */
+.merci-wa { margin-top: 4px; padding: 14px; border-radius: 18px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); text-align: center; }
+.merci-wa .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 54px; padding: 12px 20px; border-radius: 14px;
+  background: #15803D; color: #FFFFFF; font: 700 17px var(--titres); text-decoration: none; box-shadow: 0 12px 30px rgba(21,128,61,.35); transition: background-color .18s, transform .18s; }
+.merci-wa .btn-wa svg { width: 20px; height: 20px; }
+.merci-wa .btn-wa:hover, .merci-wa .btn-wa:focus-visible { background: #166534; transform: translateY(-2px); }
+.merci-wa .btn-wa[hidden] { display: none; }
+.merci-wa p { margin: 12px 0 2px; font-size: 13px; color: #C7CDEC; }
+/* le message de ZTi entre « Restons en contact » et le pied de page */
+.merci-signature { padding: 90px 0; }
+.merci-signature h2 { color: #02008A; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -1px; text-wrap: balance; }
+/* animations : le haut de la page entre en cascade, puis chaque partie apparaît en arrivant à l'écran */
+.merci > .etiquette { animation: d-descend .6s .1s both; }
+.merci > h1 { animation: d-monte .7s .25s cubic-bezier(.2,.7,.2,1) both; }
+.merci > .chapo { animation: d-monte .7s .45s cubic-bezier(.2,.7,.2,1) both; }
+.merci-envoi-bloc:not([hidden]) .merci-envoi { animation: d-monte .6s .65s cubic-bezier(.2,.7,.2,1) both; }
+.merci-envoi-bloc:not([hidden]) .merci-wa { animation: d-monte .6s .8s cubic-bezier(.2,.7,.2,1) both, m-appel 2.8s 2s ease-in-out 2; }
+@keyframes m-appel { 0%, 100% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); } 50% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 0 0 6px rgba(21,128,61,.28); } }
+.merci-bloc.rv.vu .merci-etapes li { animation: d-monte .5s cubic-bezier(.2,.7,.2,1) both; }
+.merci-bloc.rv.vu .merci-etapes li:nth-child(2) { animation-delay: .12s; } .merci-bloc.rv.vu .merci-etapes li:nth-child(3) { animation-delay: .24s; }
+.merci-bloc.rv.vu .merci-etapes li::before { animation: m-pastille .45s cubic-bezier(.3,1.6,.5,1) both; }
+.merci-bloc.rv.vu .merci-etapes li:nth-child(1)::before { animation-delay: .15s; } .merci-bloc.rv.vu .merci-etapes li:nth-child(2)::before { animation-delay: .27s; } .merci-bloc.rv.vu .merci-etapes li:nth-child(3)::before { animation-delay: .39s; }
+@keyframes m-pastille { from { transform: scale(0); } }
+.merci-signature .rv.vu img { animation: d-fondu .6s both; } .merci-signature .rv.vu h2 { animation: d-monte .7s .15s cubic-bezier(.2,.7,.2,1) both; }
+.merci-signature .rv.vu blockquote { animation: d-monte .7s .35s cubic-bezier(.2,.7,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { .merci *, .merci-signature * { animation: none !important; } }
+/* ordinateur : la ligne du logo centrée dans la bande */
+@media (min-width: 901px) { body:has([data-merci-page]) .entete .contenu { justify-content: center; } }
 /* page Merci : ligne du logo comme sur la page école (logo | Votre partenaire de confiance | Depuis 2008) */
 body:has([data-merci-page]) .entete .marque { display: inline-flex; align-items: center; gap: 12px; }
 body:has([data-merci-page]) .entete .marque img { height: 44px; width: auto; }
