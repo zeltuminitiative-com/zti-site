@@ -8,7 +8,8 @@ export const echapper = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&
 const TITRES = "Montserrat,'Segoe UI',Arial,sans-serif";
 const TEXTE = "Inter,'Segoe UI',Arial,sans-serif";
 
-// site : adresse du site public (logo et lien) ; titre : facultatif. Pied de page : nom, signature, site et ville
+// site : adresse du site public (logo et liens) ; titre : facultatif. Pied de page : nom, signature, site et ville,
+// puis le lien « Politique de confidentialité » (page /confidentialite/ du site)
 // (le WhatsApp passe par le bouton vert du message, pas par le pied de page — choix de ZTi du 07/11/2026)
 export function gabaritEmail({ texte, titre = '', site = '' }) {
   // un paragraphe de lignes « • … » devient l'encadré « Votre demande » ; un lien wa.me seul devient le bouton WhatsApp vert
@@ -41,5 +42,6 @@ ${titre ? `<h1 style="margin:0 0 20px;font:700 24px/1.25 ${TITRES};color:#02008A
 <p style="margin:0 0 6px;font:700 15px ${TITRES};color:#FFFFFF">Zèl Tum Initiative</p>
 <p style="margin:0 0 14px;font:400 13px ${TEXTE};color:#9FD0FF">Votre partenaire de confiance, depuis 2008</p>
 <p style="margin:0;font:400 13px/1.7 ${TEXTE};color:#FFFFFF">${lienSite}Yaoundé, Cameroun</p>
+${site ? `<p style="margin:10px 0 0;font:400 12px ${TEXTE};color:#C7CDEC"><a href="${echapper(site)}/confidentialite/" style="color:#C7CDEC;text-decoration:underline">Politique de confidentialité</a></p>` : ''}
 </td></tr></table></td></tr></table></body></html>`;
 }
