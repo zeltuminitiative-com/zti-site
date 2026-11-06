@@ -16,6 +16,7 @@ const etapes = [
 ];
 ---
 <Base titre="Demande envoyée" indexer={false} sansReseaux enteteSimple>
+  <!-- 1. le héro : félicitations et bouton WhatsApp -->
   <section class="section fond-nuit sombre page-simple">
     <div class="contenu etroit merci" data-merci-page data-accueil={lien('/')}>
       <span class="etiquette" data-etiquette>Demande envoyée</span>
@@ -31,30 +32,33 @@ const etapes = [
         </div>
       </div>
 
-      <div class="merci-bloc rv">
-        <h2 class="merci-sous-titre">Prochaines étapes</h2>
-        <ol class="merci-etapes">
-          {etapes.map(([t, x]) => <li><b>{t}</b><span>{x}</span></li>)}
-        </ol>
-      </div>
-
-      {communaute.length > 0 && (
-        <div class="merci-communaute merci-bloc rv">
-          <h2 class="merci-sous-titre">Restons en contact</h2>
-          <div class="merci-liens">
-            {communaute.map(c => (
-              <a class="carte" href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
-                <h3>{c.nom}</h3><span>{c.texte}</span><span class="plus">Rejoindre<Icone nom="fleche" /></span>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-
     </div>
   </section>
-  <!-- le message de ZTi, entre « Restons en contact » et le pied de page (même présentation que sur la page école) -->
-  <section class="section signature fond-blanc merci-signature">
+  <!-- 2. Prochaines étapes : fond clair, pour la distinguer du haut de page -->
+  <section class="section merci-etapes-section">
+    <div class="contenu etroit merci-bloc rv">
+      <h2 class="merci-sous-titre">Prochaines étapes</h2>
+      <ol class="merci-etapes">
+        {etapes.map(([t, x]) => <li><b>{t}</b><span>{x}</span></li>)}
+      </ol>
+    </div>
+  </section>
+  <!-- 3. Restons en contact -->
+  {communaute.length > 0 && (
+    <section class="section fond-nuit sombre merci-contact-section">
+      <div class="contenu etroit merci-communaute merci-bloc rv">
+        <h2 class="merci-sous-titre">Restons en contact</h2>
+        <div class="merci-liens">
+          {communaute.map(c => (
+            <a class="carte" href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
+              <h3>{c.nom}</h3><span>{c.texte}</span><span class="plus">Rejoindre<Icone nom="fleche" /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+  <!-- 4. le message de ZTi, entre « Restons en contact » et le pied de page (même présentation que sur la page école) ; 5. pied de page -->  <section class="section signature fond-blanc merci-signature">
     <div class="contenu rv">
       <img src={lien('/images/logo-bleu.png')} alt="ZTi" loading="lazy">
       <h2>Valorisation et préservation de votre investissement informatique</h2>
