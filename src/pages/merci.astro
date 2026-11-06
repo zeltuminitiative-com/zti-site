@@ -7,7 +7,7 @@ import Icone from '../components/Icone.astro';
 import { reglages, lien, lienSur } from '../lib/contenu';
 const r = await reglages();
 const communaute = [
-  { nom: 'Communauté WhatsApp ZTi', texte: '« Parlons de vos problèmes IT » : posez vos questions, recevez conseils, alertes et offres.', adresse: lienSur(r.communaute?.whatsapp) },
+  { nom: 'Communauté WhatsApp ZTi', texte: '« Parlons de vos problèmes IT » : posez vos questions, recevez conseils, alertes et offres.', adresse: lienSur(r.communaute?.whatsapp), image: '/images/communaute-whatsapp.jpg' },
 ].filter(c => (c.adresse || '').trim());
 const etapes = [
   ['ZTi étudie votre demande', 'Nous lisons les informations que vous avez données pour préparer notre échange.'],
@@ -50,8 +50,9 @@ const etapes = [
         <h2 class="merci-sous-titre">Restons en contact</h2>
         <div class="merci-liens">
           {communaute.map(c => (
-            <a class="carte" href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
-              <h3>{c.nom}</h3><span>{c.texte}</span><span class="plus">Rejoindre<Icone nom="fleche" /></span>
+            <a class={`carte ${c.image ? 'avec-image' : ''}`} href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
+              {c.image && <img src={lien(c.image)} alt="" width="96" height="96" loading="lazy">}
+              <div><h3>{c.nom}</h3><span>{c.texte}</span><span class="plus">Rejoindre<Icone nom="fleche" /></span></div>
             </a>
           ))}
         </div>
