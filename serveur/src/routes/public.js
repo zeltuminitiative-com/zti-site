@@ -87,15 +87,23 @@ publique.post('/demandes', async c => {
 
   accuserReception(f).catch(e => console.error('Accusé de réception :', e.message));
   const l = v => String(v || '').replace(/\s+/g, ' ').trim(); // une ligne par champ : pas de faux lien glissé dans l'alerte
+  // alerte à l'équipe (jamais au client) : responsable et établissement en tête, téléphone et moment de rappel juste après,
+  // bouton vers la fiche du tableau de bord, date et heure de réception (heure de Yaoundé)
+  const recue = new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala', dateStyle: 'full', timeStyle: 'short' });
+  const recap = [
+    `• Responsable : ${l(f.nom)}${f.fonction ? ' (' + l(f.fonction) + ')' : ''}`,
+    f.organisation && `• ${l(f.profil) || 'Organisation'} : ${l(f.organisation)}`,
+    `• Téléphone : ${f.tel}`, f.moment && `• À rappeler : ${l(f.moment)}`,
+    f.secteur && `• Type : ${l(f.secteur)}`, f.lieu && `• Lieu : ${l(f.lieu)}`, f.postes && `• Ordinateurs : ${l(f.postes)}`,
+    besoins.length && `• Besoins : ${l(besoins.join(', '))}`, f.situation && `• Situation : ${l(f.situation)}`,
+    f.accompagnement && `• Accompagnement : ${l(f.accompagnement)}`, f.email && `• E-mail : ${f.email}`,
+    f.utm_campaign && `• Campagne : ${l(f.utm_campaign)} (${l(f.utm_source)})`, `• Reçue le : ${recue}`,
+  ].filter(Boolean).join('\n');
   alerter('demandes', `Nouvelle demande — ${l(f.sujet) || 'Site'} — ${l(f.organisation || f.nom)}`, [
-    '>>> Ouvrir la fiche dans le tableau de bord : ' + `${config.adresse}/admin/#/demandes/${ligne.id}`, '',
-    `${l(f.nom)}${f.fonction ? ' (' + l(f.fonction) + ')' : ''} — ${f.tel}${f.email ? ' — ' + f.email : ''}`,
-    f.organisation && `${l(f.profil)} : ${l(f.organisation)}${f.secteur ? ' (' + l(f.secteur) + ')' : ''}`,
-    f.postes && `Ordinateurs : ${l(f.postes)}`, f.situation && `Situation : ${l(f.situation)}`,
-    f.accompagnement && `Accompagnement : ${l(f.accompagnement)}`, besoins.length && `Besoins : ${l(besoins.join(', '))}`,
-    f.moment && `À rappeler : ${l(f.moment)}`, f.utm_campaign && `Campagne : ${l(f.utm_campaign)} (${l(f.utm_source)})`,
+    recap, '',
+    '>>> Ouvrir la fiche dans le tableau de bord : ' + `${config.adresse}/admin/#/demandes/${ligne.id}`,
     f.message && '', f.message && 'Message (écrit par le visiteur, ne pas cliquer sur un lien qu\'il contiendrait) :', f.message && '« ' + l(f.message) + ' »',
-  ]).catch(e => console.error('Alerte :', e.message));
+  ], `Nouvelle demande : ${l(f.organisation || f.nom)}`).catch(e => console.error('Alerte :', e.message));
   return c.json({ ok: true }, 201);
 });
 
