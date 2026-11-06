@@ -38,7 +38,7 @@ ${lignes.map(l => { const [lib, ...val] = l.slice(2).split(' : '); return `<p st
 ${titre ? `<h1 style="margin:0 0 20px;font:700 24px/1.25 ${TITRES};color:#02008A">${echapper(titre)}</h1>` : ''}${paragraphes}
 </td></tr>
 <tr><td bgcolor="#010038" style="background:#010038;padding:24px 28px">
-<p style="margin:0 0 6px;font:700 15px ${TITRES};color:#FFFFFF">Zèl Tum Initiative SARL</p>
+<p style="margin:0 0 6px;font:700 15px ${TITRES};color:#FFFFFF">Zèl Tum Initiative</p>
 <p style="margin:0 0 14px;font:400 13px ${TEXTE};color:#9FD0FF">Votre partenaire de confiance, depuis 2008</p>
 <p style="margin:0;font:400 13px/1.7 ${TEXTE};color:#FFFFFF">${lienSite}Yaoundé, Cameroun</p>
 </td></tr></table></td></tr></table></body></html>`;

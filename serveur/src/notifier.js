@@ -61,7 +61,7 @@ export function recapitulatif(d) {
   return [
     ['Établissement', valeurSure(d.organisation, 80)], ['Type', valeurSure(d.secteur, 60)], ['Ordinateurs', valeurSure(d.postes, 30)],
     ['Préoccupations', besoins], ['Lieu', valeurSure(d.lieu, 80)], ['Nom', nom && (fonction ? `${nom} (${fonction})` : nom)],
-    ['Téléphone', valeurSure(d.tel, 20)], ['Moment pour vous rappeler', valeurSure(d.moment, 30)],
+    ['Téléphone', valeurSure(d.tel, 20)], ['Moment pour vous contacter', valeurSure(d.moment, 30)],
   ].filter(([, v]) => v).map(([l, v]) => `• ${l} : ${v}`).join('\n');
 }
 
