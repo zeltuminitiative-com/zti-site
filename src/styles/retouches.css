@@ -312,6 +312,18 @@ figure.visuel { margin: 0; }
 .merci-contact-section .nom-groupe { margin: 0; color: #FFFFFF; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.15; letter-spacing: -.5px; }
 .merci-contact-section .merci-liens .carte.avec-image .plus { color: #1A3A8F; }
 @media (max-width: 480px) { .merci-contact-section .merci-liens .carte.avec-image { gap: 16px; padding: 20px; } .merci-contact-section .image-groupe { width: 84px; height: 84px; } }
+/* pluie de pétales sur les félicitations (page Merci), une seule fois au chargement */
+section:has(> [data-merci-page]) { position: relative; overflow: hidden; }
+.petales { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.petales span { position: absolute; top: -40px; border-radius: 70% 0 70% 0; opacity: 0; box-shadow: inset -2px -2px 4px rgba(2,0,138,.15);
+  animation: petale-tombe 5s cubic-bezier(.35,.1,.6,1) both; }
+@keyframes petale-tombe {
+  0% { opacity: 0; transform: translate(0, 0) rotate(0); }
+  8% { opacity: .95; }
+  50% { transform: translate(calc(var(--derive) * -0.6), 45vh) rotate(calc(var(--tour) * .5)); }
+  85% { opacity: .9; }
+  100% { opacity: 0; transform: translate(var(--derive), 95vh) rotate(var(--tour)); }
+}
 /* le message de ZTi entre « Restons en contact » et le pied de page */
 .merci-signature { padding: 90px 0; }
 .merci-signature h2 { color: #02008A; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -1px; text-wrap: balance; }
