@@ -35,6 +35,9 @@ if (bMenu && nav) {
     addEventListener('scroll', maj, { passive: true }); maj();
   } }
 
+/* ---------- page Merci : « Votre partenaire de confiance | Depuis 2008 » sur la ligne du logo, comme sur la page école ---------- */
+if ($('[data-merci-page]')) { const sig = $('.entete .marque small'); if (sig) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join(''); }
+
 /* ---------- pied de page : animé quand il arrive à l'écran ---------- */
 { const pied = $('.pied'); if (pied) { if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { pied.classList.add('vu'); o.disconnect(); } }), { threshold: .12 }); o.observe(pied); } else pied.classList.add('vu'); } }
 
@@ -411,10 +414,13 @@ $$('form[data-avis]').forEach(form => {
 /* ---------- page « Merci » ---------- */
 const merci = $('[data-merci-page]');
 if (merci) {
-  const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null');
-  // la page ne s'affiche qu'après l'envoi d'un formulaire
+  // aperçu de test (branche corrections-test) : la page s'ouvre directement avec une demande d'exemple, pour la valider
+  // sans remplir le formulaire ; sur le vrai site, elle ne s'affiche qu'après l'envoi d'un formulaire
+  const apercu = /^corrections-test\./.test(location.hostname);
+  const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null') || (apercu ? { enregistree: !/[?&]echec/.test(location.search), sujet: 'Diagnostic offert — établissement scolaire',
+    wa: '237699324689', mail: 'zeltuminitiative@gmail.com', texte: "Bonjour ZTi, voici ma demande (exemple de l'aperçu) :\n• Établissement : Collège Exemple\n• Nom : M. EXEMPLE Jean (Directeur)" } : null);
   if (!d) location.replace(merci.dataset.accueil || '/');
-  $$('[data-communaute]', merci).forEach(a => a.addEventListener('click', () => suivi('Contact', { method: a.dataset.communaute })));
+  $$('[data-communaute]').forEach(a => a.addEventListener('click', () => suivi('Contact', { method: a.dataset.communaute })));
   if (d) {
     if (!d.enregistree) {
       $('[data-etiquette]', merci).textContent = 'Dernière étape';
@@ -422,26 +428,10 @@ if (merci) {
       $('[data-texte]', merci).textContent = 'Votre demande est prête. Appuyez sur « Écrire sur WhatsApp » : elle part déjà rédigée.';
       $('[data-envoi-texte]', merci).hidden = true;
     }
-    const wa = $('[data-wa]', merci), mail = $('[data-mail]', merci);
+    // un seul bouton : WhatsApp (le visiteur écrit le premier, sa demande part déjà rédigée)
+    const wa = $('[data-wa]', merci);
     if (d.wa) { wa.href = `https://wa.me/${d.wa.replace(/\D/g, '')}?text=${encodeURIComponent(d.texte)}`; wa.hidden = false; }
-    if (d.mail) {
-      const sujet = d.sujet + ' — demande depuis le site';
-      // sur ordinateur, « mailto: » ne fait rien sans logiciel de messagerie : l'e-mail s'ouvre dans Gmail (navigateur),
-      // et la demande peut aussi être copiée pour un autre service de messagerie
-      const ordinateur = !matchMedia('(pointer: coarse)').matches;
-      mail.href = ordinateur
-        ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(d.mail)}&su=${encodeURIComponent(sujet)}&body=${encodeURIComponent(d.texte)}`
-        : `mailto:${d.mail}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(d.texte)}`;
-      if (!ordinateur) mail.removeAttribute('target');
-      mail.hidden = false;
-      const ligne = $('[data-copier-ligne]', merci), copier = $('[data-copier]', merci);
-      if (ordinateur && ligne && navigator.clipboard) {
-        $('[data-mail-adresse]', merci).textContent = d.mail; ligne.hidden = false;
-        copier.addEventListener('click', async () => { try { await navigator.clipboard.writeText(d.texte); copier.textContent = '✓ Demande copiée'; } catch (_) { copier.textContent = 'Copie impossible'; } });
-      }
-    }
     wa.addEventListener('click', () => suivi('Contact', { method: 'whatsapp' }));
-    mail.addEventListener('click', () => suivi('Contact', { method: 'email' }));
     $('[data-envoi]', merci).hidden = false;
   }
 }

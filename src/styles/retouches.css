@@ -283,6 +283,67 @@ figure.visuel { margin: 0; }
 .merci .btn[data-wa] .pastille { background: #FFFFFF; color: #15803D; }
 .merci .btn[data-wa]:hover, .merci .btn[data-wa]:focus-visible { background: #166534; color: #FFFFFF; }
 .merci .lien-copier { appearance: none; -webkit-appearance: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none; color: #9FD0FF; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+/* page Merci : un seul bloc d'envoi — bouton WhatsApp vert sur toute la largeur, horaires dessous */
+.merci-wa { margin-top: 4px; padding: 14px; border-radius: 18px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); text-align: center; }
+.merci-wa .btn-wa { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 54px; padding: 12px 20px; border-radius: 14px;
+  background: #15803D; color: #FFFFFF; font: 700 17px var(--titres); text-decoration: none; box-shadow: 0 12px 30px rgba(21,128,61,.35); transition: background-color .18s, transform .18s; }
+.merci-wa .btn-wa svg { width: 20px; height: 20px; }
+.merci-wa .btn-wa:hover, .merci-wa .btn-wa:focus-visible { background: #166534; transform: translateY(-2px); }
+.merci-wa .btn-wa[hidden] { display: none; }
+.merci-wa p { margin: 12px 0 2px; font-size: 13px; color: #C7CDEC; }
+/* « Prochaines étapes » sur fond clair (charte #D7DCF3), cartes blanches ; sections de la page Merci moins hautes */
+.merci-etapes-section { background: #D7DCF3; padding: 70px 0; }
+.merci-etapes-section .merci-sous-titre { margin-top: 0; color: #02008A; }
+.merci-etapes-section .merci-etapes li { background: #FFFFFF; border-color: #FFFFFF; box-shadow: 0 10px 26px rgba(2,0,138,.08); }
+.merci-etapes-section .merci-etapes b { color: #02008A; } .merci-etapes-section .merci-etapes span { color: #4A5568; }
+.merci-contact-section { padding: 70px 0; } .merci-contact-section .merci-sous-titre { margin-top: 0; }
+/* « Restons en contact » : la carte de la communauté devient un vrai bouton, en bleu vif (distinct du bouton WhatsApp vert du haut) */
+.merci-contact-section .merci-liens .carte { background: #1565FF; border-color: #1565FF; box-shadow: 0 14px 34px rgba(21,101,255,.35); transition: background-color .18s, transform .18s; }
+.merci-contact-section .merci-liens .carte h3 { color: #FFFFFF; } .merci-contact-section .merci-liens .carte span:not(.plus) { color: #E7ECFA; }
+.merci-contact-section .merci-liens .carte .plus { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1565FF; font-weight: 700; }
+.merci-contact-section .merci-liens .carte:hover, .merci-contact-section .merci-liens .carte:focus-visible { background: #0F4FD1; transform: translateY(-3px); }
+/* bouton de la communauté (#1A3A8F) : l'image du groupe dedans, sans bordure, le texte à droite ; le nom du groupe mis en avant */
+.merci-contact-section .merci-liens .carte.avec-image { flex-direction: row; align-items: center; gap: 22px; background: #1A3A8F; border-color: #1A3A8F; box-shadow: 0 14px 34px rgba(26,58,143,.45); }
+.merci-contact-section .merci-liens .carte.avec-image:hover, .merci-contact-section .merci-liens .carte.avec-image:focus-visible { background: #142E73; }
+.merci-contact-section .image-groupe { flex: none; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; transition: transform .3s; }
+.merci-contact-section .carte.avec-image:hover .image-groupe { transform: scale(1.06) rotate(-3deg); }
+.merci-contact-section .merci-liens .carte.avec-image > div { display: flex; flex-direction: column; gap: 6px; }
+.merci-contact-section .type-groupe { font: 700 12px var(--titres); letter-spacing: .08em; text-transform: uppercase; color: #9FD0FF !important; }
+.merci-contact-section .nom-groupe { margin: 0; color: #FFFFFF; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.15; letter-spacing: -.5px; }
+.merci-contact-section .merci-liens .carte.avec-image .plus { color: #1A3A8F; }
+@media (max-width: 480px) { .merci-contact-section .merci-liens .carte.avec-image { gap: 16px; padding: 20px; } .merci-contact-section .image-groupe { width: 84px; height: 84px; } }
+/* le message de ZTi entre « Restons en contact » et le pied de page */
+.merci-signature { padding: 90px 0; }
+.merci-signature h2 { color: #02008A; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -1px; text-wrap: balance; }
+/* animations : le haut de la page entre en cascade, puis chaque partie apparaît en arrivant à l'écran */
+.merci > .etiquette { animation: d-descend .6s .1s both; }
+.merci > h1 { animation: d-monte .7s .25s cubic-bezier(.2,.7,.2,1) both; }
+.merci > .chapo { animation: d-monte .7s .45s cubic-bezier(.2,.7,.2,1) both; }
+.merci-envoi-bloc:not([hidden]) .merci-envoi { animation: d-monte .6s .65s cubic-bezier(.2,.7,.2,1) both; }
+.merci-envoi-bloc:not([hidden]) .merci-wa { animation: d-monte .6s .8s cubic-bezier(.2,.7,.2,1) both, m-appel 2.8s 2s ease-in-out 2; }
+@keyframes m-appel { 0%, 100% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); } 50% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 0 0 6px rgba(21,128,61,.28); } }
+.merci-bloc.rv.vu .merci-etapes li { animation: d-monte .5s cubic-bezier(.2,.7,.2,1) both; }
+.merci-bloc.rv.vu .merci-etapes li:nth-child(2) { animation-delay: .12s; } .merci-bloc.rv.vu .merci-etapes li:nth-child(3) { animation-delay: .24s; }
+.merci-bloc.rv.vu .merci-etapes li::before { animation: m-pastille .45s cubic-bezier(.3,1.6,.5,1) both; }
+.merci-bloc.rv.vu .merci-etapes li:nth-child(1)::before { animation-delay: .15s; } .merci-bloc.rv.vu .merci-etapes li:nth-child(2)::before { animation-delay: .27s; } .merci-bloc.rv.vu .merci-etapes li:nth-child(3)::before { animation-delay: .39s; }
+@keyframes m-pastille { from { transform: scale(0); } }
+.merci-signature .rv.vu img { animation: d-fondu .6s both; } .merci-signature .rv.vu h2 { animation: d-monte .7s .15s cubic-bezier(.2,.7,.2,1) both; }
+.merci-signature .rv.vu blockquote { animation: d-monte .7s .35s cubic-bezier(.2,.7,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { .merci *, .merci-signature * { animation: none !important; } }
+/* ordinateur : la ligne du logo centrée dans la bande */
+@media (min-width: 901px) { body:has([data-merci-page]) .entete .contenu { justify-content: center; } body:has([data-merci-page]) .entete .marque { margin: 0 auto; } }
+/* page Merci : ligne du logo comme sur la page école (logo | Votre partenaire de confiance | Depuis 2008) */
+body:has([data-merci-page]) .entete .marque { display: inline-flex; align-items: center; gap: 12px; }
+body:has([data-merci-page]) .entete .marque img { height: 44px; width: auto; }
+body:has([data-merci-page]) .entete .marque small { display: flex; align-items: center; margin: 0; padding-left: 0; border-left: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; }
+body:has([data-merci-page]) .entete .marque small:not(:has(span)) { visibility: hidden; }   /* attend la mise en forme par le script */
+body:has([data-merci-page]) .entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
+body:has([data-merci-page]) .entete .marque small span + span { margin-left: 12px; }
+@media (max-width: 560px) {
+  body:has([data-merci-page]) .entete .marque { gap: 8px; } body:has([data-merci-page]) .entete .marque img { height: 34px; }
+  body:has([data-merci-page]) .entete .marque small { font-size: 11px; letter-spacing: .02em; }
+  body:has([data-merci-page]) .entete .marque small span { padding-left: 8px; } body:has([data-merci-page]) .entete .marque small span + span { margin-left: 8px; }
+}
 /* section Avis : programme ambassadeur proposé après l'envoi d'un avis */
 .avis-ambassadeur { margin-top: 26px; padding-top: 22px; border-top: 1px solid #D7DCF3; }
 .avis-ambassadeur h3 { margin: 0 0 6px; color: #02008A; } .avis-ambassadeur p { margin: 0 0 14px; color: #4A5568; }

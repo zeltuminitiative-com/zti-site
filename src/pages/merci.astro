@@ -4,11 +4,10 @@
 // (Le programme ambassadeur est proposé après un avis client, pas ici : le visiteur n'a encore reçu aucun service.)
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
-import Bouton from '../components/Bouton.astro';
 import { reglages, lien, lienSur } from '../lib/contenu';
 const r = await reglages();
 const communaute = [
-  { nom: 'Communauté WhatsApp ZTi', texte: '« Parlons de vos problèmes IT » : posez vos questions, recevez conseils, alertes et offres.', adresse: lienSur(r.communaute?.whatsapp) },
+  { nom: 'Parlons de vos problèmes IT', type: 'Communauté WhatsApp ZTi', texte: 'Posez vos questions, recevez conseils, alertes et offres.', adresse: lienSur(r.communaute?.whatsapp), image: '/images/communaute-whatsapp.jpg' },
 ].filter(c => (c.adresse || '').trim());
 const etapes = [
   ['ZTi étudie votre demande', 'Nous lisons les informations que vous avez données pour préparer notre échange.'],
@@ -17,42 +16,63 @@ const etapes = [
 ];
 ---
 <Base titre="Demande envoyée" indexer={false} sansReseaux enteteSimple>
+  <!-- 1. le héro : félicitations et bouton WhatsApp -->
   <section class="section fond-nuit sombre page-simple">
     <div class="contenu etroit merci" data-merci-page data-accueil={lien('/')}>
       <span class="etiquette" data-etiquette>Demande envoyée</span>
       <h1 data-titre>Félicitations pour cette initiative !</h1>
       <p class="chapo" data-texte>Votre demande est bien enregistrée. Faire le point sur votre informatique, c'est déjà protéger votre activité contre les pannes et les pertes de données.</p>
 
-      <div data-envoi hidden>
+      <div class="merci-envoi-bloc" data-envoi hidden>
         <!-- le visiteur écrit le premier sur WhatsApp : ZTi lui répond sans avoir à ouvrir (et payer) une conversation -->
         <p class="merci-envoi" data-envoi-texte>Votre demande est prête. Pour aller plus vite, appuyez sur « Écrire sur WhatsApp » : elle part déjà rédigée.</p>
-        <div class="actions">
-          <a class="btn" data-wa hidden target="_blank" rel="noopener">Écrire sur WhatsApp<span class="pastille"><Icone nom="whatsapp" /></span></a>
-          <a class="btn" data-mail hidden target="_blank" rel="noopener">Envoyer par e-mail<span class="pastille"><Icone nom="mail" /></span></a>
+        <div class="merci-wa">
+          <a class="btn-wa" data-wa hidden target="_blank" rel="noopener"><Icone nom="whatsapp" />Écrire sur WhatsApp</a>
+          <p>{r.contact.horaires}</p>
         </div>
-        <p class="mention merci-copier" data-copier-ligne hidden>Pas de messagerie sur cet ordinateur ? <button type="button" class="lien-copier" data-copier>Copier la demande</button> et collez-la dans un e-mail à <b data-mail-adresse></b>.</p>
       </div>
 
+    </div>
+  </section>
+  <!-- 2. Prochaines étapes : fond clair, pour la distinguer du haut de page -->
+  <section class="section merci-etapes-section">
+    <div class="contenu etroit merci-bloc rv">
       <h2 class="merci-sous-titre">Prochaines étapes</h2>
       <ol class="merci-etapes">
         {etapes.map(([t, x]) => <li><b>{t}</b><span>{x}</span></li>)}
       </ol>
-
-      {communaute.length > 0 && (
-        <div class="merci-communaute">
-          <h2 class="merci-sous-titre">Restons en contact</h2>
-          <div class="merci-liens">
-            {communaute.map(c => (
-              <a class="carte" href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
-                <h3>{c.nom}</h3><span>{c.texte}</span><span class="plus">Rejoindre<Icone nom="fleche" /></span>
-              </a>
-            ))}
-          </div>
+    </div>
+  </section>
+  <!-- 3. Restons en contact -->
+  {communaute.length > 0 && (
+    <section class="section fond-nuit sombre merci-contact-section">
+      <div class="contenu etroit merci-communaute merci-bloc rv">
+        <h2 class="merci-sous-titre">Restons en contact</h2>
+        <div class="merci-liens">
+          {communaute.map(c => (
+            <a class={`carte ${c.image ? 'avec-image' : ''}`} href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
+              {c.image ? (
+                <>
+                  <img class="image-groupe" src={lien(c.image)} alt="" width="112" height="112" loading="lazy">
+                  <div>
+                    {c.type && <span class="type-groupe">{c.type}</span>}
+                    <h3 class="nom-groupe">« {c.nom} »</h3>
+                    <span>{c.texte}</span>
+                    <span class="plus">Rejoindre<Icone nom="fleche" /></span>
+                  </div>
+                </>
+              ) : <div><h3>{c.nom}</h3><span>{c.texte}</span><span class="plus">Rejoindre<Icone nom="fleche" /></span></div>}
+            </a>
+          ))}
         </div>
-      )}
-
-      <p class="mention" style="margin-top:28px">{r.contact.horaires}</p>
-      <div class="actions"><Bouton texte="Retour à l'accueil" href="/" /></div>
+      </div>
+    </section>
+  )}
+  <!-- 4. le message de ZTi, entre « Restons en contact » et le pied de page (même présentation que sur la page école) ; 5. pied de page -->  <section class="section signature fond-blanc merci-signature">
+    <div class="contenu rv">
+      <img src={lien('/images/logo-bleu.png')} alt="ZTi" loading="lazy">
+      <h2>Valorisation et préservation de votre investissement informatique</h2>
+      <blockquote>« {r.slogan} »</blockquote>
     </div>
   </section>
 </Base>
