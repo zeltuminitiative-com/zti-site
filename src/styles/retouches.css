@@ -310,7 +310,7 @@ figure.visuel { margin: 0; }
 .merci-signature .rv.vu blockquote { animation: d-monte .7s .35s cubic-bezier(.2,.7,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { .merci *, .merci-signature * { animation: none !important; } }
 /* ordinateur : la ligne du logo centrée dans la bande */
-@media (min-width: 901px) { body:has([data-merci-page]) .entete .contenu { justify-content: center; } }
+@media (min-width: 901px) { body:has([data-merci-page]) .entete .contenu { justify-content: center; } body:has([data-merci-page]) .entete .marque { margin: 0 auto; } }
 /* page Merci : ligne du logo comme sur la page école (logo | Votre partenaire de confiance | Depuis 2008) */
 body:has([data-merci-page]) .entete .marque { display: inline-flex; align-items: center; gap: 12px; }
 body:has([data-merci-page]) .entete .marque img { height: 44px; width: auto; }
