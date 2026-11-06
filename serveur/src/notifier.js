@@ -4,19 +4,14 @@
 import { config } from './config.js';
 import { sql } from './db.js';
 import { motSur, sansLien, limiter } from './securite.js';
+import { echapper, gabaritEmail } from './gabarit-email.js';
 
-export const echapper = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+export { echapper };
 
-// mise en page simple aux couleurs de ZTi (le texte est échappé, puis les retours à la ligne deviennent <br>)
-function html(texte) {
-  const corps = echapper(texte).replace(/\n/g, '<br>');
-  return `<!doctype html><html lang="fr"><body style="margin:0;background:#F4F6FA;font-family:Arial,sans-serif;color:#1f2937">
-<div style="max-width:560px;margin:24px auto;background:#fff;border:1px solid #E3E8F6;border-radius:16px;overflow:hidden">
-<div style="background:#02008A;color:#fff;padding:18px 24px;font-weight:700;font-size:18px">ZTi</div>
-<div style="padding:24px;font-size:15px;line-height:1.6">${corps}</div></div></body></html>`;
-}
+// mise en page aux couleurs de ZTi (logo, titre, texte, pied de page) : voir gabarit-email.js
+const html = (texte, titre) => gabaritEmail({ texte, titre, site: config.sitePublic, whatsapp: config.whatsapp });
 
-export async function envoyer({ a, sujet, texte, repondreA }) {
+export async function envoyer({ a, sujet, texte, repondreA, titre }) {
   const destinataires = (Array.isArray(a) ? a : [a]).filter(Boolean);
   if (!config.brevo || !config.expediteurEmail || !destinataires.length) return { ok: false, raison: 'E-mails non configurés' };
   try {
@@ -29,7 +24,7 @@ export async function envoyer({ a, sujet, texte, repondreA }) {
         ...(repondreA ? { replyTo: { email: repondreA } } : {}),
         subject: String(sujet).replace(/[\r\n]+/g, ' ').slice(0, 180),
         textContent: texte,
-        htmlContent: html(texte),
+        htmlContent: html(texte, titre),
       }),
       signal: AbortSignal.timeout(10_000),
     });
@@ -71,5 +66,5 @@ export async function accuserReception(d) {
   const m = await reglage('accuse_demande');
   if (!m?.actif) return;
   const alertes = await reglage('alertes');
-  await envoyer({ a: d.email, sujet: remplir(m.sujet, d), texte: remplir(m.texte, d), repondreA: alertes?.destinataires?.[0] });
+  await envoyer({ a: d.email, sujet: remplir(m.sujet, d), texte: remplir(m.texte, d), repondreA: alertes?.destinataires?.[0], titre: 'Votre demande est bien reçue' });
 }
