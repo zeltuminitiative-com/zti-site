@@ -278,7 +278,7 @@ figure.visuel { margin: 0; }
 /* page Merci : phrase au-dessus des boutons d'envoi, lien « Copier la demande » (ordinateur sans messagerie) */
 .merci-envoi { margin: 0 0 14px; color: #D7DCF3; }
 .merci-copier { margin-top: 12px; }
-.lien-copier { padding: 0; border: 0; background: none; color: #9FD0FF; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.merci .lien-copier { appearance: none; -webkit-appearance: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none; color: #9FD0FF; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 /* section Avis : programme ambassadeur proposé après l'envoi d'un avis */
 .avis-ambassadeur { margin-top: 26px; padding-top: 22px; border-top: 1px solid #D7DCF3; }
 .avis-ambassadeur h3 { margin: 0 0 6px; color: #02008A; } .avis-ambassadeur p { margin: 0 0 14px; color: #4A5568; }
