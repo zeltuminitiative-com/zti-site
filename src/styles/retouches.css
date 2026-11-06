@@ -283,6 +283,18 @@ figure.visuel { margin: 0; }
 .merci .btn[data-wa] .pastille { background: #FFFFFF; color: #15803D; }
 .merci .btn[data-wa]:hover, .merci .btn[data-wa]:focus-visible { background: #166534; color: #FFFFFF; }
 .merci .lien-copier { appearance: none; -webkit-appearance: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none; color: #9FD0FF; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+/* page Merci : ligne du logo comme sur la page école (logo | Votre partenaire de confiance | Depuis 2008) */
+body:has([data-merci-page]) .entete .marque { display: inline-flex; align-items: center; gap: 12px; }
+body:has([data-merci-page]) .entete .marque img { height: 44px; width: auto; }
+body:has([data-merci-page]) .entete .marque small { display: flex; align-items: center; margin: 0; padding-left: 0; border-left: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; }
+body:has([data-merci-page]) .entete .marque small:not(:has(span)) { visibility: hidden; }   /* attend la mise en forme par le script */
+body:has([data-merci-page]) .entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
+body:has([data-merci-page]) .entete .marque small span + span { margin-left: 12px; }
+@media (max-width: 560px) {
+  body:has([data-merci-page]) .entete .marque { gap: 8px; } body:has([data-merci-page]) .entete .marque img { height: 34px; }
+  body:has([data-merci-page]) .entete .marque small { font-size: 11px; letter-spacing: .02em; }
+  body:has([data-merci-page]) .entete .marque small span { padding-left: 8px; } body:has([data-merci-page]) .entete .marque small span + span { margin-left: 8px; }
+}
 /* section Avis : programme ambassadeur proposé après l'envoi d'un avis */
 .avis-ambassadeur { margin-top: 26px; padding-top: 22px; border-top: 1px solid #D7DCF3; }
 .avis-ambassadeur h3 { margin: 0 0 6px; color: #02008A; } .avis-ambassadeur p { margin: 0 0 14px; color: #4A5568; }
