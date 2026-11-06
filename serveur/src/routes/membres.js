@@ -111,8 +111,10 @@ membres.post('/oubli', async c => {
     await sql`delete from jetons_membres where membre_id = ${m.id}`; // un seul lien valable à la fois
     await sql`insert into jetons_membres (empreinte, membre_id, expire_le) values (${empreinteJeton(jeton)}, ${m.id}, now() + interval '1 hour')`;
     // envoi sans attendre : même temps de réponse que le compte existe ou non
-    envoyer({ a: email, sujet: 'Choisir un nouveau mot de passe — ZTi',
-      texte: `Bonjour ${motSur(m.nom, 60)},\n\nPour choisir un nouveau mot de passe, ouvrez ce lien (valable une heure) :\n${config.adresse}/espace/#/nouveau/${jeton}\n\nSi vous n'avez rien demandé, ignorez cet e-mail.\n\nL'équipe ZTi` }).catch(() => {});
+    envoyer({ a: email, sujet: 'Choisir un nouveau mot de passe ZTi', titre: 'Nouveau mot de passe',
+      apercu: 'Le lien est valable une heure.',
+      texte: `Bonjour ${motSur(m.nom, 60)},\n\nVous avez demandé à changer le mot de passe de votre espace ambassadeur ZTi. Cliquez sur le bouton ci-dessous : le lien est valable une heure.\n\nSi vous n'avez rien demandé, ignorez cet e-mail, votre mot de passe reste le même.\n\nL'équipe ZTi`,
+      bouton: { texte: 'Choisir mon mot de passe', lien: `${config.adresse}/espace/#/nouveau/${jeton}` } }).catch(() => {});
   }
   return c.json({ ok: true, message: 'Si un compte existe avec cet e-mail, un lien vient de lui être envoyé.' });
 });
@@ -196,7 +198,8 @@ membres.post('/echanges', async c => {
   });
   if (res === 'insuffisant') return c.json({ erreur: 'Pas assez de points pour cette récompense.' }, 400);
   const alertes = await reglage('alertes');
-  envoyer({ a: alertes?.destinataires || [], sujet: `Échange de points — ${m.nom}`, texte: `${m.nom} (${m.tel}) demande : ${r.nom} (${r.points} points).\n\nÀ traiter : ${config.adresse}/admin/#/ambassadeurs` }).catch(() => {});
+  envoyer({ a: alertes?.destinataires || [], sujet: `Échange de points : ${motSur(m.nom, 60)}`, titre: 'Demande d\'échange de points', equipe: true,
+    texte: `${m.nom} (${m.tel}) demande : ${r.nom} (${r.points} points).`, bouton: { texte: 'Traiter la demande', lien: `${config.adresse}/admin/#/ambassadeurs` } }).catch(() => {});
   return c.json({ ok: true }, 201);
 });
 

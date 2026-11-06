@@ -496,8 +496,9 @@ admin.put('/reglages', async c => {
 // envoi d'essai à l'adresse de la personne connectée
 admin.post('/reglages/essai', async c => {
   if (!limiter('essai:' + c.get('membre').id, 5, 60 * 60_000)) return c.json({ erreur: 'Trop d\'essais.' }, 429);
-  const res = await envoyer({ a: c.get('membre').email, sujet: 'Essai d\'e-mail — tableau de bord ZTi',
-    texte: 'Bonjour,\n\nCet e-mail d\'essai confirme que les envois du site ZTi fonctionnent.\n\nL\'équipe ZTi' });
+  const res = await envoyer({ a: c.get('membre').email, sujet: 'Essai d\'e-mail du tableau de bord ZTi', titre: 'Les e-mails fonctionnent',
+    texte: 'Bonjour,\n\nCet e-mail d\'essai confirme que les envois du site ZTi fonctionnent. Les clients recevront leurs e-mails avec cette mise en page.\n\nL\'équipe ZTi',
+    bouton: { texte: 'Ouvrir le tableau de bord', lien: `${config.adresse}/admin/` } });
   return res.ok ? c.json({ ok: true }) : c.json({ erreur: 'Non envoyé : ' + res.raison }, 502);
 });
 
