@@ -302,6 +302,12 @@ figure.visuel { margin: 0; }
 .merci-contact-section .merci-liens .carte h3 { color: #FFFFFF; } .merci-contact-section .merci-liens .carte span:not(.plus) { color: #E7ECFA; }
 .merci-contact-section .merci-liens .carte .plus { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1565FF; font-weight: 700; }
 .merci-contact-section .merci-liens .carte:hover, .merci-contact-section .merci-liens .carte:focus-visible { background: #0F4FD1; transform: translateY(-3px); }
+/* image ronde du groupe « Parlons de vos problèmes IT » à gauche du texte */
+.merci-contact-section .merci-liens .carte.avec-image { flex-direction: row; align-items: center; gap: 20px; }
+.merci-contact-section .merci-liens .carte.avec-image img { flex: none; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #FFFFFF, 0 8px 22px rgba(0,0,0,.25); transition: transform .3s; }
+.merci-contact-section .merci-liens .carte.avec-image:hover img { transform: rotate(-4deg) scale(1.05); }
+.merci-contact-section .merci-liens .carte.avec-image > div { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 480px) { .merci-contact-section .merci-liens .carte.avec-image { flex-direction: column; align-items: flex-start; } .merci-contact-section .merci-liens .carte.avec-image img { width: 84px; height: 84px; } }
 /* le message de ZTi entre « Restons en contact » et le pied de page */
 .merci-signature { padding: 90px 0; }
 .merci-signature h2 { color: #02008A; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -1px; text-wrap: balance; }
