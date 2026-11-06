@@ -9,9 +9,9 @@ import { echapper, gabaritEmail } from './gabarit-email.js';
 export { echapper };
 
 // mise en page aux couleurs de ZTi (logo, titre, texte, pied de page) : voir gabarit-email.js
-const html = (texte, titre) => gabaritEmail({ texte, titre, site: config.sitePublic });
+const html = (texte, titre, titreRecap) => gabaritEmail({ texte, titre, titreRecap, site: config.sitePublic });
 
-export async function envoyer({ a, sujet, texte, repondreA, titre }) {
+export async function envoyer({ a, sujet, texte, repondreA, titre, titreRecap }) {
   const destinataires = (Array.isArray(a) ? a : [a]).filter(Boolean);
   if (!config.brevo || !config.expediteurEmail || !destinataires.length) return { ok: false, raison: 'E-mails non configurés' };
   try {
@@ -24,7 +24,7 @@ export async function envoyer({ a, sujet, texte, repondreA, titre }) {
         ...(repondreA ? { replyTo: { email: repondreA } } : {}),
         subject: String(sujet).replace(/[\r\n]+/g, ' ').slice(0, 180),
         textContent: texte,
-        htmlContent: html(texte, titre),
+        htmlContent: html(texte, titre, titreRecap),
       }),
       signal: AbortSignal.timeout(10_000),
     });
@@ -41,11 +41,11 @@ export async function reglage(cle) {
 }
 
 // alerte à l'équipe ZTi (nouvelle demande, nouvel avis)
-export async function alerter(genre, sujet, lignes) {
+export async function alerter(genre, sujet, lignes, titre) {
   const r = await reglage('alertes');
   if (!r || r[genre] === false) return;
   if (!limiter('alerte-global', 200, 3600_000)) return;
-  const res = await envoyer({ a: r.destinataires || [], sujet, texte: lignes.filter(x => typeof x === 'string').join('\n') });
+  const res = await envoyer({ a: r.destinataires || [], sujet, titre, titreRecap: 'Détails de la demande', texte: lignes.filter(x => typeof x === 'string').join('\n') });
   if (!res.ok && config.brevo) console.error('Alerte non envoyée :', res.raison);
 }
 

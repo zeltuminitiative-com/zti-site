@@ -11,17 +11,24 @@ const TEXTE = "Inter,'Segoe UI',Arial,sans-serif";
 // site : adresse du site public (logo et liens) ; titre : facultatif. Pied de page : nom, signature, site et ville,
 // puis le lien « Politique de confidentialité » (page /confidentialite/ du site)
 // (le WhatsApp passe par le bouton vert du message, pas par le pied de page — choix de ZTi du 07/11/2026)
-export function gabaritEmail({ texte, titre = '', site = '' }) {
+// titreRecap : titre de l'encadré du récapitulatif (« Votre demande » pour le client, « Détails de la demande » pour l'équipe)
+export function gabaritEmail({ texte, titre = '', site = '', titreRecap = 'Votre demande' }) {
   // un paragraphe de lignes « • … » devient l'encadré « Votre demande » ; un lien wa.me seul devient le bouton WhatsApp vert
   const bloc = p => {
     if (/^https:\/\/wa\.me\/\d+\S*$/.test(p)) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
 <td bgcolor="#15803D" style="background:#15803D;border-radius:12px"><a href="${echapper(p)}" style="display:inline-block;padding:14px 26px;font:700 16px ${TITRES};color:#FFFFFF;text-decoration:none">Écrire sur WhatsApp</a></td></tr></table>`;
+    // « >>> Libellé : https://… » seul (alertes à l'équipe) devient un bouton bleu
+    const lienBouton = p.match(/^>>> (.+?) : (https:\/\/\S+)$/);
+    if (lienBouton) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
+<td bgcolor="#02008A" style="background:#02008A;border-radius:12px"><a href="${echapper(lienBouton[2])}" style="display:inline-block;padding:14px 26px;font:700 16px ${TITRES};color:#FFFFFF;text-decoration:none">${echapper(lienBouton[1])}</a></td></tr></table>`;
     const lignes = p.split('\n');
-    if (lignes.every(l => l.startsWith('• '))) return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 18px">
-<tr><td bgcolor="#E7ECFA" style="background:#E7ECFA;border-radius:12px;padding:16px 18px">
-<p style="margin:0 0 8px;font:700 13px ${TITRES};letter-spacing:.06em;text-transform:uppercase;color:#02008A">Votre demande</p>
-${lignes.map(l => { const [lib, ...val] = l.slice(2).split(' : '); return `<p style="margin:0;font:400 14px/1.7 ${TEXTE};color:#4A5568">${val.length ? `<b style="color:#02008A">${echapper(lib)} :</b> ${echapper(val.join(' : '))}` : echapper(lib)}</p>`; }).join('')}
-</td></tr></table>`;
+    // récapitulatif en tableau à deux colonnes (libellé | réponse), une ligne par information, séparées par un filet
+    if (lignes.every(l => l.startsWith('• '))) return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px;border:1px solid #D7DCF3;border-radius:12px;border-collapse:separate;overflow:hidden">
+<tr><td colspan="2" bgcolor="#02008A" style="background:#02008A;padding:11px 18px;font:700 13px ${TITRES};letter-spacing:.06em;text-transform:uppercase;color:#FFFFFF">${echapper(titreRecap)}</td></tr>
+${lignes.map((l, i) => { const [lib, ...val] = l.slice(2).split(' : '); const fond = i % 2 ? '#FFFFFF' : '#F4F6FA';
+  return `<tr><td width="42%" valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 12px 10px 18px;border-top:1px solid #E7ECFA;font:600 14px/1.45 ${TEXTE};color:#02008A">${echapper(lib)}</td>`
+    + `<td valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 18px 10px 12px;border-top:1px solid #E7ECFA;font:400 15px/1.45 ${TEXTE};color:#1F2937${/^T[ée]l[ée]phone$/.test(lib) ? ';white-space:nowrap' : ''}">${echapper(val.join(' : '))}</td></tr>`; }).join('\n')}
+</table>`;
     return `<p style="margin:0 0 16px;font:400 15px/1.6 ${TEXTE};color:#4A5568">${echapper(p).replace(/\n/g, '<br>')}</p>`;
   };
   const paragraphes = String(texte ?? '').split(/\n{2,}/).map(p => p.trim()).filter(Boolean).map(bloc).join('');
