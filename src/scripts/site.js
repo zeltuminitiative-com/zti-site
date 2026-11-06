@@ -420,7 +420,7 @@ if (merci) {
   const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null') || (apercu ? { enregistree: !/[?&]echec/.test(location.search), sujet: 'Diagnostic offert — établissement scolaire',
     wa: '237699324689', mail: 'zeltuminitiative@gmail.com', texte: "Bonjour ZTi, voici ma demande (exemple de l'aperçu) :\n• Établissement : Collège Exemple\n• Nom : M. EXEMPLE Jean (Directeur)" } : null);
   if (!d) location.replace(merci.dataset.accueil || '/');
-  $$('[data-communaute]', merci).forEach(a => a.addEventListener('click', () => suivi('Contact', { method: a.dataset.communaute })));
+  $$('[data-communaute]').forEach(a => a.addEventListener('click', () => suivi('Contact', { method: a.dataset.communaute })));
   if (d) {
     if (!d.enregistree) {
       $('[data-etiquette]', merci).textContent = 'Dernière étape';
