@@ -414,8 +414,11 @@ $$('form[data-avis]').forEach(form => {
 /* ---------- page « Merci » ---------- */
 const merci = $('[data-merci-page]');
 if (merci) {
-  const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null');
-  // la page ne s'affiche qu'après l'envoi d'un formulaire
+  // aperçu de test (branche corrections-test) : la page s'ouvre directement avec une demande d'exemple, pour la valider
+  // sans remplir le formulaire ; sur le vrai site, elle ne s'affiche qu'après l'envoi d'un formulaire
+  const apercu = /^corrections-test\./.test(location.hostname);
+  const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null') || (apercu ? { enregistree: !/[?&]echec/.test(location.search), sujet: 'Diagnostic offert — établissement scolaire',
+    wa: '237699324689', mail: 'zeltuminitiative@gmail.com', texte: "Bonjour ZTi, voici ma demande (exemple de l'aperçu) :\n• Établissement : Collège Exemple\n• Nom : M. EXEMPLE Jean (Directeur)" } : null);
   if (!d) location.replace(merci.dataset.accueil || '/');
   $$('[data-communaute]', merci).forEach(a => a.addEventListener('click', () => suivi('Contact', { method: a.dataset.communaute })));
   if (d) {
