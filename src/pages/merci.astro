@@ -1,32 +1,36 @@
 ---
 // Page de confirmation : n'apparaît qu'après l'envoi d'un formulaire (sinon le visiteur repart à l'accueil).
-// Elle confirme l'envoi, annonce les prochaines étapes et invite à rejoindre la communauté ZTi (Facebook, WhatsApp).
+// Elle confirme l'envoi, annonce les prochaines étapes et invite à rejoindre la communauté WhatsApp de ZTi.
+// (Le programme ambassadeur est proposé après un avis client, pas ici : le visiteur n'a encore reçu aucun service.)
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Bouton from '../components/Bouton.astro';
 import { reglages, lien, lienSur } from '../lib/contenu';
 const r = await reglages();
-const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 const communaute = [
-  { nom: 'ZTi sur Facebook', texte: 'Conseils, alertes virus, astuces pour faire durer vos ordinateurs.', adresse: lienSur(r.communaute?.facebook) },
   { nom: 'Communauté WhatsApp ZTi', texte: '« Parlons de vos problèmes IT » : posez vos questions, recevez conseils, alertes et offres.', adresse: lienSur(r.communaute?.whatsapp) },
 ].filter(c => (c.adresse || '').trim());
 const etapes = [
   ['ZTi étudie votre demande', 'Nous lisons les informations que vous avez données pour préparer notre échange.'],
-  ['Un échange rapide', 'ZTi vous recontacte sous 48 heures, au moment que vous avez choisi, par téléphone ou WhatsApp.'],
+  ['Un échange rapide', 'ZTi vous recontacte sous 48 heures ouvrables, au moment que vous avez choisi, par WhatsApp.'],
   ['Le diagnostic sur place', 'Offert et sans engagement : un état clair de votre parc informatique.'],
 ];
 ---
-<Base titre="Demande envoyée" indexer={false}>
+<Base titre="Demande envoyée" indexer={false} sansReseaux enteteSimple>
   <section class="section fond-nuit sombre page-simple">
     <div class="contenu etroit merci" data-merci-page data-accueil={lien('/')}>
       <span class="etiquette" data-etiquette>Demande envoyée</span>
       <h1 data-titre>Félicitations pour cette initiative !</h1>
       <p class="chapo" data-texte>Votre demande est bien enregistrée. Faire le point sur votre informatique, c'est déjà protéger votre activité contre les pannes et les pertes de données.</p>
 
-      <div class="actions" data-envoi hidden>
-        <a class="btn" data-wa hidden target="_blank" rel="noopener">Écrire sur WhatsApp<span class="pastille"><Icone nom="whatsapp" /></span></a>
-        <a class="btn" data-mail hidden>Envoyer par e-mail<span class="pastille"><Icone nom="mail" /></span></a>
+      <div data-envoi hidden>
+        <!-- le visiteur écrit le premier sur WhatsApp : ZTi lui répond sans avoir à ouvrir (et payer) une conversation -->
+        <p class="merci-envoi" data-envoi-texte>Votre demande est prête. Pour aller plus vite, appuyez sur « Écrire sur WhatsApp » : elle part déjà rédigée.</p>
+        <div class="actions">
+          <a class="btn" data-wa hidden target="_blank" rel="noopener">Écrire sur WhatsApp<span class="pastille"><Icone nom="whatsapp" /></span></a>
+          <a class="btn" data-mail hidden target="_blank" rel="noopener">Envoyer par e-mail<span class="pastille"><Icone nom="mail" /></span></a>
+        </div>
+        <p class="mention merci-copier" data-copier-ligne hidden>Pas de messagerie sur cet ordinateur ? <button type="button" class="lien-copier" data-copier>Copier la demande</button> et collez-la dans un e-mail à <b data-mail-adresse></b>.</p>
       </div>
 
       <h2 class="merci-sous-titre">Prochaines étapes</h2>
@@ -36,7 +40,7 @@ const etapes = [
 
       {communaute.length > 0 && (
         <div class="merci-communaute">
-          <h2 class="merci-sous-titre">En attendant, rejoignez la communauté ZTi</h2>
+          <h2 class="merci-sous-titre">Restons en contact</h2>
           <div class="merci-liens">
             {communaute.map(c => (
               <a class="carte" href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
@@ -44,14 +48,6 @@ const etapes = [
               </a>
             ))}
           </div>
-        </div>
-      )}
-
-      {serveur && (
-        <div class="merci-ambassadeur">
-          <h2 class="merci-sous-titre">Vous connaissez quelqu'un qui a besoin de ZTi ?</h2>
-          <p>Devenez ambassadeur : chaque personne recommandée vous rapporte des points, à échanger contre des services ZTi.</p>
-          <div class="actions"><a class="btn" href={serveur + '/espace/'}>Devenir ambassadeur<span class="pastille"><Icone nom="fleche" /></span></a></div>
         </div>
       )}
 

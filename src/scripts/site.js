@@ -420,10 +420,26 @@ if (merci) {
       $('[data-etiquette]', merci).textContent = 'Dernière étape';
       $('[data-titre]', merci).textContent = 'Envoyez votre demande à ZTi.';
       $('[data-texte]', merci).textContent = 'Votre demande est prête. Appuyez sur « Écrire sur WhatsApp » : elle part déjà rédigée.';
+      $('[data-envoi-texte]', merci).hidden = true;
     }
     const wa = $('[data-wa]', merci), mail = $('[data-mail]', merci);
     if (d.wa) { wa.href = `https://wa.me/${d.wa.replace(/\D/g, '')}?text=${encodeURIComponent(d.texte)}`; wa.hidden = false; }
-    if (d.mail) { mail.href = `mailto:${d.mail}?subject=${encodeURIComponent(d.sujet + ' — demande depuis le site')}&body=${encodeURIComponent(d.texte)}`; mail.hidden = false; }
+    if (d.mail) {
+      const sujet = d.sujet + ' — demande depuis le site';
+      // sur ordinateur, « mailto: » ne fait rien sans logiciel de messagerie : l'e-mail s'ouvre dans Gmail (navigateur),
+      // et la demande peut aussi être copiée pour un autre service de messagerie
+      const ordinateur = !matchMedia('(pointer: coarse)').matches;
+      mail.href = ordinateur
+        ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(d.mail)}&su=${encodeURIComponent(sujet)}&body=${encodeURIComponent(d.texte)}`
+        : `mailto:${d.mail}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(d.texte)}`;
+      if (!ordinateur) mail.removeAttribute('target');
+      mail.hidden = false;
+      const ligne = $('[data-copier-ligne]', merci), copier = $('[data-copier]', merci);
+      if (ordinateur && ligne && navigator.clipboard) {
+        $('[data-mail-adresse]', merci).textContent = d.mail; ligne.hidden = false;
+        copier.addEventListener('click', async () => { try { await navigator.clipboard.writeText(d.texte); copier.textContent = '✓ Demande copiée'; } catch (_) { copier.textContent = 'Copie impossible'; } });
+      }
+    }
     wa.addEventListener('click', () => suivi('Contact', { method: 'whatsapp' }));
     mail.addEventListener('click', () => suivi('Contact', { method: 'email' }));
     $('[data-envoi]', merci).hidden = false;

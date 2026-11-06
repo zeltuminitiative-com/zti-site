@@ -2,7 +2,8 @@
 import Icone from './Icone.astro';
 import Bouton from './Bouton.astro';
 import { reglages, lien } from '../lib/contenu';
-const { sansMenu = false } = Astro.props as { sansMenu?: boolean };
+// sansBouton : pas de bouton « Demander un diagnostic » (page Merci : la demande vient d'être faite)
+const { sansMenu = false, sansBouton = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean };
 const r = await reglages();
 const ici = Astro.url.pathname;
 const actif = (l: string) => (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
@@ -24,6 +25,6 @@ const actif = (l: string) => (l === '/' ? ici === lien('/') : ici.startsWith(lie
         </nav>
       </>
     )}
-    <Bouton texte={r.bouton_principal.texte} href={sansMenu ? '#demande' : r.bouton_principal.lien} />
+    {!sansBouton && <Bouton texte={r.bouton_principal.texte} href={sansMenu ? '#demande' : r.bouton_principal.lien} />}
   </div>
 </header>

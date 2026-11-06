@@ -275,6 +275,17 @@ figure.visuel { margin: 0; }
 .choix button[aria-checked="true"], .choix button[aria-pressed="true"] { color: #FFFFFF; }
 .champ input, .champ textarea { font-weight: 400; color: #4A5568; }
 .champ .erreur { font: italic 400 13px var(--texte); color: #1565FF; }
+/* page Merci : phrase au-dessus des boutons d'envoi, lien « Copier la demande » (ordinateur sans messagerie) */
+.merci-envoi { margin: 0 0 14px; color: #D7DCF3; }
+.merci-copier { margin-top: 12px; }
+/* bouton « Écrire sur WhatsApp » en vert (vert foncé : texte blanc lisible), pour qu'on le choisisse en premier */
+.merci .btn[data-wa] { background: #15803D; color: #FFFFFF; box-shadow: 0 10px 26px rgba(21,128,61,.35); }
+.merci .btn[data-wa] .pastille { background: #FFFFFF; color: #15803D; }
+.merci .btn[data-wa]:hover, .merci .btn[data-wa]:focus-visible { background: #166534; color: #FFFFFF; }
+.merci .lien-copier { appearance: none; -webkit-appearance: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none; color: #9FD0FF; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+/* section Avis : programme ambassadeur proposé après l'envoi d'un avis */
+.avis-ambassadeur { margin-top: 26px; padding-top: 22px; border-top: 1px solid #D7DCF3; }
+.avis-ambassadeur h3 { margin: 0 0 6px; color: #02008A; } .avis-ambassadeur p { margin: 0 0 14px; color: #4A5568; }
 /* champs à compléter signalés en rouge, pour qu'on les repère tout de suite */
 .champ.invalide > label, .champ.invalide > .titre-champ, .champ.invalide .erreur { color: #D62828; }
 .champ.invalide input, .champ.invalide textarea, .champ.invalide .telephone { border-color: #D62828; box-shadow: 0 0 0 3px rgba(214,40,40,.15); }
