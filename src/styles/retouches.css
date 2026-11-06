@@ -291,6 +291,17 @@ figure.visuel { margin: 0; }
 .merci-wa .btn-wa:hover, .merci-wa .btn-wa:focus-visible { background: #166534; transform: translateY(-2px); }
 .merci-wa .btn-wa[hidden] { display: none; }
 .merci-wa p { margin: 12px 0 2px; font-size: 13px; color: #C7CDEC; }
+/* « Prochaines étapes » sur fond clair (charte #D7DCF3), cartes blanches ; sections de la page Merci moins hautes */
+.merci-etapes-section { background: #D7DCF3; padding: 70px 0; }
+.merci-etapes-section .merci-sous-titre { margin-top: 0; color: #02008A; }
+.merci-etapes-section .merci-etapes li { background: #FFFFFF; border-color: #FFFFFF; box-shadow: 0 10px 26px rgba(2,0,138,.08); }
+.merci-etapes-section .merci-etapes b { color: #02008A; } .merci-etapes-section .merci-etapes span { color: #4A5568; }
+.merci-contact-section { padding: 70px 0; } .merci-contact-section .merci-sous-titre { margin-top: 0; }
+/* « Restons en contact » : la carte de la communauté devient un vrai bouton, en bleu vif (distinct du bouton WhatsApp vert du haut) */
+.merci-contact-section .merci-liens .carte { background: #1565FF; border-color: #1565FF; box-shadow: 0 14px 34px rgba(21,101,255,.35); transition: background-color .18s, transform .18s; }
+.merci-contact-section .merci-liens .carte h3 { color: #FFFFFF; } .merci-contact-section .merci-liens .carte span:not(.plus) { color: #E7ECFA; }
+.merci-contact-section .merci-liens .carte .plus { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 8px 16px; border-radius: 999px; background: #FFFFFF; color: #1565FF; font-weight: 700; }
+.merci-contact-section .merci-liens .carte:hover, .merci-contact-section .merci-liens .carte:focus-visible { background: #0F4FD1; transform: translateY(-3px); }
 /* le message de ZTi entre « Restons en contact » et le pied de page */
 .merci-signature { padding: 90px 0; }
 .merci-signature h2 { color: #02008A; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -1px; text-wrap: balance; }
