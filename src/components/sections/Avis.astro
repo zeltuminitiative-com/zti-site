@@ -7,6 +7,8 @@ import { reglages, avis } from '../../lib/contenu';
 const { s, premier = false, page } = Astro.props as { s: any; premier?: boolean; page: string };
 const r = await reglages();
 const liste = await avis();
+// programme ambassadeur proposé après l'envoi d'un avis (client satisfait), plutôt que sur la page Merci d'une demande
+const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 const id = s.ancre || 'avis';
 const etoiles = (n: number) => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
 ---
@@ -70,6 +72,13 @@ const etoiles = (n: number) => '★★★★★'.slice(0, n) + '☆☆☆☆☆'
         <h3>Merci pour votre avis.</h3>
         <p data-texte>ZTi le relit et l'affiche sur le site dans les prochains jours.</p>
         <a class="btn" data-wa hidden target="_blank" rel="noopener">Envoyer par WhatsApp<span class="pastille"><Icone nom="whatsapp" /></span></a>
+        {serveur && (
+          <div class="avis-ambassadeur">
+            <h3>Vous connaissez quelqu'un qui a besoin de ZTi ?</h3>
+            <p>Devenez ambassadeur : chaque personne recommandée vous rapporte des points, à échanger contre des services ZTi.</p>
+            <a class="btn" href={serveur + '/espace/'}>Devenir ambassadeur<span class="pastille"><Icone nom="fleche" /></span></a>
+          </div>
+        )}
       </div>
     </details>
   </div>
