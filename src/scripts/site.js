@@ -433,6 +433,21 @@ if (merci) {
     if (d.wa) { wa.href = `https://wa.me/${d.wa.replace(/\D/g, '')}?text=${encodeURIComponent(d.texte)}`; wa.hidden = false; }
     wa.addEventListener('click', () => suivi('Contact', { method: 'whatsapp' }));
     $('[data-envoi]', merci).hidden = false;
+    // pluie de pétales sur les félicitations (comme à l'entrée des mariés), une seule fois, aux couleurs de ZTi
+    if (d.enregistree && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const heros = merci.closest('section'), pluie = document.createElement('div');
+      pluie.className = 'petales'; pluie.setAttribute('aria-hidden', 'true');
+      const couleurs = ['#FFFFFF', '#E7ECFA', '#D7DCF3', '#9FD0FF', '#1565FF'];
+      for (let i = 0; i < 46; i++) {
+        const p = document.createElement('span'), taille = 9 + Math.random() * 12;
+        p.style.cssText = `left:${Math.random() * 100}%;width:${taille}px;height:${taille * 1.35}px;background:${couleurs[i % couleurs.length]};`
+          + `animation-delay:${(Math.random() * 2.6).toFixed(2)}s;animation-duration:${(4.2 + Math.random() * 2.6).toFixed(2)}s;`
+          + `--derive:${Math.round(Math.random() * 160 - 80)}px;--tour:${Math.round(Math.random() * 540 + 180)}deg`;
+        pluie.append(p);
+      }
+      heros.append(pluie);
+      setTimeout(() => pluie.remove(), 10500);
+    }
   }
 }
 
