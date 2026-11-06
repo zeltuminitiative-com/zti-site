@@ -16,15 +16,16 @@ const etapes = [
   ['Le diagnostic sur place', 'Offert et sans engagement : un état clair de votre parc informatique.'],
 ];
 ---
-<Base titre="Demande envoyée" indexer={false} sansReseaux>
+<Base titre="Demande envoyée" indexer={false} sansReseaux enteteSimple>
   <section class="section fond-nuit sombre page-simple">
     <div class="contenu etroit merci" data-merci-page data-accueil={lien('/')}>
       <span class="etiquette" data-etiquette>Demande envoyée</span>
-      <h1 data-titre>Votre demande a bien été prise en compte !</h1>
-      <p class="chapo" data-texte>Faire le point sur votre informatique, c'est déjà protéger votre activité contre les pannes et les pertes de données.</p>
+      <h1 data-titre>Félicitations pour cette initiative !</h1>
+      <p class="chapo" data-texte>Votre demande est bien enregistrée. Faire le point sur votre informatique, c'est déjà protéger votre activité contre les pannes et les pertes de données.</p>
 
       <div data-envoi hidden>
-        <p class="merci-envoi" data-envoi-texte>Pour aller plus vite, envoyez-la aussi directement à ZTi : elle part déjà rédigée.</p>
+        <!-- le visiteur écrit le premier sur WhatsApp : ZTi lui répond sans avoir à ouvrir (et payer) une conversation -->
+        <p class="merci-envoi" data-envoi-texte>Votre demande est prête. Pour aller plus vite, appuyez sur « Écrire sur WhatsApp » : elle part déjà rédigée.</p>
         <div class="actions">
           <a class="btn" data-wa hidden target="_blank" rel="noopener">Écrire sur WhatsApp<span class="pastille"><Icone nom="whatsapp" /></span></a>
           <a class="btn" data-mail hidden target="_blank" rel="noopener">Envoyer par e-mail<span class="pastille"><Icone nom="mail" /></span></a>
