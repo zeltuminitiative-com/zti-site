@@ -8,8 +8,9 @@ export const echapper = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&
 const TITRES = "Montserrat,'Segoe UI',Arial,sans-serif";
 const TEXTE = "Inter,'Segoe UI',Arial,sans-serif";
 
-// site : adresse du site public (logo et lien) ; whatsapp : numéro international sans « + » ; titre : facultatif
-export function gabaritEmail({ texte, titre = '', site = '', whatsapp = '' }) {
+// site : adresse du site public (logo et lien) ; titre : facultatif. Pied de page : nom, signature, site et ville
+// (le WhatsApp passe par le bouton vert du message, pas par le pied de page — choix de ZTi du 07/11/2026)
+export function gabaritEmail({ texte, titre = '', site = '' }) {
   // un paragraphe de lignes « • … » devient l'encadré « Votre demande » ; un lien wa.me seul devient le bouton WhatsApp vert
   const bloc = p => {
     if (/^https:\/\/wa\.me\/\d+\S*$/.test(p)) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
@@ -27,7 +28,6 @@ ${lignes.map(l => { const [lib, ...val] = l.slice(2).split(' : '); return `<p st
     ? `<img src="${echapper(site)}/images/logo-blanc.png" width="96" alt="ZTi" style="display:block;width:96px;height:auto;border:0;color:#FFFFFF;font:700 26px ${TITRES}">`
     : `<span style="color:#FFFFFF;font:700 26px ${TITRES}">ZTi</span>`;
   const lienSite = site ? `<a href="${echapper(site)}" style="color:#FFFFFF;text-decoration:underline">${echapper(site.replace(/^https?:\/\//, ''))}</a> · ` : '';
-  const lienWa = whatsapp ? `<a href="https://wa.me/${echapper(whatsapp)}" style="color:#FFFFFF;text-decoration:underline">Écrire sur WhatsApp</a><br>` : '';
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${echapper(titre || 'ZTi')}</title></head>
 <body style="margin:0;padding:0;background:#E7ECFA">
@@ -40,6 +40,6 @@ ${titre ? `<h1 style="margin:0 0 20px;font:700 24px/1.25 ${TITRES};color:#02008A
 <tr><td bgcolor="#010038" style="background:#010038;padding:24px 28px">
 <p style="margin:0 0 6px;font:700 15px ${TITRES};color:#FFFFFF">Zèl Tum Initiative SARL</p>
 <p style="margin:0 0 14px;font:400 13px ${TEXTE};color:#9FD0FF">Votre partenaire de confiance, depuis 2008</p>
-<p style="margin:0;font:400 13px/1.7 ${TEXTE};color:#FFFFFF">${lienWa}${lienSite}Yaoundé, Cameroun</p>
+<p style="margin:0;font:400 13px/1.7 ${TEXTE};color:#FFFFFF">${lienSite}Yaoundé, Cameroun</p>
 </td></tr></table></td></tr></table></body></html>`;
 }

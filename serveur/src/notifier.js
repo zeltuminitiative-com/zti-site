@@ -9,7 +9,7 @@ import { echapper, gabaritEmail } from './gabarit-email.js';
 export { echapper };
 
 // mise en page aux couleurs de ZTi (logo, titre, texte, pied de page) : voir gabarit-email.js
-const html = (texte, titre) => gabaritEmail({ texte, titre, site: config.sitePublic, whatsapp: config.whatsapp });
+const html = (texte, titre) => gabaritEmail({ texte, titre, site: config.sitePublic });
 
 export async function envoyer({ a, sujet, texte, repondreA, titre }) {
   const destinataires = (Array.isArray(a) ? a : [a]).filter(Boolean);
