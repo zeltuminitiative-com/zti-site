@@ -19,6 +19,8 @@ export const config = {
   brevo: env.BREVO_API_KEY || '',
   expediteurEmail: env.BREVO_SENDER_EMAIL || '',
   expediteurNom: env.BREVO_SENDER_NAME || 'ZTi',
+  // numéro WhatsApp de ZTi (international, sans « + ») : lien « Écrire sur WhatsApp » au pied des e-mails
+  whatsapp: (env.WHATSAPP_ZTI || '237699324689').replace(/\D/g, ''),
   // derrière Cloudflare / Coolify, l'adresse du visiteur arrive dans un en-tête
   production: env.NODE_ENV === 'production',
   derriereCloudflare: env.DERRIERE_CLOUDFLARE === '1',

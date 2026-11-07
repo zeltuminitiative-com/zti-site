@@ -187,3 +187,7 @@ dt { color: var(--gris); font-size: 13px; } dd { margin: 0; color: var(--encre);
 .alerte-texte { color: var(--rouge); font-weight: 600; }
 .ligne-recompense { display: grid; grid-template-columns: 1fr 140px auto; gap: 10px; align-items: center; }
 @media (max-width: 600px) { .ligne-recompense { grid-template-columns: 1fr 100px; } }
+
+/* numéro du demandeur en lien WhatsApp */
+.lien-wa { color: #15803D; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.lien-wa:hover { color: #166534; }

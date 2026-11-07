@@ -87,14 +87,17 @@ publique.post('/demandes', async c => {
 
   accuserReception(f).catch(e => console.error('Accusé de réception :', e.message));
   const l = v => String(v || '').replace(/\s+/g, ' ').trim(); // une ligne par champ : pas de faux lien glissé dans l'alerte
-  alerter('demandes', `Nouvelle demande : ${l(f.sujet) || 'Site'}, ${l(f.organisation || f.nom)}`, [
-    `${l(f.nom)}${f.fonction ? ' (' + l(f.fonction) + ')' : ''} · ${f.tel}${f.email ? ' · ' + f.email : ''}`,
-    f.organisation && `${l(f.profil)} : ${l(f.organisation)}${f.secteur ? ' (' + l(f.secteur) + ')' : ''}`,
-    f.postes && `Ordinateurs : ${l(f.postes)}`, f.situation && `Situation : ${l(f.situation)}`,
-    f.accompagnement && `Accompagnement : ${l(f.accompagnement)}`, besoins.length && `Besoins : ${l(besoins.join(', '))}`,
-    f.moment && `À rappeler : ${l(f.moment)}`, f.utm_campaign && `Campagne : ${l(f.utm_campaign)} (${l(f.utm_source)})`,
-    f.message && '', f.message && 'Message (écrit par le visiteur, ne pas cliquer sur un lien qu\'il contiendrait) :', f.message && '« ' + l(f.message) + ' »',
-  ], { titre: 'Nouvelle demande sur le site', bouton: { texte: 'Ouvrir la fiche', lien: `${config.adresse}/admin/#/demandes/${ligne.id}` } })
+  // alerte à l'équipe (jamais au client) : l'essentiel pour agir vite, puis le bouton vers la fiche (choix de ZTi du 07/11) ;
+  // le reste (e-mail, message, type, campagne, date…) est dans le tableau de bord
+  const recap = [
+    `• Responsable : ${l(f.nom)}${f.fonction ? ' (' + l(f.fonction) + ')' : ''}`,
+    f.organisation && `• ${l(f.profil) || 'Organisation'} : ${l(f.organisation)}`,
+    `• Téléphone : ${l(f.tel)}`, f.moment && `• À contacter : ${l(f.moment)}`,
+    f.lieu && `• Lieu : ${l(f.lieu)}`, f.postes && `• Ordinateurs : ${l(f.postes)}`, besoins.length && `• Besoins : ${l(besoins.join(', '))}`,
+  ].filter(Boolean).join('\n');
+  alerter('demandes', `Nouvelle demande : ${l(f.sujet) || 'Site'}, ${l(f.organisation || f.nom)}`, [recap], {
+    titre: `Nouvelle demande : ${l(f.organisation || f.nom)}`, titreRecap: 'Détails de la demande', telWhatsapp: true,
+    bouton: { texte: 'Ouvrir la fiche dans le tableau de bord', lien: `${config.adresse}/admin/#/demandes/${ligne.id}` } })
     .catch(e => console.error('Alerte :', e.message));
   return c.json({ ok: true }, 201);
 });
