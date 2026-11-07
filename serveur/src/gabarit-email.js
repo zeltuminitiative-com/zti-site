@@ -12,7 +12,15 @@ const TEXTE = "Inter,'Segoe UI',Arial,sans-serif";
 // puis le lien « Politique de confidentialité » (page /confidentialite/ du site)
 // (le WhatsApp passe par le bouton vert du message, pas par le pied de page — choix de ZTi du 07/11/2026)
 // titreRecap : titre de l'encadré du récapitulatif (« Votre demande » pour le client, « Détails de la demande » pour l'équipe)
-export function gabaritEmail({ texte, titre = '', site = '', titreRecap = 'Votre demande' }) {
+// telWhatsapp : dans le tableau, le téléphone devient un lien WhatsApp (alertes à l'équipe seulement, pas l'accusé au client)
+export function gabaritEmail({ texte, titre = '', site = '', titreRecap = 'Votre demande', telWhatsapp = false }) {
+  // valeur d'une ligne du tableau ; le numéro de téléphone peut devenir un lien WhatsApp (chiffres seulement dans le lien)
+  const valeur = (lib, v) => {
+    const chiffres = v.replace(/\D/g, '');
+    if (telWhatsapp && /^T[ée]l[ée]phone$/.test(lib) && chiffres.length >= 9)
+      return `<a href="https://wa.me/${chiffres}" style="color:#15803D;font-weight:700;text-decoration:underline">${echapper(v)}</a>`;
+    return echapper(v);
+  };
   // un paragraphe de lignes « • … » devient l'encadré « Votre demande » ; un lien wa.me seul devient le bouton WhatsApp vert
   const bloc = p => {
     if (/^https:\/\/wa\.me\/\d+\S*$/.test(p)) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
@@ -27,7 +35,7 @@ export function gabaritEmail({ texte, titre = '', site = '', titreRecap = 'Votre
 <tr><td colspan="2" bgcolor="#02008A" style="background:#02008A;padding:11px 18px;font:700 13px ${TITRES};letter-spacing:.06em;text-transform:uppercase;color:#FFFFFF">${echapper(titreRecap)}</td></tr>
 ${lignes.map((l, i) => { const [lib, ...val] = l.slice(2).split(' : '); const fond = i % 2 ? '#FFFFFF' : '#F4F6FA';
   return `<tr><td width="42%" valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 12px 10px 18px;border-top:1px solid #E7ECFA;font:600 14px/1.45 ${TEXTE};color:#02008A">${echapper(lib)}</td>`
-    + `<td valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 18px 10px 12px;border-top:1px solid #E7ECFA;font:400 15px/1.45 ${TEXTE};color:#1F2937${/^T[ée]l[ée]phone$/.test(lib) ? ';white-space:nowrap' : ''}">${echapper(val.join(' : '))}</td></tr>`; }).join('\n')}
+    + `<td valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 18px 10px 12px;border-top:1px solid #E7ECFA;font:400 15px/1.45 ${TEXTE};color:#1F2937${/^T[ée]l[ée]phone$/.test(lib) ? ';white-space:nowrap' : ''}">${valeur(lib, val.join(' : '))}</td></tr>`; }).join('\n')}
 </table>`;
     return `<p style="margin:0 0 16px;font:400 15px/1.6 ${TEXTE};color:#4A5568">${echapper(p).replace(/\n/g, '<br>')}</p>`;
   };
