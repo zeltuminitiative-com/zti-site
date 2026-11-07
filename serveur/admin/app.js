@@ -373,11 +373,18 @@ async function vueDemandes() {
   ]);
 }
 const ouvrir = id => { location.hash = '#/demandes/' + id; };
+// numéro du demandeur en lien WhatsApp (un clic ouvre la conversation ; dans une liste, n'ouvre pas la fiche)
+function lienWhatsapp(tel) {
+  const chiffres = String(tel || '').replace(/\D/g, '');
+  if (chiffres.length < 9) return tel || '';
+  return h('a', { class: 'lien-wa', href: 'https://wa.me/' + (chiffres.startsWith('237') ? chiffres : '237' + chiffres), target: '_blank', rel: 'noopener',
+    title: 'Écrire sur WhatsApp', onclick: e => e.stopPropagation() }, tel);
+}
 function listeDemandes(liste) {
   return h('div', { class: 'carte defile-x' }, h('table', {},
     h('thead', {}, h('tr', {}, ['Reçue', 'Contact', 'Organisation', 'Demande', 'Provenance', 'État', 'Relance'].map(t => h('th', {}, t)))),
     h('tbody', {}, liste.map(d => h('tr', { class: 'clic', onclick: () => ouvrir(d.id) },
-      h('td', { class: 'muet' }, dateHeure(d.cree_le)), h('td', {}, h('b', {}, d.nom), h('div', { class: 'muet' }, d.tel)),
+      h('td', { class: 'muet' }, dateHeure(d.cree_le)), h('td', {}, h('b', {}, d.nom), h('div', { class: 'muet' }, lienWhatsapp(d.tel))),
       h('td', {}, d.organisation || '—', h('div', { class: 'muet' }, d.profil)), h('td', {}, d.sujet, d.postes ? h('div', { class: 'muet' }, d.postes) : null),
       h('td', { class: 'muet' }, d.utm_campaign || d.utm_source || 'Site'), h('td', {}, pastilleEtat(d.etat)),
       h('td', { class: d.relance_le && d.relance_le <= new Date().toISOString().slice(0, 10) ? 'muet' : 'muet' }, d.relance_le ? date(d.relance_le) : ''))))));
@@ -435,7 +442,7 @@ async function vueFiche(id) {
       chiffres ? h('a', { class: 'btn', href: 'https://wa.me/' + (chiffres.startsWith('237') ? chiffres : '237' + chiffres), target: '_blank', rel: 'noopener' }, 'WhatsApp') : null),
     h('div', { class: 'fiche' },
       h('div', { class: 'grille' },
-        h('div', { class: 'carte' }, h('h2', {}, 'Contact'), h('dl', {}, ligne('Nom', f.nom), ligne('Fonction', f.fonction), ligne('Téléphone', f.tel), ligne('E-mail', f.email),
+        h('div', { class: 'carte' }, h('h2', {}, 'Contact'), h('dl', {}, ligne('Nom', f.nom), ligne('Fonction', f.fonction), ligne('Téléphone', f.tel && lienWhatsapp(f.tel)), ligne('E-mail', f.email),
           ligne('Profil', f.profil), ligne('Organisation', f.organisation), ligne(f.profil === 'Établissement scolaire' ? 'Type' : 'Secteur', f.secteur), ligne('Lieu', f.lieu), ligne('À rappeler', f.moment))),
         h('div', { class: 'carte' }, h('h2', {}, 'Sa demande'), h('dl', {}, ligne('Sujet', f.sujet), ligne(f.profil === 'Particulier' ? 'Appareil' : 'Ordinateurs', f.postes),
           ligne('Situation', f.situation), ligne(f.profil === 'Particulier' ? 'Problème' : 'Besoins', f.besoins), ligne('Accompagnement', f.accompagnement),
