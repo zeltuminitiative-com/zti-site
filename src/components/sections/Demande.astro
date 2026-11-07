@@ -184,7 +184,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               </div>
               <div class="champ" data-champ="ville_nom">
                 <label for={`${id}-ville_nom`}>Ville</label>
-                <input id={`${id}-ville_nom`} name="ville_nom" autocomplete="address-level2" maxlength="60" placeholder="Par exemple : Yaoundé" required>
+                <input id={`${id}-ville_nom`} name="ville_nom" autocomplete="address-level2" maxlength="60" placeholder="Par exemple : Yaoundé" value="Yaoundé" required>
                 <span class="erreur">Indiquez le vrai nom de la ville (lettres uniquement).</span>
               </div>
             </div>
@@ -223,9 +223,9 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
                 <div class="telephone"><span>+237</span><input id={`${id}-tel`} name="tel" inputmode="tel" autocomplete="tel-national" maxlength="12" placeholder="6XX XX XX XX" required></div>
                 <span class="erreur">9 chiffres, en commençant par 6.</span>
               </div>
-              <div class="champ" data-champ="email" data-email-requis>
-                <label for={`${id}-email`}>E-mail</label>
-                <input id={`${id}-email`} name="email" type="email" autocomplete="email" maxlength="120" required>
+              <div class="champ" data-champ="email">
+                <label for={`${id}-email`}>E-mail <span class="facultatif">(facultatif : pour recevoir l'accusé de réception)</span></label>
+                <input id={`${id}-email`} name="email" type="email" autocomplete="email" maxlength="120">
                 <span class="erreur">Indiquez une adresse e-mail valide.</span>
               </div>
             </div>
@@ -250,9 +250,9 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               </div>
               <span class="erreur">Choisissez un moment.</span>
             </div>
-            <div class="champ" data-champ="message" data-texte-requis>
-              <label for={`${id}-message`}>Décrivez brièvement votre situation</label>
-              <textarea id={`${id}-message`} name="message" maxlength="1500" required></textarea>
+            <div class="champ" data-champ="message" data-texte-facultatif>
+              <label for={`${id}-message`}>Décrivez brièvement votre situation <span class="facultatif">(facultatif)</span></label>
+              <textarea id={`${id}-message`} name="message" maxlength="1500"></textarea>
               <span class="erreur">Décrivez votre situation en quelques vrais mots.</span>
             </div>
             {photos && (
