@@ -18,12 +18,39 @@ import { reglages, lien } from '../lib/contenu';
 
 // sansReseaux : sans la section « ZTi sur les réseaux sociaux » (page Merci : seule la communauté WhatsApp y est proposée)
 // enteteSimple : barre du haut avec le logo seul, sans menu ni bouton (page Merci) ; le pied de page ne change pas
-interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean; sansReseaux?: boolean; enteteSimple?: boolean }
-const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false, enteteSimple = false } = Astro.props;
+// titreGoogle : titre affiché dans les résultats de recherche (balise <title>), s'il diffère du titre de la page
+// service : données de la fiche « Service » (données structurées) de la page, si elle présente une offre
+interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean; sansReseaux?: boolean; enteteSimple?: boolean;
+  titreGoogle?: string; service?: { nom?: string; description?: string; zone?: string; offre?: string } }
+const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false, enteteSimple = false, titreGoogle, service } = Astro.props;
 const r = await reglages();
 const titreComplet = titre === r.nom ? `${r.nom} — ${r.slogan}` : `${titre} — ${r.nom}`;
 const desc = description || r.description;
 const adresse = new URL(Astro.url.pathname, Astro.site).href;
+// aperçu de test (toute branche autre que « source » construite par Cloudflare) : jamais indexé par les moteurs
+const brancheApercu = !!process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'source';
+// données structurées (schema.org) : uniquement des informations vraies et visibles sur le site ;
+// ni téléphone ni WhatsApp (ZTi ne les montre qu'après l'envoi du formulaire)
+const accueil = new URL(lien('/'), Astro.site).href;
+const idOrg = accueil + '#organisation';
+const reseaux = (r.reseaux || []).map((x: any) => (x.adresse || '').trim()).filter((u: string) => /^https:\/\//.test(u));
+const chemin = Astro.url.pathname;
+const ariane = chemin === lien('/') ? [] : [
+  { nom: 'Accueil', url: accueil },
+  ...(chemin.startsWith(lien('/services/')) && chemin !== lien('/services/') ? [{ nom: 'Nos services', url: new URL(lien('/services/'), Astro.site).href }] : []),
+  { nom: titre, url: adresse },
+];
+const donnees = [
+  { '@context': 'https://schema.org', '@type': 'Organization', '@id': idOrg, name: r.nom, legalName: r.nom_legal, url: accueil,
+    logo: new URL(lien('/images/logo-bleu.png'), Astro.site).href, slogan: r.slogan, foundingDate: r.depuis, email: r.contact?.email,
+    address: { '@type': 'PostalAddress', addressLocality: 'Yaoundé', addressCountry: 'CM' }, ...(reseaux.length ? { sameAs: reseaux } : {}) },
+  ...(ariane.length ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: ariane.map((a, i) => ({ '@type': 'ListItem', position: i + 1, name: a.nom, item: a.url })) }] : []),
+  ...(service?.nom ? [{ '@context': 'https://schema.org', '@type': 'Service', name: service.nom, description: service.description || desc,
+    url: adresse, provider: { '@id': idOrg }, ...(service.zone ? { areaServed: { '@type': 'City', name: service.zone } } : {}),
+    ...(service.offre ? { offers: { '@type': 'Offer', price: '0', priceCurrency: 'XAF', description: service.offre } } : {}) }] : []),
+];
+const json = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
 const apercu = new URL(lien(image || '/images/partage.jpg'), Astro.site).href;
 const pixel = (r.mesures?.pixel || '').trim();
 const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
@@ -33,9 +60,9 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{titreComplet}</title>
+  <title>{titreGoogle || titreComplet}</title>
   <meta name="description" content={desc}>
-  {!indexer && <meta name="robots" content="noindex">}
+  {(!indexer || brancheApercu) && <meta name="robots" content="noindex">}
   <link rel="canonical" href={adresse}>
   <link rel="icon" href={lien('/favicon.ico')} sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href={lien('/favicon-32.png')}>
@@ -50,6 +77,7 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
   <meta property="og:url" content={adresse}>
   <meta property="og:image" content={apercu}>
   <meta name="twitter:card" content="summary_large_image">
+  {indexer && donnees.map(d => <script type="application/ld+json" set:html={json(d)} />)}
   <script is:inline>document.documentElement.classList.remove('sans-js');</script>
   {pixel && (
     <script is:inline define:vars={{ pixel }}>
