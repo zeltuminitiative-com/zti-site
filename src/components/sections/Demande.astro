@@ -229,6 +229,18 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
                 <span class="erreur">Indiquez une adresse e-mail valide.</span>
               </div>
             </div>
+            <div class="champ" data-champ="whatsapp" data-requis>
+              <span class="titre-champ" id={`${id}-whatsapp`}>Ce numéro est-il sur WhatsApp ?</span>
+              <div class="choix" role="radiogroup" aria-labelledby={`${id}-whatsapp`} data-choix="whatsapp" data-unique>
+                {['Oui', 'Non'].map(c => <button type="button" role="radio" aria-checked="false" data-valeur={c}>{c}</button>)}
+              </div>
+              <span class="erreur">Choisissez.</span>
+            </div>
+            <div class="champ" data-champ="tel_whatsapp" data-si-non="whatsapp" hidden>
+              <label for={`${id}-tel_whatsapp`}>Votre numéro WhatsApp <span class="facultatif">(si vous en avez un)</span></label>
+              <div class="telephone"><span>+237</span><input id={`${id}-tel_whatsapp`} name="tel_whatsapp" inputmode="tel" autocomplete="off" maxlength="12" placeholder="6XX XX XX XX"></div>
+              <span class="erreur">9 chiffres, en commençant par 6.</span>
+            </div>
             {[q('fonction_choix', 'Votre fonction', fonctionsEcole, { requis: true })].map(x => (
               <div class="champ" data-champ={x.nom} data-requis={x.requis ? '' : undefined}>
                 <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre}</span>
