@@ -195,6 +195,7 @@ $$('form[data-demande]').forEach(form => {
     if (champ('secteur') && form.typeCoherent && code('secteur')) marque(champ('secteur'), form.typeCoherent());
     marque(champ('nom'), vraisemblable(v('nom'))); marque(champ('prenom'), vraisemblable(v('prenom'))); marque(champ('quartier'), vraisemblable(v('quartier'), 'peu')); marque(champ('ville_nom'), vraisemblable(v('ville_nom')));   // école : quartier et ville obligatoires
     marque(champ('tel'), /^6\d{8}$/.test(v('tel').replace(/\D/g, '')));
+    if (champ('tel_whatsapp')) marque(champ('tel_whatsapp'), !v('tel_whatsapp') || /^6\d{8}$/.test(v('tel_whatsapp').replace(/\D/g, '')));   // autre numéro WhatsApp : facultatif, vérifié s'il est rempli
     const ec = champ('email');
     if (ec) marque(ec, ec.hasAttribute('data-email-requis') ? /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')) : !v('email') || /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v('email')));
     marque(champ('accord'), caseAccord.getAttribute('aria-checked') === 'true');
@@ -210,7 +211,12 @@ $$('form[data-demande]').forEach(form => {
 
   // « Autre » : une zone de saisie apparaît sous la question (et disparaît, vidée, si on choisit autre chose)
   const majAutre = () => $$('[data-si-autre]', form).forEach(c => { const autre = code(c.dataset.siAutre) === 'Autre'; c.hidden = !autre; if (!autre) { const i = c.querySelector('input'); if (i) i.value = ''; c.classList.remove('invalide'); } });
-  form.addEventListener('click', e => { if (e.target.closest('[data-choix] button')) setTimeout(majAutre); });
+  // « Non » (école : numéro pas sur WhatsApp) : le champ d'un autre numéro WhatsApp apparaît (facultatif)
+  const majNon = () => $$('[data-si-non]', form).forEach(c => { const non = code(c.dataset.siNon) === 'Non'; c.hidden = !non; if (!non) { const i = c.querySelector('input'); if (i) i.value = ''; c.classList.remove('invalide'); } });
+  const telWa = form.elements.tel_whatsapp;
+  if (telWa) telWa.addEventListener('input', () => { const c = telWa.value.replace(/\D/g, '').replace(/^237/, '').slice(0, 9); telWa.value = c.replace(/(\d)(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/, (m, a, b, c2, d, e) => [a + b, c2, d, e].filter(Boolean).join(' ')); });
+  form.addEventListener('click', e => { if (e.target.closest('[data-choix] button')) setTimeout(() => { majAutre(); majNon(); }); });
+  majNon();
   majAutre();
   // type d'établissement reconnu d'après le nom (modèle D) : choisi automatiquement ; un type contraire au nom est refusé
   const mot = x => new RegExp(`(?:^|[^\\p{L}\\d])(?:${x})(?![\\p{L}\\d])`, 'iu');
@@ -308,8 +314,11 @@ $$('form[data-demande]').forEach(form => {
       const etat = $('[data-photo-etat]', form); if (etat) etat.textContent = 'Envoi de la photo…';
       d.photo = await envoyerPhoto(form.dataset.photos, fichierPhoto, d) || 'non reçue (envoi impossible)';
     }
-    // le serveur ne garde pas la civilité, la position ni la photo : elles passent en tête du message
-    const enTete = [d.position && `Position : ${d.position}`, d.photo && `Photo : ${d.photo}`].filter(Boolean).join('\n');
+    // école : le numéro est-il sur WhatsApp ? (sinon autre numéro WhatsApp, ou à appeler)
+    const sansWa = code('whatsapp') === 'Non', chWa = v('tel_whatsapp').replace(/\D/g, '');
+    d.whatsapp = sansWa ? (chWa ? 'WhatsApp sur un autre numéro : +237 ' + chWa.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5') : 'Numéro pas sur WhatsApp : appeler') : '';
+    // le serveur ne garde pas la civilité, la position, la photo ni la réponse WhatsApp : elles passent en tête du message
+    const enTete = [d.whatsapp, d.position && `Position : ${d.position}`, d.photo && `Photo : ${d.photo}`].filter(Boolean).join('\n');
     const pourServeur = { ...d, nom: d.civilite ? `${d.civilite} ${d.nom}` : d.nom, message: [enTete, d.message].filter(Boolean).join('\n\n') };
     let enregistree = false;
     if (form.dataset.endpoint) enregistree = await envoyerDemande(form.dataset.endpoint, pourServeur);
@@ -317,7 +326,7 @@ $$('form[data-demande]').forEach(form => {
     const lignes = [
       `Bonjour ZTi, voici ma demande (${d.sujet}) :`,
       `• Profil : ${d.profil}`, d.organisation && `• ${d.profil === 'Établissement scolaire' ? 'Établissement' : 'Entreprise / organisation'} : ${d.organisation}`,
-      `• Nom : ${d.civilite ? d.civilite + ' ' : ''}${d.nom}${d.fonction ? ' (' + d.fonction + ')' : ''}`, `• Téléphone : ${d.tel}`, d.email && `• E-mail : ${d.email}`,
+      `• Nom : ${d.civilite ? d.civilite + ' ' : ''}${d.nom}${d.fonction ? ' (' + d.fonction + ')' : ''}`, `• Téléphone : ${d.tel}`, d.whatsapp && `• ${d.whatsapp}`, d.email && `• E-mail : ${d.email}`,
       d.secteur && `• ${d.profil === 'Établissement scolaire' ? 'Type' : 'Secteur'} : ${d.secteur}`, d.lieu && `• Lieu : ${d.lieu}`, d.position && `• Position : ${d.position}`,
       d.postes && `• ${d.profil === 'Particulier' ? 'Appareil' : 'Ordinateurs'} : ${d.postes}`,
       d.situation && `• Situation : ${d.situation}`, d.besoins.length && `• ${d.profil === 'Particulier' ? 'Problème' : 'Besoin'} : ${d.besoins.join(', ')}`,
