@@ -515,3 +515,6 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 .pied .pied-numero { display: flex; align-items: center; gap: 10px; }
 .pied .pied-numero svg { width: 18px; height: 18px; flex: none; color: var(--lavande); }
 .pied .masque { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* pied de page : colonne Support un peu plus large (e-mail avec icône sur une ligne) ; 2 colonnes sur écran moyen */
+@media (min-width: 1101px) { .pied .colonnes { grid-template-columns: 1.55fr 1fr .85fr 1.25fr; } }
+@media (min-width: 521px) and (max-width: 1100px) { .pied .colonnes { grid-template-columns: 1fr 1fr; } }
