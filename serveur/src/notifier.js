@@ -69,9 +69,10 @@ function decouper(texte) {
   return [b.slice(0, i), b.slice(i)];
 }
 
-function bouton({ texte, lien }) {
+// alerte à l'équipe : bouton bleu ZTi uni, sans dégradé (choix de ZTi du 11/11) ; e-mails aux clients : inchangés
+function bouton({ texte, lien }, equipe = false) {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 20px"><tr>
-<td bgcolor="${C.logo}" style="border-radius:999px;background:${C.logo};background-image:linear-gradient(135deg,${C.logo} 0%,${C.vif} 100%)">
+<td bgcolor="${C.logo}" style="border-radius:999px;background:${C.logo}${equipe ? '' : `;background-image:linear-gradient(135deg,${C.logo} 0%,${C.vif} 100%)`}">
 <a href="${echapper(lien)}" target="_blank" style="display:inline-block;padding:14px 28px;font-family:${POLICE_BOUTONS};font-size:15px;font-weight:600;color:#FFFFFF;text-decoration:none;border-radius:999px">${echapper(texte)}</a>
 </td></tr></table>`;
 }
@@ -102,7 +103,7 @@ ${apercu ? `<div style="display:none;max-height:0;overflow:hidden;opacity:0">${e
 <tr><td bgcolor="#FFFFFF" class="marge" style="background:#FFFFFF;padding:30px 22px 16px">
 ${titre ? `<h1 style="margin:0 0 18px;font-family:${POLICE_TITRES};font-size:22px;line-height:1.25;font-weight:800;letter-spacing:-0.02em;color:${C.logo}">${echapper(titre)}</h1>` : ''}
 ${avant.map(p => bloc(p, { titreRecap, telWhatsapp })).join('')}
-${b && lienSur(b.lien) ? bouton(b) : ''}
+${b && lienSur(b.lien) ? bouton(b, equipe) : ''}
 ${apres.map(p => bloc(p, { titreRecap, telWhatsapp })).join('')}
 </td></tr>
 <tr><td bgcolor="${C.nuit}" class="marge" style="background:${C.nuit};padding:22px 22px">${pied}</td></tr>
