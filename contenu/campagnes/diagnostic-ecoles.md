@@ -238,7 +238,7 @@ sections:
     sujet: Diagnostic offert (écoles)
     formulaire: ecoles
     profil: ecole
-    besoins: [Salle TIC, Secrétariat / Administration, Pannes, Lenteurs, Virus / clés USB, Coupures électriques, Perte de données]
+    besoins: [Salle TIC, Secrétariat / Administration, Pannes, Lenteurs, Virus / clés USB, Perte de données]
     garanties: [Diagnostic sur site et Fiche de Parc offerts, Déplacement compris dans la ville de Yaoundé, Vous restez l'unique décideur]
     garanties_bouton: [Offert, Sans engagement, Vous restez l'unique décideur]
     bouton: Je réserve mon diagnostic offert
