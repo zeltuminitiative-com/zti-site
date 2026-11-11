@@ -4,7 +4,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://zeltuminitiative-com.github.io',
+  // adresse principale du site pour Google (choix de ZTi du 11/11/2026) : zti-sarl.pages.dev, même quand la page est servie
+  // par zti-site.pages.dev ou l'aperçu de test — adresse canonique, plan du site, robots.txt et données Google
+  site: process.env.SITE_PRINCIPAL || 'https://zti-sarl.pages.dev',
   base: process.env.SITE_BASE || '/',
   trailingSlash: 'always',
   build: { format: 'directory' },
