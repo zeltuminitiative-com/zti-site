@@ -1,6 +1,6 @@
 ---
 titre: Diagnostic offert de votre parc informatique
-titre_google: "Maintenance informatique école à Yaoundé : diagnostic offert | ZTi"
+titre_google: "Maintenance informatique d'école à Yaoundé : diagnostic offert | ZTi"
 description: "Écoles, collèges et lycées de Yaoundé : diagnostic sur site et Fiche de Parc offerts, maintenance des ordinateurs, sauvegarde des données. Sans engagement."
 service:
   nom: Diagnostic et maintenance du parc informatique des établissements scolaires
