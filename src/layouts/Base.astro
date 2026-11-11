@@ -15,6 +15,9 @@ import EnTete from '../components/EnTete.astro';
 import PiedDePage from '../components/PiedDePage.astro';
 import SuivezNous from '../components/SuivezNous.astro';
 import { reglages, lien } from '../lib/contenu';
+// polices du haut de page (titres Montserrat 800, texte Inter 400) : préchargées pour que le texte s'affiche plus tôt
+import policeTitres from '@fontsource/montserrat/files/montserrat-latin-800-normal.woff2?url';
+import policeTexte from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 
 // sansReseaux : sans la section « ZTi sur les réseaux sociaux » (page Merci : seule la communauté WhatsApp y est proposée)
 // enteteSimple : barre du haut avec le logo seul, sans menu ni bouton (page Merci) ; le pied de page ne change pas
@@ -74,6 +77,8 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
   <title>{titreGoogle || titreComplet}</title>
   <meta name="description" content={desc}>
   {(!indexer || brancheApercu) && <meta name="robots" content="noindex">}
+  <link rel="preload" href={policeTitres} as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href={policeTexte} as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href={adresse}>
   <!-- Google Search Console (compte ZTI Professionnels) : preuve que le site appartient à ZTi -->
   <meta name="google-site-verification" content="5x34oN6nhbxyYtEaWhQZZxqu8bFXz5u6smiVIct40nU">
