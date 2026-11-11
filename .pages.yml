@@ -417,7 +417,7 @@ content:
           - { name: whatsapp, type: string, label: "WhatsApp (chiffres seulement, avec 237), proposé après l'envoi du formulaire" }
           - { name: telephone, type: string, label: Téléphone (non affiché pour l'instant) }
           - { name: adresse, type: string, label: Adresse }
-          - { name: quartier, type: string, label: Quartier (pour Google), description: "Lu seulement par Google (données du site), pas affiché sur les pages. Ex. Messassi." }
+          - { name: quartier, type: string, label: Quartier, description: "Affiché dans le pied de page avant l'adresse (Messassi, Yaoundé, Cameroun) et lu par Google. Ex. Messassi." }
           - { name: horaires, type: string, label: Horaires de réponse }
       - name: reseaux
         type: object
