@@ -511,3 +511,7 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 /* pied de page, colonne Support : bouton « Nous contacter » (bouton de la charte, sans la couleur des liens du pied) */
 .pied .pied-contact { margin-top: 20px; color: var(--casse); }
 .pied .pied-contact:hover, .pied .pied-contact:focus-visible { color: var(--logo); text-decoration: none; }
+/* pied de page, colonne Support : numéros WhatsApp et appels, à titre d'information (sans lien), précédés de leur icône */
+.pied .pied-numero { display: flex; align-items: center; gap: 10px; }
+.pied .pied-numero svg { width: 18px; height: 18px; flex: none; color: var(--lavande); }
+.pied .masque { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
