@@ -507,3 +507,7 @@ body:has(.accroche-d) .accroche-d .se { font-weight: 700; }
 }
 .pbar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; background: linear-gradient(90deg, #1565FF, #9FD0FF); transform-origin: 0 50%; transform: scaleX(0); transition: opacity .3s; pointer-events: none; }
 body:has(.accroche-d).fin .pbar { opacity: 0; }
+
+/* pied de page, colonne Support : bouton « Nous contacter » (bouton de la charte, sans la couleur des liens du pied) */
+.pied .pied-contact { margin-top: 20px; color: var(--casse); }
+.pied .pied-contact:hover, .pied .pied-contact:focus-visible { color: var(--logo); text-decoration: none; }
