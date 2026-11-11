@@ -507,3 +507,14 @@ body:has(.accroche-d) .accroche-d .se { font-weight: 700; }
 }
 .pbar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; background: linear-gradient(90deg, #1565FF, #9FD0FF); transform-origin: 0 50%; transform: scaleX(0); transition: opacity .3s; pointer-events: none; }
 body:has(.accroche-d).fin .pbar { opacity: 0; }
+
+/* pied de page, colonne Support : bouton « Nous contacter » (bouton de la charte, sans la couleur des liens du pied) */
+.pied .pied-contact { margin-top: 20px; color: var(--casse); }
+.pied .pied-contact:hover, .pied .pied-contact:focus-visible { color: var(--logo); text-decoration: none; }
+/* pied de page, colonne Support : numéros WhatsApp et appels, à titre d'information (sans lien), précédés de leur icône */
+.pied .pied-numero { display: flex; align-items: center; gap: 10px; }
+.pied .pied-numero svg { width: 18px; height: 18px; flex: none; color: var(--lavande); }
+.pied .masque { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* pied de page : colonne Support un peu plus large (e-mail avec icône sur une ligne) ; 2 colonnes sur écran moyen */
+@media (min-width: 1101px) { .pied .colonnes { grid-template-columns: 1.55fr 1fr .85fr 1.25fr; } }
+@media (min-width: 521px) and (max-width: 1100px) { .pied .colonnes { grid-template-columns: 1fr 1fr; } }

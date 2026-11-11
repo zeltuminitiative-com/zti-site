@@ -1,0 +1,62 @@
+// Mise en page des e-mails de ZTi (accusé de réception, alertes, e-mails écrits depuis la fiche d'un client).
+// HTML « à l'ancienne » (tableaux, styles en ligne) pour s'afficher partout : Gmail, Outlook, téléphones.
+// Replis : bandeau en dégradé avec un fond bleu uni dessous (Outlook ne montre pas les dégradés), logo en image avec un
+// texte de remplacement « ZTi » blanc (images souvent bloquées), polices du site avec Arial en secours (Gmail).
+// Le texte vient du back-office ou du visiteur : il est toujours échappé, puis les retours à la ligne deviennent des paragraphes.
+export const echapper = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const TITRES = "Montserrat,'Segoe UI',Arial,sans-serif";
+const TEXTE = "Inter,'Segoe UI',Arial,sans-serif";
+
+// site : adresse du site public (logo et liens) ; titre : facultatif. Pied de page : nom, signature, site et ville,
+// puis le lien « Politique de confidentialité » (page /confidentialite/ du site)
+// (le WhatsApp passe par le bouton vert du message, pas par le pied de page — choix de ZTi du 07/11/2026)
+// titreRecap : titre de l'encadré du récapitulatif (« Votre demande » pour le client, « Détails de la demande » pour l'équipe)
+// telWhatsapp : dans le tableau, le téléphone devient un lien WhatsApp (alertes à l'équipe seulement, pas l'accusé au client)
+export function gabaritEmail({ texte, titre = '', site = '', titreRecap = 'Votre demande', telWhatsapp = false }) {
+  // valeur d'une ligne du tableau ; le numéro de téléphone peut devenir un lien WhatsApp (chiffres seulement dans le lien)
+  const valeur = (lib, v) => {
+    const chiffres = v.replace(/\D/g, '');
+    if (telWhatsapp && /^T[ée]l[ée]phone$/.test(lib) && chiffres.length >= 9)
+      return `<a href="https://wa.me/${chiffres}" style="color:#15803D;font-weight:700;text-decoration:underline">${echapper(v)}</a>`;
+    return echapper(v);
+  };
+  // un paragraphe de lignes « • … » devient l'encadré « Votre demande » ; un lien wa.me seul devient le bouton WhatsApp vert
+  const bloc = p => {
+    if (/^https:\/\/wa\.me\/\d+\S*$/.test(p)) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
+<td bgcolor="#15803D" style="background:#15803D;border-radius:12px"><a href="${echapper(p)}" style="display:inline-block;padding:14px 26px;font:700 16px ${TITRES};color:#FFFFFF;text-decoration:none">Écrire sur WhatsApp</a></td></tr></table>`;
+    // « >>> Libellé : https://… » seul (alertes à l'équipe) devient un bouton bleu
+    const lienBouton = p.match(/^>>> (.+?) : (https:\/\/\S+)$/);
+    if (lienBouton) return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 22px"><tr>
+<td bgcolor="#02008A" style="background:#02008A;border-radius:12px"><a href="${echapper(lienBouton[2])}" style="display:inline-block;padding:14px 26px;font:700 16px ${TITRES};color:#FFFFFF;text-decoration:none">${echapper(lienBouton[1])}</a></td></tr></table>`;
+    const lignes = p.split('\n');
+    // récapitulatif en tableau à deux colonnes (libellé | réponse), une ligne par information, séparées par un filet
+    if (lignes.every(l => l.startsWith('• '))) return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px;border:1px solid #D7DCF3;border-radius:12px;border-collapse:separate;overflow:hidden">
+<tr><td colspan="2" bgcolor="#02008A" style="background:#02008A;padding:11px 18px;font:700 13px ${TITRES};letter-spacing:.06em;text-transform:uppercase;color:#FFFFFF">${echapper(titreRecap)}</td></tr>
+${lignes.map((l, i) => { const [lib, ...val] = l.slice(2).split(' : '); const fond = i % 2 ? '#FFFFFF' : '#F4F6FA';
+  return `<tr><td width="42%" valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 12px 10px 18px;border-top:1px solid #E7ECFA;font:600 14px/1.45 ${TEXTE};color:#02008A">${echapper(lib)}</td>`
+    + `<td valign="top" bgcolor="${fond}" style="background:${fond};padding:10px 18px 10px 12px;border-top:1px solid #E7ECFA;font:400 15px/1.45 ${TEXTE};color:#1F2937${/^T[ée]l[ée]phone$/.test(lib) ? ';white-space:nowrap' : ''}">${valeur(lib, val.join(' : '))}</td></tr>`; }).join('\n')}
+</table>`;
+    return `<p style="margin:0 0 16px;font:400 15px/1.6 ${TEXTE};color:#4A5568">${echapper(p).replace(/\n/g, '<br>')}</p>`;
+  };
+  const paragraphes = String(texte ?? '').split(/\n{2,}/).map(p => p.trim()).filter(Boolean).map(bloc).join('');
+  const logo = site
+    ? `<img src="${echapper(site)}/images/logo-blanc.png" width="96" alt="ZTi" style="display:block;width:96px;height:auto;border:0;color:#FFFFFF;font:700 26px ${TITRES}">`
+    : `<span style="color:#FFFFFF;font:700 26px ${TITRES}">ZTi</span>`;
+  const lienSite = site ? `<a href="${echapper(site)}" style="color:#FFFFFF;text-decoration:underline">${echapper(site.replace(/^https?:\/\//, ''))}</a> · ` : '';
+  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${echapper(titre || 'ZTi')}</title></head>
+<body style="margin:0;padding:0;background:#E7ECFA">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#E7ECFA" style="background:#E7ECFA"><tr><td align="center" style="padding:28px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;border-radius:18px;overflow:hidden;border:1px solid #D7DCF3">
+<tr><td bgcolor="#02008A" style="background-color:#02008A;background-image:linear-gradient(120deg,#02008A 0%,#1565FF 100%);padding:26px 28px">${logo}</td></tr>
+<tr><td bgcolor="#FFFFFF" style="background:#FFFFFF;padding:30px 28px 14px">
+${titre ? `<h1 style="margin:0 0 20px;font:700 24px/1.25 ${TITRES};color:#02008A">${echapper(titre)}</h1>` : ''}${paragraphes}
+</td></tr>
+<tr><td bgcolor="#010038" style="background:#010038;padding:24px 28px">
+<p style="margin:0 0 6px;font:700 15px ${TITRES};color:#FFFFFF">Zèl Tum Initiative</p>
+<p style="margin:0 0 14px;font:400 13px ${TEXTE};color:#9FD0FF">Votre partenaire de confiance, depuis 2008</p>
+<p style="margin:0;font:400 13px/1.7 ${TEXTE};color:#FFFFFF">${lienSite}Yaoundé, Cameroun</p>
+${site ? `<p style="margin:10px 0 0;font:400 12px ${TEXTE};color:#C7CDEC"><a href="${echapper(site)}/confidentialite/" style="color:#C7CDEC;text-decoration:underline">Politique de confidentialité</a></p>` : ''}
+</td></tr></table></td></tr></table></body></html>`;
+}

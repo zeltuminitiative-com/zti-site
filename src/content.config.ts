@@ -21,6 +21,14 @@ const campagnes = defineCollection({
     en_ligne: z.boolean().default(false),
     public: z.string().default(''),
     sans_menu: z.boolean().default(true),
+    // référencement : titre affiché dans Google, et service présenté (données structurées schema.org)
+    titre_google: z.string().optional(),
+    service: z.object({
+      nom: z.string().optional(),
+      description: z.string().optional(),
+      zone: z.string().optional(),
+      offre: z.string().optional(),
+    }).optional(),
   }),
 });
 

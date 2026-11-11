@@ -9,6 +9,7 @@ export async function getStaticPaths() {
 }
 const { c } = Astro.props;
 ---
-<Base titre={c.data.titre} description={c.data.description} image={c.data.image_partage} sansMenu={c.data.sans_menu}>
+<Base titre={c.data.titre} description={c.data.description} image={c.data.image_partage} sansMenu={c.data.sans_menu}
+  titreGoogle={c.data.titre_google} service={c.data.service}>
   <Sections sections={c.data.sections} page={`offres/${c.id}`} campagne={c.id} />
 </Base>

@@ -322,7 +322,16 @@ content:
       primary: titre
     fields:
       - { name: titre, type: string, label: Titre de la page, required: true }
+      - { name: titre_google, type: string, label: Titre dans Google (facultatif), description: "Titre affiché dans les résultats de recherche, 60 caractères environ. Vide = titre de la page + « — ZTi »." }
       - { name: description, type: text, label: Description (Google, Facebook, WhatsApp) }
+      - name: service
+        type: object
+        label: Service présenté (données pour Google, facultatif)
+        fields:
+          - { name: nom, type: string, label: Nom du service }
+          - { name: description, type: text, label: Description courte }
+          - { name: zone, type: string, label: Ville desservie }
+          - { name: offre, type: string, label: Ce qui est offert (ex. diagnostic offert) }
       - { name: en_ligne, type: boolean, label: En ligne, description: "Décoché = brouillon, invisible sur le site. Adresse : /offres/<nom du fichier>/" }
       - name: public
         type: select

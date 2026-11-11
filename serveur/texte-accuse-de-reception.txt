@@ -1,0 +1,12 @@
+Bonjour {prenom},
+
+Votre demande est bien enregistrée. Notre équipe va examiner les informations transmises et vous recontactera sous 48 heures ouvrables, au moment que vous avez indiqué, par WhatsApp.
+
+{demande}
+
+Vous souhaitez échanger plus rapidement avec nous ? Cliquez ci-dessous pour nous écrire directement sur WhatsApp.
+
+{lien_whatsapp}
+
+Au plaisir de collaborer avec vous,
+L'équipe ZTi 🤝🏾
