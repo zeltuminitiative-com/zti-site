@@ -190,7 +190,9 @@ $$('form[data-demande]').forEach(form => {
     $$('[data-requis-plusieurs]', bloc).forEach(c => marque(c, valeur(c.dataset.champ).length > 0));
     $$('[data-texte-requis]', bloc).forEach(c => { const x = (c.querySelector('input, textarea')?.value || '').trim(); marque(c, x.length >= 3 && vraisemblable(x, 'oui')); });
     $$('[data-texte-facultatif]', bloc).forEach(c => { const x = (c.querySelector('input, textarea')?.value || '').trim(); marque(c, !x || (x.length >= 3 && vraisemblable(x, 'oui'))); });   // vide accepté, sinon de vrais mots
-    $$('[data-si-autre]', bloc).forEach(c => marque(c, vraisemblable(c.querySelector('input')?.value)));   // « Autre » choisi : la précision est obligatoire
+    // « Autre » choisi : la précision est obligatoire, et « Autre », « Divers », « Rien »… ne sont pas des précisions
+    const flou = x => /^(autres?( (chose|fonction|type|poste|metier))?|divers|aucune?|rien|neant|inconnue?|je ne sais pas|nsp|na|non|ras|test|etc)$/.test((x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z ]+/g, ' ').trim().replace(/\s+/g, ' '));
+    $$('[data-si-autre]', bloc).forEach(c => { const x = c.querySelector('input')?.value; marque(c, vraisemblable(x) && !flou(x)); });
     marque(champ('organisation'), v('organisation').length >= 3 && vraisemblable(v('organisation'), 'peu'));
     if (champ('secteur') && form.typeCoherent && code('secteur')) marque(champ('secteur'), form.typeCoherent());
     marque(champ('nom'), vraisemblable(v('nom'))); marque(champ('prenom'), vraisemblable(v('prenom'))); marque(champ('quartier'), vraisemblable(v('quartier'), 'peu')); marque(champ('ville_nom'), vraisemblable(v('ville_nom')));   // école : quartier et ville obligatoires
