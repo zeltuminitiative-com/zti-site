@@ -51,7 +51,7 @@ const donnees = [
   { '@context': 'https://schema.org', '@type': 'Organization', '@id': idOrg, name: r.nom, legalName: r.nom_legal, url: accueil,
     logo: new URL(lien('/images/logo-bleu.png'), Astro.site).href, slogan: r.slogan, foundingDate: r.depuis, email: r.contact?.email,
     ...(telAppel ? { telephone: telAppel } : {}), ...(contacts.length ? { contactPoint: contacts } : {}),
-    address: { '@type': 'PostalAddress', addressLocality: 'Yaoundé', addressCountry: 'CM' }, ...(reseaux.length ? { sameAs: reseaux } : {}) },
+    address: { '@type': 'PostalAddress', ...(r.contact?.quartier ? { streetAddress: r.contact.quartier } : {}), addressLocality: 'Yaoundé', addressCountry: 'CM' }, ...(reseaux.length ? { sameAs: reseaux } : {}) },
   ...(ariane.length ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: ariane.map((a, i) => ({ '@type': 'ListItem', position: i + 1, name: a.nom, item: a.url })) }] : []),
   ...(service?.nom ? [{ '@context': 'https://schema.org', '@type': 'Service', name: service.nom, description: service.description || desc,
