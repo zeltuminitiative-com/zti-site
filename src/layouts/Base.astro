@@ -40,9 +40,17 @@ const ariane = chemin === lien('/') ? [] : [
   ...(chemin.startsWith(lien('/services/')) && chemin !== lien('/services/') ? [{ nom: 'Nos services', url: new URL(lien('/services/'), Astro.site).href }] : []),
   { nom: titre, url: adresse },
 ];
+// téléphones (réglages) : appels au +237 676 165 772, WhatsApp au +237 699 324 689 (choix de ZTi du 11/11)
+const intl = (x?: string) => { const c = (x || '').replace(/\D/g, ''); return c ? '+' + (c.startsWith('237') ? c : '237' + c) : ''; };
+const telAppel = intl(r.contact?.telephone), telWa = intl(r.contact?.whatsapp);
+const contacts = [
+  telAppel && { '@type': 'ContactPoint', contactType: 'customer service', name: 'Appels', telephone: telAppel, areaServed: 'CM', availableLanguage: 'French' },
+  telWa && { '@type': 'ContactPoint', contactType: 'customer service', name: 'WhatsApp', telephone: telWa, url: `https://wa.me/${telWa.slice(1)}`, areaServed: 'CM', availableLanguage: 'French' },
+].filter(Boolean);
 const donnees = [
   { '@context': 'https://schema.org', '@type': 'Organization', '@id': idOrg, name: r.nom, legalName: r.nom_legal, url: accueil,
     logo: new URL(lien('/images/logo-bleu.png'), Astro.site).href, slogan: r.slogan, foundingDate: r.depuis, email: r.contact?.email,
+    ...(telAppel ? { telephone: telAppel } : {}), ...(contacts.length ? { contactPoint: contacts } : {}),
     address: { '@type': 'PostalAddress', addressLocality: 'Yaoundé', addressCountry: 'CM' }, ...(reseaux.length ? { sameAs: reseaux } : {}) },
   ...(ariane.length ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: ariane.map((a, i) => ({ '@type': 'ListItem', position: i + 1, name: a.nom, item: a.url })) }] : []),
