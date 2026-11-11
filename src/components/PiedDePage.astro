@@ -54,7 +54,7 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
         <ul>
           {numeroWa && <li><a href={lienWa} rel="noopener" target="_blank">{numeroWa}</a></li>}
           {r.contact.email && <li><a href={`mailto:${r.contact.email}`}>{r.contact.email}</a></li>}
-          {horaires.map(h => <li>{h}</li>)}
+          {horaires.map(h => { const [debut, suite] = h.split(/(?<=reçus) /); return <li>{debut}{suite && <><br />{suite}</>}</li>; })}
           {r.contact.adresse && <li>{r.contact.adresse}</li>}
         </ul>
         <a class="btn pied-contact" href={lien('/contact/')}>Nous contacter<span class="pastille"><Icone nom="fleche" /></span></a>
