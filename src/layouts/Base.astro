@@ -72,6 +72,8 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
   <meta name="description" content={desc}>
   {(!indexer || brancheApercu) && <meta name="robots" content="noindex">}
   <link rel="canonical" href={adresse}>
+  <!-- Google Search Console (compte ZTI Professionnels) : preuve que le site appartient à ZTi -->
+  <meta name="google-site-verification" content="5x34oN6nhbxyYtEaWhQZZxqu8bFXz5u6smiVIct40nU">
   <link rel="icon" href={lien('/favicon.ico')} sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href={lien('/favicon-32.png')}>
   <link rel="apple-touch-icon" href={lien('/apple-touch-icon.png')}>
