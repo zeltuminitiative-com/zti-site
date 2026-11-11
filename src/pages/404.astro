@@ -14,7 +14,11 @@ import { lien } from '../lib/contenu';
           <p class="chapo">Les services et les offres de ZTi sont toujours là.</p>
           <div class="actions"><Bouton texte="Retour à l'accueil" href="/" /><a class="lien" href={lien('/services/')}>Nos services</a><a class="lien" href={lien('/contact/')}>Écrire à ZTi</a></div>
         </div>
-        <img class="image-404 rv" src={lien('/images/zti-page-erreur-404.gif')} alt="Illustration : intérieur d'un appareil en cours de mise à jour, un technicien travaille sur son ordinateur portable" width="730" height="800">
+        <!-- WebP animé sans perte (189 Ko) ; le GIF (289 Ko) reste pour les navigateurs qui ne lisent pas le WebP -->
+        <picture class="cadre-404">
+          <source srcset={lien('/images/zti-page-erreur-404.webp')} type="image/webp">
+          <img class="image-404 rv" src={lien('/images/zti-page-erreur-404.gif')} alt="Illustration : intérieur d'un appareil en cours de mise à jour, un technicien travaille sur son ordinateur portable" width="730" height="800">
+        </picture>
       </div>
     </div>
   </section>
@@ -24,6 +28,7 @@ import { lien } from '../lib/contenu';
   .erreur-404 { background: #FFFFFF; padding-top: 40px; padding-bottom: 40px; }
   .grille-404 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
   /* image entière dès l'ouverture : sa hauteur ne dépasse pas l'espace visible sous la barre du haut */
+  .cadre-404 { display: flex; justify-content: center; }
   .image-404 { width: auto; max-width: 100%; height: auto; max-height: min(560px, calc(100svh - 150px)); justify-self: center; }
   /* apparition en cascade, comme les autres pages : étiquette, titre, phrase, boutons, puis l'image */
   .texte-404.vu > * { animation: d-monte .7s cubic-bezier(.2,.7,.2,1) both; }
