@@ -19,7 +19,7 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 const chiffresWa = (r.contact.whatsapp || '').replace(/\D/g, '');
 const numeroWa = chiffresWa.length === 12 ? chiffresWa.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 $4') : '';
 const lienWa = `https://wa.me/${chiffresWa}?text=${encodeURIComponent('Bonjour ZTi👋🏾')}`;
-const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().replace(/\.$/, '')).filter(Boolean);
+const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().replace(/\.$/, '').replace(/(\d) (?=[hj]\b)/g, '$1 ')).filter(Boolean);
 ---
 <footer class="pied">
   <div class="contenu">
