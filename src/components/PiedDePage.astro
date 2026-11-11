@@ -15,6 +15,11 @@ const suivre = [
 ];
 const annee = new Date().getFullYear();
 const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
+// Support : numéro WhatsApp (lien qui ouvre la discussion avec « Bonjour ZTi👋🏾 »), puis les horaires sur deux lignes (séparées par « · » dans les réglages)
+const chiffresWa = (r.contact.whatsapp || '').replace(/\D/g, '');
+const numeroWa = chiffresWa.length === 12 ? chiffresWa.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 $4') : '';
+const lienWa = `https://wa.me/${chiffresWa}?text=${encodeURIComponent('Bonjour ZTi👋🏾')}`;
+const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().replace(/\.$/, '')).filter(Boolean);
 ---
 <footer class="pied">
   <div class="contenu">
@@ -47,10 +52,12 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
       <div>
         <h4>Support</h4>
         <ul>
+          {numeroWa && <li><a href={lienWa} rel="noopener" target="_blank">{numeroWa}</a></li>}
           {r.contact.email && <li><a href={`mailto:${r.contact.email}`}>{r.contact.email}</a></li>}
+          {horaires.map(h => <li>{h}</li>)}
           {r.contact.adresse && <li>{r.contact.adresse}</li>}
-          {r.contact.horaires && <li>{r.contact.horaires}</li>}
         </ul>
+        <a class="btn pied-contact" href={lien('/contact/')}>Nous contacter<span class="pastille"><Icone nom="fleche" /></span></a>
       </div>
     </div>
     <div class="geant" aria-hidden="true" style={`--logo-zti: url(${lien('/images/logo-zti.svg')})`}></div>
