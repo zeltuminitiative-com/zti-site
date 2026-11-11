@@ -15,10 +15,10 @@ const suivre = [
 ];
 const annee = new Date().getFullYear();
 const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
-// Support : numéro WhatsApp (lien qui ouvre la discussion avec « Bonjour ZTi👋🏾 »), puis les horaires sur deux lignes (séparées par « · » dans les réglages)
-const chiffresWa = (r.contact.whatsapp || '').replace(/\D/g, '');
-const numeroWa = chiffresWa.length === 12 ? chiffresWa.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 $4') : '';
-const lienWa = `https://wa.me/${chiffresWa}?text=${encodeURIComponent('Bonjour ZTi👋🏾')}`;
+// Support : numéros WhatsApp et appels affichés à titre d'information, SANS lien (choix de ZTi du 11/11 : le contact passe par le formulaire),
+// puis les horaires sur deux lignes (séparées par « · » dans les réglages)
+const numero = (x?: string) => { const c = (x || '').replace(/\D/g, ''); const n = c.startsWith('237') ? c : '237' + c; return n.length === 12 ? n.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 $4') : ''; };
+const numeroWa = numero(r.contact.whatsapp), numeroAppel = numero(r.contact.telephone);
 const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().replace(/\.$/, '').replace(/(\d) (?=[hj]\b)/g, '$1 ')).filter(Boolean);
 ---
 <footer class="pied">
@@ -52,12 +52,13 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
       <div>
         <h4>Support</h4>
         <ul>
-          {numeroWa && <li><a href={lienWa} rel="noopener" target="_blank">{numeroWa}</a></li>}
+          {numeroWa && <li class="pied-numero"><Icone nom="whatsapp" /><span><span class="masque">WhatsApp : </span>{numeroWa}</span></li>}
+          {numeroAppel && <li class="pied-numero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span><span class="masque">Appels : </span>{numeroAppel}</span></li>}
           {r.contact.email && <li><a href={`mailto:${r.contact.email}`}>{r.contact.email}</a></li>}
           {horaires.map(h => { const [debut, suite] = h.split(/(?<=reçus) /); return <li>{debut}{suite && <><br />{suite}</>}</li>; })}
           {r.contact.adresse && <li>{r.contact.adresse}</li>}
         </ul>
-        <a class="btn pied-contact" href={lien('/contact/')}>Nous contacter<span class="pastille"><Icone nom="fleche" /></span></a>
+        <a class="btn pied-contact" href={lien('/contact/')}>Écrire à ZTi<span class="pastille"><Icone nom="fleche" /></span></a>
       </div>
     </div>
     <div class="geant" aria-hidden="true" style={`--logo-zti: url(${lien('/images/logo-zti.svg')})`}></div>
