@@ -87,17 +87,18 @@ publique.post('/demandes', async c => {
 
   accuserReception(f).catch(e => console.error('Accusé de réception :', e.message));
   const l = v => String(v || '').replace(/\s+/g, ' ').trim(); // une ligne par champ : pas de faux lien glissé dans l'alerte
-  // alerte à l'équipe (jamais au client) : l'essentiel pour agir vite (choix de ZTi du 07/11/2026), puis le bouton vers la
-  // fiche ; tout le reste (e-mail, message, type, campagne, date…) est dans le tableau de bord
+  // alerte à l'équipe (jamais au client) : l'essentiel pour agir vite, puis le bouton vers la fiche (choix de ZTi du 07/11) ;
+  // le reste (e-mail, message, type, campagne, date…) est dans le tableau de bord
   const recap = [
     `• Responsable : ${l(f.nom)}${f.fonction ? ' (' + l(f.fonction) + ')' : ''}`,
     f.organisation && `• ${l(f.profil) || 'Organisation'} : ${l(f.organisation)}`,
-    `• Téléphone : ${f.tel}`, f.moment && `• À contacter : ${l(f.moment)}`,
+    `• Téléphone : ${l(f.tel)}`, f.moment && `• À contacter : ${l(f.moment)}`,
     f.lieu && `• Lieu : ${l(f.lieu)}`, f.postes && `• Ordinateurs : ${l(f.postes)}`, besoins.length && `• Besoins : ${l(besoins.join(', '))}`,
   ].filter(Boolean).join('\n');
-  alerter('demandes', `Nouvelle demande — ${l(f.sujet) || 'Site'} — ${l(f.organisation || f.nom)}`, [
-    recap, '', '>>> Ouvrir la fiche dans le tableau de bord : ' + `${config.adresse}/admin/#/demandes/${ligne.id}`,
-  ], `Nouvelle demande : ${l(f.organisation || f.nom)}`).catch(e => console.error('Alerte :', e.message));
+  alerter('demandes', `Nouvelle demande : ${l(f.sujet) || 'Site'}, ${l(f.organisation || f.nom)}`, [recap], {
+    titre: `Nouvelle demande : ${l(f.organisation || f.nom)}`, titreRecap: 'Détails de la demande', telWhatsapp: true,
+    bouton: { texte: 'Ouvrir la fiche dans le tableau de bord', lien: `${config.adresse}/admin/#/demandes/${ligne.id}` } })
+    .catch(e => console.error('Alerte :', e.message));
   return c.json({ ok: true }, 201);
 });
 
@@ -118,8 +119,8 @@ publique.post('/avis', async c => {
   await sql`insert into avis ${sql(f)}`;
   await enregistrerEvenement(c, 'avis', { chemin: f.page || '/' });
   const l = v => String(v || '').replace(/\s+/g, ' ').trim();
-  alerter('avis', `Nouvel avis (${note}/5) — ${l(nom)}`, ['>>> À valider dans le tableau de bord : ' + `${config.adresse}/admin/#/avis`, '',
-    '« ' + l(avisTexte) + ' »', `— ${l(nom)}${f.organisation ? ', ' + l(f.organisation) : ''}`]).catch(e => console.error('Alerte :', e.message));
+  alerter('avis', `Nouvel avis (${note}/5) : ${l(nom)}`, ['« ' + l(avisTexte) + ' »', `${l(nom)}${f.organisation ? ', ' + l(f.organisation) : ''}`],
+    { titre: `Nouvel avis client : ${note}/5`, bouton: { texte: 'Valider l\'avis', lien: `${config.adresse}/admin/#/avis` } }).catch(e => console.error('Alerte :', e.message));
   return c.json({ ok: true }, 201);
 });
 
