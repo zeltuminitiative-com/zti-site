@@ -4,12 +4,29 @@ import Bouton from '../components/Bouton.astro';
 import { lien } from '../lib/contenu';
 ---
 <Base titre="Page introuvable" indexer={false}>
-  <section class="section fond-nuit sombre page-simple">
-    <div class="contenu etroit">
-      <span class="etiquette">Erreur 404</span>
-      <h1>Cette page n'existe pas ou a changé d'adresse.</h1>
-      <p class="chapo">Les services et les offres de ZTi sont toujours là.</p>
-      <div class="actions"><Bouton texte="Retour à l'accueil" href="/" /><a class="lien" href={lien('/services/')}>Nos services</a></div>
+  <!-- page d'erreur : fond blanc, texte à gauche et image animée à droite (dessous sur téléphone) — demande de ZTi du 11/11 -->
+  <section class="section fond-blanc page-simple erreur-404">
+    <div class="contenu">
+      <div class="grille-404">
+        <div class="texte-404">
+          <span class="etiquette">Erreur 404</span>
+          <h1>Cette page n'existe pas ou a changé d'adresse.</h1>
+          <p class="chapo">Les services et les offres de ZTi sont toujours là.</p>
+          <div class="actions"><Bouton texte="Retour à l'accueil" href="/" /><a class="lien" href={lien('/services/')}>Nos services</a></div>
+        </div>
+        <img class="image-404" src={lien('/images/zti-page-erreur-404.gif')} alt="Illustration : intérieur d'un appareil en cours de mise à jour, un technicien travaille sur son ordinateur portable" width="730" height="800">
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .erreur-404 { background: #FFFFFF; }
+  .grille-404 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .image-404 { width: 100%; max-width: 440px; height: auto; justify-self: center; }
+  @media (max-width: 860px) {
+    .grille-404 { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+    .grille-404 .actions { justify-content: center; }
+    .image-404 { max-width: 300px; }
+  }
+</style>
