@@ -1,6 +1,7 @@
 ---
 import Cadre from './Cadre.astro';
 import { references, lien } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const liste = await references();
 ---
@@ -8,10 +9,10 @@ const liste = await references();
   <Cadre premier={premier} s={s} defaut="ivoire" id={s.ancre || 'references'} centre>
     <div class="defile">
       <ul class="logos">
-        {liste.map(r => <li><img src={lien(r.logo)} alt="" loading="lazy">{r.nom}</li>)}
+        {liste.map(r => <li><img src={lien(r.logo)} {...dim(r.logo)} alt="" loading="lazy">{r.nom}</li>)}
       </ul>
       <ul class="logos" aria-hidden="true">
-        {liste.map(r => <li><img src={lien(r.logo)} alt="" loading="lazy">{r.nom}</li>)}
+        {liste.map(r => <li><img src={lien(r.logo)} {...dim(r.logo)} alt="" loading="lazy">{r.nom}</li>)}
       </ul>
     </div>
   </Cadre>

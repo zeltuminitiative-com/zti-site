@@ -2,6 +2,7 @@
 // Galerie de photos : grille d'images avec légende, agrandies d'un clic (visionneuse du site).
 import Cadre from './Cadre.astro';
 import { lien } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const images = (s.images || []).filter((x: any) => x.image);
 ---
@@ -10,7 +11,7 @@ const images = (s.images || []).filter((x: any) => x.image);
     {images.map((x: any) => (
       <figure class="rv">
         <button type="button" data-visionneuse={lien(x.image)} aria-label={`Agrandir : ${x.legende || 'photo'}`}>
-          <img src={lien(x.image)} alt={x.legende || ''} loading="lazy">
+          <img src={lien(x.image)} {...dim(x.image)} alt={x.legende || ''} loading="lazy">
         </button>
         {x.legende && <figcaption>{x.legende}</figcaption>}
       </figure>

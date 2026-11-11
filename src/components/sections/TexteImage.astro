@@ -1,6 +1,7 @@
 ---
 import Bouton from '../Bouton.astro';
 import { md, lien } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const Titre = premier ? 'h1' : 'h2';
 const fond = s.fond || 'blanc';
@@ -20,11 +21,11 @@ const sombre = ['nuit', 'bleu', 'noir'].includes(fond);
       {s.image && (
         <figure class="visuel rv">
           {s.agrandir
-            ? <button type="button" class="agrandir" data-visionneuse={lien(s.image)} aria-label={`Agrandir : ${s.image_texte || s.titre || 'image'}`}><img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy"></button>
+            ? <button type="button" class="agrandir" data-visionneuse={lien(s.image)} aria-label={`Agrandir : ${s.image_texte || s.titre || 'image'}`}><img src={lien(s.image)} {...dim(s.image)} alt={s.image_texte || ''} loading="lazy"></button>
             : s.ecran?.length
-              ? <div class="ecran-anime"><img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy">
+              ? <div class="ecran-anime"><img src={lien(s.image)} {...dim(s.image)} alt={s.image_texte || ''} loading="lazy">
                   <div class="ecran-texte" aria-hidden="true">{s.ecran.map((l: string, i: number) => <span class="ecran-ligne" style={`--n:${l.length};--d:${(i * 1.9 + 0.4).toFixed(1)}s`}>{l}</span>)}</div></div>
-              : <img src={lien(s.image)} alt={s.image_texte || ''} loading="lazy">}
+              : <img src={lien(s.image)} {...dim(s.image)} alt={s.image_texte || ''} loading="lazy">}
           {s.legende && <figcaption class="legende-image">{s.legende}</figcaption>}
         </figure>
       )}

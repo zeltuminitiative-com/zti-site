@@ -1,12 +1,13 @@
 ---
 import { lien } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const { s } = Astro.props as { s: any };
 const fond = s.fond || 'blanc';
 const sombre = ['nuit', 'bleu', 'noir'].includes(fond);
 ---
 <section class={`section signature fond-${fond} ${sombre ? 'sombre' : ''}`}>
   <div class="contenu rv">
-    <img src={lien(sombre ? '/images/logo-blanc.png' : '/images/logo-bleu.png')} alt="ZTi" loading="lazy">
+    <img src={lien(sombre ? '/images/logo-blanc.png' : '/images/logo-bleu.png')} {...dim(sombre ? '/images/logo-blanc.png' : '/images/logo-bleu.png')} alt="ZTi" loading="lazy">
     {s.titre && <h2>{s.titre}</h2>}
     {s.slogan && <blockquote>« {s.slogan} »</blockquote>}
   </div>

@@ -2,6 +2,7 @@
 import Cadre from './Cadre.astro';
 import Icone from '../Icone.astro';
 import { services, lien } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const tous = await services();
 const liste = s.public ? tous.filter(x => x.data.publics.includes(s.public)) : tous;
@@ -10,7 +11,7 @@ const liste = s.public ? tous.filter(x => x.data.publics.includes(s.public)) : t
   <div class={`grille-cartes n${liste.length}`}>
     {liste.map(x => (
       <a class="carte rv" href={lien(`/services/${x.id}/`)}>
-        {x.data.image && <div class="image"><img src={lien(x.data.image)} alt="" loading="lazy"></div>}
+        {x.data.image && <div class="image"><img src={lien(x.data.image)} {...dim(x.data.image)} alt="" loading="lazy"></div>}
         <h3>{x.data.titre}</h3>
         <p>{x.data.resume || x.data.accroche}</p>
         <span class="plus">Découvrir<Icone nom="fleche" /></span>

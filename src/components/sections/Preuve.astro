@@ -3,12 +3,13 @@
 // sa fonction, les attestations (copies « Confidentiel ») qui s'ouvrent dans la visionneuse (agrandir, zoomer) et la mention.
 import Cadre from './Cadre.astro';
 import { lien } from '../../lib/contenu';
+import { dim, vignette } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const attestations = (s.attestations || []).filter((a: any) => a.image);
 ---
 <Cadre premier={premier} s={s} defaut="blanc" id={s.ancre || 'preuve'}>
   <div class="preuve-zti">
-    {s.portrait && <div class="portrait-zti rv"><img src={lien(s.portrait)} alt={s.nom || ''} loading="lazy" oncontextmenu="return false" draggable="false"></div>}
+    {s.portrait && <div class="portrait-zti rv"><img src={lien(s.portrait)} {...dim(s.portrait)} alt={s.nom || ''} loading="lazy" oncontextmenu="return false" draggable="false"></div>}
     <div class="rv">
       {s.nom && <h3 class="nom-zti">{s.nom}</h3>}
       {s.fonction && <p class="fonction-zti">{s.fonction}</p>}
@@ -16,7 +17,7 @@ const attestations = (s.attestations || []).filter((a: any) => a.image);
         <div class="attestations-zti">
           {attestations.map((a: any) => (
             <button type="button" data-visionneuse={lien(a.image)} aria-label={`Agrandir l'attestation ${a.titre || ''}`}>
-              <img src={lien(a.image)} alt="" loading="lazy" oncontextmenu="return false" draggable="false">
+              <img src={lien(vignette(a.image))} {...dim(vignette(a.image))} alt="" loading="lazy" oncontextmenu="return false" draggable="false">
               <span class="legende-att"><em class="conf">Confidentiel</em><b>{a.titre}</b>{a.detail}</span>
             </button>
           ))}
