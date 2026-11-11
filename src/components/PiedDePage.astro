@@ -25,7 +25,7 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
   <div class="contenu">
     <div class="colonnes">
       <div class="marque">
-        <img src={lien('/images/logo-blanc.png')} alt={r.nom} width="68" height="44" loading="lazy">
+        <a href={lien('/')} class="pied-logo" aria-label={`${r.nom} : page d'accueil`}><img src={lien('/images/logo-blanc.png')} alt={r.nom} width="68" height="44" loading="lazy"></a>
         <p>{r.signature}<br>Depuis {r.depuis}</p>
         <p>« {r.slogan} »</p>
         {suivre.length > 0 && (
