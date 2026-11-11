@@ -434,7 +434,7 @@ body:has([data-merci-page]) .entete .marque small span + span { margin-left: 12p
 
 /* ——— héro « plein écran » du modèle D (page Diagnostic offert) ——— */
 .accroche-d { position: relative; overflow: hidden; min-height: calc(100vh - 72px); padding: clamp(90px, 13vh, 140px) 0 130px; background: #010038; isolation: isolate; }
-.accroche-d .ph-d { position: absolute; inset: 0 0 0 auto; width: 75%; z-index: -1; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 32%, #000 56%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 32%, #000 56%); animation: d-fondu 1.2s .35s both, d-pousse 14s .35s ease-out both; }
+.accroche-d .ph-d { position: absolute; inset: 0 0 0 auto; width: 75%; z-index: -1; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 32%, #000 56%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 32%, #000 56%); animation: d-fondu .9s both, d-pousse 14s ease-out both; }   /* fondu dès l'ouverture (sans retard) : l'image principale s'affiche plus tôt */
 .accroche-d .ph-d img { width: 100%; height: 100%; object-fit: cover; object-position: 100% 30%; }
 .accroche-d .texte-d { max-width: 660px; }
 .ligne-marque { display: flex; flex-wrap: wrap; gap: 0; margin: 0 0 54px; font: 600 13px var(--titres); color: #C7CDEC; animation: d-descend .7s both; }
@@ -518,3 +518,6 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 /* pied de page : colonne Support un peu plus large (e-mail avec icône sur une ligne) ; 2 colonnes sur écran moyen */
 @media (min-width: 1101px) { .pied .colonnes { grid-template-columns: 1.55fr 1fr .85fr 1.25fr; } }
 @media (min-width: 521px) and (max-width: 1100px) { .pied .colonnes { grid-template-columns: 1fr 1fr; } }
+/* images avec dimensions déclarées (width/height lus à la construction) : garder les proportions quand la largeur est réduite ;
+   :where() = aucune priorité, les règles précises existantes (hauteurs fixes, object-fit) restent prioritaires */
+:where(img[width][height]) { height: auto; }
