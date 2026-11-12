@@ -26,10 +26,11 @@ const basPhrase = coupe > 0 ? bas.slice(0, coupe + 1) : bas, basLieu = coupe > 0
     <div class="texte-d">
       {s.pastilles?.length > 0 && <ul class="pastilles-d">{s.pastilles.map((p: string) => <li>{p}</li>)}</ul>}
       <Titre>{avant.trim()}{i >= 0 && <><br /><span class="hl">{accent}</span></>}{apres}</Titre>
-      <div class="cta-d">
+      {s.texte && <div class="chapo-d texte-riche" set:html={md(s.texte)} />}
+      {(s.bouton?.texte || s.lien_secondaire?.texte) && <div class="cta-d">
         {s.bouton?.texte && <div class="col"><Bouton texte={s.bouton.texte} href={s.bouton.lien || '#demande'} />{s.sous_bouton && <span class="se">{s.sous_bouton}</span>}</div>}
         {s.lien_secondaire?.texte && <div class="col"><a class="lien-d" href={lien(s.lien_secondaire.lien)}><u>{s.lien_secondaire.texte}</u><span class="rond"><Icone nom="fleche" /></span></a></div>}
-      </div>
+      </div>}
     </div>
   </div>
   {bas && <div class="pied-d"><p>{basPhrase}</p>{basLieu && <p class="lieu">{basLieu}</p>}</div>}
