@@ -538,10 +538,11 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
   .texte-riche td:first-child { width: 100%; border-right: 0; }
 }
 
-/* Travailler avec ZTi : photo du fondateur visible en entier (ni coupée, ni fondue) — à droite sur ordinateur, sous le texte sur téléphone */
-/* ordinateur : même héro que la page école (photo sur toute la hauteur à droite, fondue vers le texte), mais la photo
-   est affichée en entier (contain, calée à droite) au lieu d'être recadrée */
-#presentation-zti .ph-d { display: flex; justify-content: flex-end; -webkit-mask-image: none; mask-image: none; }
+/* Travailler avec ZTi : même héro que la page école (photo à droite, fondue vers le texte), mais photo affichée en entier,
+   descendue sous la barre du haut pour que le visage ne soit jamais coupé ; sous le texte sur téléphone */
+#presentation-zti .ph-d { top: 150px; display: flex; justify-content: flex-end; -webkit-mask-image: none; mask-image: none; }
+.accroche-d .chapo-d { margin: -6px 0 0; font-size: 19px; font-style: italic; color: #D7DCF3; animation: d-monte .7s 1.3s cubic-bezier(.2,.7,.2,1) both; }
+.accroche-d .chapo-d p { margin: 0; }
 #presentation-zti .ph-d img { width: auto; height: 100%; max-width: none; object-fit: fill; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 18%, #000 45%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 18%, #000 45%); }
 body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba(1,0,56,.9), 0 0 14px rgba(1,0,56,.8); }
 @media (max-width: 900px) {
@@ -552,14 +553,18 @@ body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba
   #presentation-zti .pied-d { order: 3; }
 }
 
-/* héro plein écran + menu (page Travailler avec ZTi) : « Votre partenaire de confiance | Depuis 2008 » sous le logo,
-   pour laisser la place au menu (sans menu, la page école garde la signature à côté du logo) */
-body:has(.accroche-d) .entete:not(.sans-menu) .marque { flex-direction: column; align-items: flex-start; gap: 6px; }
-body:has(.accroche-d) .entete:not(.sans-menu) .marque small span:first-child { padding-left: 0; border-left: 0; }
-@media (max-width: 560px) {   /* téléphone : signature un peu plus petite pour que le bouton Menu reste entier à l'écran */
-  body:has(.accroche-d) .entete:not(.sans-menu) .contenu { gap: 10px; }
-  body:has(.accroche-d) .entete:not(.sans-menu) .marque small { font-size: 10px; letter-spacing: 0; }
+/* héro plein écran + menu (page Travailler avec ZTi) : 1re ligne le menu, 2e ligne « logo | Votre partenaire de confiance |
+   Depuis 2008 » sur une seule ligne, puis les pastilles du héro. Page défilée : une seule ligne, logo seul + menu.
+   (Sans menu, la page école garde sa barre telle quelle.) */
+body:has(.accroche-d) .entete:not(.sans-menu) .contenu { flex-wrap: wrap; row-gap: 0; }
+body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) nav, body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) .menu-mobile { order: 1; margin-left: auto; }
+body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) .marque { order: 2; flex: 0 0 100%; margin-top: 18px; }
+body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; }
+@media (max-width: 560px) {   /* téléphone : signature un peu plus petite pour tenir sur une ligne */
+  body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) .marque { margin-top: 6px; }
+  body:has(.accroche-d) .entete:not(.sans-menu) .marque small { font-size: 10.5px; letter-spacing: 0; }
   body:has(.accroche-d) .entete:not(.sans-menu) .menu-mobile { flex: none; }
+  body:has(#presentation-zti) .accroche-d { padding-top: 150px; }
 }
 
 /* questions (accordéon) sur fond clair : une fois ouverte, la carte devient bleu nuit → question et réponse en blanc */
