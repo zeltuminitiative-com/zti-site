@@ -26,7 +26,7 @@ sections:
 
       1. [Nos engagements](#engagements) : ce que vous pouvez attendre de ZTi.
       2. [Délais et garanties](#delais) : en combien de temps, et pour combien de temps.
-      3. [Interventions sur site](#sur-site) : écoles, entreprises, institutions.
+      3. [Interventions sur site](#sur-site) : entreprises, institutions, associations, établissements scolaires.
       4. [Dépannage en atelier](#atelier) : la Convention de maintenance.
       5. [Réclamations](#reclamations) : comment nous signaler un problème.
   - type: cartes
@@ -58,7 +58,7 @@ sections:
       | --- | --- |
       | Vos messages | Reçus 24 h/24, 7 j/7 ; réponse les jours ouvrables, de 8 h à 20 h |
       | Rappel après une demande | Sous 48 heures ouvrables, au moment choisi, par WhatsApp |
-      | Visites sur site | De 8 h à 15 h, du lundi au samedi (hors vacances scolaires pour les écoles) |
+      | Visites sur site | De 8 h à 15 h, les jours ouvrables (du lundi au samedi) |
       | Prise en charge d'un signalement | Pack 1 : 48 h · Pack 2 : 24 h · Pack 3 : prioritaire |
       | Durée d'une intervention sur un parc | Environ 7 jours ouvrables, selon l'état et la taille du parc |
       | Diagnostic approfondi en atelier | Résultat écrit sous 3 jours ouvrables |
@@ -71,8 +71,8 @@ sections:
     fond: nuit
     ancre: sur-site
     etiquette: Interventions sur site
-    titre: Écoles, entreprises, institutions.
-    texte: "Ces conditions s'appliquent aux interventions sur votre parc informatique (packs de maintenance). Elles figurent aussi sur la facture proforma que vous signez."
+    titre: Votre parc informatique, sur place.
+    texte: "Ces conditions s'appliquent aux interventions sur le parc informatique de votre structure (entreprise, institution, association, établissement scolaire), dans le cadre de nos packs de maintenance. Elles figurent aussi sur la facture proforma que vous signez."
     questions:
       - question: Comment se déroule une intervention ?
         reponse: "Tout commence par un diagnostic, qui donne lieu à une Fiche de Parc : l'état de chaque poste et nos recommandations. Vous choisissez ensuite librement la suite. Si vous nous confiez l'intervention, la Fiche de Parc sert d'état initial au procès-verbal de réception, signé à la fin des travaux."
@@ -81,7 +81,7 @@ sections:
       - question: Que couvre le suivi après l'intervention ?
         reponse: "ZTi assure le suivi de votre parc pendant 14 jours ouvrables à partir de la signature du procès-verbal de réception : assistance à distance par WhatsApp, et reprise sans frais de main-d'œuvre de tout défaut d'exécution sur une opération réalisée par ZTi. Une visite sur site pendant cette période donne lieu à des frais de déplacement de 5 000 FCFA par jour. La Protection ZTi (Pack 3) reste active pendant 24 mois."
       - question: Qu'est-ce qui n'est pas couvert ?
-        reponse: "La reprise sans frais ne couvre pas les dégradations dues à une intervention ou une manipulation du personnel ou des élèves, les pannes sans lien avec nos opérations, les dommages d'origine électrique, ni le vol ou la disparition de composants. Les pièces fournies sont couvertes par la garantie de leur fabricant ou de leur fournisseur : ZTi garantit leur installation, pas la pièce elle-même."
+        reponse: "La reprise sans frais ne couvre pas les dégradations dues à une intervention ou une manipulation des utilisateurs du parc, les pannes sans lien avec nos opérations, les dommages d'origine électrique, ni le vol ou la disparition de composants. Les pièces fournies sont couvertes par la garantie de leur fabricant ou de leur fournisseur : ZTi garantit leur installation, pas la pièce elle-même."
       - question: Comment se règle une intervention ?
         reponse: |-
           Trois formules, au choix, indiquées sur la proforma :
@@ -90,9 +90,8 @@ sections:
           - **Échelonné court (+ 7 %)** : 50 % à l'engagement, 25 % au procès-verbal, 25 % à 30 jours.
           - **Échelonné long (+ 15 %)** : 50 % à l'engagement, 25 % à 45 jours, 25 % à 90 jours.
 
-          Un versement non réglé à son échéance suspend l'assistance et la prise en charge jusqu'à sa régularisation. Une intervention commune salle TIC et administration bénéficie d'une remise de 10 %.
-      - question: Quels systèmes installez-vous ?
-        reponse: "Les postes sont réinstallés sous Windows (français ou anglais), avec une licence valide fournie par l'établissement. Windows 7 et Windows 10 ne reçoivent plus de mises à jour de sécurité de Microsoft : la protection repose alors sur l'antivirus et, avec le Pack 3, sur la Protection ZTi. Les données de l'administration sont sauvegardées avant toute réinstallation."
+          Un versement non réglé à son échéance suspend l'assistance et la prise en charge jusqu'à sa régularisation.      - question: Quels systèmes installez-vous ?
+        reponse: "Les postes sont réinstallés sous Windows (français ou anglais), avec une licence valide fournie par le client. Windows 7 et Windows 10 ne reçoivent plus de mises à jour de sécurité de Microsoft : la protection repose alors sur l'antivirus et, avec le Pack 3, sur la Protection ZTi. Les données des postes de travail sont sauvegardées avant toute réinstallation."
   - type: questions
     fond: ivoire
     ancre: atelier
