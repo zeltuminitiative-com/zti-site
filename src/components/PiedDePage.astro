@@ -44,6 +44,7 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
         <ul>
           {!sansMenu && r.menu.filter(m => m.lien !== '/contact/').map(m =><li><a href={lien(m.lien)}>{m.texte}</a></li>)}
           {sansMenu && <li><a href={lien('/')}>Découvrir ZTi</a></li>}
+          <li><a href={lien('/engagements/')}>Travailler avec ZTi</a></li>
           <li><a href={lien('/#avis')}>Donner votre avis</a></li>
           <li><a href={lien('/telechargements/')}>Téléchargements</a></li>
           {serveur && <li><a href={serveur + '/espace/'}>Espace ambassadeurs</a></li>}
@@ -64,7 +65,7 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
     <div class="geant" aria-hidden="true" style={`--logo-zti: url(${lien('/images/logo-zti.svg')})`}></div>
     <div class="bas">
       <span>© {annee} {r.nom_legal}. Tous droits réservés.</span>
-      <a href={lien('/confidentialite/')}>Politique de confidentialité</a>
+      <a href={lien('/confidentialite/')}>Informations légales</a>
     </div>
   </div>
 </footer>
