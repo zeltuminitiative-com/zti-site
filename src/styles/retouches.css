@@ -518,6 +518,30 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 /* pied de page : colonne Support un peu plus large (e-mail avec icône sur une ligne) ; 2 colonnes sur écran moyen */
 @media (min-width: 1101px) { .pied .colonnes { grid-template-columns: 1.55fr 1fr .85fr 1.25fr; } }
 @media (min-width: 521px) and (max-width: 1100px) { .pied .colonnes { grid-template-columns: 1fr 1fr; } }
+
+/* tableaux dans les textes (Travailler avec ZTi, Informations légales) : chaque ligne bien séparée, 1re colonne en gras,
+   lignes alternées blanc / bleu pâle, défilement horizontal sur téléphone */
+.texte-riche table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 18px 0 22px; font-size: 15px; background: var(--blanc); border: 1px solid var(--brume); border-radius: 14px; overflow: hidden; }
+.texte-riche th { text-align: left; font: 700 14px/1.4 var(--titres); color: var(--blanc); background: var(--logo); padding: 13px 18px; }
+.texte-riche td { padding: 14px 18px; border-top: 2px solid var(--brume); vertical-align: top; color: var(--ardoise); line-height: 1.5; }
+.texte-riche td:first-child { font-weight: 700; color: var(--logo); width: 36%; border-right: 1px solid var(--brume); }
+.texte-riche tbody tr:nth-child(even) td { background: var(--casse); }
+.texte-riche tbody tr:hover td { background: var(--pale); }
+.texte-riche thead:not(:has(th:not(:empty))) { display: none; }
+.texte-riche thead:not(:has(th:not(:empty))) + tbody tr:first-child td { border-top: 0; }
+.texte-riche table + p { font-size: 14px; color: var(--gris); }
+@media (max-width: 600px) {
+  .texte-riche table, .texte-riche tbody, .texte-riche tr, .texte-riche td { display: block; width: 100%; }
+  .texte-riche thead { display: none; }
+  .texte-riche tr { border-top: 2px solid var(--brume); } .texte-riche tbody tr:first-child { border-top: 0; }
+  .texte-riche td { border: 0; padding: 10px 14px 2px; } .texte-riche td + td { padding: 2px 14px 12px; }
+  .texte-riche td:first-child { width: 100%; border-right: 0; }
+}
+
+/* questions (accordéon) sur fond clair : une fois ouverte, la carte devient bleu nuit → question et réponse en blanc */
+.fond-blanc .q-zti:has(> button[aria-expanded="true"]) > button, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) > button { color: #FFFFFF; }
+.fond-blanc .q-zti:has(> button[aria-expanded="true"]) .q-reponse, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) .q-reponse { color: #FFFFFF; }
+.fond-blanc .q-zti:has(> button[aria-expanded="true"]) .q-reponse strong, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) .q-reponse strong { color: #9FD0FF; }
 /* images avec dimensions déclarées (width/height lus à la construction) : garder les proportions quand la largeur est réduite ;
    :where() = aucune priorité, les règles précises existantes (hauteurs fixes, object-fit) restent prioritaires */
 :where(img[width][height]) { height: auto; }
