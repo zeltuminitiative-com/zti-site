@@ -10,14 +10,7 @@ sections:
     pastilles: [Entreprises, Institutions, Associations, Écoles, Particuliers]
     titre: Nos engagements, par écrit.
     accent: par écrit.
-    texte: "Confier son équipement informatique à un prestataire est un acte de confiance. Cette confiance mérite d'être encadrée : pour vous, et pour nous. Cette page réunit tout ce qui encadre notre collaboration."
-    bouton:
-      texte: Écrire à ZTi
-      lien: /contact/
-    lien_secondaire:
-      texte: Voir nos délais
-      lien: "#delais"
-    sous_bouton: Réponse sous 48 heures ouvrables
+    texte: "Prenez le temps de lire, vous le méritez."
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse."
   - type: texte_image
     fond: blanc
