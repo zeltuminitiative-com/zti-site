@@ -42,7 +42,6 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
       <div>
         <h4>ZTi</h4>
         <ul>
-          {!sansMenu && r.menu.filter(m => m.lien !== '/contact/').map(m =><li><a href={lien(m.lien)}>{m.texte}</a></li>)}
           {sansMenu && <li><a href={lien('/')}>Découvrir ZTi</a></li>}
           <li><a href={lien('/engagements/')}>Travailler avec ZTi</a></li>
           <li><a href={lien('/#avis')}>Donner votre avis</a></li>
