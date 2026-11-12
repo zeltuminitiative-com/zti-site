@@ -538,6 +538,18 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
   .texte-riche td:first-child { width: 100%; border-right: 0; }
 }
 
+/* Travailler avec ZTi : photo du fondateur visible en entier (ni coupée, ni fondue) — à droite sur ordinateur, sous le texte sur téléphone */
+#presentation-zti .ph-d { inset: 110px 5% 80px auto; width: 38%; display: flex; align-items: center; justify-content: flex-end; -webkit-mask-image: none; mask-image: none; animation: d-fondu .9s both; }
+#presentation-zti .ph-d img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 22px; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+#presentation-zti .texte-d { max-width: 600px; }
+@media (max-width: 900px) {
+  #presentation-zti { display: flex; flex-direction: column; }
+  #presentation-zti .ph-d { order: 2; position: relative; inset: auto; width: auto; margin: 34px 20px 0; justify-content: center; z-index: 0; }
+  #presentation-zti .ph-d::after { content: none; }
+  #presentation-zti .ph-d img { max-height: 440px; }
+  #presentation-zti .pied-d { order: 3; }
+}
+
 /* questions (accordéon) sur fond clair : une fois ouverte, la carte devient bleu nuit → question et réponse en blanc */
 .fond-blanc .q-zti:has(> button[aria-expanded="true"]) > button, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) > button { color: #FFFFFF; }
 .fond-blanc .q-zti:has(> button[aria-expanded="true"]) .q-reponse, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) .q-reponse { color: #FFFFFF; }
