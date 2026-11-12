@@ -91,7 +91,8 @@ sections:
           - **Échelonné court (+ 7 %)** : 50 % à l'engagement, 25 % au procès-verbal, 25 % à 30 jours.
           - **Échelonné long (+ 15 %)** : 50 % à l'engagement, 25 % à 45 jours, 25 % à 90 jours.
 
-          Un versement non réglé à son échéance suspend l'assistance et la prise en charge jusqu'à sa régularisation.      - question: Quels systèmes installez-vous ?
+          Un versement non réglé à son échéance suspend l'assistance et la prise en charge jusqu'à sa régularisation.
+      - question: Quels systèmes installez-vous ?
         reponse: "Les postes sont réinstallés sous Windows (français ou anglais), avec une licence valide fournie par le client. Windows 7 et Windows 10 ne reçoivent plus de mises à jour de sécurité de Microsoft : la protection repose alors sur l'antivirus et, avec le Pack 3, sur la Protection ZTi. Les données des postes de travail sont sauvegardées avant toute réinstallation."
   - type: questions
     fond: ivoire
