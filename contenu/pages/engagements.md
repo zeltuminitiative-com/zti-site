@@ -5,6 +5,7 @@ sections:
   - type: accroche
     fond: nuit
     presentation: plein-ecran
+    ancre: presentation-zti
     image: /images/marcelin-profil.jpg
     titre: Nos engagements, par écrit.
     accent: par écrit.
