@@ -554,6 +554,11 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
    pour laisser la place au menu (sans menu, la page école garde la signature à côté du logo) */
 body:has(.accroche-d) .entete:not(.sans-menu) .marque { flex-direction: column; align-items: flex-start; gap: 6px; }
 body:has(.accroche-d) .entete:not(.sans-menu) .marque small span:first-child { padding-left: 0; border-left: 0; }
+@media (max-width: 560px) {   /* téléphone : signature un peu plus petite pour que le bouton Menu reste entier à l'écran */
+  body:has(.accroche-d) .entete:not(.sans-menu) .contenu { gap: 10px; }
+  body:has(.accroche-d) .entete:not(.sans-menu) .marque small { font-size: 10px; letter-spacing: 0; }
+  body:has(.accroche-d) .entete:not(.sans-menu) .menu-mobile { flex: none; }
+}
 
 /* questions (accordéon) sur fond clair : une fois ouverte, la carte devient bleu nuit → question et réponse en blanc */
 .fond-blanc .q-zti:has(> button[aria-expanded="true"]) > button, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) > button { color: #FFFFFF; }
