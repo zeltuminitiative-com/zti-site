@@ -4,7 +4,8 @@ description: "Nos engagements envers nos clients, nos délais et garanties, les 
 sections:
   - type: accroche
     fond: nuit
-    pastilles: [Depuis 2008, Yaoundé]
+    presentation: plein-ecran
+    image: /images/marcelin-profil.jpg
     titre: Nos engagements, par écrit.
     accent: par écrit.
     texte: "Confier son équipement informatique à un prestataire est un acte de confiance. Cette confiance mérite d'être encadrée : pour vous, et pour nous. Cette page réunit tout ce qui encadre notre collaboration."
@@ -133,7 +134,7 @@ sections:
       - question: 9. Acceptation
         reponse: "La signature de la convention par le Client, au dépôt de son équipement, vaut acceptation de l'ensemble de ces clauses. Le texte signé fait foi."
   - type: texte_image
-    fond: blanc
+    fond: noir
     ancre: reclamations
     etiquette: Réclamations
     titre: Un problème ? Dites-le-nous.
