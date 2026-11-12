@@ -557,6 +557,7 @@ body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba
    Depuis 2008 » sur une seule ligne, puis les pastilles du héro. Page défilée : une seule ligne, logo seul + menu.
    (Sans menu, la page école garde sa barre telle quelle.) */
 body:has(.accroche-d) .entete:not(.sans-menu) .contenu { flex-wrap: wrap; row-gap: 0; }
+body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) .contenu { padding-top: 12px; }
 body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) nav, body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) .menu-mobile { order: 1; margin-left: auto; }
 body:has(.accroche-d) .entete:not(.sans-menu):not(.sc) .marque { order: 2; flex: 0 0 100%; margin-top: 18px; }
 body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; }
