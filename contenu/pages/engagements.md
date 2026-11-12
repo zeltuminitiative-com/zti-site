@@ -1,15 +1,15 @@
 ---
 titre: Travailler avec ZTi
+entete_simple: true
 description: "Nos engagements envers nos clients, nos délais et garanties, les conditions de nos interventions sur site et en atelier (Convention de maintenance), et la façon de nous adresser une réclamation."
 sections:
   - type: accroche
     fond: nuit
     presentation: plein-ecran
     ancre: presentation-zti
-    image: /images/marcelin-profil.jpg
+    image: /images/marcelin-profil-large.jpg
     pastilles: [Entreprises, Institutions, Associations, Écoles, Particuliers]
-    titre: Nos engagements, par écrit.
-    accent: par écrit.
+    titre: Nos engagements
     texte: "Prenez le temps de lire, vous le méritez."
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse."
   - type: texte_image
