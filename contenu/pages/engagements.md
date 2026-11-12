@@ -9,7 +9,7 @@ sections:
     ancre: presentation-zti
     image: /images/marcelin-profil-large.jpg
     pastilles: [Entreprises, Institutions, Associations, Écoles, Particuliers]
-    titre: Nos engagements
+    titre: Pourquoi travailler avec ZTi ?
     texte: "Prenez le temps de lire, vous le méritez."
     bouton:
       texte: Nos engagements
