@@ -546,6 +546,7 @@ body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba
 /* image à la dimension de toute la section (au lieu des 3/4 de la page école), fondue vers le bleu nuit côté texte */
 #presentation-zti .ph-d { width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 30%, #000 55%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 30%, #000 55%); }
 #presentation-zti .ph-d img { object-position: 100% 0; }
+@media (min-width: 901px) { #presentation-zti { min-height: 100vh; min-height: 100svh; } }   /* le héro remplit tout l'écran : plus de bande claire en bas */
 @media (max-width: 900px) { #presentation-zti .ph-d { -webkit-mask-image: none; mask-image: none; } #presentation-zti .ph-d img { object-position: 80% 0; } }
 
 /* héro plein écran + menu (page Travailler avec ZTi) : 1re ligne le menu, 2e ligne « logo | Votre partenaire de confiance |
