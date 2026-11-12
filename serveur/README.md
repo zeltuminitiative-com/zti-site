@@ -18,7 +18,7 @@ pour les formulaires, les avis, la mesure d'audience, les téléchargements et l
 | `DATABASE_URL` | `postgres://…` | base PostgreSQL (ressource Coolify du même projet) |
 | `ADRESSE_PUBLIQUE` | `https://api.ztisystem.com` | adresse de ce serveur (contrôle d'origine, liens des e-mails) |
 | `ORIGINES_AUTORISEES` | `https://zti-site.pages.dev,https://zti-sarl.pages.dev,https://zeltuminitiative-com.github.io` | sites autorisés à appeler l'API |
-| `SITE_PUBLIC` | `https://zti-site.pages.dev` | adresse du site (liens de recommandation, campagnes) |
+| `SITE_PUBLIC` | `https://zti-sarl.pages.dev` | adresse principale du site (pied et logo des e-mails, liens de recommandation, campagnes) |
 | `SECRET_VISITES` | 48 caractères aléatoires | empreinte anonyme du jour des visiteurs |
 | `BREVO_API_KEY`, `BREVO_SENDER_EMAIL`, `BREVO_SENDER_NAME` | | e-mails (facultatif : sans eux, rien ne part) |
 | `NODE_ENV` | `production` | cookies `__Host-` sécurisés, HSTS |
