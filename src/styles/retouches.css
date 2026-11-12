@@ -546,7 +546,6 @@ body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba
 /* image à la dimension de toute la section, sans fondu : le fond gris de la photo couvre tout le héro,
    et tout le contenu passe en bleu du logo (#02008A) — choix de ZTi du 12/11 */
 #presentation-zti { background: #C3C8D7; }
-#presentation-zti::before { content: none; }   /* pas de halos bleus (prévus pour un fond nuit) sur le gris de la photo */
 #presentation-zti .ph-d { width: 100%; -webkit-mask-image: none; mask-image: none; }
 #presentation-zti .ph-d img { object-position: 100% 0; }
 @media (min-width: 901px) { #presentation-zti { min-height: 100vh; min-height: 100svh; } }   /* le héro remplit tout l'écran : plus de bande claire en bas */
