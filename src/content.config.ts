@@ -11,6 +11,8 @@ const page = z.object({
   description: z.string().default(''),
   image_partage: z.string().optional(),
   sections: z.array(section).default([]),
+  // barre du haut réduite au logo (sans menu ni bouton), comme la page école : ex. page « Travailler avec ZTi »
+  entete_simple: z.boolean().default(false),
 });
 
 const pages = defineCollection({ loader: glob({ pattern: '*.md', base: './contenu/pages' }), schema: page });
