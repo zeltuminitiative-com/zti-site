@@ -544,7 +544,7 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 .accroche-d .chapo-d p { margin: 0; }
 body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba(1,0,56,.9), 0 0 14px rgba(1,0,56,.8); }
 /* image à la dimension de toute la section (au lieu des 3/4 de la page école), fondue vers le bleu nuit côté texte */
-#presentation-zti .ph-d { width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 30%, #000 55%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 30%, #000 55%); }
+#presentation-zti .ph-d { width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 44%, rgba(0,0,0,.4) 52%, #000 62%); mask-image: linear-gradient(90deg, transparent 0%, transparent 44%, rgba(0,0,0,.4) 52%, #000 62%); }   /* bleu nuit uni jusqu'à 44 % de la largeur (limite fixée par ZTi), puis la photo */
 #presentation-zti .ph-d img { object-position: 100% 0; }
 @media (min-width: 901px) { #presentation-zti { min-height: 100vh; min-height: 100svh; } }   /* le héro remplit tout l'écran : plus de bande claire en bas */
 @media (max-width: 900px) { #presentation-zti .ph-d { -webkit-mask-image: none; mask-image: none; } #presentation-zti .ph-d img { object-position: 80% 0; } }
