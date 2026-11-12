@@ -489,7 +489,7 @@ body:has(.accroche-d) .entete .marque img { height: 44px; width: auto; }
 body:has(.accroche-d) .entete .marque small { display: flex; align-items: center; margin: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; border-left: 0; padding-left: 0; }
 body:has(.accroche-d) .entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
 body:has(.accroche-d) .entete .marque small span + span { margin-left: 12px; }
-body:has(.accroche-d).fin .entete { transform: translateY(-110%); }
+/* la barre du menu reste visible jusqu'au pied de page (choix de ZTi du 12/11 : les liens du menu ne sont plus répétés dans le pied) */
 body:has(.accroche-d) .accroche-d { padding-top: 204px; }
 body:has(.accroche-d) .accroche-d .se { font-weight: 700; }
 @media (min-width: 561px) {
