@@ -543,11 +543,27 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 .accroche-d .chapo-d { margin: -6px 0 0; font-size: 19px; font-style: italic; color: #D7DCF3; animation: d-monte .7s 1.3s cubic-bezier(.2,.7,.2,1) both; }
 .accroche-d .chapo-d p { margin: 0; }
 body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba(1,0,56,.9), 0 0 14px rgba(1,0,56,.8); }
-/* image à la dimension de toute la section (au lieu des 3/4 de la page école), fondue vers le bleu nuit côté texte */
-#presentation-zti .ph-d { width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 44%, rgba(0,0,0,.4) 52%, #000 62%); mask-image: linear-gradient(90deg, transparent 0%, transparent 44%, rgba(0,0,0,.4) 52%, #000 62%); }   /* bleu nuit uni jusqu'à 44 % de la largeur (limite fixée par ZTi), puis la photo */
+/* image à la dimension de toute la section, sans fondu : le fond gris de la photo couvre tout le héro,
+   et tout le contenu passe en bleu du logo (#02008A) — choix de ZTi du 12/11 */
+#presentation-zti { background: #C3C8D7; }
+#presentation-zti .ph-d { width: 100%; -webkit-mask-image: none; mask-image: none; }
 #presentation-zti .ph-d img { object-position: 100% 0; }
 @media (min-width: 901px) { #presentation-zti { min-height: 100vh; min-height: 100svh; } }   /* le héro remplit tout l'écran : plus de bande claire en bas */
-@media (max-width: 900px) { #presentation-zti .ph-d { -webkit-mask-image: none; mask-image: none; } #presentation-zti .ph-d img { object-position: 80% 0; } }
+#presentation-zti h1, #presentation-zti h2 { color: #02008A; }
+#presentation-zti .chapo-d { color: #02008A; }
+#presentation-zti .pastilles-d li { color: #02008A; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(2,0,138,.45); }
+#presentation-zti .pied-d p, #presentation-zti .pied-d .lieu { color: #02008A; }
+/* barre du haut sur le gris (avant défilement) : logo bleu, signature et séparateurs en bleu */
+body:has(#presentation-zti) .entete:not(.sc) .marque img { content: url(/images/logo-bleu.png); }
+body:has(#presentation-zti) .entete:not(.sc) .marque small { color: #02008A; }
+body:has(#presentation-zti) .entete:not(.sc) .marque small span { border-left-color: rgba(2,0,138,.4); }
+@media (max-width: 900px) {   /* téléphone : texte en haut sur le gris, photo dessous, en entier, sans voile sombre */
+  #presentation-zti { display: flex; flex-direction: column; }
+  #presentation-zti .ph-d { order: 2; position: relative; inset: auto; width: auto; margin: 30px 0 0; z-index: 0; animation: d-fondu .9s both; }
+  #presentation-zti .ph-d::after { content: none; }
+  #presentation-zti .ph-d img { content: url(/images/marcelin-profil.jpg); width: 100%; height: auto; max-width: 520px; margin: 0 auto; object-fit: contain; }   /* version carrée de la photo */
+  #presentation-zti .pied-d { order: 3; }
+}
 
 /* héro plein écran + menu (page Travailler avec ZTi) : 1re ligne le menu, 2e ligne « logo | Votre partenaire de confiance |
    Depuis 2008 » sur une seule ligne, puis les pastilles du héro. Page défilée : une seule ligne, logo seul + menu.
