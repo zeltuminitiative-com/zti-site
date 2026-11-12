@@ -543,7 +543,10 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 .accroche-d .chapo-d { margin: -6px 0 0; font-size: 19px; font-style: italic; color: #D7DCF3; animation: d-monte .7s 1.3s cubic-bezier(.2,.7,.2,1) both; }
 .accroche-d .chapo-d p { margin: 0; }
 body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba(1,0,56,.9), 0 0 14px rgba(1,0,56,.8); }
-@media (max-width: 900px) { #presentation-zti .ph-d img { object-position: 80% 0; } }
+/* image à la dimension de toute la section (au lieu des 3/4 de la page école), fondue vers le bleu nuit côté texte */
+#presentation-zti .ph-d { width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 30%, #000 55%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.25) 30%, #000 55%); }
+#presentation-zti .ph-d img { object-position: 100% 0; }
+@media (max-width: 900px) { #presentation-zti .ph-d { -webkit-mask-image: none; mask-image: none; } #presentation-zti .ph-d img { object-position: 80% 0; } }
 
 /* héro plein écran + menu (page Travailler avec ZTi) : 1re ligne le menu, 2e ligne « logo | Votre partenaire de confiance |
    Depuis 2008 » sur une seule ligne, puis les pastilles du héro. Page défilée : une seule ligne, logo seul + menu.
