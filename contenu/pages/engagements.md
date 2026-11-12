@@ -11,6 +11,12 @@ sections:
     pastilles: [Entreprises, Institutions, Associations, Écoles, Particuliers]
     titre: Nos engagements
     texte: "Prenez le temps de lire, vous le méritez."
+    bouton:
+      texte: Nos engagements
+      lien: "#engagements"
+    lien_secondaire:
+      texte: Notre convention
+      lien: "#atelier"
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse."
   - type: texte_image
     fond: blanc
