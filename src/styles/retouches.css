@@ -606,6 +606,7 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
     opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s, transform .18s, visibility .18s; z-index: 50; }
   .entete nav .sous-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }   /* passage de la souris sans fermer */
   .entete nav .a-sous-menu:hover > .sous-menu, .entete nav .a-sous-menu:focus-within > .sous-menu, .entete nav .a-sous-menu.ouvert > .sous-menu { opacity: 1; visibility: visible; transform: none; }
+  .entete nav > ul { align-items: center; }   /* tous les éléments du menu sur la même ligne, avec ou sans flèche */
   .entete nav .sous-menu a { display: block; padding: 10px 14px; border-radius: 9px; border-bottom: 0; }
   .entete nav .sous-menu a:hover, .entete nav .sous-menu a[aria-current="page"] { background: rgba(255,255,255,.08); }
 }
