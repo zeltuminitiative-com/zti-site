@@ -47,7 +47,7 @@ sections:
       - titre: Vous prévenir
         texte: "Les délais annoncés sont réalistes. En cas d'imprévu, nous vous prévenons dès que nous le savons, avec un nouveau délai."
       - titre: Respecter vos données
-        texte: "ZTi s'interdit tout accès, copie ou consultation des données présentes sur vos équipements, hors opération expressément convenue avec vous."
+        texte: "Nous accédons à vos équipements uniquement pour l'opération convenue, sans consulter le contenu de vos fichiers. Aucune copie ni transmission de vos données sans votre accord."
       - titre: Assurer le suivi
         texte: "Après chaque intervention : un suivi, une reprise sans frais de nos défauts d'exécution, et une réponse à vos réclamations sous 72 heures ouvrables."
   - type: texte_image
@@ -65,7 +65,7 @@ sections:
       | Durée d'une intervention sur un parc | Environ 7 jours ouvrables, selon l'état et la taille du parc |
       | Diagnostic approfondi en atelier | Résultat écrit sous 3 jours ouvrables |
       | Suivi après une intervention sur site | 14 jours ouvrables à partir de la signature du procès-verbal |
-      | Garantie d'une réparation en atelier | 30 jours à partir du retrait de l'équipement |
+      | Garantie d'une réparation en atelier | 30 jours à partir du retrait de l'équipement, et au plus tard 7 jours après l'avis de fin d'intervention |
       | Réclamation | Accusé de réception sous 24 heures ouvrables, solution proposée sous 72 heures ouvrables |
 
       La prise en charge est le délai dans lequel nous commençons à traiter votre signalement, à distance ou par une visite planifiée ; ce n'est pas un délai de résolution.
@@ -81,7 +81,7 @@ sections:
       - question: Le diagnostic est-il payant ?
         reponse: "Le diagnostic initial est une prestation de ZTi qui a une valeur : relevé de l'état de chaque poste, déplacement, Fiche de Parc et recommandations. Lors de nos campagnes, il est offert et sans engagement ; sa valeur figure alors sur la proforma, avec une remise qui le ramène à zéro. Lorsqu'une machine exige des tests plus poussés (démontage, contrôle des composants), un diagnostic approfondi en atelier est proposé sur devis ; ses frais sont déduits de la facture de réparation si le devis est accepté."
       - question: Que couvre le suivi après l'intervention ?
-        reponse: "ZTi assure le suivi de votre parc pendant 14 jours ouvrables à partir de la signature du procès-verbal de réception : assistance à distance par WhatsApp, et reprise sans frais de main-d'œuvre de tout défaut d'exécution sur une opération réalisée par ZTi. Une visite sur site pendant cette période donne lieu à des frais de déplacement de 5 000 FCFA par jour. La Protection ZTi (Pack 3) reste active pendant 24 mois."
+        reponse: "ZTi assure le suivi de votre parc pendant 14 jours ouvrables à partir de la signature du procès-verbal de réception : assistance à distance par WhatsApp, et reprise sans frais de main-d'œuvre de tout défaut d'exécution sur une opération réalisée par ZTi. Une visite sur site pendant cette période donne lieu à des frais de déplacement de 5 000 FCFA par jour. La [Protection ZTi](/services/protection-zti/) (Pack 3) reste active pendant 24 mois."
       - question: Qu'est-ce qui n'est pas couvert ?
         reponse: "La reprise sans frais ne couvre pas les dégradations dues à une intervention ou une manipulation des utilisateurs du parc, les pannes sans lien avec nos opérations, les dommages d'origine électrique, ni le vol ou la disparition de composants. Les pièces fournies sont couvertes par la garantie de leur fabricant ou de leur fournisseur : ZTi garantit leur installation, pas la pièce elle-même."
       - question: Comment se règle une intervention ?
@@ -108,7 +108,7 @@ sections:
         reponse: |-
           - **Panne évidente** : ZTi peut réparer sans diagnostic formel ; le coût est communiqué et accepté avant tout travail.
           - **Réparation pendant le diagnostic** : le Client est informé immédiatement et facturé pour le diagnostic et l'intervention, sans devis séparé.
-          - **Diagnostic approfondi** : un devis est soumis à l'acceptation écrite du Client avant toute réparation. En cas de refus, le Client récupère son équipement en l'état contre les frais de diagnostic.
+          - **Diagnostic approfondi** : un devis est soumis à l'acceptation du Client, par écrit (signature, WhatsApp ou e-mail) ou de vive voix confirmée ensuite par un message écrit, avant toute réparation. En cas de refus, le Client récupère son équipement en l'état contre les frais de diagnostic.
           - **Problème découvert en cours de route** : ZTi suspend ce point et prévient le Client par WhatsApp ou e-mail. Aucun travail ni commande supplémentaire sans son accord explicite.
           - **Pièce à commander** : aucune commande sans un acompte couvrant le coût estimé de la pièce, dû sous sept (7) jours calendaires. Sans versement ni réponse après deux relances, le dossier est suspendu et les frais de gardiennage s'appliquent.
       - question: 3. Vos données
@@ -130,11 +130,22 @@ sections:
           - Une pièce achetée auprès d'un fournisseur est couverte par la garantie de ce fournisseur ; ZTi garantit sa pose et intervient de bonne foi auprès de lui en cas de défaillance.
           - La garantie ne s'applique pas en cas de chute ou de choc, de contact avec un liquide, d'ouverture par une personne non autorisée par ZTi, de logiciel malveillant, de surtension électrique, ou de tout événement extérieur à l'intervention.
       - question: 7. Confidentialité
-        reponse: "ZTi traite les informations personnelles du Client avec la plus stricte confidentialité, uniquement dans le cadre de leur relation. Elles ne sont ni vendues, ni cédées à des tiers. ZTi s'interdit tout accès, copie ou consultation des données présentes sur l'équipement, hors opération expressément convenue, conformément à la loi n° 2024/017 du 23 décembre 2024 relative à la protection des données à caractère personnel. Si l'intervention exige un mot de passe, le Client est invité à le modifier après le retrait de son équipement."
+        reponse: |-
+          ZTi traite les informations personnelles du Client avec la plus stricte confidentialité, uniquement dans le cadre de leur relation. Elles ne sont ni vendues, ni cédées à des tiers. Pour les données présentes sur l'équipement, conformément à la loi n° 2024/017 du 23 décembre 2024 relative à la protection des données à caractère personnel :
+
+          - **Accès technique** : ZTi n'accède à l'équipement que dans la mesure nécessaire à l'opération convenue (diagnostic, sauvegarde, réinstallation, récupération).
+          - **Contenu** : ZTi ne consulte pas le contenu des fichiers personnels ou professionnels, sauf pour vérifier avec le Client qu'une sauvegarde ou une récupération est complète.
+          - **Copie** : une copie n'est faite qu'avec l'accord du Client, pour les besoins de l'intervention ; elle est effacée après la restitution de l'équipement.
+          - **Transmission** : aucune donnée n'est transmise à un tiers. Seule exception : l'envoi d'un support à un laboratoire partenaire de récupération de données (Recoveo, France), uniquement avec l'accord écrit du Client.
+
+          Si l'intervention exige un mot de passe, le Client est invité à le modifier après le retrait de son équipement.
       - question: 8. En cas de désaccord
         reponse: "ZTi accuse réception de la réclamation sous 24 heures ouvrables et propose une solution sous 72 heures ouvrables. À défaut d'accord, les deux parties recherchent une solution amiable dans un délai de 15 jours ouvrables à partir de la notification écrite du différend, par WhatsApp ou e-mail ; cette démarche est un préalable obligatoire à toute action en justice. Sans accord, les juridictions compétentes de Yaoundé peuvent être saisies. Sauf faute lourde ou intentionnelle de ZTi, sa responsabilité est limitée au montant du devis accepté."
       - question: 9. Acceptation
         reponse: "La signature de la convention par le Client, au dépôt de son équipement, vaut acceptation de l'ensemble de ces clauses. Le texte signé fait foi."
+    bouton:
+      texte: Cliquez ici pour en savoir plus - PDF
+      lien: /zti-convention-de-maintenance.pdf
   - type: texte_image
     fond: noir
     ancre: reclamations
