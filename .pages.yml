@@ -439,7 +439,16 @@ content:
         label: Menu du haut
         fields:
           - { name: texte, type: string, label: Texte }
-          - { name: lien, type: string, label: Lien }
+          - { name: lien, type: string, label: Lien, description: "Vide = l'élément ouvre seulement son sous-menu (ex. « Nos offres »)." }
+          - { name: en_ligne, type: boolean, label: En ligne, default: true }
+          - name: sous_menu
+            label: Sous-menu
+            type: object
+            list: true
+            fields:
+              - { name: texte, type: string, label: Texte }
+              - { name: lien, type: string, label: Lien }
+              - { name: en_ligne, type: boolean, label: En ligne, default: true, description: "Décoché = lien masqué (page pas encore prête)." }
       - { name: bouton_principal, component: bouton, label: Bouton du haut }
       - name: mesures
         type: object
