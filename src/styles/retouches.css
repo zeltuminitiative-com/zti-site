@@ -619,13 +619,26 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
   .entete nav .sous-menu a { padding: 11px 0; font-size: 16px; border-bottom: 0; }
 }
 
-/* barre du haut, toutes les pages avec menu (choix de ZTi du 13/11) : « logo | Votre partenaire de confiance | Depuis 2008 »
-   sur une ligne, comme sur la page école ; plus serrée sur portable (1101-1380 px) et sur téléphone ; « Menu » en icône seule
-   sous 400 px. Les pages à héro plein écran (modèle D) et la page Merci gardent leurs propres règles, plus précises. */
-.entete .marque small { display: flex; align-items: center; border-left: 0; padding-left: 0; font: 600 13px var(--titres); letter-spacing: .04em; color: #C7CDEC; line-height: 1.2; white-space: nowrap; }
-.entete .marque small span { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
-.entete .marque small span + span { margin-left: 12px; }
-@media (max-width: 1380px) and (min-width: 1101px) { .entete .contenu { gap: 18px; } .entete nav ul { gap: 16px; } .entete .marque small { display: flex; font-size: 12px; letter-spacing: .02em; } .entete .marque small span { padding-left: 10px; } .entete .marque small span + span { margin-left: 10px; } }
-@media (max-width: 560px) { .entete .contenu { gap: 10px; } .entete .marque { gap: 7px; } .entete .marque img { height: 30px; } .entete .marque small { font-size: 10px; letter-spacing: 0; } .entete .marque small span { padding-left: 6px; } .entete .marque small span + span { margin-left: 6px; } }
-@media (max-width: 400px) { .menu-mobile { font-size: 0; gap: 0; padding: 8px 9px; } }
-@media (max-width: 340px) { .entete .marque small { font-size: 9px; } .entete .marque img { height: 26px; } }
+/* barre du haut : « logo | Votre partenaire de confiance | Depuis 2008 » IDENTIQUE sur toutes les pages (choix de ZTi du 13/11),
+   aux mesures validées de la page école : logo 44 px, Montserrat semi-gras 600 13 px, espacement .04em, traits à 12 px.
+   Téléphone : logo 34 px, 11 px ; très petits téléphones (≤ 370 px) : logo 30 px, 10 px. Les !important passent devant les
+   règles plus précises des pages école, Merci et héro plein écran, pour que rien ne diffère d'une page à l'autre.
+   (Seule la couleur peut changer : bleu sur fond clair en haut de « Travailler avec ZTi ».) */
+.entete .marque { gap: 12px !important; }
+.entete .marque img { height: 44px !important; width: auto; }
+.entete .marque small { display: flex !important; align-items: center; border-left: 0 !important; padding-left: 0 !important; margin: 0;
+  font: 600 13px/1.2 var(--titres) !important; letter-spacing: .04em !important; white-space: nowrap; }
+.entete .marque small span { padding-left: 12px !important; border-left: 1px solid rgba(255,255,255,.3); }
+.entete .marque small span + span { margin-left: 12px !important; }
+@media (max-width: 1380px) and (min-width: 1101px) { .entete .contenu { gap: 16px; } .entete nav ul { gap: 12px; } }
+@media (max-width: 560px) {
+  .entete .contenu { gap: 8px; } .entete .marque { gap: 8px !important; } .entete .marque img { height: 34px !important; }
+  .entete .marque small { font-size: 11px !important; letter-spacing: .02em !important; }
+  .entete .marque small span { padding-left: 8px !important; } .entete .marque small span + span { margin-left: 8px !important; }
+}
+@media (max-width: 400px) { .menu-mobile { font-size: 0; gap: 0; padding: 8px 9px; } }   /* « Menu » : icône seule, le mot reste lu par les lecteurs d'écran */
+@media (max-width: 370px) {
+  .entete .marque { gap: 7px !important; } .entete .marque img { height: 30px !important; }
+  .entete .marque small { font-size: 10px !important; letter-spacing: 0 !important; }
+  .entete .marque small span { padding-left: 6px !important; } .entete .marque small span + span { margin-left: 6px !important; }
+}
