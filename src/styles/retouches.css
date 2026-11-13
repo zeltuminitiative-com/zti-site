@@ -644,3 +644,17 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
 @media (max-width: 380px) { .entete .marque img { height: 28px !important; } }
 @media (max-width: 365px) { .entete .marque small { font-size: 9px !important; } .entete .marque small span { padding-left: 5px !important; } .entete .marque small span + span { margin-left: 5px !important; } }
 @media (max-width: 340px) { .entete .marque small span + span { display: none; } }   /* très petits écrans : « Depuis 2008 » masqué */
+
+/* bande « Support » au-dessus de la barre du haut (choix de ZTi du 13/11), pages avec menu : fond blanc, texte et icônes
+   dans le bleu du logo ; « Support : WhatsApp - Appels - e-mail | 24 h/24, 7 j/7 » ; passe à la ligne sur téléphone */
+.entete .bande-support { background: #FFFFFF; color: #02008A; }
+.entete .bande-contenu { width: min(var(--large), 100% - 40px); margin: 0 auto; min-height: 34px; padding: 6px 0;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 10px; row-gap: 2px; font: 600 13px/1.3 var(--texte); }
+.entete .bande-titre { font-weight: 700; }
+.entete .bande-info { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.entete .bande-info svg { width: 15px; height: 15px; flex: none; }
+.entete .bande-info a { color: inherit; text-decoration: none; } .entete .bande-info a:hover { text-decoration: underline; }
+.entete .bande-sep { opacity: .45; }
+.entete .bande-support .masque { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 1100px) { .entete nav { position: absolute; inset: 100% 0 auto 0; } }   /* panneau du menu juste sous la barre (bande comprise) */
+@media (max-width: 760px) { .entete .bande-contenu { font-size: 11.5px; column-gap: 7px; padding: 5px 0; } .entete .bande-info svg { width: 13px; height: 13px; } }
