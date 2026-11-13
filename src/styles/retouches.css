@@ -628,17 +628,19 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
 .entete .marque img { height: 44px !important; width: auto; }
 .entete .marque small { display: flex !important; align-items: center; border-left: 0 !important; padding-left: 0 !important; margin: 0;
   font: 600 13px/1.2 var(--titres) !important; letter-spacing: .04em !important; white-space: nowrap; }
+.entete .marque small { color: #C7CDEC; }   /* même teinte que la page école (le haut clair de « Travailler avec ZTi » garde son bleu, règle plus précise) */
 .entete .marque small span { padding-left: 12px !important; border-left: 1px solid rgba(255,255,255,.3); }
 .entete .marque small span + span { margin-left: 12px !important; }
 @media (max-width: 1380px) and (min-width: 1101px) { .entete .contenu { gap: 16px; } .entete nav ul { gap: 12px; } }
+@media (min-width: 1101px) { .entete .marque { flex-shrink: 0; } }   /* ordinateur : la signature n'est jamais comprimée */
+@media (max-width: 1240px) and (min-width: 1101px) { .entete .contenu { gap: 20px; } .entete nav ul { gap: 11px; } .entete nav a, .entete nav .titre-sous-menu { font-size: 14px; } .entete .ouvrir-sous-menu { padding: 3px; } }
+/* téléphone : mêmes mesures sur toutes les pages (école comprise), réduites par paliers pour tenir à côté du bouton Menu */
 @media (max-width: 560px) {
-  .entete .contenu { gap: 8px; } .entete .marque { gap: 8px !important; } .entete .marque img { height: 34px !important; }
-  .entete .marque small { font-size: 11px !important; letter-spacing: .02em !important; }
-  .entete .marque small span { padding-left: 8px !important; } .entete .marque small span + span { margin-left: 8px !important; }
-}
-@media (max-width: 400px) { .menu-mobile { font-size: 0; gap: 0; padding: 8px 9px; } }   /* « Menu » : icône seule, le mot reste lu par les lecteurs d'écran */
-@media (max-width: 370px) {
-  .entete .marque { gap: 7px !important; } .entete .marque img { height: 30px !important; }
+  .entete .contenu { gap: 8px; } .entete .marque { gap: 7px !important; } .entete .marque img { height: 30px !important; }
   .entete .marque small { font-size: 10px !important; letter-spacing: 0 !important; }
   .entete .marque small span { padding-left: 6px !important; } .entete .marque small span + span { margin-left: 6px !important; }
 }
+@media (max-width: 400px) { .menu-mobile { font-size: 0; gap: 0; padding: 8px 9px; } }   /* « Menu » : icône seule, le mot reste lu par les lecteurs d'écran */
+@media (max-width: 380px) { .entete .marque img { height: 28px !important; } }
+@media (max-width: 365px) { .entete .marque small { font-size: 9px !important; } .entete .marque small span { padding-left: 5px !important; } .entete .marque small span + span { margin-left: 5px !important; } }
+@media (max-width: 340px) { .entete .marque small span + span { display: none; } }   /* très petits écrans : « Depuis 2008 » masqué */
