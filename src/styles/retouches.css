@@ -590,3 +590,30 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
 /* images avec dimensions déclarées (width/height lus à la construction) : garder les proportions quand la largeur est réduite ;
    :where() = aucune priorité, les règles précises existantes (hauteurs fixes, object-fit) restent prioritaires */
 :where(img[width][height]) { height: auto; }
+
+/* menu du haut à deux niveaux (choix de ZTi du 13/11) : sous-menus « Nos services » et « Nos offres ».
+   Ordinateur : liste déroulante au survol, au clavier ou au clic sur la flèche. Téléphone : la flèche déplie la liste. */
+.entete nav .a-sous-menu { position: relative; display: flex; align-items: center; gap: 2px; }
+.entete nav .titre-sous-menu { color: var(--lavande); font: 500 15px var(--boutons); padding: 8px 0; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.entete nav .titre-sous-menu[aria-current="page"], .entete nav .a-sous-menu:hover > .titre-sous-menu { color: var(--blanc); border-bottom-color: var(--ciel); }
+.entete .ouvrir-sous-menu { background: none; border: 0; color: var(--lavande); padding: 4px; cursor: pointer; display: grid; place-items: center; border-radius: 6px; }
+.entete .ouvrir-sous-menu:hover, .entete .ouvrir-sous-menu:focus-visible { color: var(--blanc); }
+.entete .ouvrir-sous-menu svg { width: 13px; height: 13px; transform: rotate(90deg); transition: transform .2s; }
+.entete .a-sous-menu.ouvert > .ouvrir-sous-menu svg { transform: rotate(-90deg); }
+@media (min-width: 1101px) {
+  .entete nav .sous-menu { position: absolute; top: 100%; left: -14px; min-width: 250px; display: block; padding: 8px; margin-top: 8px;
+    background: var(--nuit); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.4);
+    opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s, transform .18s, visibility .18s; z-index: 50; }
+  .entete nav .sous-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }   /* passage de la souris sans fermer */
+  .entete nav .a-sous-menu:hover > .sous-menu, .entete nav .a-sous-menu:focus-within > .sous-menu, .entete nav .a-sous-menu.ouvert > .sous-menu { opacity: 1; visibility: visible; transform: none; }
+  .entete nav .sous-menu a { display: block; padding: 10px 14px; border-radius: 9px; border-bottom: 0; }
+  .entete nav .sous-menu a:hover, .entete nav .sous-menu a[aria-current="page"] { background: rgba(255,255,255,.08); }
+}
+@media (max-width: 1100px) {
+  .entete nav .a-sous-menu { flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .entete nav .a-sous-menu > a, .entete nav .titre-sous-menu { flex: 1; display: block; border-bottom: 0; padding: 14px 0; font-size: 17px; }
+  .entete .ouvrir-sous-menu { padding: 10px; } .entete .ouvrir-sous-menu svg { width: 16px; height: 16px; }
+  .entete nav .sous-menu { flex: 0 0 100%; display: none; padding: 0 0 8px 16px; }
+  .entete nav .a-sous-menu.ouvert > .sous-menu { display: block; }
+  .entete nav .sous-menu a { padding: 11px 0; font-size: 16px; border-bottom: 0; }
+}
