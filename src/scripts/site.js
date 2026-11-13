@@ -14,6 +14,20 @@ if (bMenu && nav) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') fermer(); });
 }
 
+/* ---------- sous-menus du menu du haut (« Nos services », « Nos offres ») : la flèche, ou le titre sans lien, ouvre la
+   liste ; un seul sous-menu ouvert à la fois ; fermeture par Échap ou en cliquant ailleurs ---------- */
+const sousMenus = $$('.entete .a-sous-menu');
+if (sousMenus.length) {
+  const basculer = (li, ouvrir) => { li.classList.toggle('ouvert', ouvrir); $('.ouvrir-sous-menu', li)?.setAttribute('aria-expanded', String(ouvrir)); };
+  sousMenus.forEach(li => {
+    const ouvrir = e => { e.preventDefault(); const o = !li.classList.contains('ouvert'); sousMenus.forEach(x => x !== li && basculer(x, false)); basculer(li, o); };
+    $('.ouvrir-sous-menu', li)?.addEventListener('click', ouvrir);
+    $('.titre-sous-menu', li)?.addEventListener('click', ouvrir);
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.a-sous-menu')) sousMenus.forEach(li => basculer(li, false)); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') sousMenus.forEach(li => basculer(li, false)); });
+}
+
 /* ---------- barre du haut façon modèle D (pages avec le héro plein écran) : transparente sur la photo, vitrée dès qu'on
    défile, bouton visible après le héro, cachée au pied de page ; barre de lecture ; sur téléphone, bouton fixe en bas ---------- */
 { const heroD = $('.accroche-d'), ent = $('.entete');
