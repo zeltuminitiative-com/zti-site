@@ -6,7 +6,11 @@ import { reglages, lien } from '../lib/contenu';
 const { sansMenu = false, sansBouton = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean };
 const r = await reglages();
 const ici = Astro.url.pathname;
-const actif = (l: string) => (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
+const actif = (l?: string) => !!l && (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
+// menu à deux niveaux (choix de ZTi du 13/11) : liens « en_ligne: false » masqués ; un élément sans lien ouvre son sous-menu
+const visible = (x: { en_ligne?: boolean }) => x.en_ligne !== false;
+const menu = (r.menu || []).filter(visible).map(m => ({ ...m, sous: (m.sous_menu || []).filter(visible) }))
+  .filter(m => m.lien || m.sous.length);
 ---
 <header class={`entete ${sansMenu ? 'sans-menu' : ''}`}>
   <div class="contenu">
@@ -19,7 +23,17 @@ const actif = (l: string) => (l === '/' ? ici === lien('/') : ici.startsWith(lie
         <button class="menu-mobile" type="button" aria-expanded="false" aria-controls="menu-principal"><Icone nom="menu" />Menu</button>
         <nav id="menu-principal" aria-label="Menu principal">
           <ul>
-            {r.menu.map(m => <li><a href={lien(m.lien)} aria-current={actif(m.lien) ? 'page' : undefined}>{m.texte}</a></li>)}
+            {menu.map((m, n) => m.sous.length === 0
+              ? <li><a href={lien(m.lien!)} aria-current={actif(m.lien) ? 'page' : undefined}>{m.texte}</a></li>
+              : <li class="a-sous-menu">
+                  {m.lien
+                    ? <a href={lien(m.lien)} aria-current={actif(m.lien) ? 'page' : undefined}>{m.texte}</a>
+                    : <span class="titre-sous-menu" aria-current={m.sous.some(s => actif(s.lien)) ? 'page' : undefined}>{m.texte}</span>}
+                  <button type="button" class="ouvrir-sous-menu" aria-expanded="false" aria-controls={`sous-menu-${n}`} aria-label={`Afficher : ${m.texte}`}><Icone nom="fleche" /></button>
+                  <ul class="sous-menu" id={`sous-menu-${n}`}>
+                    {m.sous.map(s => <li><a href={lien(s.lien)} aria-current={actif(s.lien) ? 'page' : undefined}>{s.texte}</a></li>)}
+                  </ul>
+                </li>)}
           </ul>
           <Bouton texte={r.bouton_principal.texte} href={r.bouton_principal.lien} classe="btn-mobile" />
         </nav>
