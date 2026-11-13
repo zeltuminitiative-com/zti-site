@@ -70,7 +70,7 @@ sections:
     titre: Un redémarrage, et le poste redevient propre.
     texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage. Elle ne remplace ni l'antivirus ni la sauvegarde de vos dossiers."
     mention: "En salle TIC, les fichiers laissés sur le poste sont aussi effacés. C'est voulu : un travail d'élève se garde sur sa clé."
-    image: /images/redemarrage-salle-tic.jpg
+    image: /images/redemarrage-salle-tic.webp
     image_texte: "Salle informatique d'école remise en état par ZTi : tous les postes démarrent sur l'écran ZTi"
     legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
     image_position: gauche
@@ -86,7 +86,7 @@ sections:
       - Inventaire matériel et logiciel détaillé, poste par poste
       - "Environnement électrique : prises, régulateurs, onduleurs"
       - Constat et recommandations d'usage gratuites, applicables dès maintenant
-    image: /images/fiche-de-parc-exemple.jpg
+    image: /images/fiche-de-parc-exemple.webp
     image_texte: "Première page d'une Fiche de Parc ZTi, exemple avec des données fictives"
     legende: "Exemple de première page d'une Fiche de Parc, avec un établissement et des chiffres fictifs. Cliquez pour l'agrandir."
     agrandir: true

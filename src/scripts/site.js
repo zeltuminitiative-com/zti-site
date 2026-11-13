@@ -14,13 +14,27 @@ if (bMenu && nav) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') fermer(); });
 }
 
+/* ---------- sous-menus du menu du haut (« Nos services », « Nos offres ») : la flèche, ou le titre sans lien, ouvre la
+   liste ; un seul sous-menu ouvert à la fois ; fermeture par Échap ou en cliquant ailleurs ---------- */
+const sousMenus = $$('.entete .a-sous-menu');
+if (sousMenus.length) {
+  const basculer = (li, ouvrir) => { li.classList.toggle('ouvert', ouvrir); $('.ouvrir-sous-menu', li)?.setAttribute('aria-expanded', String(ouvrir)); };
+  sousMenus.forEach(li => {
+    const ouvrir = e => { e.preventDefault(); const o = !li.classList.contains('ouvert'); sousMenus.forEach(x => x !== li && basculer(x, false)); basculer(li, o); };
+    $('.ouvrir-sous-menu', li)?.addEventListener('click', ouvrir);
+    $('.titre-sous-menu', li)?.addEventListener('click', ouvrir);
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.a-sous-menu')) sousMenus.forEach(li => basculer(li, false)); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') sousMenus.forEach(li => basculer(li, false)); });
+}
+
 /* ---------- barre du haut façon modèle D (pages avec le héro plein écran) : transparente sur la photo, vitrée dès qu'on
    défile, bouton visible après le héro, cachée au pied de page ; barre de lecture ; sur téléphone, bouton fixe en bas ---------- */
 { const heroD = $('.accroche-d'), ent = $('.entete');
   if (heroD && ent) {
     document.body.classList.add('mode-d');
     // comme dans D : « Votre partenaire de confiance | Depuis 2008 » sur la ligne du logo
-    const sig = $('.marque small', ent); if (sig) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join('');
+    const sig = $('.marque small', ent); if (sig && !sig.querySelector('span')) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join('');
     const barre = document.createElement('div'); barre.className = 'pbar'; document.body.prepend(barre);
     const form = $('#demande'); let formVisible = false;
     const maj = () => { const y = scrollY, H = document.documentElement;
@@ -36,7 +50,7 @@ if (bMenu && nav) {
   } }
 
 /* ---------- page Merci : « Votre partenaire de confiance | Depuis 2008 » sur la ligne du logo, comme sur la page école ---------- */
-if ($('[data-merci-page]')) { const sig = $('.entete .marque small'); if (sig) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join(''); }
+if ($('[data-merci-page]')) { const sig = $('.entete .marque small'); if (sig && !sig.querySelector('span')) sig.innerHTML = sig.innerHTML.split(/<br\s*\/?>/i).map(t => `<span>${t.trim()}</span>`).join(''); }
 
 /* ---------- pied de page : animé quand il arrive à l'écran ---------- */
 { const pied = $('.pied'); if (pied) { if ('IntersectionObserver' in window) { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { pied.classList.add('vu'); o.disconnect(); } }), { threshold: .12 }); o.observe(pied); } else pied.classList.add('vu'); } }

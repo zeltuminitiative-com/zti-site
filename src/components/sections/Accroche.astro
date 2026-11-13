@@ -2,6 +2,7 @@
 import Bouton from '../Bouton.astro';
 import Icone from '../Icone.astro';
 import { md, lien, reglages } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const r = await reglages();
 const { s, premier } = Astro.props as { s: any; premier: boolean };
 const fond = s.fond || 'nuit';
@@ -20,15 +21,16 @@ const basPhrase = coupe > 0 ? bas.slice(0, coupe + 1) : bas, basLieu = coupe > 0
 ---
 {pleinEcran ? (
 <section class="section accroche accroche-d fond-nuit sombre" id={s.ancre || undefined}>
-  {s.image && <div class="ph-d" aria-hidden="true"><img src={lien(s.image)} alt="" loading="eager" fetchpriority="high"></div>}
+  {s.image && <div class="ph-d" aria-hidden="true"><img src={lien(s.image)} {...dim(s.image)} alt="" loading="eager" fetchpriority="high"></div>}
   <div class="contenu">
     <div class="texte-d">
       {s.pastilles?.length > 0 && <ul class="pastilles-d">{s.pastilles.map((p: string) => <li>{p}</li>)}</ul>}
       <Titre>{avant.trim()}{i >= 0 && <><br /><span class="hl">{accent}</span></>}{apres}</Titre>
-      <div class="cta-d">
+      {s.texte && <div class="chapo-d texte-riche" set:html={md(s.texte)} />}
+      {(s.bouton?.texte || s.lien_secondaire?.texte) && <div class="cta-d">
         {s.bouton?.texte && <div class="col"><Bouton texte={s.bouton.texte} href={s.bouton.lien || '#demande'} />{s.sous_bouton && <span class="se">{s.sous_bouton}</span>}</div>}
         {s.lien_secondaire?.texte && <div class="col"><a class="lien-d" href={lien(s.lien_secondaire.lien)}><u>{s.lien_secondaire.texte}</u><span class="rond"><Icone nom="fleche" /></span></a></div>}
-      </div>
+      </div>}
     </div>
   </div>
   {bas && <div class="pied-d"><p>{basPhrase}</p>{basLieu && <p class="lieu">{basLieu}</p>}</div>}
@@ -54,7 +56,7 @@ const basPhrase = coupe > 0 ? bas.slice(0, coupe + 1) : bas, basLieu = coupe > 0
       {s.image && <div class={`visuel ${premier ? '' : 'rv'}`}>
         <span class="puce puce-haut"><span class="point"></span>Diagnostic offert</span>
         <span class="puce puce-bas">Depuis {r.depuis}<b>Votre partenaire de confiance</b></span>
-        <img src={lien(s.image)} style={`object-position:${({ gauche: '15% 30%', droite: '85% 30%', centre: '50% 30%' } as any)[s.cadrage] || '50% 30%'}`} alt={s.image_texte || ''} loading={premier ? 'eager' : 'lazy'} fetchpriority={premier ? 'high' : undefined}>
+        <img src={lien(s.image)} {...dim(s.image)} style={`object-position:${({ gauche: '15% 30%', droite: '85% 30%', centre: '50% 30%' } as any)[s.cadrage] || '50% 30%'}`} alt={s.image_texte || ''} loading={premier ? 'eager' : 'lazy'} fetchpriority={premier ? 'high' : undefined}>
       </div>}
     </div>
     {s.bas && <p class={`bas ${premier ? '' : 'rv'}`}>{s.bas}</p>}

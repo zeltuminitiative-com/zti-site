@@ -1,9 +1,32 @@
 ---
-titre: Politique de confidentialité
-description: Comment ZTi collecte, utilise et protège les données qui lui sont confiées.
+titre: Informations légales
+description: "Mentions légales de ZTi (Zèl Tum Initiative SARL, Yaoundé) et politique de confidentialité : qui édite ce site, comment ZTi collecte, utilise et protège les données qui lui sont confiées."
 sections:
   - type: texte_image
     fond: blanc
+    ancre: mentions-legales
+    etiquette: Mentions légales
+    titre: Qui sommes-nous ?
+    texte: |-
+      | | |
+      | --- | --- |
+      | Raison sociale | Zèl Tum Initiative SARL (ZTi) |
+      | Siège | Messassi, Yaoundé, Cameroun |
+      | Adresse postale | BP Yaoundé, Express Union Messassi |
+      | RCCM | RC/YAO/2024/B/548 |
+      | NIU | M032416499110X |
+      | Directeur de la publication | Jean Marcelin MEUKAM FOKAM, Directeur général |
+      | E-mail | zeltuminitiative@gmail.com |
+      | WhatsApp | +237 699 324 689 |
+      | Appels | +237 676 165 772 |
+      | Hébergement | Cloudflare Pages, Cloudflare, Inc. (États-Unis) |
+
+      **Sécurité de vos paiements.** ZTi ne vous demandera jamais de régler une somme sur un numéro ou un compte autre que ceux indiqués sur votre facture proforma signée. En cas de doute sur un message ou un document reçu au nom de ZTi, vérifiez-le auprès de nous par WhatsApp au +237 699 324 689 avant tout paiement.
+
+      Les conditions de nos interventions sont présentées sur la page [Travailler avec ZTi](/engagements/).
+  - type: texte_image
+    fond: ivoire
+    ancre: confidentialite
     etiquette: Avertissement relatif à la confidentialité et aux droits d'auteur
     titre: Politique de confidentialité
     texte: |

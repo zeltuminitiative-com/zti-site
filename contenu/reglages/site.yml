@@ -35,19 +35,41 @@ menu:
   - texte: Accueil
     lien: /
   - texte: Nos services
-    lien: /services/
-  - texte: Écoles
-    lien: /offres/diagnostic-ecoles/
-  - texte: Entreprises
-    lien: /offres/audit-pme/
-  - texte: Particuliers
-    lien: /offres/particuliers/
+    sous_menu:
+      - texte: Tous nos services
+        lien: /services/
+      - texte: Maintenance informatique
+        lien: /services/maintenance-du-parc/
+      - texte: Récupération des données
+        lien: /services/sauvegarde-des-donnees/
+      - texte: Réseau informatique
+        lien: /services/reseaux/
+        en_ligne: false
+      - texte: Service technique Canal+
+        lien: /services/canal-plus/
+        en_ligne: false
+  - texte: Nos offres
+    sous_menu:
+      - texte: Écoles
+        lien: /offres/diagnostic-ecoles/
+      - texte: Entreprises
+        lien: /offres/audit-pme/
+      - texte: Particuliers
+        lien: /offres/particuliers/
   - texte: À propos
-    lien: /a-propos/
-  - texte: Contact
-    lien: /contact/
+    sous_menu:
+      - texte: À propos de ZTi
+        lien: /a-propos/
+      - texte: Travailler avec ZTi
+        lien: /engagements/
+      - texte: Donner votre avis
+        lien: /#avis
+      - texte: Téléchargements
+        lien: /telechargements/
+      - texte: Espace ambassadeurs
+        lien: https://zti.148.113.249.178.sslip.io/espace/
 bouton_principal:
-  texte: Demander un diagnostic
+  texte: Contacter ZTi
   lien: /contact/
 mesures:
   endpoint: "https://zti.148.113.249.178.sslip.io"

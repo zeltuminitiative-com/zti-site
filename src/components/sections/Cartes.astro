@@ -2,6 +2,7 @@
 import Cadre from './Cadre.astro';
 import Icone from '../Icone.astro';
 import { md, lien } from '../../lib/contenu';
+import { dim } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const cartes = (s.cartes || []).filter((c: any) => c.titre);
 ---
@@ -10,7 +11,7 @@ const cartes = (s.cartes || []).filter((c: any) => c.titre);
     {cartes.map((c: any, i: number) => {
       const corps = (
         <>
-          {c.image && <div class="image"><img src={lien(c.image)} alt="" loading="lazy"></div>}
+          {c.image && <div class="image"><img src={lien(c.image)} {...dim(c.image)} alt="" loading="lazy"></div>}
           {s.numeroter && <span class="numero">{String(i + 1).padStart(2, '0')}</span>}
           <h3>{c.titre}</h3>
           {c.texte && <div class="texte-riche" set:html={md(c.texte)} />}

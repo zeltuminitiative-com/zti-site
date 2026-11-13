@@ -15,7 +15,6 @@ import EnTete from '../components/EnTete.astro';
 import PiedDePage from '../components/PiedDePage.astro';
 import SuivezNous from '../components/SuivezNous.astro';
 import { reglages, lien } from '../lib/contenu';
-
 // sansReseaux : sans la section « ZTi sur les réseaux sociaux » (page Merci : seule la communauté WhatsApp y est proposée)
 // enteteSimple : barre du haut avec le logo seul, sans menu ni bouton (page Merci) ; le pied de page ne change pas
 // titreGoogle : titre affiché dans les résultats de recherche (balise <title>), s'il diffère du titre de la page
@@ -101,7 +100,9 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 </head>
 <body>
   <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
-  <EnTete sansMenu={sansMenu || enteteSimple} sansBouton={enteteSimple} />
+  <!-- barre du haut complète (bande « Support » + logo, signature, menu, bouton) sur TOUTES les pages (choix de ZTi du 13/11) ;
+       pages de campagne avec leur formulaire : le bouton « Contacter ZTi » descend au formulaire de la page -->
+  <EnTete versFormulaire={sansMenu && !enteteSimple} />
   <main id="contenu"><slot /></main>
   {!sansReseaux && <SuivezNous />}
   <PiedDePage sansMenu={sansMenu} />

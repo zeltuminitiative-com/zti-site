@@ -3,28 +3,60 @@ import Icone from './Icone.astro';
 import Bouton from './Bouton.astro';
 import { reglages, lien } from '../lib/contenu';
 // sansBouton : pas de bouton « Demander un diagnostic » (page Merci : la demande vient d'être faite)
-const { sansMenu = false, sansBouton = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean };
+// versFormulaire : le bouton du haut descend au formulaire de la page (#demande) au lieu de la page Contact
+const { sansMenu = false, sansBouton = false, versFormulaire = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean; versFormulaire?: boolean };
 const r = await reglages();
+const lienBouton = sansMenu || versFormulaire ? '#demande' : r.bouton_principal.lien;
 const ici = Astro.url.pathname;
-const actif = (l: string) => (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
+const actif = (l?: string) => !!l && (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
+// menu à deux niveaux (choix de ZTi du 13/11) : liens « en_ligne: false » masqués ; un élément sans lien ouvre son sous-menu
+const visible = (x: { en_ligne?: boolean }) => x.en_ligne !== false;
+const menu = (r.menu || []).filter(visible).map(m => ({ ...m, sous: (m.sous_menu || []).filter(visible) }))
+  .filter(m => m.lien || m.sous.length);
+// bande « Support » au-dessus de la barre (choix de ZTi du 13/11), pages avec menu : numéros à titre d'information (sans lien,
+// comme dans le pied de page), e-mail cliquable, disponibilité tirée des horaires des réglages
+const numero = (x?: string) => { const c = (x || '').replace(/\D/g, ''); const n = c.startsWith('237') ? c : '237' + c; return n.length === 12 ? n.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 $4') : ''; };
+const numeroWa = numero(r.contact?.whatsapp), numeroAppel = numero(r.contact?.telephone);
+const dispo = ((r.contact?.horaires || '').match(/\d+\s*h\s*\/\s*24\s*,\s*\d+\s*j\s*\/\s*7/) || ['24 h/24, 7 j/7'])[0];
 ---
 <header class={`entete ${sansMenu ? 'sans-menu' : ''}`}>
+  {!sansMenu && (
+    <div class="bande-support">
+      <p class="bande-contenu">
+        <span class="bande-titre">Support :</span>
+        {numeroWa && <span class="bande-info"><Icone nom="whatsapp" /><span class="masque">WhatsApp : </span>{numeroWa}</span>}
+        {numeroAppel && <><span class="bande-sep" aria-hidden="true">-</span><span class="bande-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="masque">Appels : </span>{numeroAppel}</span></>}
+        {r.contact?.email && <><span class="bande-sep" aria-hidden="true">-</span><span class="bande-info"><Icone nom="mail" /><a href={`mailto:${r.contact.email}`}>{r.contact.email}</a></span></>}
+        <span class="bande-sep" aria-hidden="true">|</span><span class="bande-info">{dispo}</span>
+      </p>
+    </div>
+  )}
   <div class="contenu">
     <a class="marque" href={lien('/')} aria-label={`${r.nom}, accueil`}>
       <img src={lien('/images/logo-blanc.png')} alt={r.nom} width="62" height="40">
-      <small>{r.signature}<br>Depuis {r.depuis}</small>
+      <small><span>{r.signature}</span><span>Depuis {r.depuis}</span></small>
     </a>
     {!sansMenu && (
       <>
         <button class="menu-mobile" type="button" aria-expanded="false" aria-controls="menu-principal"><Icone nom="menu" />Menu</button>
         <nav id="menu-principal" aria-label="Menu principal">
           <ul>
-            {r.menu.map(m => <li><a href={lien(m.lien)} aria-current={actif(m.lien) ? 'page' : undefined}>{m.texte}</a></li>)}
+            {menu.map((m, n) => m.sous.length === 0
+              ? <li><a href={lien(m.lien!)} aria-current={actif(m.lien) ? 'page' : undefined}>{m.texte}</a></li>
+              : <li class="a-sous-menu">
+                  {m.lien
+                    ? <a href={lien(m.lien)} aria-current={actif(m.lien) ? 'page' : undefined}>{m.texte}</a>
+                    : <span class="titre-sous-menu" aria-current={m.sous.some(s => actif(s.lien)) ? 'page' : undefined}>{m.texte}</span>}
+                  <button type="button" class="ouvrir-sous-menu" aria-expanded="false" aria-controls={`sous-menu-${n}`} aria-label={`Afficher : ${m.texte}`}><Icone nom="fleche" /></button>
+                  <ul class="sous-menu" id={`sous-menu-${n}`}>
+                    {m.sous.map(s => <li><a href={lien(s.lien)} aria-current={actif(s.lien) ? 'page' : undefined}>{s.texte}</a></li>)}
+                  </ul>
+                </li>)}
           </ul>
-          <Bouton texte={r.bouton_principal.texte} href={r.bouton_principal.lien} classe="btn-mobile" />
+          <Bouton texte={r.bouton_principal.texte} href={lienBouton} classe="btn-mobile" />
         </nav>
       </>
     )}
-    {!sansBouton && <Bouton texte={r.bouton_principal.texte} href={sansMenu ? '#demande' : r.bouton_principal.lien} />}
+    {!sansBouton && <Bouton texte={r.bouton_principal.texte} href={lienBouton} />}
   </div>
 </header>

@@ -42,8 +42,8 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
       <div>
         <h4>ZTi</h4>
         <ul>
-          {!sansMenu && r.menu.filter(m => m.lien !== '/contact/').map(m =><li><a href={lien(m.lien)}>{m.texte}</a></li>)}
           {sansMenu && <li><a href={lien('/')}>Découvrir ZTi</a></li>}
+          <li><a href={lien('/engagements/')}>Travailler avec ZTi</a></li>
           <li><a href={lien('/#avis')}>Donner votre avis</a></li>
           <li><a href={lien('/telechargements/')}>Téléchargements</a></li>
           {serveur && <li><a href={serveur + '/espace/'}>Espace ambassadeurs</a></li>}
@@ -58,13 +58,13 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
           {horaires.map(h => { const [debut, suite] = h.split(/(?<=reçus) |, (?=de \d)/); return <li>{debut}{suite && <><br />{suite}</>}</li>; })}
           {r.contact.adresse && <li>{[r.contact.quartier, r.contact.adresse].filter(Boolean).join(', ')}</li>}
         </ul>
-        <a class="btn pied-contact" href={lien('/contact/')}>Écrire à ZTi<span class="pastille"><Icone nom="fleche" /></span></a>
+        <a class="btn pied-contact" href={lien('/contact/')}>Contacter ZTi<span class="pastille"><Icone nom="fleche" /></span></a>
       </div>
     </div>
     <div class="geant" aria-hidden="true" style={`--logo-zti: url(${lien('/images/logo-zti.svg')})`}></div>
     <div class="bas">
       <span>© {annee} {r.nom_legal}. Tous droits réservés.</span>
-      <a href={lien('/confidentialite/')}>Politique de confidentialité</a>
+      <a href={lien('/confidentialite/')}>Informations légales</a>
     </div>
   </div>
 </footer>
