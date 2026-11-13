@@ -553,8 +553,11 @@ body:has(#presentation-zti) .entete:not(.sc) nav a { text-shadow: 0 1px 3px rgba
 #presentation-zti .chapo-d { color: #02008A; }
 #presentation-zti .pastilles-d li { color: #02008A; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(2,0,138,.45); }
 #presentation-zti .pied-d p, #presentation-zti .pied-d .lieu { color: #02008A; }
+/* même rendu que la page école (référence, 13/11) : sur fond clair, la phrase en Inter 400 paraissait plus fine que le blanc
+   sur bleu nuit ; graisse 500 pour retrouver le même aspect. Lien « Notre convention » en graisse normale, comme l'école */
+#presentation-zti .pied-d p:not(.lieu) { font-weight: 500; }
 #presentation-zti .cta-d { margin-top: 30px; }
-#presentation-zti .lien-d { color: #02008A; font-weight: 500; }
+#presentation-zti .lien-d { color: #02008A; }
 #presentation-zti .lien-d .rond { box-shadow: inset 0 0 0 1.5px #02008A; }
 /* barre du haut sur le gris (avant défilement) : logo bleu, signature et séparateurs en bleu */
 body:has(#presentation-zti) .entete:not(.sc) .marque img { content: url(/images/logo-bleu.png); }
