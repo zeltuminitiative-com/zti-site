@@ -14,7 +14,9 @@ export type Reglages = {
   contact: { email: string; whatsapp: string; telephone: string; adresse: string; horaires: string };
   reseaux: { nom: string; adresse: string }[];
   communaute?: { facebook?: string; whatsapp?: string };
-  menu: { texte: string; lien: string }[];
+  // menu du haut : un élément peut avoir un sous-menu ; sans lien, il ouvre seulement son sous-menu (ex. « Nos offres ») ;
+  // en_ligne: false masque un lien dont la page n'existe pas encore
+  menu: { texte: string; lien?: string; en_ligne?: boolean; sous_menu?: { texte: string; lien: string; en_ligne?: boolean }[] }[];
   bouton_principal: { texte: string; lien: string };
   mesures: { endpoint: string; pixel: string };
 };
