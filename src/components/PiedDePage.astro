@@ -58,7 +58,7 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
           {horaires.map(h => { const [debut, suite] = h.split(/(?<=reçus) |, (?=de \d)/); return <li>{debut}{suite && <><br />{suite}</>}</li>; })}
           {r.contact.adresse && <li>{[r.contact.quartier, r.contact.adresse].filter(Boolean).join(', ')}</li>}
         </ul>
-        <a class="btn pied-contact" href={lien('/contact/')}>Écrire à ZTi<span class="pastille"><Icone nom="fleche" /></span></a>
+        <a class="btn pied-contact" href={lien('/contact/')}>Contacter ZTi<span class="pastille"><Icone nom="fleche" /></span></a>
       </div>
     </div>
     <div class="geant" aria-hidden="true" style={`--logo-zti: url(${lien('/images/logo-zti.svg')})`}></div>
