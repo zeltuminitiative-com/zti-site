@@ -691,3 +691,10 @@ body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba
 
 /* bouton sous une liste de questions (ex. PDF de la Convention de maintenance) */
 .faq-actions { margin-top: 28px; }
+
+/* page école (13/11) : même traitement que Travailler avec ZTi — photo sous la barre du haut et sans effet de zoom,
+   héro sur toute la hauteur de l'écran (plus de bande blanche en bas) */
+@media (min-width: 901px) {
+  .accroche-d:not(#presentation-zti) { min-height: 100vh; min-height: 100svh; }
+  .accroche-d:not(#presentation-zti) .ph-d { top: 106px; animation: d-fondu .9s both; }
+}
