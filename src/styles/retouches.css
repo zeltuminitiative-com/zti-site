@@ -673,3 +673,7 @@ body:has(.accroche-d) .entete .marque small { display: flex !important; }
 body:has(#presentation-zti) .entete .marque img { content: normal !important; }
 body:has(#presentation-zti) .entete .marque small { color: #C7CDEC !important; }
 body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba(255,255,255,.3) !important; }
+
+/* Travailler avec ZTi : la photo du héro commence sous la barre du haut (bande Support comprise, 106 px) et sans effet de zoom,
+   pour que le visage soit entier (demande de ZTi du 13/11) ; téléphone inchangé (photo sous le texte) */
+@media (min-width: 901px) { #presentation-zti .ph-d { top: 106px; animation: d-fondu .9s both; } }
