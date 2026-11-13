@@ -3,8 +3,10 @@ import Icone from './Icone.astro';
 import Bouton from './Bouton.astro';
 import { reglages, lien } from '../lib/contenu';
 // sansBouton : pas de bouton « Demander un diagnostic » (page Merci : la demande vient d'être faite)
-const { sansMenu = false, sansBouton = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean };
+// versFormulaire : le bouton du haut descend au formulaire de la page (#demande) au lieu de la page Contact
+const { sansMenu = false, sansBouton = false, versFormulaire = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean; versFormulaire?: boolean };
 const r = await reglages();
+const lienBouton = sansMenu || versFormulaire ? '#demande' : r.bouton_principal.lien;
 const ici = Astro.url.pathname;
 const actif = (l?: string) => !!l && (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
 // menu à deux niveaux (choix de ZTi du 13/11) : liens « en_ligne: false » masqués ; un élément sans lien ouvre son sous-menu
@@ -51,10 +53,10 @@ const dispo = ((r.contact?.horaires || '').match(/\d+\s*h\s*\/\s*24\s*,\s*\d+\s*
                   </ul>
                 </li>)}
           </ul>
-          <Bouton texte={r.bouton_principal.texte} href={r.bouton_principal.lien} classe="btn-mobile" />
+          <Bouton texte={r.bouton_principal.texte} href={lienBouton} classe="btn-mobile" />
         </nav>
       </>
     )}
-    {!sansBouton && <Bouton texte={r.bouton_principal.texte} href={sansMenu ? '#demande' : r.bouton_principal.lien} />}
+    {!sansBouton && <Bouton texte={r.bouton_principal.texte} href={lienBouton} />}
   </div>
 </header>
