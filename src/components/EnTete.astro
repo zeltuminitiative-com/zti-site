@@ -16,7 +16,7 @@ const menu = (r.menu || []).filter(visible).map(m => ({ ...m, sous: (m.sous_menu
   <div class="contenu">
     <a class="marque" href={lien('/')} aria-label={`${r.nom}, accueil`}>
       <img src={lien('/images/logo-blanc.png')} alt={r.nom} width="62" height="40">
-      <small>{r.signature}<br>Depuis {r.depuis}</small>
+      <small><span>{r.signature}</span><span>Depuis {r.depuis}</span></small>
     </a>
     {!sansMenu && (
       <>
