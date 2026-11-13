@@ -100,7 +100,9 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 </head>
 <body>
   <a class="visuellement-cache" href="#contenu">Aller au contenu</a>
-  <EnTete sansMenu={sansMenu || enteteSimple} sansBouton={enteteSimple} />
+  <!-- barre du haut complète (bande « Support » + logo, signature, menu, bouton) sur TOUTES les pages (choix de ZTi du 13/11) ;
+       pages de campagne avec leur formulaire : le bouton « Contacter ZTi » descend au formulaire de la page -->
+  <EnTete versFormulaire={sansMenu && !enteteSimple} />
   <main id="contenu"><slot /></main>
   {!sansReseaux && <SuivezNous />}
   <PiedDePage sansMenu={sansMenu} />
