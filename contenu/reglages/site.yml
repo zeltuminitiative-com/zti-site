@@ -68,10 +68,8 @@ menu:
         lien: /telechargements/
       - texte: Espace ambassadeurs
         lien: https://zti.148.113.249.178.sslip.io/espace/
-  - texte: Contact
-    lien: /contact/
 bouton_principal:
-  texte: Écrire à ZTi
+  texte: Contacter ZTi
   lien: /contact/
 mesures:
   endpoint: "https://zti.148.113.249.178.sslip.io"
