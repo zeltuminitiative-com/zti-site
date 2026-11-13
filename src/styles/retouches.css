@@ -661,3 +661,15 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
 
 /* toutes les pages ont désormais la barre complète (13/11) : la page Merci n'a plus son logo centré, même disposition que les autres */
 @media (min-width: 901px) { body:has([data-merci-page]) .entete .contenu { justify-content: flex-start; } body:has([data-merci-page]) .entete .marque { margin: 0 auto 0 0; } }
+
+/* pages à héro plein écran (école, Travailler avec ZTi) : MÊME barre que les autres pages (choix de ZTi du 13/11) — bande Support,
+   puis une seule ligne logo | signature | menu | bouton sur fond bleu nuit (plus de barre transparente ni de signature sur
+   2e ligne). Le bouton du haut garde son comportement : il apparaît une fois le héro dépassé (le héro a son propre bouton). */
+body:has(.accroche-d) .entete, body:has(.accroche-d) .entete.sc { background: rgba(1,0,56,.9) !important; -webkit-backdrop-filter: blur(14px) saturate(140%) !important; backdrop-filter: blur(14px) saturate(140%) !important; box-shadow: 0 1px 0 rgba(255,255,255,.08) !important; }
+body:has(.accroche-d) .entete .contenu { flex-wrap: nowrap !important; padding-top: 0 !important; }
+body:has(.accroche-d) .entete .marque { order: 0 !important; flex: 0 0 auto !important; margin-top: 0 !important; animation: none !important; }
+body:has(.accroche-d) .entete nav, body:has(.accroche-d) .entete .menu-mobile { order: 0 !important; margin-left: 0 !important; }
+body:has(.accroche-d) .entete .marque small { display: flex !important; }
+body:has(#presentation-zti) .entete .marque img { content: normal !important; }
+body:has(#presentation-zti) .entete .marque small { color: #C7CDEC !important; }
+body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba(255,255,255,.3) !important; }
