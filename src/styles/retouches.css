@@ -688,3 +688,6 @@ body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba
   #presentation-zti .ph-d::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(195,200,215,.35) 0%, rgba(195,200,215,.62) 38%, rgba(195,200,215,.85) 70%, rgba(195,200,215,.95) 100%); }
 }
 @media (max-width: 760px) { #presentation-zti .ph-d { inset: 114px 0 0 0; } }
+
+/* bouton sous une liste de questions (ex. PDF de la Convention de maintenance) */
+.faq-actions { margin-top: 28px; }
