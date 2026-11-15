@@ -23,7 +23,7 @@ interface Props { titre: string; description?: string; image?: string; sansMenu?
   titreGoogle?: string; service?: { nom?: string; description?: string; zone?: string; offre?: string } }
 const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false, enteteSimple = false, titreGoogle, service } = Astro.props;
 const r = await reglages();
-const titreComplet = titre === r.nom ? `${r.nom} — ${r.slogan}` : `${titre} — ${r.nom}`;
+const titreComplet = titre === r.nom ? `${r.nom} | ${r.slogan}` : `${titre} | ${r.nom}`;
 const desc = description || r.description;
 const adresse = new URL(Astro.url.pathname, Astro.site).href;
 // aperçu de test (toute branche autre que « source » construite par Cloudflare) : jamais indexé par les moteurs
