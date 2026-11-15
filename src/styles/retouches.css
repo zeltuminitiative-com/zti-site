@@ -698,3 +698,6 @@ body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba
   .accroche-d:not(#presentation-zti) { min-height: 100vh; min-height: 100svh; }
   .accroche-d:not(#presentation-zti) .ph-d { top: 106px; animation: d-fondu .9s both; }
 }
+
+/* Informations légales (15/11) : paragraphes de l'avertissement (confidentialité, droits d'auteur) justifiés */
+#confidentialite .texte-riche p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
