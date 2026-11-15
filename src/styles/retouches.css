@@ -707,3 +707,12 @@ body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba
 #confidentialite .texte-riche p { font: 400 16px/1.65 var(--texte); }
 #mentions-legales .texte-riche p, #confidentialite .texte-riche p { color: rgb(74, 85, 104); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 #mentions-legales .texte-riche strong, #confidentialite .texte-riche strong { font-weight: 700; }
+
+/* Travailler avec ZTi (15/11) : même police partout (Inter 16 px ; un seul gris sur fond clair, un seul sur fond sombre),
+   colonnes de texte centrées (sommaire, délais, réclamations, sur site, atelier : 760 px) */
+body:has(#presentation-zti) main > section:not(#presentation-zti) .etroit { margin-left: auto; margin-right: auto; }
+body:has(#presentation-zti) :is(#sur-site, #atelier) .contenu > * { max-width: 760px; margin-left: auto; margin-right: auto; }
+body:has(#presentation-zti) :is(#sur-site, #atelier) .chapo { max-width: none; }
+body:has(#presentation-zti) main > section:not(#presentation-zti) :is(p, li, td):not(.etiquette) { font-family: var(--texte); font-size: 16px; }
+body:has(#presentation-zti) main > section:not(#presentation-zti):not(.sombre) :is(p, li) { color: rgb(74, 85, 104); }
+body:has(#presentation-zti) main > section.sombre:not(#presentation-zti) :is(p, li) { color: rgb(215, 220, 243); }
