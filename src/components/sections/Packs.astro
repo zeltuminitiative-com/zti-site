@@ -7,7 +7,7 @@ const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const packs = (s.packs || []).filter((p: any) => p.nom);
 const base = `pk-${Math.random().toString(36).slice(2, 7)}`;
 // « Pack 1 — Stabilité » → numéro « PACK 1 » + titre « Stabilité »
-const coupe = (nom: string) => { const m = nom.match(/^\s*(pack\s*\d+)\s*[—–-]\s*(.+)$/i); return m ? [m[1].toUpperCase(), m[2]] : ['', nom]; };
+const coupe = (nom: string) => { const m = nom.match(/^\s*(pack\s*\d+)\s*[—–:-]\s*(.+)$/i); return m ? [m[1].toUpperCase(), m[2]] : ['', nom]; };
 ---
 <Cadre premier={premier} s={s} defaut="noir" id={s.ancre || 'packs'}>
   <div class={`packs-zti n${packs.length}`}>
