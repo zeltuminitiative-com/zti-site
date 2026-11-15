@@ -427,7 +427,7 @@ $$('form[data-avis]').forEach(form => {
       } catch (_) { /* réseau coupé : l'avis part par WhatsApp */ }
     }
     const merci = $('.avis-merci', form.parentElement);
-    const texteWa = [`Bonjour ZTi, voici mon avis (${note}/5) :`, d.texte, `— ${d.nom}${d.organisation ? ', ' + d.organisation : ''}`].join('\n');
+    const texteWa = [`Bonjour ZTi, voici mon avis (${note}/5) :`, d.texte, `De la part de : ${d.nom}${d.organisation ? ', ' + d.organisation : ''}`].join('\n');
     if (!enregistre) {
       $('[data-texte]', merci).textContent = 'Dernière étape : appuyez sur « Envoyer par WhatsApp », votre avis part déjà rédigé.';
       const wa = $('[data-wa]', merci);
@@ -443,7 +443,7 @@ if (merci) {
   // aperçu de test (branche corrections-test) : la page s'ouvre directement avec une demande d'exemple, pour la valider
   // sans remplir le formulaire ; sur le vrai site, elle ne s'affiche qu'après l'envoi d'un formulaire
   const apercu = /^corrections-test\./.test(location.hostname);
-  const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null') || (apercu ? { enregistree: !/[?&]echec/.test(location.search), sujet: 'Diagnostic offert — établissement scolaire',
+  const d = JSON.parse(sessionStorage.getItem('zti-demande') || 'null') || (apercu ? { enregistree: !/[?&]echec/.test(location.search), sujet: 'Diagnostic offert, établissement scolaire',
     wa: '237699324689', mail: 'zeltuminitiative@gmail.com', texte: "Bonjour ZTi, voici ma demande (exemple de l'aperçu) :\n• Établissement : Collège Exemple\n• Nom : M. EXEMPLE Jean (Directeur)" } : null);
   if (!d) location.replace(merci.dataset.accueil || '/');
   $$('[data-communaute]').forEach(a => a.addEventListener('click', () => suivi('Contact', { method: a.dataset.communaute })));
