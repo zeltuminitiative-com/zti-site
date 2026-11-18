@@ -86,7 +86,7 @@ sections:
     etiquette: Des compétences reconnues
     titre: ZTi a accompagné des organisations importantes au Cameroun.
     portrait: /images/fondateur.jpg
-    nom: Jean Marcelin MEUKAM FOKAM
+    nom: MEUKAM Marcelin
     fonction: Fondateur et Directeur Général · Zèl Tum Initiative SARL | ZTi Système™
     attestations:
       - image: /images/attestations/attestation-CNDHL-conf.jpg
