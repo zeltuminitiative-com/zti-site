@@ -83,7 +83,7 @@ sections:
     etiquette: La preuve
     titre: Un savoir-faire attesté.
     portrait: /images/fondateur.jpg
-    nom: Jean Marcelin MEUKAM FOKAM
+    nom: MEUKAM Marcelin
     fonction: "Fondateur et Directeur Général de ZTi. Maintenance, diagnostic, réseaux et récupération de données depuis 2008."
     attestations:
       - image: /images/attestations/attestation-CNDHL-conf.jpg
