@@ -727,9 +727,17 @@ main .sombre .q-reponse p, main .sombre .q-reponse li { color: rgb(215, 220, 243
 
 /* Tout le site (18/11, validé par ZTi) : paragraphes justifiés (ni à gauche ni à droite), le tout centré dans la page.
    Restent centrés : le bas des héros (.pied-d), les sections centrées (.centre), le bloc WhatsApp de la page Merci.
-   Titres, petits titres et tableaux : alignés au bord gauche de leur colonne centrée. */
-main p:not(:is(.centre *, .pied-d *, .merci-wa *)) { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
-main section:not([class*="accroche"]) > .contenu:not(.centre) > .rv:has(> h2),
-main section:not([class*="accroche"]) > .contenu > .texte-riche { max-width: 760px; margin-left: auto; margin-right: auto; }
-main section:not([class*="accroche"]) > .contenu > .rv:has(> h2) .chapo { max-width: none; }
+   Titres, petits titres et tableaux : alignés au bord gauche de leur colonne centrée.
+   Exceptions (choix de ZTi du 18/11) : la section du formulaire « Réservez votre diagnostic » (#demande) garde sa
+   disposition d'origine (à gauche, non justifiée) ; les textes des formulaires ne sont pas justifiés. */
+main p:not(:is(.centre *, .pied-d *, .merci-wa *, form *, #demande *)) { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+main section:not([class*="accroche"]):not(#demande) > .contenu:not(.centre) > .rv:has(> h2),
+main section:not([class*="accroche"]):not(#demande) > .contenu > .texte-riche { max-width: 760px; margin-left: auto; margin-right: auto; }
+main section:not([class*="accroche"]):not(#demande) > .contenu > .rv:has(> h2) .chapo { max-width: none; }
 main section.page-simple > .contenu > p.chapo { margin-left: auto; margin-right: auto; }
+/* listes de questions (Questions fréquentes, Travailler avec ZTi) : centrées dans la même colonne de 760 px */
+main section > .contenu > :is(.faq-zti, .faq-actions) { max-width: 760px; margin-left: auto; margin-right: auto; }
+/* texte à côté d'une image (Vos données, La Protection ZTi, Ce que vous recevez…) : le haut du texte aligné sur le haut de l'image */
+main .texte-image .grille { align-items: start; }
+/* La preuve : la photo commence au niveau du nom */
+main .preuve-zti { align-items: start; }
