@@ -96,7 +96,8 @@ sections:
       - image: /images/attestations/attestation-PACEL-conf.jpg
         titre: Projet PACEL
         detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022 (délivrée le 8 août 2022)"
-    mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."  - type: references
+    mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."
+  - type: references
     fond: ivoire
     etiquette: Nos références
     titre: Ils nous ont fait confiance.
