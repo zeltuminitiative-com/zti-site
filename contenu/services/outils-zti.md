@@ -9,6 +9,6 @@ points:
 ordre: 5
 en_ligne: true
 ---
-- **ZTi Restauration des fichiers cachés** — Une clé USB ou un dossier semble vide après un virus ? L'outil restaure l'accès aux fichiers rendus invisibles.
-- **ZTi Mise en veille prolongée** — Pensé pour les coupures de courant : la session de travail est sauvegardée et reprend à l'identique au prochain allumage.
-- **ZTi Arrêt 5S** — Le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main.
+- **ZTi Restauration des fichiers cachés** : une clé USB ou un dossier semble vide après un virus ? L'outil restaure l'accès aux fichiers rendus invisibles.
+- **ZTi Mise en veille prolongée** : pensé pour les coupures de courant : la session de travail est sauvegardée et reprend à l'identique au prochain allumage.
+- **ZTi Arrêt 5S** : le poste redémarre en boucle au moment de l'éteindre ? Résolu en cinq secondes, sans couper le courant à la main.

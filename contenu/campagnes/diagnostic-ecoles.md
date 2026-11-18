@@ -36,7 +36,7 @@ sections:
     prix_defaut: 45000
     postes_defaut: 16
     titre_rentabilite: La maintenance est-elle rentable ?
-    nom_pack: Pack 2 — Fiabilité
+    nom_pack: Pack 2 (Fiabilité)
     grille:
       - jusqu_a: 4
         prix: 14000
@@ -98,9 +98,9 @@ sections:
     texte: |-
       Le diagnostic montre l'état réel de chaque poste. Vous choisissez ensuite. La grille tarifaire vous est remise avec la Fiche de Parc.
 
-      *Comment le prix est établi : prix par poste, selon deux grilles — salle TIC et parc administratif —, dégressif selon le nombre de postes, hors taxes, valable pour l'année scolaire. Salle TIC et administration traitées ensemble : − 10 %. Licences commerciales (antivirus, Office) : devis distinct. Établissements publics : cotation distincte.*
+      *Comment le prix est établi : prix par poste, selon deux grilles (salle TIC et parc administratif), dégressif selon le nombre de postes, hors taxes, valable pour l'année scolaire. Salle TIC et administration traitées ensemble : − 10 %. Licences commerciales (antivirus, Office) : devis distinct. Établissements publics : cotation distincte.*
     packs:
-      - nom: Pack 1 — Stabilité
+      - nom: "Pack 1 : Stabilité"
         promesse: Des postes prêts à travailler ; à l'administration, des données sauvegardées.
         points:
           - Réinstallation du système (FR / EN) et des pilotes
@@ -117,7 +117,7 @@ sections:
           - "Salle TIC : logiciels scolaires gratuits"
           - "Administration : sauvegarde et restauration des données, sauvegarde automatique en local, un périphérique additionnel (imprimante / scanner)"
           - Prise en charge sous 48 h (administration prioritaire)
-      - nom: Pack 2 — Fiabilité
+      - nom: "Pack 2 : Fiabilité"
         promesse: Moins de pannes, des postes qui durent.
         points:
           - Tout le Pack 1
@@ -132,7 +132,7 @@ sections:
           - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
           - "Administration : deux périphériques additionnels par poste"
           - Prise en charge sous 24 h (administration prioritaire)
-      - nom: Pack 3 — Continuité
+      - nom: "Pack 3 : Continuité"
         badge: Protection ZTi incluse
         promesse: Une protection durable de vos postes et de vos données.
         points:
@@ -148,7 +148,7 @@ sections:
           - Configuration des équipements de sécurité électrique (si disponibles)
           - "Administration : isolation des données sur une partition dédiée"
           - Prise en charge prioritaire
-      - nom: Pack 4 — Préservation
+      - nom: "Pack 4 : Préservation"
         promesse: Un parc protégé, entretenu sans réinstallation.
         points:
           - Dépoussiérage, pâte thermique et ventilateurs

@@ -40,10 +40,12 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
         <ul>{liste.map(s => <li><a href={lien(`/services/${s.id}/`)}>{s.data.titre}</a></li>)}</ul>
       </div>
       <div>
-        <h4>ZTi</h4>
+        <!-- titre écrit « ZTi » (et non « ZTI ») : pas de capitales forcées (choix de ZTi du 18/11) -->
+        <h4 style="text-transform: none">ZTi</h4>
         <ul>
           {sansMenu && <li><a href={lien('/')}>Découvrir ZTi</a></li>}
           <li><a href={lien('/engagements/')}>Travailler avec ZTi</a></li>
+          <li><a href={lien('/confidentialite/#confidentialite')}>Politique de confidentialité</a></li>
           <li><a href={lien('/#avis')}>Donner votre avis</a></li>
           <li><a href={lien('/telechargements/')}>Téléchargements</a></li>
           {serveur && <li><a href={serveur + '/espace/'}>Espace ambassadeurs</a></li>}
@@ -64,7 +66,7 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
     <div class="geant" aria-hidden="true" style={`--logo-zti: url(${lien('/images/logo-zti.svg')})`}></div>
     <div class="bas">
       <span>© {annee} {r.nom_legal}. Tous droits réservés.</span>
-      <a href={lien('/confidentialite/')}>Informations légales</a>
+      <a href={lien('/confidentialite/#mentions-legales')}>Mentions légales</a>
     </div>
   </div>
 </footer>

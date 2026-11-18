@@ -698,3 +698,29 @@ body:has(#presentation-zti) .entete .marque small span { border-left-color: rgba
   .accroche-d:not(#presentation-zti) { min-height: 100vh; min-height: 100svh; }
   .accroche-d:not(#presentation-zti) .ph-d { top: 106px; animation: d-fondu .9s both; }
 }
+
+/* Informations légales (15/11) : contenu centré dans la page, même police partout (Inter 16 px, même gris),
+   titres des 2 sections à la même taille, paragraphes justifiés */
+#mentions-legales .etroit, #confidentialite .etroit { margin-left: auto; margin-right: auto; }
+#mentions-legales h1, #confidentialite h2 { font-size: clamp(32px, 4vw, 46px); }
+#mentions-legales .texte-riche p, #mentions-legales .texte-riche td, #mentions-legales .texte-riche th, #mentions-legales .texte-riche a,
+#confidentialite .texte-riche p { font: 400 16px/1.65 var(--texte); }
+#mentions-legales .texte-riche p, #confidentialite .texte-riche p { color: rgb(74, 85, 104); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+#mentions-legales .texte-riche strong, #confidentialite .texte-riche strong { font-weight: 700; }
+
+/* Travailler avec ZTi (15/11) : même police partout (Inter 16 px ; un seul gris sur fond clair, un seul sur fond sombre),
+   colonnes de texte centrées (sommaire, délais, réclamations, sur site, atelier : 760 px) */
+body:has(#presentation-zti) main > section:not(#presentation-zti) .etroit { margin-left: auto; margin-right: auto; }
+body:has(#presentation-zti) :is(#sur-site, #atelier) .contenu > * { max-width: 760px; margin-left: auto; margin-right: auto; }
+body:has(#presentation-zti) :is(#sur-site, #atelier) .chapo { max-width: none; }
+body:has(#presentation-zti) main > section:not(#presentation-zti) :is(p, li, td):not(.etiquette) { font-family: var(--texte); font-size: 16px; }
+body:has(#presentation-zti) main > section:not(#presentation-zti):not(.sombre) :is(p, li) { color: rgb(74, 85, 104); }
+body:has(#presentation-zti) main > section.sombre:not(#presentation-zti) :is(p, li) { color: rgb(215, 220, 243); }
+
+/* Tout le site (18/11) : même police partout, la page école sert de référence. Colonnes de texte centrées,
+   introductions sous les titres en 18 px, petites mentions en 14 px avec un seul gris (fond clair) et un seul gris (fond sombre) */
+main .etroit { margin-left: auto; margin-right: auto; }
+body:has(#presentation-zti) main > section:not(#presentation-zti) .chapo p { font-size: 18px; }
+main .mention, main .mention-zti { font-size: 14px; color: rgb(74, 85, 104); }
+main .sombre .mention, main .sombre .mention-zti { color: rgb(215, 220, 243); }
+main .sombre .q-reponse p, main .sombre .q-reponse li { color: rgb(215, 220, 243); }

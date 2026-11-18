@@ -68,7 +68,7 @@ const wa = r.contact.whatsapp.replace(/\D/g, '');
       const s = document.createElement('span'); s.className = 'systeme'; s.textContent = [p.systeme, p.version && 'version ' + p.version].filter(Boolean).join(' · ');
       const b = document.createElement('a'); b.className = 'btn';
       if (!p.disponible) { b.textContent = 'Bientôt disponible'; b.setAttribute('aria-disabled', 'true'); b.className = 'btn indisponible'; }
-      else if (p.prix) { b.textContent = 'Obtenir — ' + Number(p.prix).toLocaleString('fr-FR') + ' F'; b.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Bonjour ZTi, je souhaite obtenir « ' + p.nom + ' ».'); b.target = '_blank'; b.rel = 'noopener'; }
+      else if (p.prix) { b.textContent = 'Obtenir pour ' + Number(p.prix).toLocaleString('fr-FR') + ' F'; b.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Bonjour ZTi, je souhaite obtenir « ' + p.nom + ' ».'); b.target = '_blank'; b.rel = 'noopener'; }
       else { b.textContent = 'Télécharger'; b.href = serveur + '/v1/telecharger/' + encodeURIComponent(p.slug); if (p.externe) { b.target = '_blank'; b.rel = 'noopener'; } }
       if (!p.prix && p.disponible) { const gratuit = document.createElement('span'); gratuit.className = 'gratuit'; gratuit.textContent = 'Gratuit'; a.append(gratuit); }
       a.append(h, t, s, b); return a;
