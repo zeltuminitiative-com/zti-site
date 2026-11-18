@@ -716,3 +716,11 @@ body:has(#presentation-zti) :is(#sur-site, #atelier) .chapo { max-width: none; }
 body:has(#presentation-zti) main > section:not(#presentation-zti) :is(p, li, td):not(.etiquette) { font-family: var(--texte); font-size: 16px; }
 body:has(#presentation-zti) main > section:not(#presentation-zti):not(.sombre) :is(p, li) { color: rgb(74, 85, 104); }
 body:has(#presentation-zti) main > section.sombre:not(#presentation-zti) :is(p, li) { color: rgb(215, 220, 243); }
+
+/* Tout le site (18/11) : même police partout, la page école sert de référence. Colonnes de texte centrées,
+   introductions sous les titres en 18 px, petites mentions en 14 px avec un seul gris (fond clair) et un seul gris (fond sombre) */
+main .etroit { margin-left: auto; margin-right: auto; }
+body:has(#presentation-zti) main > section:not(#presentation-zti) .chapo p { font-size: 18px; }
+main .mention, main .mention-zti { font-size: 14px; color: rgb(74, 85, 104); }
+main .sombre .mention, main .sombre .mention-zti { color: rgb(215, 220, 243); }
+main .sombre .q-reponse p, main .sombre .q-reponse li { color: rgb(215, 220, 243); }
