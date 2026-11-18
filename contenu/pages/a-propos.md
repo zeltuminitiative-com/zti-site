@@ -117,18 +117,21 @@ sections:
     fond: ivoire
     etiquette: La preuve
     titre: Un savoir-faire attesté.
+    texte: "Depuis 2008, le fondateur de ZTi accompagne institutions et entreprises. Voici ce qu'elles en attestent."
+    portrait: /images/fondateur-profil.jpg
+    nom: MEUKAM Marcelin
+    fonction: "Fondateur et Directeur Général de ZTi. Maintenance, diagnostic, réseaux et récupération de données depuis 2008."
     attestations:
       - image: /images/attestations/attestation-CNDHL-conf.jpg
         titre: CNDHL
-        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020"
+        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020 (délivrée le 22 mai 2020)"
       - image: /images/attestations/attestation-CALY-conf.jpg
         titre: CALY SARL
-        detail: "Maintenance et réseau, depuis le 1er mars 2014"
+        detail: "Maintenance et réseau, depuis le 1er mars 2014 (délivrée le 5 janvier 2022)"
       - image: /images/attestations/attestation-PACEL-conf.jpg
         titre: Projet PACEL
-        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022"
-    mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."
-  - type: references
+        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022 (délivrée le 8 août 2022)"
+    mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."  - type: references
     fond: blanc
     etiquette: Nos références
     titre: Ils nous ont fait confiance.
