@@ -724,3 +724,12 @@ body:has(#presentation-zti) main > section:not(#presentation-zti) .chapo p { fon
 main .mention, main .mention-zti { font-size: 14px; color: rgb(74, 85, 104); }
 main .sombre .mention, main .sombre .mention-zti { color: rgb(215, 220, 243); }
 main .sombre .q-reponse p, main .sombre .q-reponse li { color: rgb(215, 220, 243); }
+
+/* Tout le site (18/11, validé par ZTi) : paragraphes justifiés (ni à gauche ni à droite), le tout centré dans la page.
+   Restent centrés : le bas des héros (.pied-d), les sections centrées (.centre), le bloc WhatsApp de la page Merci.
+   Titres, petits titres et tableaux : alignés au bord gauche de leur colonne centrée. */
+main p:not(:is(.centre *, .pied-d *, .merci-wa *)) { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+main section:not([class*="accroche"]) > .contenu:not(.centre) > .rv:has(> h2),
+main section:not([class*="accroche"]) > .contenu > .texte-riche { max-width: 760px; margin-left: auto; margin-right: auto; }
+main section:not([class*="accroche"]) > .contenu > .rv:has(> h2) .chapo { max-width: none; }
+main section.page-simple > .contenu > p.chapo { margin-left: auto; margin-right: auto; }
