@@ -83,23 +83,23 @@ sections:
         texte: Des logiciels correctement licenciés et conformes, sans risque d'amende lors d'un contrôle.
   - type: preuve
     fond: ivoire
-    etiquette: Des compétences reconnues
+    etiquette: La preuve
     titre: ZTi a accompagné des organisations importantes au Cameroun.
-    portrait: /images/fondateur.jpg
+    texte: "Chaque attestation ci-dessous a été délivrée par l'organisation accompagnée."
+    portrait: /images/fondateur-profil.jpg
     nom: MEUKAM Marcelin
-    fonction: Fondateur et Directeur Général · Zèl Tum Initiative SARL | ZTi Système™
+    fonction: "Fondateur et Directeur Général de ZTi. Maintenance, diagnostic, réseaux et récupération de données depuis 2008."
     attestations:
       - image: /images/attestations/attestation-CNDHL-conf.jpg
         titre: CNDHL
-        detail: "Maintenance informatique, juillet 2013 – avril 2020"
+        detail: "Maintenance informatique, 1er juillet 2013 – 30 avril 2020 (délivrée le 22 mai 2020)"
       - image: /images/attestations/attestation-CALY-conf.jpg
-        titre: CALY SARL · Yaoundé
-        detail: "Maintenance et réseau, depuis mars 2014"
+        titre: CALY SARL
+        detail: "Maintenance et réseau, depuis le 1er mars 2014 (délivrée le 5 janvier 2022)"
       - image: /images/attestations/attestation-PACEL-conf.jpg
-        titre: CDHC / PACEL
-        detail: "Projet financé par l'Union européenne, janvier 2021 – juillet 2022"
-    mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."
-  - type: references
+        titre: Projet PACEL
+        detail: "Commission des Droits de l'Homme du Cameroun / Union européenne, janvier 2021 – juillet 2022 (délivrée le 8 août 2022)"
+    mention: "Attestations délivrées au fondateur de ZTi. Documents confidentiels : consultation uniquement, reproduction interdite."  - type: references
     fond: blanc
     etiquette: Nos références
     titre: Ils nous ont fait confiance.
