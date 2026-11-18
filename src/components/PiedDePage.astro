@@ -43,7 +43,8 @@ const horaires = (r.contact.horaires || '').split(' · ').map(h => h.trim().repl
         <!-- titre écrit « ZTi » (et non « ZTI ») : pas de capitales forcées (choix de ZTi du 18/11) -->
         <h4 style="text-transform: none">ZTi</h4>
         <ul>
-          {sansMenu && <li><a href={lien('/')}>Découvrir ZTi</a></li>}
+          <!-- même liste sur toutes les pages (validée par ZTi le 18/11) -->
+          <li><a href={lien('/')}>Découvrir ZTi</a></li>
           <li><a href={lien('/engagements/')}>Travailler avec ZTi</a></li>
           <li><a href={lien('/confidentialite/#confidentialite')}>Politique de confidentialité</a></li>
           <li><a href={lien('/#avis')}>Donner votre avis</a></li>
