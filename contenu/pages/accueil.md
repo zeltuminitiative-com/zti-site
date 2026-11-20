@@ -110,7 +110,7 @@ sections:
     texte: "Vous avez travaillé avec ZTi ? Votre avis aide d'autres écoles et entreprises à choisir."
   - type: signature
     fond: blanc
-    titre: Diagnostic, valorisation et préservation de votre investissement informatique
+    titre: Valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
   - type: demande
     fond: bleu
