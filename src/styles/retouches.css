@@ -741,3 +741,11 @@ main section > .contenu > :is(.faq-zti, .faq-actions) { max-width: 760px; margin
 main .texte-image .grille { align-items: start; }
 /* La preuve : la photo commence au niveau du nom */
 main .preuve-zti { align-items: start; }
+
+/* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
+   (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
+.signature .signature-action { margin-top: 28px; display: flex; justify-content: center; }
+.btn.btn-contour { background: transparent; color: #02008A; box-shadow: inset 0 0 0 2px #02008A; padding: 6px 6px 6px 24px; }
+.btn.btn-contour .pastille { background: #02008A; color: #fff; }
+.btn.btn-contour:hover { background: #02008A; color: #fff; }
+.btn.btn-contour:hover .pastille { background: #fff; color: #02008A; }
