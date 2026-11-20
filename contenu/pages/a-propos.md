@@ -137,7 +137,8 @@ sections:
     etiquette: Nos références
     titre: Ils nous ont fait confiance.
   - type: signature
-    fond: ivoire
+    fond: blanc
+    titre: Diagnostic, valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
   - type: appel
     fond: bleu
