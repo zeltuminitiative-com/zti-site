@@ -4,6 +4,7 @@
 // (Le programme ambassadeur est proposé après un avis client, pas ici : le visiteur n'a encore reçu aucun service.)
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
+import Bouton from '../components/Bouton.astro';
 import { reglages, lien, lienSur } from '../lib/contenu';
 const r = await reglages();
 const communaute = [
@@ -73,6 +74,7 @@ const etapes = [
       <img src={lien('/images/logo-bleu.png')} alt="ZTi" loading="lazy">
       <h2>Valorisation et préservation de votre investissement informatique</h2>
       <blockquote>« {r.slogan} »</blockquote>
+      <div class="signature-action"><Bouton texte="Pourquoi travailler avec ZTi ?" href="/engagements/" classe="btn-contour" /></div>
     </div>
   </section>
 </Base>
