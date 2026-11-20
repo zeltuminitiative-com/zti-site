@@ -79,6 +79,6 @@ sections:
     bouton: Envoyer à ZTi
   - type: signature
     fond: blanc
-    titre: Diagnostic, valorisation et préservation de votre investissement informatique
+    titre: Valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---
