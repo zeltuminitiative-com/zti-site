@@ -118,6 +118,6 @@ sections:
     bouton: Lancer mon audit informatique
   - type: signature
     fond: blanc
-    titre: ZTi Système™ · Stabilité · Sécurité · Continuité
-    slogan: Votre outil informatique doit travailler pour vous. Pas l'inverse.
+    titre: Diagnostic, valorisation et préservation de votre investissement informatique
+    slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---
