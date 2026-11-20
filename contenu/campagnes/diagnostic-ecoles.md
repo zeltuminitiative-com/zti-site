@@ -245,6 +245,6 @@ sections:
     mention: "Messages reçus 24 h/24, 7 j/7 · Réponse les jours ouvrables, de 8 h à 20 h."
   - type: signature
     fond: blanc
-    titre: Diagnostic, valorisation et préservation de votre investissement informatique
+    titre: Valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---

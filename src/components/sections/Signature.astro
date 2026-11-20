@@ -1,14 +1,19 @@
 ---
 import { lien } from '../../lib/contenu';
 import { dim } from '../../lib/dimensions';
+import Bouton from '../Bouton.astro';
 const { s } = Astro.props as { s: any };
 const fond = s.fond || 'blanc';
 const sombre = ['nuit', 'bleu', 'noir'].includes(fond);
+// bouton vers « Pourquoi travailler avec ZTi ? » sous le slogan (choix de ZTi du 20/11), sur toutes les pages
+// sauf la page « Travailler avec ZTi » elle-même (le bouton y renverrait vers la page où l'on est déjà)
+const pageEngagements = Astro.url.pathname.startsWith(lien('/engagements/'));
 ---
 <section class={`section signature fond-${fond} ${sombre ? 'sombre' : ''}`}>
   <div class="contenu rv">
     <img src={lien(sombre ? '/images/logo-blanc.png' : '/images/logo-bleu.png')} {...dim(sombre ? '/images/logo-blanc.png' : '/images/logo-bleu.png')} alt="ZTi" loading="lazy">
     {s.titre && <h2>{s.titre}</h2>}
     {s.slogan && <blockquote>« {s.slogan} »</blockquote>}
+    {!pageEngagements && <div class="signature-action"><Bouton texte="Pourquoi travailler avec ZTi ?" href="/engagements/" classe="btn-contour" /></div>}
   </div>
 </section>

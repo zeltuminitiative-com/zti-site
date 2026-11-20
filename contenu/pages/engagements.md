@@ -163,6 +163,7 @@ sections:
       texte: Écrire à ZTi
       lien: /contact/
   - type: signature
-    fond: ivoire
+    fond: blanc
+    titre: Valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---
