@@ -771,9 +771,9 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   0% { transform: translate(-50%, 100%); clip-path: inset(-20px -24px 100% -24px); }
   82% { transform: translate(-50%, -3px); clip-path: inset(-20px -24px 0 -24px); }
   100% { transform: translate(-50%, 0); clip-path: inset(-20px -24px 0 -24px); } }
-/* essai (23/11) : la pastille arrive par le côté gauche et se pose au centre */
-@keyframes pastille-pose { from { opacity: 0; transform: translateX(-90px); } to { opacity: 1; transform: translateX(0); } }
-.pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s 1.35s cubic-bezier(.3,1.4,.5,1) both; }
+/* (23/11, choix de ZTi) : la pastille monte avec l'onglet des étoiles, même durée, même départ, même mouvement */
+@keyframes pastille-pose { 0% { opacity: 0; transform: translateY(70px); } 82% { opacity: 1; transform: translateY(-3px); } 100% { opacity: 1; transform: translateY(0); } }
+.pack-zti.rv.vu .pastille-vedette { animation: pastille-pose 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
 @keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
 .pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
 .pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.6s + var(--i) * .11s); }
