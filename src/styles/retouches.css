@@ -753,8 +753,8 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   box-shadow: 0 26px 70px rgba(21,101,255,.38); }
 /* la pastille garde sa forme (pilule à cheval sur la carte), élargie à toute la largeur intérieure de l'onglet :
    elle touche le cadre de chaque côté */
-.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: -6px; right: -6px; width: auto; transform: none; top: -12px; z-index: 2; box-sizing: border-box;
-  text-align: center; box-shadow: 0 0 0 3px #FFFFFF; }   /* toute la largeur de la carte : elle touche le cadre à gauche et à droite ; liseré blanc d'origine */
+.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: auto; right: 0; transform: none; top: -12px; z-index: 2;
+  box-shadow: 0 0 0 3px #FFFFFF; }   /* taille d'origine, calée à droite jusqu'au cadre ; liseré blanc d'origine */
 .ruban-pack { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
   box-sizing: border-box; width: 200px; padding: 6px 12px 19px; border: 6px solid #1565FF; border-bottom: 0; border-radius: 16px 16px 0 0; background: #02008A;
   color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.2 var(--titres); letter-spacing: .03em; }
