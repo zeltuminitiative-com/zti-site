@@ -744,15 +744,33 @@ main .preuve-zti { align-items: start; }
 
 /* Packs (23/11, validé par ZTi) : textes des cartes alignés à gauche (la justification creusait de grands blancs) */
 main .pack-zti p { text-align: left !important; hyphens: manual !important; -webkit-hyphens: manual !important; }   /* !important : la règle « Tout le site » vise #demande et l'emporte sinon */
-/* pack mis en avant (23/11, modèle de ZTi, couleurs de la charte uniquement) : cadre épais bleu #1565FF autour de la
-   carte (même bleu que la pastille « Protection ZTi incluse »), onglet bleu clair #9FD0FF centré au-dessus, posé sur le
-   cadre : 5 étoiles et « Le plus sollicité » en bleu du logo #02008A. Aplats nets, sans dégradé. */
-.pack-zti:has(.ruban-pack)::before { content: ''; position: absolute; inset: -18px; border-radius: 30px; border: 10px solid #1565FF; pointer-events: none; }
-.ruban-pack { position: absolute; bottom: calc(100% + 18px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 1px;
-  padding: 7px 26px 7px; border-radius: 12px 12px 0 0; background: #9FD0FF; color: #02008A; text-align: center; white-space: nowrap; font: 700 13px/1.25 var(--titres); letter-spacing: .02em; }
-.ruban-pack .etoiles { font-size: 18px; letter-spacing: .18em; color: #02008A; }
-.packs-zti:has(.ruban-pack) { column-gap: 40px; margin-top: 104px; }
-@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 92px 22px 26px; scroll-padding: 0 22px; } }
+/* pack mis en avant (23/11, modèle de ZTi, couleurs de la charte uniquement) : UNE seule silhouette.
+   Cadre plein #1565FF (même bleu que la pastille), onglet bleu du logo #02008A qui sort du cadre comme un intercalaire
+   (bordure du cadre continue autour de l'onglet, raccords arrondis), étoiles #9FD0FF, texte blanc. La pastille
+   « Protection ZTi incluse » se place au centre, à la jonction onglet / carte. Mouvement sobre à l'apparition :
+   l'onglet monte, les étoiles s'allument l'une après l'autre. */
+.pack-zti.vedette:has(.ruban-pack) { border: 6px solid #1565FF; background: #FFFFFF; animation: none; border-radius: 20px; padding-top: 34px;
+  box-shadow: 0 26px 70px rgba(21,101,255,.38); }
+.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: 50%; transform: translateX(-50%); top: -12px; z-index: 2; box-shadow: 0 0 0 3px #FFFFFF; }
+.ruban-pack { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 184px; padding: 9px 22px 16px; border: 6px solid #1565FF; border-bottom: 0; border-radius: 16px 16px 0 0; background: #02008A;
+  color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.2 var(--titres); letter-spacing: .03em; }
+/* raccords arrondis entre l'onglet et le cadre (coins concaves dans le bleu du cadre) */
+.ruban-pack::before, .ruban-pack::after { content: ''; position: absolute; bottom: 0; width: 14px; height: 14px; }
+.ruban-pack::before { right: 100%; margin-right: 6px; background: radial-gradient(circle at 0 0, transparent 13.5px, #1565FF 14px); }
+.ruban-pack::after { left: 100%; margin-left: 6px; background: radial-gradient(circle at 100% 0, transparent 13.5px, #1565FF 14px); }
+.ruban-pack .etoiles { display: flex; gap: 4px; font-size: 17px; line-height: 1; color: #9FD0FF; }
+.ruban-pack .etoiles i { font-style: normal; display: inline-block; }
+.ruban-pack .ruban-texte { font-size: 12.5px; color: #FFFFFF; }
+/* apparition : l'onglet monte depuis le cadre, puis les étoiles s'allument en cascade */
+@keyframes ruban-monte { from { opacity: 0; transform: translate(-50%, 14px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
+.pack-zti.rv.vu .ruban-pack { animation: ruban-monte .6s .25s cubic-bezier(.2,.7,.2,1) both; }
+.pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .45s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(.6s + var(--i) * .09s); }
+@media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i { animation: none; } }
+.packs-zti:has(.ruban-pack) { margin-top: 96px; }
+@media (min-width: 901px) { .pack-zti.vedette:has(.ruban-pack) { margin-top: -12px; } }   /* la carte mise en avant dépasse légèrement les autres */
+@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 76px 4px 14px; } }
 
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
