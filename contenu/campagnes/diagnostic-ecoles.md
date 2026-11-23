@@ -133,7 +133,7 @@ sections:
           - "Administration : deux périphériques additionnels par poste"
           - Prise en charge sous 24 h (administration prioritaire)
       - nom: "Pack 3 : Continuité"
-        badge: Protection ZTi incluse
+        badge: "★★★★★ Le plus sollicité"
         promesse: Une protection durable de vos postes et de vos données.
         points:
           - Tout le Pack 2
@@ -234,7 +234,10 @@ sections:
     fond: bleu
     ancre: demande
     titre: Réservez votre diagnostic offert.
-    texte: Visites sur site de 8 h à 15 h, du lundi au samedi, hors vacances scolaires.
+    texte: |-
+      **Interventions sur site :** du lundi au samedi, de 8 h à 15 h.
+
+      **Vos messages :** reçus 24 h/24, 7 j/7 et traités les jours ouvrables, de 8 h à 20 h.
     sujet: Diagnostic offert (écoles)
     formulaire: ecoles
     profil: ecole
