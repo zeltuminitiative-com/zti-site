@@ -742,6 +742,11 @@ main .texte-image .grille { align-items: start; }
 /* La preuve : la photo commence au niveau du nom */
 main .preuve-zti { align-items: start; }
 
+/* Packs (23/11, validé par ZTi) : textes des cartes alignés à gauche (la justification creusait de grands blancs) */
+main .pack-zti p { text-align: left; hyphens: manual; -webkit-hyphens: manual; }
+/* pastille du pack mis en avant : étoiles « ★★★★★ Le plus sollicité » */
+.pastille-vedette { letter-spacing: .02em; }
+
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
 .signature .signature-action { margin-top: 28px; display: flex; justify-content: center; }
