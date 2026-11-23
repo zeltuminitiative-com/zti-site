@@ -747,11 +747,11 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 /* bande verte du pack mis en avant (23/11) : 5 étoiles, « Le plus sollicité » en dessous ; vert validé #15803D */
 /* modèle de ZTi : cadre vert épais autour de la carte (séparé par une fine bande sombre), onglet vert centré au-dessus */
 .pack-zti:has(.ruban-pack) { outline: 10px solid #15803D; outline-offset: 6px; }
-.ruban-pack { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;
+.ruban-pack { position: absolute; bottom: calc(100% + 15px);   /* posé sur le cadre vert, au-dessus de la pastille « Protection ZTi incluse » */ left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;
   padding: 7px 22px 8px; border-radius: 6px 6px 0 0; background: #15803D; color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.25 var(--titres); letter-spacing: .02em; }
 .ruban-pack .etoiles { font-size: 18px; letter-spacing: .18em; color: #FFFFFF; }
-.packs-zti:has(.ruban-pack) { column-gap: 40px; margin-top: 96px; }
-@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 84px 22px 26px; scroll-padding: 0 22px; } }
+.packs-zti:has(.ruban-pack) { column-gap: 40px; margin-top: 104px; }
+@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 92px 22px 26px; scroll-padding: 0 22px; } }
 
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
