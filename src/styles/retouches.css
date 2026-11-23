@@ -744,15 +744,13 @@ main .preuve-zti { align-items: start; }
 
 /* Packs (23/11, validé par ZTi) : textes des cartes alignés à gauche (la justification creusait de grands blancs) */
 main .pack-zti p { text-align: left !important; hyphens: manual !important; -webkit-hyphens: manual !important; }   /* !important : la règle « Tout le site » vise #demande et l'emporte sinon */
-/* bande verte du pack mis en avant (23/11) : 5 étoiles, « Le plus sollicité » en dessous ; vert validé #15803D */
-/* modèle de ZTi : cadre vert épais autour de la carte (séparé par une fine bande sombre), onglet vert centré au-dessus */
-.pack-zti.vedette:has(.ruban-pack) { box-shadow: 0 0 60px 18px rgba(34,160,80,.30), 0 30px 80px rgba(0,0,0,.35); }
-.pack-zti:has(.ruban-pack)::before { content: ''; position: absolute; inset: -18px; border-radius: 30px; padding: 10px; pointer-events: none;
-  background: linear-gradient(160deg, #2EBD5F 0%, #15803D 45%, #0E6B32 100%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
-.ruban-pack { position: absolute; bottom: calc(100% + 16px);   /* posé sur le cadre vert, au-dessus de la pastille « Protection ZTi incluse » */ left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px;
-  padding: 7px 24px 8px; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, #2EBD5F 0%, #15803D 100%); box-shadow: 0 -6px 24px rgba(34,160,80,.35); text-shadow: 0 1px 2px rgba(0,0,0,.25); color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.25 var(--titres); letter-spacing: .02em; }
-.ruban-pack .etoiles { font-size: 18px; letter-spacing: .18em; color: #FFFFFF; }
+/* pack mis en avant (23/11, modèle de ZTi, couleurs de la charte uniquement) : cadre épais bleu #1565FF autour de la
+   carte (même bleu que la pastille « Protection ZTi incluse »), onglet bleu clair #9FD0FF centré au-dessus, posé sur le
+   cadre : 5 étoiles et « Le plus sollicité » en bleu du logo #02008A. Aplats nets, sans dégradé. */
+.pack-zti:has(.ruban-pack)::before { content: ''; position: absolute; inset: -18px; border-radius: 30px; border: 10px solid #1565FF; pointer-events: none; }
+.ruban-pack { position: absolute; bottom: calc(100% + 18px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 7px 26px 7px; border-radius: 12px 12px 0 0; background: #9FD0FF; color: #02008A; text-align: center; white-space: nowrap; font: 700 13px/1.25 var(--titres); letter-spacing: .02em; }
+.ruban-pack .etoiles { font-size: 18px; letter-spacing: .18em; color: #02008A; }
 .packs-zti:has(.ruban-pack) { column-gap: 40px; margin-top: 104px; }
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 92px 22px 26px; scroll-padding: 0 22px; } }
 
