@@ -771,7 +771,8 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   0% { transform: translate(-50%, 100%); clip-path: inset(-20px -24px 100% -24px); }
   82% { transform: translate(-50%, -3px); clip-path: inset(-20px -24px 0 -24px); }
   100% { transform: translate(-50%, 0); clip-path: inset(-20px -24px 0 -24px); } }
-@keyframes pastille-pose { from { opacity: 0; transform: translate(-50%, -6px) scale(.86); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+/* essai (23/11) : la pastille arrive par le côté gauche et se pose au centre */
+@keyframes pastille-pose { from { opacity: 0; transform: translate(calc(-50% - 90px), 0); } to { opacity: 1; transform: translate(-50%, 0); } }
 .pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s 1.35s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
 .pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
@@ -780,9 +781,15 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 .packs-zti:has(.ruban-pack) { margin-top: 120px; }
 /* ordinateur (23/11, demande de ZTi) : les 4 cartes ont la même hauteur et leurs paliers (trait, prise en charge,
    « Tout voir ») sont alignés en bas, sur la même ligne */
-@media (min-width: 901px) { .packs-zti:has(.ruban-pack) { align-items: stretch; }
-  .packs-zti:has(.ruban-pack) .pack-zti .delai { margin-top: auto; min-height: 73px; }   /* même hauteur que celle du Pack 4 (condition sur 2 lignes) */
-  .packs-zti:has(.ruban-pack) .pack-zti.vedette { padding-bottom: 21px; } }   /* compense le cadre de 6 px (1 px pour les autres) */
+/* Rangées partagées (sous-grille) : numéro, titre, promesse, liste, prise en charge, « Tout voir » sont alignés d'une
+   carte à l'autre ; le texte reste en haut de sa rangée (pas de vide au milieu quand on ouvre « Tout voir »), l'espace
+   restant éventuel va tout en bas de la carte. */
+@media (min-width: 901px) {
+  .packs-zti:has(.ruban-pack) { align-items: stretch; grid-template-rows: repeat(6, auto); row-gap: 0; }
+  .packs-zti:has(.ruban-pack) .pack-zti { display: grid; grid-row: span 6; grid-template-rows: subgrid; align-content: start; }
+  .packs-zti:has(.ruban-pack) .pack-zti > * { align-self: start; }
+  .packs-zti:has(.ruban-pack) .pack-zti .delai { align-self: stretch; }   /* le trait au-dessus de « Prise en charge » sur la même ligne partout */
+}
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
 
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
