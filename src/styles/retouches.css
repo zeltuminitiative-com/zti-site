@@ -753,8 +753,8 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   box-shadow: 0 26px 70px rgba(21,101,255,.38); }
 /* la pastille garde sa forme (pilule à cheval sur la carte), élargie à toute la largeur intérieure de l'onglet :
    elle touche le cadre de chaque côté */
-.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: 50%; transform: translateX(-50%); top: -12px; z-index: 2; box-sizing: border-box;
-  width: 200px; text-align: center; box-shadow: 0 0 0 3px #FFFFFF; }   /* largeur extérieure de l'onglet : elle recouvre les deux bords du cadre ; liseré blanc d'origine */
+.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: -6px; right: -6px; width: auto; transform: none; top: -12px; z-index: 2; box-sizing: border-box;
+  text-align: center; box-shadow: 0 0 0 3px #FFFFFF; }   /* toute la largeur de la carte : elle touche le cadre à gauche et à droite ; liseré blanc d'origine */
 .ruban-pack { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
   box-sizing: border-box; width: 200px; padding: 6px 12px 19px; border: 6px solid #1565FF; border-bottom: 0; border-radius: 16px 16px 0 0; background: #02008A;
   color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.2 var(--titres); letter-spacing: .03em; }
@@ -772,7 +772,7 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   82% { transform: translate(-50%, -3px); clip-path: inset(-20px -24px 0 -24px); }
   100% { transform: translate(-50%, 0); clip-path: inset(-20px -24px 0 -24px); } }
 /* essai (23/11) : la pastille arrive par le côté gauche et se pose au centre */
-@keyframes pastille-pose { from { opacity: 0; transform: translate(calc(-50% - 90px), 0); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes pastille-pose { from { opacity: 0; transform: translateX(-90px); } to { opacity: 1; transform: translateX(0); } }
 .pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s 1.35s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
 .pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
