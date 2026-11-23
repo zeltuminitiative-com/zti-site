@@ -156,7 +156,7 @@ sections:
           - Nettoyage approfondi (lavage)
           - Contrôle de la Protection ZTi
         delai: Prise en charge prioritaire
-        condition: Pour les postes ayant reçu le Pack 3, dans l'année qui suit.
+        condition: Pour les postes ayant reçu le Pack 3, l'année précédente.
         detail:
           - Dépoussiérage clavier, moniteur, unité centrale
           - Remplacement de la pâte thermique
