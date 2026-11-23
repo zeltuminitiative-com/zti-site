@@ -316,7 +316,7 @@ $$('form[data-demande]').forEach(form => {
     const fonction = /^M(me|lle)$/.test(civilite) ? (FEM[fonctionBrute] || fonctionBrute) : fonctionBrute;
     const d = {
       date: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Douala' }), accord: true,
-      sujet: form.dataset.sujet, profil: profil(), organisation: v('organisation'), secteur: v('secteur_precis') || valeur('secteur').join(''), position: v('position'),
+      sujet: form.dataset.sujet, profil: profil(), organisation: v('organisation'), secteur: [valeur('statut').join(''), v('secteur_precis') || valeur('secteur').join('')].filter(Boolean).join(' · '), position: v('position'),
       civilite, nom: v('prenom') ? `${v('nom').toUpperCase()} ${v('prenom').toLowerCase().replace(/(^|[\s'-])(\p{L})/gu, (m, a, c) => a + c.toUpperCase())}` : v('nom'), fonction, tel: '+237 ' + chiffres.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5'), email: v('email'),
       lieu: v('lieu') || [v('quartier'), v('ville_nom')].filter(Boolean).join(', ') || valeur('ville').join(''), postes: valeur('postes').join(''), situation: valeur('situation').join(''),
       besoins: valeur('besoins'), accompagnement: valeur('accompagnement').join(''), prestataire: valeur('prestataire').join(''),
