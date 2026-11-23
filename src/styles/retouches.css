@@ -778,7 +778,9 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 .pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.6s + var(--i) * .11s); }
 @media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i, .pack-zti.rv.vu .pastille-vedette { animation: none; } }
 .packs-zti:has(.ruban-pack) { margin-top: 120px; }
-@media (min-width: 901px) { .pack-zti.vedette:has(.ruban-pack) { margin-top: -12px; } }   /* la carte mise en avant dépasse légèrement les autres */
+/* ordinateur (23/11, demande de ZTi) : les 4 cartes ont la même hauteur et leurs paliers (trait, prise en charge,
+   « Tout voir ») sont alignés en bas, sur la même ligne */
+@media (min-width: 901px) { .packs-zti:has(.ruban-pack) { align-items: stretch; } .packs-zti:has(.ruban-pack) .pack-zti .delai { margin-top: auto; } }
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
 
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
