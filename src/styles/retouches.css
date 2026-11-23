@@ -766,11 +766,17 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 .ruban-pack .etoiles i { font-style: normal; display: inline-block; }
 .ruban-pack .ruban-texte { font-size: 12.5px; color: #FFFFFF; }
 /* apparition : l'onglet monte depuis le cadre, puis les étoiles s'allument en cascade */
-@keyframes ruban-monte { from { opacity: 0; transform: translate(-50%, 14px); } to { opacity: 1; transform: translate(-50%, 0); } }
+/* l'onglet sort de la carte comme une étiquette tirée d'une fente : il monte et se dévoile au ras du cadre */
+@keyframes ruban-monte {
+  0% { transform: translate(-50%, 100%); clip-path: inset(-20px -24px 100% -24px); }
+  82% { transform: translate(-50%, -3px); clip-path: inset(-20px -24px 0 -24px); }
+  100% { transform: translate(-50%, 0); clip-path: inset(-20px -24px 0 -24px); } }
+@keyframes pastille-pose { from { opacity: 0; transform: translate(-50%, -6px) scale(.86); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+.pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s 1.35s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
 .pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
-.pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.2s + var(--i) * .11s); }
-@media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i { animation: none; } }
+.pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.6s + var(--i) * .11s); }
+@media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i, .pack-zti.rv.vu .pastille-vedette { animation: none; } }
 .packs-zti:has(.ruban-pack) { margin-top: 120px; }
 @media (min-width: 901px) { .pack-zti.vedette:has(.ruban-pack) { margin-top: -12px; } }   /* la carte mise en avant dépasse légèrement les autres */
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
