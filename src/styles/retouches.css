@@ -771,13 +771,13 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   0% { transform: translate(-50%, 100%); clip-path: inset(-20px -24px 100% -24px); }
   82% { transform: translate(-50%, -3px); clip-path: inset(-20px -24px 0 -24px); }
   100% { transform: translate(-50%, 0); clip-path: inset(-20px -24px 0 -24px); } }
-/* (23/11, choix de ZTi) : chacun garde son animation. La pastille glisse depuis la gauche juste après la montée de
-   l'onglet ; les étoiles s'allument dès qu'elle est en place (l'un juste avant l'autre). */
+/* (23/11, choix de ZTi) : chacun garde son animation, dans cet ordre : 1. la pastille « Protection ZTi incluse »
+   glisse depuis la gauche ; 2. l'onglet sort de la carte comme une étiquette ; 3. ses étoiles s'allument. */
 @keyframes pastille-pose { from { opacity: 0; transform: translateX(-90px); } to { opacity: 1; transform: translateX(0); } }
-.pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s 1.3s cubic-bezier(.3,1.4,.5,1) both; }
+.pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s .3s cubic-bezier(.3,1.4,.5,1) both; }
 @keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
-.pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
-.pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.8s + var(--i) * .11s); }
+.pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .85s cubic-bezier(.22,.61,.36,1) both; }
+.pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(2.05s + var(--i) * .11s); }
 @media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i, .pack-zti.rv.vu .pastille-vedette { animation: none; } }
 .packs-zti:has(.ruban-pack) { margin-top: 120px; }
 /* ordinateur (23/11, demande de ZTi) : les 4 cartes ont la même hauteur et leurs paliers (trait, prise en charge,
