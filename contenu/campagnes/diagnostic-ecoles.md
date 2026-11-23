@@ -133,7 +133,8 @@ sections:
           - "Administration : deux périphériques additionnels par poste"
           - Prise en charge sous 24 h (administration prioritaire)
       - nom: "Pack 3 : Continuité"
-        badge: "★★★★★ Le plus sollicité"
+        badge: Protection ZTi incluse
+        ruban: Le plus sollicité
         promesse: Une protection durable de vos postes et de vos données.
         points:
           - Tout le Pack 2
