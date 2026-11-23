@@ -749,11 +749,14 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
    (bordure du cadre continue autour de l'onglet, raccords arrondis), étoiles #9FD0FF, texte blanc. La pastille
    « Protection ZTi incluse » se place au centre, à la jonction onglet / carte. Mouvement sobre à l'apparition :
    l'onglet monte, les étoiles s'allument l'une après l'autre. */
-.pack-zti.vedette:has(.ruban-pack) { border: 6px solid #1565FF; background: #FFFFFF; animation: none; border-radius: 20px; padding-top: 34px;
+.pack-zti.vedette:has(.ruban-pack) { border: 6px solid #1565FF; background: #FFFFFF; animation: none; border-radius: 20px; padding-top: 26px;
   box-shadow: 0 26px 70px rgba(21,101,255,.38); }
-.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: 50%; transform: translateX(-50%); top: -12px; z-index: 2; box-shadow: 0 0 0 3px #FFFFFF; }
+/* la pastille devient une bande qui remplit toute la largeur intérieure de l'onglet, d'un bord du cadre à l'autre,
+   et repose sur la carte : plus aucun fond bleu foncé visible autour d'elle */
+.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: 50%; transform: translateX(-50%); top: -26px; z-index: 2; box-sizing: border-box;
+  width: 188px; height: 26px; padding: 0 8px; border-radius: 0; display: flex; align-items: center; justify-content: center; box-shadow: none; }
 .ruban-pack { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
-  min-width: 190px; padding: 11px 24px 25px; border: 6px solid #1565FF; border-bottom: 0; border-radius: 16px 16px 0 0; background: #02008A;
+  box-sizing: border-box; width: 200px; padding: 11px 12px 36px; border: 6px solid #1565FF; border-bottom: 0; border-radius: 16px 16px 0 0; background: #02008A;
   color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.2 var(--titres); letter-spacing: .03em; }
 /* raccords arrondis entre l'onglet et le cadre (coins concaves dans le bleu du cadre) */
 .ruban-pack::before, .ruban-pack::after { content: ''; position: absolute; bottom: 0; width: 14px; height: 14px; }
@@ -768,9 +771,9 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 .pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
 .pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.2s + var(--i) * .11s); }
 @media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i { animation: none; } }
-.packs-zti:has(.ruban-pack) { margin-top: 110px; }
+.packs-zti:has(.ruban-pack) { margin-top: 120px; }
 @media (min-width: 901px) { .pack-zti.vedette:has(.ruban-pack) { margin-top: -12px; } }   /* la carte mise en avant dépasse légèrement les autres */
-@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 92px 4px 14px; } }
+@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
 
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
