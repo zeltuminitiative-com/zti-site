@@ -743,9 +743,10 @@ main .texte-image .grille { align-items: start; }
 main .preuve-zti { align-items: start; }
 
 /* Packs (23/11, validé par ZTi) : textes des cartes alignés à gauche (la justification creusait de grands blancs) */
-main .pack-zti p { text-align: left; hyphens: manual; -webkit-hyphens: manual; }
-/* pastille du pack mis en avant : étoiles « ★★★★★ Le plus sollicité » */
-.pastille-vedette { letter-spacing: .02em; }
+main .pack-zti p { text-align: left !important; hyphens: manual !important; -webkit-hyphens: manual !important; }   /* !important : la règle « Tout le site » vise #demande et l'emporte sinon */
+/* bande verte du pack mis en avant (23/11) : 5 étoiles, « Le plus sollicité » en dessous ; vert validé #15803D */
+.ruban-pack { display: flex; flex-direction: column; align-items: center; gap: 2px; margin: -4px -22px 14px; padding: 8px 12px; background: #15803D; color: #FFFFFF; text-align: center; font: 700 13px/1.25 var(--titres); letter-spacing: .02em; }
+.ruban-pack .etoiles { font-size: 17px; letter-spacing: .18em; color: #FFFFFF; }
 
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
