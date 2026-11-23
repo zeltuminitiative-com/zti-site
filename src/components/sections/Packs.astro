@@ -16,6 +16,7 @@ const coupe = (nom: string) => { const m = nom.match(/^\s*(pack\s*\d+)\s*[—–
       return (
         <article class={`pack-zti rv ${p.badge ? 'vedette' : ''}`}>
           {p.badge && <span class="pastille-vedette">{p.badge}</span>}
+          {p.ruban && <div class="ruban-pack"><span class="etoiles" aria-hidden="true">{[0, 1, 2, 3, 4].map(i => <i style={`--i:${i}`}>★</i>)}</span><span class="ruban-texte">{p.ruban}</span></div>}
           <span class="numero">{numero}</span>
           <h3>{titre}</h3>
           <p class="promesse">{p.promesse}</p>

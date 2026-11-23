@@ -11,7 +11,7 @@ export type Reglages = {
   signature: string;
   depuis: string;
   description: string;
-  contact: { email: string; whatsapp: string; telephone: string; adresse: string; horaires: string };
+  contact: { email: string; whatsapp: string; telephone: string; adresse: string; horaires: string; horaires_pied?: string };
   reseaux: { nom: string; adresse: string }[];
   communaute?: { facebook?: string; whatsapp?: string };
   // menu du haut : un élément peut avoir un sous-menu ; sans lien, il ouvre seulement son sous-menu (ex. « Nos offres ») ;

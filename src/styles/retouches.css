@@ -742,6 +742,56 @@ main .texte-image .grille { align-items: start; }
 /* La preuve : la photo commence au niveau du nom */
 main .preuve-zti { align-items: start; }
 
+/* Packs (23/11, validé par ZTi) : textes des cartes alignés à gauche (la justification creusait de grands blancs) */
+main .pack-zti p { text-align: left !important; hyphens: manual !important; -webkit-hyphens: manual !important; }   /* !important : la règle « Tout le site » vise #demande et l'emporte sinon */
+/* pack mis en avant (23/11, modèle de ZTi, couleurs de la charte uniquement) : UNE seule silhouette.
+   Cadre plein #1565FF (même bleu que la pastille), onglet bleu du logo #02008A qui sort du cadre comme un intercalaire
+   (bordure du cadre continue autour de l'onglet, raccords arrondis), étoiles #9FD0FF, texte blanc. La pastille
+   « Protection ZTi incluse » se place au centre, à la jonction onglet / carte. Mouvement sobre à l'apparition :
+   l'onglet monte, les étoiles s'allument l'une après l'autre. */
+.pack-zti.vedette:has(.ruban-pack) { border: 6px solid #1565FF; background: #FFFFFF; animation: none; border-radius: 20px; padding-top: 34px;
+  box-shadow: 0 26px 70px rgba(21,101,255,.38); }
+/* la pastille garde sa forme (pilule à cheval sur la carte), élargie à toute la largeur intérieure de l'onglet :
+   elle touche le cadre de chaque côté */
+.pack-zti.vedette:has(.ruban-pack) .pastille-vedette { left: auto; right: 0; transform: none; top: -12px; z-index: 2;
+  box-shadow: 0 0 0 3px #FFFFFF; }   /* taille d'origine, calée à droite jusqu'au cadre ; liseré blanc d'origine */
+.ruban-pack { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  box-sizing: border-box; width: 200px; padding: 6px 12px 19px; border: 6px solid #1565FF; border-bottom: 0; border-radius: 16px 16px 0 0; background: #02008A;
+  color: #FFFFFF; text-align: center; white-space: nowrap; font: 700 13px/1.2 var(--titres); letter-spacing: .03em; }
+/* raccords arrondis entre l'onglet et le cadre (coins concaves dans le bleu du cadre) */
+.ruban-pack::before, .ruban-pack::after { content: ''; position: absolute; bottom: 0; width: 14px; height: 14px; }
+.ruban-pack::before { right: 100%; margin-right: 6px; background: radial-gradient(circle at 0 0, transparent 13.5px, #1565FF 14px); }
+.ruban-pack::after { left: 100%; margin-left: 6px; background: radial-gradient(circle at 100% 0, transparent 13.5px, #1565FF 14px); }
+.ruban-pack .etoiles { display: flex; gap: 4px; margin-bottom: 1px; font-size: 14px; line-height: 1; color: #9FD0FF; }
+.ruban-pack .etoiles i { font-style: normal; display: inline-block; }
+.ruban-pack .ruban-texte { font-size: 12px; line-height: 1.15; color: #FFFFFF; }
+/* apparition : l'onglet monte depuis le cadre, puis les étoiles s'allument en cascade */
+/* l'onglet sort de la carte comme une étiquette tirée d'une fente : il monte et se dévoile au ras du cadre */
+@keyframes ruban-monte {
+  0% { transform: translate(-50%, 100%); clip-path: inset(-20px -24px 100% -24px); }
+  82% { transform: translate(-50%, -3px); clip-path: inset(-20px -24px 0 -24px); }
+  100% { transform: translate(-50%, 0); clip-path: inset(-20px -24px 0 -24px); } }
+/* essai (23/11) : la pastille arrive par le côté gauche et se pose au centre */
+@keyframes pastille-pose { from { opacity: 0; transform: translateX(-90px); } to { opacity: 1; transform: translateX(0); } }
+.pack-zti.rv.vu .pastille-vedette { animation: pastille-pose .5s 1.35s cubic-bezier(.3,1.4,.5,1) both; }
+@keyframes etoile-allume { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 70% { opacity: 1; transform: scale(1.25) rotate(0); } 100% { opacity: 1; transform: scale(1); } }
+.pack-zti.rv.vu .ruban-pack { animation: ruban-monte 1.2s .3s cubic-bezier(.22,.61,.36,1) both; }
+.pack-zti.rv.vu .ruban-pack .etoiles i { animation: etoile-allume .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(1.6s + var(--i) * .11s); }
+@media (prefers-reduced-motion: reduce) { .pack-zti.rv.vu .ruban-pack, .pack-zti.rv.vu .ruban-pack .etoiles i, .pack-zti.rv.vu .pastille-vedette { animation: none; } }
+.packs-zti:has(.ruban-pack) { margin-top: 120px; }
+/* ordinateur (23/11, demande de ZTi) : les 4 cartes ont la même hauteur et leurs paliers (trait, prise en charge,
+   « Tout voir ») sont alignés en bas, sur la même ligne */
+/* Rangées partagées (sous-grille) : numéro, titre, promesse, liste, prise en charge, « Tout voir » sont alignés d'une
+   carte à l'autre ; le texte reste en haut de sa rangée (pas de vide au milieu quand on ouvre « Tout voir »), l'espace
+   restant éventuel va tout en bas de la carte. */
+@media (min-width: 901px) {
+  .packs-zti:has(.ruban-pack) { align-items: stretch; grid-template-rows: repeat(6, auto); row-gap: 0; }
+  .packs-zti:has(.ruban-pack) .pack-zti { display: grid; grid-row: span 6; grid-template-rows: subgrid; align-content: start; }
+  .packs-zti:has(.ruban-pack) .pack-zti > * { align-self: start; }
+  .packs-zti:has(.ruban-pack) .pack-zti .delai { align-self: stretch; }   /* le trait au-dessus de « Prise en charge » sur la même ligne partout */
+}
+@media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
+
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
 .signature .signature-action { margin-top: 28px; display: flex; justify-content: center; }

@@ -158,6 +158,13 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <input id={`${id}-secteur_precis`} name="secteur_precis" maxlength="80" placeholder="Par exemple : Séminaire">
               <span class="erreur">Précisez le type (lettres uniquement).</span>
             </div>
+            <div class="champ" data-champ="statut" data-requis>
+              <span class="titre-champ" id={`${id}-statut`}>Statut de l'établissement</span>
+              <div class="choix" role="radiogroup" aria-labelledby={`${id}-statut`} data-choix="statut" data-unique>
+                {['Privé', 'Public'].map(c => <button type="button" role="radio" aria-checked="false" data-valeur={c}>{c}</button>)}
+              </div>
+              <span class="erreur">Choisissez une réponse.</span>
+            </div>
             {[q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { requis: true })].map(x => (
               <div class="champ" data-champ={x.nom} data-requis={x.requis ? '' : undefined}>
                 <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre}</span>

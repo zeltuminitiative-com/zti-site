@@ -175,6 +175,7 @@ components:
             fields:
               - { name: nom, type: string, label: Nom, required: true }
               - { name: badge, type: string, label: Badge (facultatif) }
+              - { name: ruban, type: string, label: Onglet avec 5 étoiles (facultatif) }
               - { name: promesse, type: string, label: Promesse }
               - { name: points, type: string, list: true, label: Ce qui est compris }
               - { name: delai, type: string, label: Prise en charge }
@@ -419,6 +420,7 @@ content:
           - { name: adresse, type: string, label: Adresse }
           - { name: quartier, type: string, label: Quartier, description: "Affiché dans le pied de page avant l'adresse (Messassi, Yaoundé, Cameroun) et lu par Google. Ex. Messassi." }
           - { name: horaires, type: string, label: Horaires de réponse }
+          - { name: horaires_pied, type: string, label: Horaires du pied de page (séparés par « · ») }
       - name: reseaux
         type: object
         list: true
