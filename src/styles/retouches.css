@@ -793,6 +793,11 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 }
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
 
+/* lien d'une carte de pack vers sa page (24/11 : Pack 4 → /offres/preservation/) */
+.pack-zti .pack-lien { display: inline-block; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
+.pack-zti .pack-lien::after { content: ' →'; }
+.pack-zti.vedette .pack-lien { color: #1565FF; }
+
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
 .signature .signature-action { margin-top: 28px; display: flex; justify-content: center; }
