@@ -75,7 +75,7 @@ sections:
         lien: /offres/diagnostic-ecoles/#packs
         lien_texte: Voir les packs
       - titre: Seule, sur devis
-        texte: "Pour les particuliers, les entreprises, les centres de formation et les autres organisations : ZTi évalue vos ordinateurs, prépare leur état de référence, installe et vérifie la protection."
+        texte: "Pour les ordinateurs jugés en bonne santé après l'analyse de ZTi : installation et configuration de la protection, active pendant 24 mois. Un suivi annuel facultatif tient l'état de référence à jour (Windows, antivirus, logiciels). Renouvelable après 24 mois."
         lien: /contact/
         lien_texte: Demander un devis
   - type: questions
@@ -93,7 +93,9 @@ sections:
       - question: Protège-t-elle contre les rançongiciels ?
         reponse: "Elle remet le système en état, mais ne peut pas rendre des fichiers déjà chiffrés. Vos défenses : un antivirus à jour, la prudence avec les pièces jointes et une copie régulière de vos dossiers sur un support séparé."
       - question: Peut-on protéger un ordinateur déjà utilisé ?
-        reponse: "Oui, après une évaluation : ZTi examine l'état du poste et prépare son état de référence avant de mettre la protection en place."
+        reponse: "Oui, s'il est en bonne santé. ZTi analyse d'abord le poste. S'il a besoin d'un entretien, nous vous le disons avant toute installation ; sinon, nous préparons son état de référence et mettons la protection en place."
+      - question: Combien de temps dure la protection ?
+        reponse: "24 mois, avec le Pack 3 comme avec la formule seule. Pendant cette période, le suivi annuel facultatif met à jour l'état de référence de vos postes. Après 24 mois, la protection se renouvelle."
       - question: Le Pack 4 renouvelle-t-il la Protection ZTi ?
         reponse: "Non. Pour les postes équipés avec le Pack 3, le Pack 4 contrôle son bon fonctionnement pendant la deuxième année. Il ne prolonge pas la durée de 24 mois."
 ---
