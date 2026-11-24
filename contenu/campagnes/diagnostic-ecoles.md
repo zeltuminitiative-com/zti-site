@@ -157,6 +157,8 @@ sections:
           - Contrôle de la Protection ZTi
         delai: Prise en charge prioritaire
         condition: Pour les postes ayant reçu le Pack 3, l'année précédente.
+        lien: /offres/preservation/
+        lien_texte: Découvrir le Pack 4
         detail:
           - Dépoussiérage clavier, moniteur, unité centrale
           - Remplacement de la pâte thermique
@@ -230,7 +232,7 @@ sections:
       - question: Et en cas de rançongiciel ?
         reponse: "La Protection ZTi remet le système en état, mais ne peut pas rendre des fichiers déjà chiffrés. Vos défenses : un antivirus à jour, la prudence avec les pièces jointes et une copie régulière de vos dossiers sur un support séparé."
       - question: Comment savoir si tout fonctionne ?
-        reponse: Le procès-verbal de réception constate l'état de chaque poste. Ensuite, le Pack 4 contrôle chaque année, poste par poste, la Protection ZTi, la sauvegarde automatique et l'isolation des données.
+        reponse: Le procès-verbal de réception constate l'état de chaque poste. Ensuite, le [Pack 4](/offres/preservation/) contrôle chaque année, poste par poste, la Protection ZTi, la sauvegarde automatique et l'isolation des données.
   - type: demande
     fond: bleu
     ancre: demande
