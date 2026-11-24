@@ -39,7 +39,7 @@ sections:
     titre: Ce à quoi nous nous engageons.
     cartes:
       - titre: Vous répondre
-        texte: "Vos messages sont reçus 24 h/24, 7 j/7. Nous y répondons les jours ouvrables, de 8 h à 20 h, et nous vous rappelons sous 48 heures ouvrables, au moment que vous avez choisi."
+        texte: "Vos messages : reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h. Nous vous rappelons sous 48 heures ouvrables, au moment que vous avez choisi."
       - titre: Diagnostiquer avant d'agir
         texte: "Nous observons votre matériel avant de recommander la moindre intervention. Si une remise en état suffit, nous ne vous proposerons pas un remplacement."
       - titre: Un devis clair
@@ -58,7 +58,7 @@ sections:
     texte: |-
       | Situation | Notre engagement |
       | --- | --- |
-      | Vos messages | Reçus 24 h/24, 7 j/7 ; réponse les jours ouvrables, de 8 h à 20 h |
+      | Vos messages | Reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h |
       | Rappel après une demande | Sous 48 heures ouvrables, au moment choisi, par WhatsApp |
       | Visites sur site | De 8 h à 15 h, les jours ouvrables (du lundi au samedi) |
       | Prise en charge d'un signalement | Pack 1 : 48 h · Pack 2 : 24 h · Pack 3 : prioritaire |
