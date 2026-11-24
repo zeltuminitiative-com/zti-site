@@ -808,11 +808,15 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 /* 24/11 (ZTi) : sur la carte qui a ce lien (Pack 4), le contenu remonte (pas de vide sous la liste) ; « Tout voir »
    et le lien sont sur deux lignes */
 @media (min-width: 901px) {
-  .packs-zti:has(.ruban-pack) .pack-zti:has(.pack-lien) { display: flex; flex-direction: column; }
+  .packs-zti:has(.ruban-pack) .pack-zti:has(.pack-lien) { display: flex; flex-direction: column; padding-top: 38px; }   /* 2 + 38 = 40 px comme le haut du Pack 3 (6 + 34) : titres alignés */
   /* quand on ouvre « Tout voir » de cette carte, la hauteur en plus va dans la dernière rangée seulement (sinon elle
      se répartit sur toutes les rangées et crée des vides dans les autres cartes) */
   .packs-zti:has(.ruban-pack) { grid-template-rows: repeat(5, auto) 1fr; }
 }
+/* 24/11 (ZTi) : cadres des packs 1 et 2 dans le bleu du cadre du Pack 3 ; Pack 4 (carte avec lien) sur fond bleu nuit,
+   la suite du Pack 3 sans lui disputer la vedette */
+.packs-zti:has(.ruban-pack) .pack-zti:not(.vedette) { border: 2px solid #1565FF; }
+.packs-zti:has(.ruban-pack) .pack-zti:not(.vedette):has(.pack-lien) { background: #02008A; border-color: #02008A; }
 .pack-zti .pack-lien { display: block; width: fit-content; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
 .pack-zti .pack-lien::after { content: ' →'; }
 .pack-zti.vedette .pack-lien { color: #1565FF; }
