@@ -240,7 +240,7 @@ sections:
     texte: |-
       **Interventions sur site :** du lundi au samedi, de 8 h à 15 h.
 
-      **Vos messages :** reçus 24 h/24, 7 j/7 et traités les jours ouvrables, de 8 h à 20 h.
+      **Vos messages :** reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h.
     sujet: Diagnostic offert (écoles)
     formulaire: ecoles
     profil: ecole
@@ -248,7 +248,6 @@ sections:
     garanties: [Diagnostic sur site et Fiche de Parc offerts, Déplacement compris dans la ville de Yaoundé, Vous restez l'unique décideur]
     garanties_bouton: [Offert, Sans engagement, Vous restez l'unique décideur]
     bouton: Je réserve mon diagnostic offert
-    mention: "Messages reçus 24 h/24, 7 j/7 · Réponse les jours ouvrables, de 8 h à 20 h."
   - type: signature
     fond: blanc
     titre: Valorisation et préservation de votre investissement informatique

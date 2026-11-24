@@ -95,14 +95,13 @@ sections:
     texte: |-
       **Interventions sur site :** du lundi au samedi, de 8 h à 15 h.
 
-      **Vos messages :** reçus 24 h/24, 7 j/7 et traités les jours ouvrables, de 8 h à 20 h.
+      **Vos messages :** reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h.
     sujet: Pack 4 Préservation (écoles)
     formulaire: ecoles
     profil: ecole
     besoins: [Salle TIC, Secrétariat / Administration, Pannes, Lenteurs, Virus / clés USB, Perte de données]
     garanties: [Réservé aux postes ayant reçu le Pack 3 au cours des 12 derniers mois, Déplacement compris dans la ville de Yaoundé, Prise en charge prioritaire]
     bouton: Je planifie mon entretien
-    mention: "Messages reçus 24 h/24, 7 j/7 · Réponse les jours ouvrables, de 8 h à 20 h."
   - type: signature
     fond: blanc
     titre: Valorisation et préservation de votre investissement informatique
