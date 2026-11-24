@@ -50,7 +50,10 @@ menu:
         lien: /services/canal-plus/
         en_ligne: false
   - texte: Nos offres
+    lien: /#services
     sous_menu:
+      - texte: Toutes nos offres
+        lien: /#pour-qui
       - texte: Écoles
         lien: /offres/diagnostic-ecoles/
       - texte: Entreprises
