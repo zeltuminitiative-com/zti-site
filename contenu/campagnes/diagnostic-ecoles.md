@@ -129,7 +129,7 @@ sections:
           - Dépoussiérage clavier, moniteur, unité centrale
           - Remplacement de la pâte thermique
           - Lubrification des ventilateurs
-          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - Dépannage des pièces en voie de dysfonctionnement
           - "Administration : deux périphériques additionnels par poste"
           - Prise en charge sous 24 h (administration prioritaire)
       - nom: "Pack 3 : Continuité"
