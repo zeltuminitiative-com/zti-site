@@ -14,9 +14,10 @@ sans_menu: true
 sections:
   - type: accroche
     fond: nuit
-    pastilles: [Établissements déjà accompagnés par ZTi, "Pack 4 : Préservation · Entretenir sans réinstaller"]
+    pastilles: [Établissements déjà accompagnés par ZTi]
     titre: Votre parc informatique mérite un suivi, pas une nouvelle remise à zéro.
     titre_une_ligne: true
+    bas_remonte: true
     accent: un suivi
     bouton:
       texte: Planifier mon entretien
@@ -27,6 +28,7 @@ sections:
     sous_bouton: Réservé aux postes ayant reçu le Pack 3
     image: /images/redemarrage-salle-tic.webp
     presentation: plein-ecran
+    bas: "Pack 4 : Préservation · Entretenir sans réinstaller"
   - type: cartes
     fond: blanc
     ancre: cycle
