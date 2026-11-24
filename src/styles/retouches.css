@@ -809,6 +809,9 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
    et le lien sont sur deux lignes */
 @media (min-width: 901px) {
   .packs-zti:has(.ruban-pack) .pack-zti:has(.pack-lien) { display: flex; flex-direction: column; }
+  /* quand on ouvre « Tout voir » de cette carte, la hauteur en plus va dans la dernière rangée seulement (sinon elle
+     se répartit sur toutes les rangées et crée des vides dans les autres cartes) */
+  .packs-zti:has(.ruban-pack) { grid-template-rows: repeat(5, auto) 1fr; }
 }
 .pack-zti .pack-lien { display: block; width: fit-content; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
 .pack-zti .pack-lien::after { content: ' →'; }
