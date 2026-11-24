@@ -43,7 +43,7 @@ sections:
       - titre: Diagnostiquer avant d'agir
         texte: "Nous observons votre matériel avant de recommander la moindre intervention. Si une remise en état suffit, nous ne vous proposerons pas un remplacement."
       - titre: Un devis clair
-        texte: "Matériel, main-d'œuvre, délais, garantie et conditions de paiement sont détaillés par écrit, sans frais cachés. Rien ne commence sans votre accord."
+        texte: "Matériel, délais, garantie et conditions de paiement sont détaillés par écrit, sans frais cachés. Rien ne commence sans votre accord."
       - titre: Vous prévenir
         texte: "Les délais annoncés sont réalistes. En cas d'imprévu, nous vous prévenons dès que nous le savons, avec un nouveau délai."
       - titre: Respecter vos données
@@ -81,7 +81,7 @@ sections:
       - question: Le diagnostic est-il payant ?
         reponse: "Le diagnostic initial est une prestation de ZTi qui a une valeur : relevé de l'état de chaque poste, déplacement, Fiche de Parc et recommandations. Lors de nos campagnes, il est offert et sans engagement ; sa valeur figure alors sur la proforma, avec une remise qui le ramène à zéro. Lorsqu'une machine exige des tests plus poussés (démontage, contrôle des composants), un diagnostic approfondi en atelier est proposé sur devis ; ses frais sont déduits de la facture de réparation si le devis est accepté."
       - question: Que couvre le suivi après l'intervention ?
-        reponse: "ZTi assure le suivi de votre parc pendant 14 jours ouvrables à partir de la signature du procès-verbal de réception : assistance à distance par WhatsApp, et reprise sans frais de main-d'œuvre de tout défaut d'exécution sur une opération réalisée par ZTi. Une visite sur site pendant cette période donne lieu à des frais de déplacement de 5 000 FCFA par jour. La [Protection ZTi](/services/protection-zti/) (Pack 3) reste active pendant 24 mois."
+        reponse: "ZTi assure le suivi de votre parc pendant 14 jours ouvrables à partir de la signature du procès-verbal de réception : assistance à distance par WhatsApp, et reprise sans frais de tout défaut d'exécution sur une opération réalisée par ZTi. Une visite sur site pendant cette période donne lieu à des frais de déplacement de 5 000 FCFA par jour. La [Protection ZTi](/services/protection-zti/) (Pack 3) reste active pendant 24 mois."
       - question: Qu'est-ce qui n'est pas couvert ?
         reponse: "La reprise sans frais ne couvre pas les dégradations dues à une intervention ou une manipulation des utilisateurs du parc, les pannes sans lien avec nos opérations, les dommages d'origine électrique, ni le vol ou la disparition de composants. Les pièces fournies sont couvertes par la garantie de leur fabricant ou de leur fournisseur : ZTi garantit leur installation, pas la pièce elle-même."
       - question: Comment se règle une intervention ?
