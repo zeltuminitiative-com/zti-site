@@ -52,7 +52,7 @@ sections:
       - titre: Entretien physique et thermique
         texte: "Dépoussiérage et nettoyage approfondi (lavage) du clavier, de la souris, du moniteur et de l'unité centrale. Remplacement de la pâte thermique, lubrification des ventilateurs."
       - titre: Maintenance matérielle
-        texte: "Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre) et contrôle de l'état général de chaque poste."
+        texte: "Dépannage des pièces en voie de dysfonctionnement et contrôle de l'état général de chaque poste."
       - titre: Contrôle de la Protection ZTi
         texte: "Vérification du bon fonctionnement de la Protection ZTi, qui poursuit sa deuxième année sur chaque poste."
       - titre: Sécurité électrique et données

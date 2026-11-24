@@ -160,13 +160,13 @@ sections:
         lien: /offres/preservation/
         lien_texte: Découvrir le Pack 4
         detail:
-          - Dépoussiérage clavier, moniteur, unité centrale
-          - Remplacement de la pâte thermique
-          - Lubrification des ventilateurs
-          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - Dépannage des pièces en voie de dysfonctionnement
           - Nettoyage approfondi (lavage)
           - Contrôle du bon fonctionnement de la Protection ZTi
           - Vérification des équipements de sécurité électrique
+          - Dépoussiérage clavier, moniteur, unité centrale
+          - Remplacement de la pâte thermique
+          - Lubrification des ventilateurs
           - Contrôle de l'état général et constat de sortie poste par poste
           - "Administration : contrôle de la sauvegarde automatique et de l'isolation des données"
           - Prise en charge prioritaire
