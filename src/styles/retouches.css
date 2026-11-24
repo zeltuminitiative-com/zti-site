@@ -805,7 +805,12 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 }
 
 /* lien d'une carte de pack vers sa page (24/11 : Pack 4 → /offres/preservation/) */
-.pack-zti .pack-lien { display: inline-block; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
+/* 24/11 (ZTi) : sur la carte qui a ce lien (Pack 4), le contenu remonte (pas de vide sous la liste) ; « Tout voir »
+   et le lien sont sur deux lignes */
+@media (min-width: 901px) {
+  .packs-zti:has(.ruban-pack) .pack-zti:has(.pack-lien) { display: flex; flex-direction: column; }
+}
+.pack-zti .pack-lien { display: block; width: fit-content; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
 .pack-zti .pack-lien::after { content: ' →'; }
 .pack-zti.vedette .pack-lien { color: #1565FF; }
 
