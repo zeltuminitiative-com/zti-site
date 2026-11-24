@@ -46,6 +46,8 @@ const services = defineCollection({
     campagne: z.string().optional(),
     ordre: z.number().default(50),
     en_ligne: z.boolean().default(true),
+    // sections facultatives sous le texte (mêmes blocs que les pages), ex. page Protection ZTi (24/11)
+    sections: z.array(section).default([]),
   }),
 });
 
