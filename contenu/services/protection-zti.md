@@ -13,8 +13,25 @@ campagne: diagnostic-ecoles
 ordre: 3
 en_ligne: true
 sections:
+  - type: accroche
+    fond: nuit
+    pastilles: [Écoles, Entreprises, Institutions, Particuliers]
+    titre: Un poste propre à chaque redémarrage
+    accent: redémarrage
+    texte: "La Protection ZTi restaure automatiquement l'environnement informatique : vos ordinateurs retrouvent leur état de référence."
+    bouton:
+      texte: Demander un diagnostic
+      lien: "#demande"
+    lien_secondaire:
+      texte: Voir le principe
+      lien: "#principe"
+    sous_bouton: Offert - Sans engagement
+    image: /images/protection-zti-redemarrage.webp
+    presentation: plein-ecran
+    bas: "Votre outil informatique doit travailler pour vous, pas l'inverse. Écoles · Entreprises · Institutions · Particuliers"
   - type: cartes
     fond: ivoire
+    ancre: principe
     etiquette: Le principe
     titre: "Utiliser, redémarrer, retrouver un poste propre."
     texte: "Un ordinateur bien configuré aujourd'hui peut devenir difficile à utiliser quelques semaines plus tard : logiciels ajoutés, réglages changés, virus venus d'une clé USB. La Protection ZTi supprime ces changements à chaque redémarrage."
