@@ -793,6 +793,10 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 }
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
 
+/* héro plein écran, option « titre_une_ligne » (24/11, page Préservation) : la première partie du titre sur une seule
+   ligne sur ordinateur (colonne de texte élargie) ; sur téléphone elle revient à la ligne normalement */
+@media (min-width: 901px) { .titre-une-ligne .texte-d { max-width: 760px; } .titre-une-ligne .avant-d { white-space: nowrap; } }
+
 /* lien d'une carte de pack vers sa page (24/11 : Pack 4 → /offres/preservation/) */
 .pack-zti .pack-lien { display: inline-block; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
 .pack-zti .pack-lien::after { content: ' →'; }
