@@ -21,7 +21,7 @@ const offre = d.campagne ? (campagnes.find(c => c.id === d.campagne) ? `/offres/
     <div class="contenu">
       <div class="grille">
         <div>
-          <p class="fil"><a href={lien('/services/')}>Nos services</a> › {d.titre}</p>
+          <p class="fil"><a href={lien('/#services')}>Nos services</a> › {d.titre}</p>
           {d.publics.length > 0 && <ul class="publics-tags">{d.publics.map(p => <li>{PUBLICS[p] || p}</li>)}</ul>}
           <h1>{d.titre}</h1>
           {d.accroche && <p class="chapo">{d.accroche}</p>}
