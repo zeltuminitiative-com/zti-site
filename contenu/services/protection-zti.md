@@ -98,6 +98,10 @@ sections:
         reponse: "24 mois, avec le Pack 3 comme avec la formule seule. Pendant cette période, le suivi annuel facultatif met à jour l'état de référence de vos postes. Après 24 mois, la protection se renouvelle."
       - question: Le Pack 4 renouvelle-t-il la Protection ZTi ?
         reponse: "Non. Pour les postes équipés avec le Pack 3, le Pack 4 contrôle son bon fonctionnement pendant la deuxième année. Il ne prolonge pas la durée de 24 mois."
+  - type: signature
+    fond: blanc
+    titre: Valorisation et préservation de votre investissement informatique
+    slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---
 **Vos ordinateurs changent au fil des utilisations.** Logiciels installés sans autorisation, réglages modifiés, virus venus d'une clé USB : les changements s'accumulent, les postes ne se ressemblent plus et les remises en état se répètent.
 
