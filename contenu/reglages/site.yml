@@ -38,9 +38,11 @@ menu:
   - texte: Nos services
     sous_menu:
       - texte: Tous nos services
-        lien: /services/
+        lien: /#services
       - texte: Maintenance informatique
         lien: /services/maintenance-du-parc/
+      - texte: Protection ZTi
+        lien: /services/protection-zti/
       - texte: Récupération des données
         lien: /services/sauvegarde-des-donnees/
       - texte: Réseau informatique
@@ -51,6 +53,8 @@ menu:
         en_ligne: false
   - texte: Nos offres
     sous_menu:
+      - texte: Toutes nos offres
+        lien: /#pour-qui
       - texte: Écoles
         lien: /offres/diagnostic-ecoles/
       - texte: Entreprises

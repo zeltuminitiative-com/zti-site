@@ -13,13 +13,14 @@ sections:
       lien: "#demande"
     lien_secondaire:
       texte: Découvrir nos services
-      lien: /services/
+      lien: "#services"
     sous_bouton: Offert · Sans engagement
     image: /images/dirigeant.jpg
     cadrage: droite
     bas: Votre outil informatique doit travailler pour vous, pas l'inverse.
   - type: cartes
     fond: ivoire
+    ancre: pour-qui
     etiquette: Pour qui
     titre: Une solution pour chacun.
     cartes:

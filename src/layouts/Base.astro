@@ -36,7 +36,8 @@ const reseaux = (r.reseaux || []).map((x: any) => (x.adresse || '').trim()).filt
 const chemin = Astro.url.pathname;
 const ariane = chemin === lien('/') ? [] : [
   { nom: 'Accueil', url: accueil },
-  ...(chemin.startsWith(lien('/services/')) && chemin !== lien('/services/') ? [{ nom: 'Nos services', url: new URL(lien('/services/'), Astro.site).href }] : []),
+  // page /services/ supprimée (24/11) : « Nos services » renvoie à la section de l'accueil
+  ...(chemin.startsWith(lien('/services/')) && chemin !== lien('/services/') ? [{ nom: 'Nos services', url: new URL(lien('/#services'), Astro.site).href }] : []),
   { nom: titre, url: adresse },
 ];
 // téléphones (réglages) : appels au +237 676 165 772, WhatsApp au +237 699 324 689 (choix de ZTi du 11/11)
