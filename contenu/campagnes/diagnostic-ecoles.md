@@ -160,7 +160,7 @@ sections:
         lien: /offres/preservation/
         lien_texte: Découvrir le Pack 4
         detail:
-          - Dépannage des pièces en voie de dysfonctionnement (main-d'œuvre)
+          - Dépannage des pièces en voie de dysfonctionnement
           - Nettoyage approfondi (lavage)
           - Contrôle du bon fonctionnement de la Protection ZTi
           - Vérification des équipements de sécurité électrique
