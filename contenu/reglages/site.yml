@@ -41,6 +41,8 @@ menu:
         lien: /#services
       - texte: Maintenance informatique
         lien: /services/maintenance-du-parc/
+      - texte: Protection ZTi
+        lien: /services/protection-zti/
       - texte: Récupération des données
         lien: /services/sauvegarde-des-donnees/
       - texte: Réseau informatique
