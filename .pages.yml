@@ -180,6 +180,8 @@ components:
               - { name: points, type: string, list: true, label: Ce qui est compris }
               - { name: delai, type: string, label: Prise en charge }
               - { name: condition, type: string, label: Condition (facultative), description: "Ex. : pour les postes ayant reçu le Pack 3." }
+              - { name: lien, type: string, label: Lien vers la page du pack (facultatif), description: "Ex. : /offres/preservation/" }
+              - { name: lien_texte, type: string, label: Texte du lien (facultatif), description: "Ex. : Découvrir le Pack 4" }
               - { name: detail, type: string, list: true, label: « Tout voir » : liste complète }
           - { name: compris_titre, type: string, label: Titre de l'encadré commun }
           - { name: compris, type: string, list: true, label: Compris dans tous les packs }

@@ -3,6 +3,7 @@
 // promesse, 3 tâches principales, prise en charge (+ condition), « Tout voir » (liste complète), pack mis en avant
 // (badge) sur fond blanc avec liseré animé, encadré « Compris dans tous les packs ».
 import Cadre from './Cadre.astro';
+import { lien } from '../../lib/contenu';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
 const packs = (s.packs || []).filter((p: any) => p.nom);
 const base = `pk-${Math.random().toString(36).slice(2, 7)}`;
@@ -26,6 +27,7 @@ const coupe = (nom: string) => { const m = nom.match(/^\s*(pack\s*\d+)\s*[—–
             <div class="plus-pack">
               <button type="button" class="tout-voir" aria-expanded="false" aria-controls={`${base}-${i}`}>Tout voir</button>
               <ul class="detail" id={`${base}-${i}`} hidden>{p.detail.map((x: string) => <li>{x}</li>)}</ul>
+              {p.lien && <a class="pack-lien" href={lien(p.lien)}>{p.lien_texte || 'En savoir plus'}</a>}
             </div>
           ) : <span />}
         </article>

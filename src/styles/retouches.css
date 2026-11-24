@@ -793,6 +793,22 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 }
 @media (max-width: 900px) { .packs-zti:has(.ruban-pack) { margin-top: 20px; padding: 104px 4px 14px; } }
 
+/* héro plein écran, option « titre_une_ligne » (24/11, page Préservation) : la première partie du titre sur une seule
+   ligne sur ordinateur (colonne de texte élargie) ; sur téléphone elle revient à la ligne normalement */
+@media (min-width: 901px) { .titre-une-ligne .texte-d { max-width: 760px; } .titre-une-ligne .avant-d { white-space: nowrap; } }
+/* option « bas_remonte » (24/11, page Préservation) : l'ensemble du héro remonte ; la phrase du bas suit le contenu
+   (même style, même animation) au lieu d'être collée au bas de l'écran */
+@media (min-width: 901px) {
+  /* :not(#zti) et body:has() : plus fort que les règles du héro plein écran (100svh, marge haute de 204 px sous la barre) */
+  body:has(.accroche-d) .accroche-d.bas-remonte:not(#zti) { min-height: 0; padding-top: 150px; padding-bottom: 44px; }
+  .accroche-d.bas-remonte .pied-d { position: relative; bottom: auto; margin-top: 56px; }
+}
+
+/* lien d'une carte de pack vers sa page (24/11 : Pack 4 → /offres/preservation/) */
+.pack-zti .pack-lien { display: inline-block; margin-top: 10px; font: 700 13px var(--titres); color: #9FD0FF; text-decoration: underline; text-underline-offset: 3px; }
+.pack-zti .pack-lien::after { content: ' →'; }
+.pack-zti.vedette .pack-lien { color: #1565FF; }
+
 /* Signature (20/11, choix de ZTi) : bouton « Pourquoi travailler avec ZTi ? » sous le slogan, en contour bleu du logo
    (discret, pour ne pas concurrencer « Contacter ZTi » et le formulaire) ; absent de la page Travailler avec ZTi */
 .signature .signature-action { margin-top: 28px; display: flex; justify-content: center; }
