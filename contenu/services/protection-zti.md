@@ -35,7 +35,7 @@ sections:
     presentation: plein-ecran
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse."
   - type: cartes
-    fond: ivoire
+    fond: nuit
     ancre: principe
     etiquette: Le principe
     titre: "Utiliser, redémarrer, retrouver un poste propre."
@@ -65,7 +65,7 @@ sections:
     legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
     image_position: gauche
   - type: cartes
-    fond: ivoire
+    fond: noir
     etiquette: Pour qui
     titre: "Partout où des ordinateurs sont partagés, et à la maison."
     cartes:
@@ -98,7 +98,7 @@ sections:
         lien_texte: Voir les packs
       - titre: Seule, sur devis
         texte: "Pour les ordinateurs jugés en bonne santé après l'analyse de ZTi : installation et configuration de la protection, active pendant 24 mois. Un suivi annuel facultatif tient l'état de référence à jour (Windows, antivirus, logiciels). Renouvelable après 24 mois."
-        lien: /contact/
+        lien: "#demande"
         lien_texte: Demander un devis
   - type: questions
     fond: nuit
