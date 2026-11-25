@@ -88,6 +88,11 @@ sections:
         reponse: "Non. Le système et la Protection ZTi installés avec le Pack 3 sont conservés. Le Pack 4 entretient le matériel et contrôle que tout fonctionne."
       - question: Comment savoir si nos postes y ont droit ?
         reponse: "Contactez ZTi : nous vérifions la date du procès-verbal de réception de votre Pack 3 et planifions l'intervention avec vous."
+  - type: references
+    fond: ivoire
+    etiquette: Nos références
+    titre: Ils nous ont fait confiance.
+    texte: Institutions, entreprises et établissements scolaires accompagnés par ZTi.
   - type: demande
     fond: bleu
     ancre: demande

@@ -15,14 +15,16 @@ import Demande from './sections/Demande.astro';
 import Avis from './sections/Avis.astro';
 import Diagnostic from './sections/Diagnostic.astro';
 import Galerie from './sections/Galerie.astro';
+import DemandeCibles from './sections/DemandeCibles.astro';
 
-const { sections = [], page = '', campagne = '' } = Astro.props as { sections: any[]; page?: string; campagne?: string };
+// debut : rang de la première section affichée, quand une page affiche ses sections en plusieurs fois (pages de services)
+const { sections = [], page = '', campagne = '', debut = 0 } = Astro.props as { sections: any[]; page?: string; campagne?: string; debut?: number };
 const composants: Record<string, any> = {
   accroche: Accroche, texte_image: TexteImage, cartes: Cartes, services: ListeServices, calculateur: Calculateur,
-  packs: Packs, preuve: Preuve, references: References, questions: Questions, signature: Signature, appel: Appel, demande: Demande, avis: Avis, diagnostic: Diagnostic, galerie: Galerie,
+  packs: Packs, preuve: Preuve, references: References, questions: Questions, signature: Signature, appel: Appel, demande: Demande, avis: Avis, diagnostic: Diagnostic, galerie: Galerie, demande_cibles: DemandeCibles,
 };
 ---
 {sections.map((s, i) => {
   const C = composants[s.type];
-  return C ? <C s={s} premier={i === 0} page={page} campagne={campagne} /> : null;
+  return C ? <C s={s} premier={i + debut === 0} page={page} campagne={campagne} /> : null;
 })}

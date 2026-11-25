@@ -1,0 +1,46 @@
+---
+// Demande en deux temps (25/11, page Protection ZTi) : 1. le visiteur choisit sa cible (établissement scolaire,
+// entreprise, institution, particulier) ; 2. le formulaire complet s'affiche dessous : celui de la page école, adapté
+// à la cible (Demande.astro, variante « cible »). Le sujet de la demande indique la page et la cible.
+import { getCollection } from 'astro:content';
+import Cadre from './Cadre.astro';
+import Demande from './Demande.astro';
+const { s, premier = false, page, campagne = '' } = Astro.props as { s: any; premier?: boolean; page: string; campagne?: string };
+const sujet = String(s.sujet || 'Demande');
+const campagnes = await getCollection('campagnes');
+const sectionDe = (id: string, type: string) => (campagnes.find(c => c.id === id)?.data.sections || []).find((x: any) => x.type === type) || {};
+// 25/11 (ZTi) : seul le formulaire de la page école est terminé ; il sert de modèle aux quatre cibles (variante « cible »)
+const ecole = sectionDe('diagnostic-ecoles', 'demande');
+const besoinsPro = ['Pannes', 'Lenteurs', 'Virus / clés USB', 'Perte de données', 'Logiciels installés sans autorisation', 'Réglages modifiés'];
+const cibles = [
+  { cle: 'ecole', texte: 'Établissement scolaire', titre: 'Votre établissement', besoins: ecole.besoins || besoinsPro },
+  { cle: 'entreprise', texte: 'Entreprise', titre: 'Votre entreprise', besoins: besoinsPro },
+  { cle: 'institution', texte: 'Institution', titre: 'Votre institution', besoins: besoinsPro },
+  { cle: 'particulier', texte: 'Particulier', titre: 'Vos ordinateurs', besoins: ['Ordinateur lent', 'Virus ou publicités', 'Fichiers perdus', 'Logiciels installés sans autorisation', 'Réglages modifiés'] },
+].map(c => ({ ...c, C: Demande, s: { fond: 'bleu', ancre: `demande-${c.cle}`, titre: ecole.titre || c.titre, texte: ecole.texte,   // 25/11 (ZTi) : même mise en forme que la page école
+  formulaire: 'cible', cible: c.cle, besoins: c.besoins,
+  // garanties de la page école pour l'école seulement (Fiche de Parc, déplacement : offre scolaire) ; ailleurs, ce qui vaut pour tous
+  garanties: c.cle === 'ecole' ? ecole.garanties : ["Vous restez l'unique décideur"], garanties_bouton: c.cle === 'ecole' ? ecole.garanties_bouton : ['Sans engagement', "Vous restez l'unique décideur"], bouton: 'Envoyer ma demande',
+  sujet: `${sujet} (${c.texte.toLowerCase()})` } }));
+---
+<Cadre premier={premier} s={s} defaut="bleu" id={s.ancre || 'demande'} classe="demande-cibles">
+  <div class="cibles rv" role="group" aria-label="Vous êtes">
+    {cibles.map(c => <button type="button" class="cible" aria-pressed="false" aria-controls={`demande-${c.cle}`} data-cible={c.cle}>{c.texte}<span class="fleche" aria-hidden="true">→</span></button>)}
+  </div>
+</Cadre>
+{cibles.map(c => (
+  <div class="cible-formulaire" data-pour={c.cle} hidden>
+    <c.C s={c.s} page={page} campagne={campagne} />
+  </div>
+))}
+<script>
+  document.querySelectorAll<HTMLElement>('.demande-cibles').forEach(bloc => {
+    const boutons = [...bloc.querySelectorAll<HTMLButtonElement>('[data-cible]')];
+    boutons.forEach(b => b.addEventListener('click', () => {
+      boutons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      let cible: HTMLElement | null = null;
+      document.querySelectorAll<HTMLElement>('.cible-formulaire').forEach(f => { const ok = f.dataset.pour === b.dataset.cible; f.hidden = !ok; if (ok) cible = f; });
+      if (cible) { (cible as HTMLElement).querySelectorAll('.rv').forEach(e => e.classList.add('vu')); (cible as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }));
+  });
+</script>

@@ -14,8 +14,14 @@ const r = await reglages();
 // photo jointe (formulaire école) : envoyée au script Google Drive de ZTi ; la case n'apparaît que si son adresse est réglée
 const photos = (r.mesures?.photos || '').trim();
 const id = s.ancre || 'demande';
-const variante: string = ['general', 'ecoles', 'entreprises', 'particuliers'].includes(s.formulaire) ? s.formulaire : 'general';
-const profilFixe = ({ ecoles: 'Établissement scolaire', entreprises: 'Entreprise', particuliers: 'Particulier' } as any)[variante] || '';
+const variante: string = ['general', 'ecoles', 'entreprises', 'particuliers', 'cible'].includes(s.formulaire) ? s.formulaire : 'general';
+// « cible » (25/11, page Protection ZTi) : le formulaire complet de la page école, adapté à une cible (s.cible) :
+// ecole (identique à la page école), entreprise, institution, particulier. Mêmes champs, donc même traitement (site.js, serveur).
+const cibleCle: string = variante === 'cible' && ['ecole', 'entreprise', 'institution', 'particulier'].includes(s.cible) ? s.cible : 'ecole';
+const modeleEcole = variante === 'ecoles' || variante === 'cible';
+const profilFixe = variante === 'cible'
+  ? ({ ecole: 'Établissement scolaire', entreprise: 'Entreprise', institution: 'Institution', particulier: 'Particulier' } as any)[cibleCle]
+  : ({ ecoles: 'Établissement scolaire', entreprises: 'Entreprise', particuliers: 'Particulier' } as any)[variante] || '';
 
 const profils = [['ecole', 'Établissement scolaire'], ['entreprise', 'Entreprise'], ['institution', 'Institution'], ['particulier', 'Particulier']];
 const besoins: string[] = s.besoins?.length ? s.besoins : (await services()).map(x => x.data.titre);
@@ -57,7 +63,33 @@ const villes = ['Yaoundé', 'Douala', 'Bafoussam', 'Autre ville'];
 const problemes = ['Ordinateur lent', 'Virus', 'Fichiers perdus ou cachés', 'Ne démarre plus', 'Écran, clavier ou batterie', 'Installation de Windows ou de logiciels', 'Autre'];
 const appareils = ['Ordinateur portable', 'Ordinateur de bureau', 'Clé USB ou disque dur', 'Autre'];
 
-const etapes = variante === 'entreprises' ? ['Votre entreprise', 'Votre situation', 'Vos coordonnées'] : variante === 'ecoles' ? ["L'établissement", 'Vos coordonnées'] : [''];
+// réglages du modèle école selon la cible (cible « ecole » = textes et listes de la page école, inchangés)
+type Modele = { etape: string; org?: { label: string; ph: string; erreur: string }; type?: { titre: string; groupes: [string, string[]][]; precis: string; ph: string; erreur: string };
+  statut?: string; postes: { titre: string; valeurs: string[] }; quartier: string; quartierErreur: string; geo: string; geoEtat: string;
+  fonctions?: string[]; fonctionPh?: string; message: string; photo: string };
+const modeles: Record<string, Modele> = {
+  ecole: { etape: "L'établissement", org: { label: "Nom de l'établissement", ph: 'Par exemple : Complexe scolaire…', erreur: 'Indiquez le vrai nom de votre établissement.' },
+    type: { titre: "Type d'établissement", groupes: typesGroupes, precis: "Précisez le type d'établissement", ph: 'Par exemple : Séminaire', erreur: 'Précisez le type (lettres uniquement).' },
+    statut: "Statut de l'établissement", postes: { titre: "Nombre d'ordinateurs (salle informatique et secrétariat)", valeurs: postesEcole },
+    quartier: "Quartier de l'établissement", quartierErreur: 'Indiquez le vrai nom du quartier.', geo: "Partager la position de l'établissement", geoEtat: "Facultatif : à faire depuis l'établissement.",
+    fonctions: fonctionsEcole, fonctionPh: 'Par exemple : Économe', message: 'Décrivez brièvement votre situation', photo: "Écran d'erreur, salle, poste en panne… La photo est envoyée à ZTi seulement." },
+  entreprise: { etape: "L'entreprise", org: { label: "Nom de l'entreprise", ph: 'Par exemple : Société…', erreur: 'Indiquez le vrai nom de votre entreprise.' },
+    type: { titre: "Secteur d'activité", groupes: [['', secteurs]], precis: 'Précisez le secteur', ph: 'Par exemple : Transport', erreur: 'Précisez le secteur (lettres uniquement).' },
+    postes: { titre: "Nombre d'ordinateurs", valeurs: parcs },
+    quartier: "Quartier de l'entreprise", quartierErreur: 'Indiquez le vrai nom du quartier.', geo: "Partager la position de l'entreprise", geoEtat: "Facultatif : à faire depuis l'entreprise.",
+    fonctions: postesEntreprise, fonctionPh: 'Par exemple : Comptable', message: 'Décrivez brièvement votre situation', photo: "Écran d'erreur, poste en panne… La photo est envoyée à ZTi seulement." },
+  institution: { etape: "L'institution", org: { label: "Nom de l'institution", ph: 'Par exemple : Mairie de…', erreur: "Indiquez le vrai nom de votre institution." },
+    type: { titre: "Type d'institution", groupes: [['', ['Administration publique', 'Collectivité territoriale', 'Organisation internationale', 'ONG ou association', 'Établissement de santé', 'Autre']]], precis: "Précisez le type d'institution", ph: 'Par exemple : Ambassade', erreur: 'Précisez le type (lettres uniquement).' },
+    postes: { titre: "Nombre d'ordinateurs", valeurs: parcs },
+    quartier: "Quartier de l'institution", quartierErreur: 'Indiquez le vrai nom du quartier.', geo: "Partager la position de l'institution", geoEtat: "Facultatif : à faire depuis l'institution.",
+    fonctions: ['Directeur', 'Secrétaire général', 'Chef de service', 'Responsable informatique', 'Autre'], fonctionPh: 'Par exemple : Comptable', message: 'Décrivez brièvement votre situation', photo: "Écran d'erreur, poste en panne… La photo est envoyée à ZTi seulement." },
+  particulier: { etape: 'Vos ordinateurs',
+    postes: { titre: "Nombre d'ordinateurs", valeurs: ['1', '2 à 3', '4 et plus'] },
+    quartier: 'Votre quartier', quartierErreur: 'Indiquez le vrai nom du quartier.', geo: 'Partager votre position', geoEtat: 'Facultatif : à faire depuis votre domicile.',
+    message: 'Décrivez brièvement votre situation', photo: "Écran d'erreur, ordinateur en panne… La photo est envoyée à ZTi seulement." },
+};
+const m = modeles[cibleCle];
+const etapes = variante === 'entreprises' ? ['Votre entreprise', 'Votre situation', 'Vos coordonnées'] : modeleEcole ? [m.etape, 'Vos coordonnées'] : [''];
 type Q = { nom: string; titre: string; valeurs: string[]; requis?: boolean; liste?: boolean; facultatif?: string };
 const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q => ({ nom, titre, valeurs, ...o });
 ---
@@ -135,37 +167,37 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
           </div>
         )}
 
-        {variante === 'ecoles' && <>
+        {modeleEcole && <>
           <div class="etape" data-etape="1">
-            <div class="champ" data-champ="organisation">
-              <label for={`${id}-organisation`}>Nom de l'établissement</label>
-              <input id={`${id}-organisation`} name="organisation" autocomplete="organization" maxlength="120" placeholder="Par exemple : Complexe scolaire…">
-              <span class="erreur">Indiquez le vrai nom de votre établissement.</span>
-            </div>
-            <div class="champ" data-champ="secteur" data-requis>
-              <span class="titre-champ" id={`${id}-secteur`}>Type d'établissement</span>
+            {m.org && <div class="champ" data-champ="organisation">
+              <label for={`${id}-organisation`}>{m.org.label}</label>
+              <input id={`${id}-organisation`} name="organisation" autocomplete="organization" maxlength="120" placeholder={m.org.ph}>
+              <span class="erreur">{m.org.erreur}</span>
+            </div>}
+            {m.type && <div class="champ" data-champ="secteur" data-requis>
+              <span class="titre-champ" id={`${id}-secteur`}>{m.type.titre}</span>
               <span class="note-type" data-note-type aria-live="polite"></span>
               <div class="choix choix-groupes" role="radiogroup" aria-labelledby={`${id}-secteur`} data-choix="secteur" data-unique>
-                {typesGroupes.map(([g, vals]) => <>
+                {m.type.groupes.map(([g, vals]) => <>
                   {g && <span class="groupe-choix">{g}</span>}
                   {vals.map(v => <button type="button" role="radio" aria-checked="false" data-valeur={v}>{v}</button>)}
                 </>)}
               </div>
               <span class="erreur" data-erreur-type>Choisissez le type.</span>
-            </div>
-            <div class="champ" data-champ="secteur_precis" data-si-autre="secteur" hidden>
-              <label for={`${id}-secteur_precis`}>Précisez le type d'établissement</label>
-              <input id={`${id}-secteur_precis`} name="secteur_precis" maxlength="80" placeholder="Par exemple : Séminaire">
-              <span class="erreur">Précisez le type (lettres uniquement).</span>
-            </div>
-            <div class="champ" data-champ="statut" data-requis>
-              <span class="titre-champ" id={`${id}-statut`}>Statut de l'établissement</span>
+            </div>}
+            {m.type && <div class="champ" data-champ="secteur_precis" data-si-autre="secteur" hidden>
+              <label for={`${id}-secteur_precis`}>{m.type.precis}</label>
+              <input id={`${id}-secteur_precis`} name="secteur_precis" maxlength="80" placeholder={m.type.ph}>
+              <span class="erreur">{m.type.erreur}</span>
+            </div>}
+            {m.statut && <div class="champ" data-champ="statut" data-requis>
+              <span class="titre-champ" id={`${id}-statut`}>{m.statut}</span>
               <div class="choix" role="radiogroup" aria-labelledby={`${id}-statut`} data-choix="statut" data-unique>
                 {['Privé', 'Public'].map(c => <button type="button" role="radio" aria-checked="false" data-valeur={c}>{c}</button>)}
               </div>
               <span class="erreur">Choisissez une réponse.</span>
-            </div>
-            {[q('postes', "Nombre d'ordinateurs (salle informatique et secrétariat)", postesEcole, { requis: true })].map(x => (
+            </div>}
+            {[q('postes', m.postes.titre, m.postes.valeurs, { requis: true })].map(x => (
               <div class="champ" data-champ={x.nom} data-requis={x.requis ? '' : undefined}>
                 <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre}</span>
                 <div class="choix" role="radiogroup" aria-labelledby={`${id}-${x.nom}`} data-choix={x.nom} data-unique>
@@ -185,9 +217,9 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
             )}
             <div class="deux">
               <div class="champ" data-champ="quartier">
-                <label for={`${id}-quartier`}>Quartier de l'établissement</label>
+                <label for={`${id}-quartier`}>{m.quartier}</label>
                 <input id={`${id}-quartier`} name="quartier" maxlength="80" placeholder="Par exemple : Messassi" required>
-                <span class="erreur">Indiquez le vrai nom du quartier.</span>
+                <span class="erreur">{m.quartierErreur}</span>
               </div>
               <div class="champ" data-champ="ville_nom">
                 <label for={`${id}-ville_nom`}>Ville</label>
@@ -196,8 +228,8 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               </div>
             </div>
             <div class="champ champ-geo" data-champ="position">
-              <button type="button" class="btn-geo" data-geo><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Partager la position de l'établissement</button>
-              <span class="geo-etat" data-geo-etat>Facultatif : à faire depuis l'établissement.</span>
+              <button type="button" class="btn-geo" data-geo><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>{m.geo}</button>
+              <span class="geo-etat" data-geo-etat>{m.geoEtat}</span>
               <input type="hidden" name="position">
             </div>
             <p class="message-erreur" role="alert" hidden></p>
@@ -248,7 +280,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="telephone"><span>+237</span><input id={`${id}-tel_whatsapp`} name="tel_whatsapp" inputmode="tel" autocomplete="off" maxlength="12" placeholder="6XX XX XX XX"></div>
               <span class="erreur">9 chiffres, en commençant par 6.</span>
             </div>
-            {[q('fonction_choix', 'Votre fonction', fonctionsEcole, { requis: true })].map(x => (
+            {m.fonctions && [q('fonction_choix', 'Votre fonction', m.fonctions, { requis: true })].map(x => (
               <div class="champ" data-champ={x.nom} data-requis={x.requis ? '' : undefined}>
                 <span class="titre-champ" id={`${id}-${x.nom}`}>{x.titre}</span>
                 <div class="choix" role="radiogroup" aria-labelledby={`${id}-${x.nom}`} data-choix={x.nom} data-unique>
@@ -257,11 +289,11 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
                 <span class="erreur">Choisissez une réponse.</span>
               </div>
             ))}
-            <div class="champ" data-champ="fonction" data-si-autre="fonction_choix" hidden>
+            {m.fonctions && <div class="champ" data-champ="fonction" data-si-autre="fonction_choix" hidden>
               <label for={`${id}-fonction`}>Précisez votre fonction</label>
-              <input id={`${id}-fonction`} name="fonction" autocomplete="organization-title" maxlength="80" placeholder="Par exemple : Économe">
+              <input id={`${id}-fonction`} name="fonction" autocomplete="organization-title" maxlength="80" placeholder={m.fonctionPh}>
               <span class="erreur">Précisez votre fonction (lettres uniquement).</span>
-            </div>
+            </div>}
             <div class="champ" data-champ="moment" data-requis>
               <span class="titre-champ" id={`${id}-moment`}>Meilleur moment pour vous rappeler</span>
               <div class="choix" role="radiogroup" aria-labelledby={`${id}-moment`} data-choix="moment" data-unique>
@@ -270,7 +302,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <span class="erreur">Choisissez un moment.</span>
             </div>
             <div class="champ" data-champ="message" data-texte-facultatif>
-              <label for={`${id}-message`}>Décrivez brièvement votre situation <span class="facultatif">(facultatif)</span></label>
+              <label for={`${id}-message`}>{m.message} <span class="facultatif">(facultatif)</span></label>
               <textarea id={`${id}-message`} name="message" maxlength="1500"></textarea>
               <span class="erreur">Décrivez votre situation en quelques vrais mots.</span>
             </div>
@@ -278,7 +310,7 @@ const q = (nom: string, titre: string, valeurs: string[], o: Partial<Q> = {}): Q
               <div class="champ champ-photo" data-champ="photo">
                 <label for={`${id}-photo`}>Une photo du problème <span class="facultatif">(facultatif)</span></label>
                 <input id={`${id}-photo`} name="photo" type="file" accept="image/jpeg,image/png,image/webp">
-                <span class="photo-etat" data-photo-etat>Écran d'erreur, salle, poste en panne… La photo est envoyée à ZTi seulement.</span>
+                <span class="photo-etat" data-photo-etat>{m.photo}</span>
                 <span class="erreur">Choisissez une photo (JPEG, PNG ou WEBP).</span>
               </div>
             )}

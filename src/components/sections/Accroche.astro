@@ -20,7 +20,7 @@ const bas = String(s.bas || ''), coupe = bas.indexOf('. ');
 const basPhrase = coupe > 0 ? bas.slice(0, coupe + 1) : bas, basLieu = coupe > 0 ? bas.slice(coupe + 2) : '';
 ---
 {pleinEcran ? (
-<section class={`section accroche accroche-d fond-nuit sombre ${s.titre_une_ligne ? 'titre-une-ligne' : ''} ${s.bas_remonte ? 'bas-remonte' : ''}`} id={s.ancre || undefined}>
+<section class={`section accroche accroche-d fond-nuit sombre ${s.titre_une_ligne ? 'titre-une-ligne' : ''} ${s.bas_remonte ? 'bas-remonte' : ''} ${s.photo_entiere ? 'photo-entiere' : ''}`} id={s.ancre || undefined}>
   {s.image && <div class="ph-d" aria-hidden="true"><img src={lien(s.image)} {...dim(s.image)} alt="" loading="eager" fetchpriority="high"></div>}
   <div class="contenu">
     <div class="texte-d">
