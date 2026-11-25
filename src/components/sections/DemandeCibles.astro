@@ -17,7 +17,7 @@ const cibles = [
   { cle: 'entreprise', texte: 'Entreprise', titre: 'Votre entreprise', besoins: besoinsPro },
   { cle: 'institution', texte: 'Institution', titre: 'Votre institution', besoins: besoinsPro },
   { cle: 'particulier', texte: 'Particulier', titre: 'Vos ordinateurs', besoins: ['Ordinateur lent', 'Virus ou publicités', 'Fichiers perdus', 'Logiciels installés sans autorisation', 'Réglages modifiés'] },
-].map(c => ({ ...c, C: Demande, s: { fond: 'bleu', ancre: `demande-${c.cle}`, etiquette: c.texte, titre: c.titre, texte: ecole.texte,
+].map(c => ({ ...c, C: Demande, s: { fond: 'bleu', ancre: `demande-${c.cle}`, titre: ecole.titre || c.titre, texte: ecole.texte,   // 25/11 (ZTi) : même mise en forme que la page école
   formulaire: 'cible', cible: c.cle, besoins: c.besoins,
   // garanties de la page école pour l'école seulement (Fiche de Parc, déplacement : offre scolaire) ; ailleurs, ce qui vaut pour tous
   garanties: c.cle === 'ecole' ? ecole.garanties : ["Vous restez l'unique décideur"], garanties_bouton: c.cle === 'ecole' ? ecole.garanties_bouton : ['Sans engagement', "Vous restez l'unique décideur"], bouton: 'Envoyer ma demande',
