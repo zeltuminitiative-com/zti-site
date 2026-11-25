@@ -821,8 +821,18 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 }
 /* page Protection ZTi (25/11) : le héro occupe tout l'écran (pas de bande de la section suivante en bas) ; l'espace
    en plus se place au-dessus des pastilles, le contenu reste groupé en bas avec la phrase finale */
-body:has(.accroche-d) .accroche-d.photo-entiere.bas-remonte:not(#zti) { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; }/* page Protection ZTi (25/11) : un espace entre la phrase sous le titre et les boutons */
+body:has(.accroche-d) .accroche-d.photo-entiere.bas-remonte:not(#zti) { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; }
+/* page Protection ZTi (25/11) : un espace entre la phrase sous le titre et les boutons */
 .accroche-d.photo-entiere .chapo-d { margin-bottom: 32px; }
+/* demande en deux temps (25/11, page Protection ZTi) : 1. choix de la cible ; 2. le formulaire de la page dédiée */
+.demande-cibles .cibles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
+.demande-cibles .cible { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 76px; padding: 18px 22px; border: 0; border-radius: 16px; background: #FFFFFF; color: #02008A; font: 700 17px var(--titres); text-align: left; cursor: pointer; box-shadow: 0 10px 26px rgba(0,0,0,.18); transition: transform .18s, background-color .18s, color .18s; }
+.demande-cibles .cible .fleche { font-size: 20px; transition: transform .18s; }
+.demande-cibles .cible:hover { transform: translateY(-2px); }
+.demande-cibles .cible:hover .fleche { transform: translateX(4px); }
+.demande-cibles .cible[aria-pressed="true"] { background: #1565FF; color: #FFFFFF; }
+.cible-formulaire > .section { padding-top: 40px; }
+@media (max-width: 900px) { .demande-cibles .cibles { grid-template-columns: 1fr 1fr; } .demande-cibles .cible { font-size: 15px; min-height: 64px; padding: 14px 16px; } }
 
 /* lien d'une carte de pack vers sa page (24/11 : Pack 4 → /offres/preservation/) */
 /* 24/11 (ZTi) : sur la carte qui a ce lien (Pack 4), le contenu remonte (pas de vide sous la liste) ; « Tout voir »
