@@ -40,6 +40,7 @@ const suite = heroPropre ? d.sections.slice(1) : d.sections;
   </section>}
   <section class="section fond-blanc">
     <div class="contenu etroit">
+      {d.intro_titre && <div class="rv" style="margin-bottom:28px">{d.intro_etiquette && <span class="etiquette">{d.intro_etiquette}</span>}<h2>{d.intro_titre}</h2></div>}
       {d.points.length > 0 && <ul class="liste-coches rv" style="margin-bottom:32px">{d.points.map(p => <li>{p}</li>)}</ul>}
       <div class="texte-riche rv"><Content /></div>
     </div>
