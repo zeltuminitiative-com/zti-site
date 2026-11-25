@@ -12,7 +12,7 @@ points:
 campagne: diagnostic-ecoles
 ordre: 3
 en_ligne: true
-formulaire_titre: Vos ordinateurs changent trop souvent ? Dites-le-nous.
+formulaire_titre: "Vos ordinateurs changent trop souvent ? Dites-⁠le-⁠nous."
 formulaire_texte: "Écoles, entreprises, institutions ou particuliers : indiquez le nombre d'ordinateurs concernés et leur usage (salle informatique, bureau, formation ou maison). ZTi vous rappelle sous 48 heures ouvrables, au moment que vous avez choisi."
 sections:
   - type: accroche
