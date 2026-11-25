@@ -27,9 +27,10 @@ sections:
       texte: Voir le principe
       lien: "#principe"
     sous_bouton: Offert - Sans engagement
-    image: /images/protection-zti-redemarrage.webp
+    image: /images/protection-zti-hero.webp
+    photo_entiere: true
     presentation: plein-ecran
-    bas: "Votre outil informatique doit travailler pour vous, pas l'inverse. Écoles · Entreprises · Institutions · Particuliers"
+    bas: "Votre outil informatique doit travailler pour vous, pas l'inverse."
   - type: cartes
     fond: ivoire
     ancre: principe
