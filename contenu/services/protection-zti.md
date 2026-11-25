@@ -12,6 +12,8 @@ points:
 campagne: diagnostic-ecoles
 ordre: 3
 en_ligne: true
+intro_etiquette: La Protection ZTi
+intro_titre: Vos ordinateurs changent au fil des utilisations.
 formulaire: false
 sections:
   - type: accroche
@@ -86,7 +88,7 @@ sections:
       - "Particulier : vos documents personnels sont rangés dans un espace prévu pour eux, défini avec vous."
     mention: "La Protection ZTi n'est pas une sauvegarde : pour vos documents importants, gardez aussi une copie régulière sur un support séparé."
   - type: cartes
-    fond: ivoire
+    fond: noir
     etiquette: Comment en bénéficier
     titre: "Deux façons d'équiper vos ordinateurs."
     cartes:
@@ -118,10 +120,6 @@ sections:
         reponse: "24 mois, avec le Pack 3 comme avec la formule seule. Pendant cette période, le suivi annuel facultatif met à jour l'état de référence de vos postes. Après 24 mois, la protection se renouvelle."
       - question: Le Pack 4 renouvelle-t-il la Protection ZTi ?
         reponse: "Non. Pour les postes équipés avec le Pack 3, le Pack 4 contrôle son bon fonctionnement pendant la deuxième année. Il ne prolonge pas la durée de 24 mois."
-  - type: signature
-    fond: blanc
-    titre: Valorisation et préservation de votre investissement informatique
-    slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
   - type: demande_cibles
     fond: bleu
     ancre: demande
@@ -129,7 +127,11 @@ sections:
     titre: "Vos ordinateurs changent trop souvent ? Dites-⁠le-⁠nous."
     texte: "Choisissez votre profil : ZTi vous présente le formulaire adapté à votre situation. ZTi vous rappelle sous 48 heures ouvrables, au moment que vous avez choisi."
     sujet: Protection ZTi
+  - type: signature
+    fond: blanc
+    titre: Valorisation et préservation de votre investissement informatique
+    slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---
-**Vos ordinateurs changent au fil des utilisations.** Logiciels installés sans autorisation, réglages modifiés, virus venus d'une clé USB : les changements s'accumulent, les postes ne se ressemblent plus et les remises en état se répètent.
+Logiciels installés sans autorisation, réglages modifiés, virus venus d'une clé USB : les changements s'accumulent, les postes ne se ressemblent plus et les remises en état se répètent.
 
 La Protection ZTi répond à ce besoin : à chaque redémarrage, le poste retrouve automatiquement l'état de référence préparé par ZTi. Vous gardez un environnement informatique maîtrisé, au travail, en formation comme à la maison.
