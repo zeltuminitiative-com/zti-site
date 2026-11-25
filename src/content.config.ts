@@ -50,6 +50,9 @@ const services = defineCollection({
     sections: z.array(section).default([]),
     // formulaire « Parlons de votre besoin. » en bas de page ; false : remplacé par une section de la page (ex. Protection ZTi, 25/11)
     formulaire: z.boolean().default(true),
+    // titre et texte du formulaire, à la place de « Parlons de votre besoin. » (ex. Protection ZTi, 25/11)
+    formulaire_titre: z.string().optional(),
+    formulaire_texte: z.string().optional(),
   }),
 });
 
