@@ -1,0 +1,41 @@
+---
+// Demande en deux temps (25/11, page Protection ZTi) : 1. le visiteur choisit sa cible ; 2. le formulaire complet
+// de la page dédiée à cette cible s'affiche dessous (école : page école ; entreprise : Audit PME ; particulier :
+// diagnostic en ligne ; institution : formulaire général). Les réglages de chaque formulaire sont lus dans sa page
+// d'origine ; seuls le sujet et l'ancre sont propres à la page qui l'accueille.
+import { getCollection } from 'astro:content';
+import Cadre from './Cadre.astro';
+import Demande from './Demande.astro';
+import Diagnostic from './Diagnostic.astro';
+const { s, premier = false, page, campagne = '' } = Astro.props as { s: any; premier?: boolean; page: string; campagne?: string };
+const sujet = String(s.sujet || 'Demande');
+const campagnes = await getCollection('campagnes');
+const sectionDe = (id: string, type: string) => (campagnes.find(c => c.id === id)?.data.sections || []).find((x: any) => x.type === type) || {};
+const cibles = [
+  { cle: 'ecole', texte: 'Établissement scolaire', C: Demande, s: { ...sectionDe('diagnostic-ecoles', 'demande'), formulaire: 'ecoles', profil: 'ecole' } },
+  { cle: 'entreprise', texte: 'Entreprise', C: Demande, s: { ...sectionDe('audit-pme', 'demande'), formulaire: 'entreprises', profil: 'entreprise' } },
+  { cle: 'institution', texte: 'Institution', C: Demande, s: { fond: 'bleu', titre: 'Décrivez votre besoin.', texte: 'ZTi vous recontacte au moment choisi.', formulaire: 'general', profil: 'institution', besoins: [sujet], garanties_bouton: ['Offert', 'Sans engagement'] } },
+  { cle: 'particulier', texte: 'Particulier', C: Diagnostic, s: { ...sectionDe('particuliers', 'diagnostic') } },
+].map(c => ({ ...c, s: { ...c.s, fond: c.s.fond || 'bleu', ancre: `demande-${c.cle}`, sujet: `${sujet} (${c.texte.toLowerCase()})` } }));
+---
+<Cadre premier={premier} s={s} defaut="bleu" id={s.ancre || 'demande'} classe="demande-cibles">
+  <div class="cibles rv" role="group" aria-label="Vous êtes">
+    {cibles.map(c => <button type="button" class="cible" aria-pressed="false" aria-controls={`demande-${c.cle}`} data-cible={c.cle}>{c.texte}<span class="fleche" aria-hidden="true">→</span></button>)}
+  </div>
+</Cadre>
+{cibles.map(c => (
+  <div class="cible-formulaire" data-pour={c.cle} hidden>
+    <c.C s={c.s} page={page} campagne={campagne} />
+  </div>
+))}
+<script>
+  document.querySelectorAll<HTMLElement>('.demande-cibles').forEach(bloc => {
+    const boutons = [...bloc.querySelectorAll<HTMLButtonElement>('[data-cible]')];
+    boutons.forEach(b => b.addEventListener('click', () => {
+      boutons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      let cible: HTMLElement | null = null;
+      document.querySelectorAll<HTMLElement>('.cible-formulaire').forEach(f => { const ok = f.dataset.pour === b.dataset.cible; f.hidden = !ok; if (ok) cible = f; });
+      if (cible) { (cible as HTMLElement).querySelectorAll('.rv').forEach(e => e.classList.add('vu')); (cible as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }));
+  });
+</script>
