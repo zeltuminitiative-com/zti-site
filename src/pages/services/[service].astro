@@ -4,6 +4,7 @@ import Bouton from '../../components/Bouton.astro';
 import Icone from '../../components/Icone.astro';
 import Demande from '../../components/sections/Demande.astro';
 import Sections from '../../components/Sections.astro';
+import References from '../../components/sections/References.astro';
 import { getCollection, render } from 'astro:content';
 import { lien, PUBLICS } from '../../lib/contenu';
 export async function getStaticPaths() {
@@ -47,5 +48,7 @@ const suite = heroPropre ? d.sections.slice(1) : d.sections;
   </section>
   <!-- sections facultatives du service (mêmes blocs que les pages), avant le formulaire -->
   {suite.length > 0 && <Sections sections={suite} page={`services/${s.id}`} debut={heroPropre ? 1 : 0} />}
+  <!-- « Nos références » sur toutes les pages de services (25/11), avant le formulaire, sauf si la page la place elle-même -->
+  {!d.sections.some((x: any) => x.type === 'references') && <References s={{ fond: 'ivoire', etiquette: 'Nos références', titre: 'Ils nous ont fait confiance.', texte: 'Institutions, entreprises et établissements scolaires accompagnés par ZTi.' }} />}
   {d.formulaire && <Demande s={{ titre: d.formulaire_titre || 'Parlons de votre besoin.', texte: d.formulaire_texte || 'ZTi vous recontacte au moment choisi.', sujet: d.titre, besoins: [d.titre] }} page={`services/${s.id}`} campagne="" />}
 </Base>
