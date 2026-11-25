@@ -35,7 +35,7 @@ sections:
     presentation: plein-ecran
     bas: "Votre outil informatique doit travailler pour vous, pas l'inverse."
   - type: cartes
-    fond: nuit
+    fond: noir
     ancre: principe
     etiquette: Le principe
     titre: "Utiliser, redémarrer, retrouver un poste propre."
@@ -65,7 +65,7 @@ sections:
     legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
     image_position: gauche
   - type: cartes
-    fond: noir
+    fond: nuit
     etiquette: Pour qui
     titre: "Partout où des ordinateurs sont partagés, et à la maison."
     cartes:
