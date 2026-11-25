@@ -814,7 +814,9 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
   body:has(.accroche-d) .accroche-d.bas-remonte:not(#zti) { padding-top: 128px; padding-bottom: 32px; }
   .accroche-d.bas-remonte .pied-d { margin-top: 40px; }
 }
-/* page Protection ZTi (25/11) : un espace entre la phrase sous le titre et les boutons */
+/* page Protection ZTi (25/11) : le héro occupe tout l'écran (pas de bande de la section suivante en bas) ; l'espace
+   en plus se place au-dessus des pastilles, le contenu reste groupé en bas avec la phrase finale */
+body:has(.accroche-d) .accroche-d.photo-entiere.bas-remonte:not(#zti) { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; }/* page Protection ZTi (25/11) : un espace entre la phrase sous le titre et les boutons */
 .accroche-d.photo-entiere .chapo-d { margin-bottom: 32px; }
 
 /* lien d'une carte de pack vers sa page (24/11 : Pack 4 → /offres/preservation/) */
