@@ -100,6 +100,11 @@ sections:
         texte: "Pour les ordinateurs jugés en bonne santé après l'analyse de ZTi : installation et configuration de la protection, active pendant 24 mois. Un suivi annuel facultatif tient l'état de référence à jour (Windows, antivirus, logiciels). Renouvelable après 24 mois."
         lien: "#demande"
         lien_texte: Demander un devis
+  - type: references
+    fond: ivoire
+    etiquette: Nos références
+    titre: Ils nous ont fait confiance.
+    texte: Institutions, entreprises et établissements scolaires accompagnés par ZTi.
   - type: questions
     fond: nuit
     etiquette: Questions fréquentes
