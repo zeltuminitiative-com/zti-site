@@ -12,8 +12,7 @@ points:
 campagne: diagnostic-ecoles
 ordre: 3
 en_ligne: true
-formulaire_titre: "Vos ordinateurs changent trop souvent ? Dites-⁠le-⁠nous."
-formulaire_texte: "Écoles, entreprises, institutions ou particuliers : indiquez le nombre d'ordinateurs concernés et leur usage (salle informatique, bureau, formation ou maison). ZTi vous rappelle sous 48 heures ouvrables, au moment que vous avez choisi."
+formulaire: false
 sections:
   - type: accroche
     fond: nuit
@@ -123,6 +122,13 @@ sections:
     fond: blanc
     titre: Valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
+  - type: demande_cibles
+    fond: bleu
+    ancre: demande
+    etiquette: Votre demande
+    titre: "Vos ordinateurs changent trop souvent ? Dites-⁠le-⁠nous."
+    texte: "Choisissez votre profil : ZTi vous présente le formulaire adapté à votre situation. ZTi vous rappelle sous 48 heures ouvrables, au moment que vous avez choisi."
+    sujet: Protection ZTi
 ---
 **Vos ordinateurs changent au fil des utilisations.** Logiciels installés sans autorisation, réglages modifiés, virus venus d'une clé USB : les changements s'accumulent, les postes ne se ressemblent plus et les remises en état se répètent.
 
