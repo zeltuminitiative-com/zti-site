@@ -48,6 +48,8 @@ const services = defineCollection({
     en_ligne: z.boolean().default(true),
     // sections facultatives sous le texte (mêmes blocs que les pages), ex. page Protection ZTi (24/11)
     sections: z.array(section).default([]),
+    // formulaire « Parlons de votre besoin. » en bas de page ; false : remplacé par une section de la page (ex. Protection ZTi, 25/11)
+    formulaire: z.boolean().default(true),
   }),
 });
 
