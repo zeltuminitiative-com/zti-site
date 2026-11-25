@@ -17,6 +17,7 @@ sections:
     fond: nuit
     pastilles: [Écoles, Entreprises, Institutions, Particuliers]
     titre: Un poste propre à chaque redémarrage
+    bas_remonte: true
     accent: redémarrage
     texte: "La Protection ZTi restaure automatiquement l'environnement informatique : vos ordinateurs retrouvent leur état de référence."
     bouton:
