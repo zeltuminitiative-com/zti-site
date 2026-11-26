@@ -1,0 +1,33 @@
+---
+// Section « Restons en contact » (26/11, page Contact) : la carte de la communauté WhatsApp ZTi, identique à celle de
+// la page Merci (mêmes classes, donc même présentation). Le lien vient des réglages (communaute.whatsapp).
+import Icone from '../Icone.astro';
+import { reglages, lien, lienSur } from '../../lib/contenu';
+const { s } = Astro.props as { s: any; premier?: boolean };
+const r = await reglages();
+const fond = s.fond || 'nuit';
+const sombre = ['nuit', 'bleu', 'noir'].includes(fond);
+const communaute = [
+  { nom: 'Parlons de vos problèmes IT', type: 'Communauté WhatsApp ZTi', texte: 'Posez vos questions, recevez conseils, alertes et offres.', adresse: lienSur(r.communaute?.whatsapp), image: '/images/communaute-whatsapp.jpg' },
+].filter(c => (c.adresse || '').trim());
+---
+{communaute.length > 0 && (
+  <section class={`section fond-${fond} ${sombre ? 'sombre' : ''} merci-contact-section`} id={s.ancre || undefined}>
+    <div class="contenu etroit merci-communaute merci-bloc rv">
+      <h2 class="merci-sous-titre">{s.titre || 'Restons en contact'}</h2>
+      <div class="merci-liens">
+        {communaute.map(c => (
+          <a class="carte avec-image" href={c.adresse} target="_blank" rel="noopener" data-communaute={c.nom}>
+            <img class="image-groupe" src={lien(c.image)} alt="" width="112" height="112" loading="lazy">
+            <div>
+              <span class="type-groupe">{c.type}</span>
+              <h3 class="nom-groupe">« {c.nom} »</h3>
+              <span>{c.texte}</span>
+              <span class="plus">Rejoindre<Icone nom="fleche" /></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
