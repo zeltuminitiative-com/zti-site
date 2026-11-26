@@ -1,5 +1,6 @@
 ---
 titre: À propos
+image_partage: /images/partage-a-propos-v1.jpg
 description: "L'histoire de ZTi et de son fondateur, Jean Marcelin MEUKAM FOKAM : de l'atelier de bois au laboratoire de données. Maintenance, réseaux et récupération de données à Yaoundé, depuis 2008."
 sections:
   - type: accroche
