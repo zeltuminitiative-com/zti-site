@@ -55,6 +55,8 @@ sections:
         texte: "Dépannage des pièces en voie de dysfonctionnement et contrôle de l'état général de chaque poste."
       - titre: Contrôle de la Protection ZTi
         texte: "Vérification du bon fonctionnement de la Protection ZTi, qui poursuit sa deuxième année sur chaque poste."
+        lien: /services/protection-zti/
+        lien_texte: En savoir plus
       - titre: Sécurité électrique et données
         texte: "Vérification des équipements de sécurité électrique. À l'administration : contrôle de la sauvegarde automatique et de l'isolation des données."
   - type: texte_image
