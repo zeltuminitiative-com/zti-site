@@ -104,7 +104,7 @@ sections:
     titre: Ils nous ont fait confiance.
     texte: Institutions, entreprises et établissements scolaires accompagnés par ZTi.
   - type: avis
-    fond: pale
+    fond: noir
     ancre: avis
     etiquette: Avis
     titre: Ce qu'en disent nos clients.
