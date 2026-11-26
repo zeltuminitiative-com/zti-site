@@ -19,8 +19,11 @@ const offre = d.campagne ? (campagnes.find(c => c.id === d.campagne) ? `/offres/
 // si la première section est une accroche (ex. plein écran comme la page école), elle remplace l'en-tête standard du service
 const heroPropre = d.sections[0]?.type === 'accroche';
 const suite = heroPropre ? d.sections.slice(1) : d.sections;
+// aperçu du lien partagé (26/11) : avec un héro propre, son titre et son texte ; image = image_partage (capture du héro)
+const hero: any = heroPropre ? d.sections[0] : null;
+const titrePartage = hero?.titre ? `${hero.titre} | ${d.titre}` : undefined;
 ---
-<Base titre={d.titre} description={d.accroche || d.resume}>
+<Base titre={d.titre} description={hero?.texte || d.accroche || d.resume} image={d.image_partage} titrePartage={titrePartage}>
   {heroPropre ? <Sections sections={[d.sections[0]]} page={`services/${s.id}`} /> :
   <section class={`section accroche fond-nuit sombre ${d.image ? '' : 'sans-image'}`}>
     <div class="contenu">
