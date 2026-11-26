@@ -95,19 +95,16 @@ sections:
     etiquette: Nos références
     titre: Ils nous ont fait confiance.
     texte: Institutions, entreprises et établissements scolaires accompagnés par ZTi.
-  - type: demande
+  - type: demande_cibles
     fond: bleu
     ancre: demande
+    etiquette: Votre demande
     titre: Planifiez votre entretien de préservation.
-    texte: |-
-      **Interventions sur site :** du lundi au samedi, de 8 h à 15 h.
-
-      **Vos messages :** reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h.
-    sujet: Pack 4 Préservation (écoles)
-    formulaire: ecoles
-    profil: ecole
-    besoins: [Salle TIC, Secrétariat / Administration, Pannes, Lenteurs, Virus / clés USB, Perte de données]
+    texte: "Choisissez votre profil : ZTi vous présente le formulaire adapté à votre situation. ZTi vous rappelle sous 48 heures ouvrables, au moment que vous avez choisi."
+    sujet: Pack 4 Préservation
+    formulaire_titre: Planifiez votre entretien de préservation.
     garanties: [Réservé aux postes ayant reçu le Pack 3 au cours des 12 derniers mois, Déplacement compris dans la ville de Yaoundé, Prise en charge prioritaire]
+    garanties_bouton: [Sans engagement, Vous restez l'unique décideur]
     bouton: Je planifie mon entretien
   - type: signature
     fond: blanc
