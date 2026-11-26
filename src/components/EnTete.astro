@@ -6,7 +6,8 @@ import { reglages, lien } from '../lib/contenu';
 // versFormulaire : le bouton du haut descend au formulaire de la page (#demande) au lieu de la page Contact
 const { sansMenu = false, sansBouton = false, versFormulaire = false } = Astro.props as { sansMenu?: boolean; sansBouton?: boolean; versFormulaire?: boolean };
 const r = await reglages();
-// 26/11 (ZTi) : le bouton « Contacter ZTi » de la barre du menu mène toujours à la page Contact (versFormulaire n'est plus utilisé)
+// 26/11 (ZTi) : le bouton « Contacter ZTi » descend au formulaire de la page si elle en a un (#demande), sinon il mène
+// à la page Contact (script en bas de l'en-tête ; versFormulaire n'est plus utilisé)
 const lienBouton = sansMenu ? '#demande' : r.bouton_principal.lien;
 const ici = Astro.url.pathname;
 const actif = (l?: string) => !!l && (l === '/' ? ici === lien('/') : ici.startsWith(lien(l)));
@@ -61,3 +62,10 @@ const dispo = ((r.contact?.horaires || '').match(/\d+\s*h\s*\/\s*24\s*,\s*\d+\s*
     {!sansBouton && <Bouton texte={r.bouton_principal.texte} href={lienBouton} />}
   </div>
 </header>
+<script is:inline>
+  // page avec formulaire (#demande) : « Contacter ZTi » y descend directement
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!document.getElementById('demande')) return;
+    document.querySelectorAll('.entete a.btn').forEach(function (a) { a.setAttribute('href', '#demande'); });
+  });
+</script>
