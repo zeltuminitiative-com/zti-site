@@ -44,7 +44,7 @@ sections:
       - titre: "Année 3 : un nouveau Pack 3"
         texte: "La Protection ZTi arrive au terme de ses 24 mois : un nouveau Pack 3 remet les postes à neuf et relance le cycle."
   - type: cartes
-    fond: ivoire
+    fond: noir
     etiquette: Ce que comprend le Pack 4
     titre: Entretenir et contrôler, sans réinstaller.
     texte: Le Pack 4 ne réinstalle pas votre système. Il entretient et préserve les postes déjà pris en charge par ZTi.
