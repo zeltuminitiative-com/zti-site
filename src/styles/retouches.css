@@ -590,6 +590,8 @@ body:has(.accroche-d) .entete:not(.sans-menu).sc .marque small { display: none; 
 .fond-blanc .q-zti:has(> button[aria-expanded="true"]) > button, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) > button { color: #FFFFFF; }
 .fond-blanc .q-zti:has(> button[aria-expanded="true"]) .q-reponse, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) .q-reponse { color: #FFFFFF; }
 .fond-blanc .q-zti:has(> button[aria-expanded="true"]) .q-reponse strong, .fond-ivoire .q-zti:has(> button[aria-expanded="true"]) .q-reponse strong { color: #9FD0FF; }
+/* 26/11 : les paragraphes et listes de la réponse gardaient le gris des fonds clairs (illisible sur le bleu nuit) */
+:is(.fond-blanc, .fond-ivoire) .q-zti:has(> button[aria-expanded="true"]) .q-reponse :is(p, li, a) { color: #FFFFFF !important; }
 /* images avec dimensions déclarées (width/height lus à la construction) : garder les proportions quand la largeur est réduite ;
    :where() = aucune priorité, les règles précises existantes (hauteurs fixes, object-fit) restent prioritaires */
 :where(img[width][height]) { height: auto; }
