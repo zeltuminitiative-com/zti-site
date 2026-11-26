@@ -12,6 +12,6 @@ sections:
   - type: texte_image
     fond: ivoire
     etiquette: Support
-    titre: Nous écrire directement
-    texte: "**E-mail** : [zeltuminitiative@gmail.com](mailto:zeltuminitiative@gmail.com)\n\n**Adresse** : Yaoundé, Cameroun"
+    titre: Nous joindre directement
+    texte: "**WhatsApp** : +237 699 324 689\n\n**Appels** : +237 676 165 772\n\n**E-mail** : [zeltuminitiative@gmail.com](mailto:zeltuminitiative@gmail.com)\n\n**Vos messages** : reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h.\n\n**Interventions sur site** : du lundi au samedi, de 8 h à 15 h.\n\n**Adresse** : Messassi, Yaoundé, Cameroun"
 ---
