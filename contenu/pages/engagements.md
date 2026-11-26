@@ -32,7 +32,7 @@ sections:
       4. [Dépannage en atelier](#atelier) : la Convention de maintenance.
       5. [Réclamations](#reclamations) : comment nous signaler un problème.
   - type: cartes
-    fond: ivoire
+    fond: noir
     ancre: engagements
     numeroter: true
     etiquette: Nos engagements
@@ -94,7 +94,7 @@ sections:
 
           Un versement non réglé à son échéance suspend l'assistance et la prise en charge jusqu'à sa régularisation.
       - question: Quels systèmes installez-vous ?
-        reponse: "Les postes sont réinstallés sous Windows (français ou anglais), avec une licence valide fournie par le client. Windows 7 et Windows 10 ne reçoivent plus de mises à jour de sécurité de Microsoft : la protection repose alors sur l'antivirus et, avec le Pack 3, sur la Protection ZTi. Les données des postes de travail sont sauvegardées avant toute réinstallation."
+        reponse: "Les postes sont réinstallés sous Windows (français ou anglais), avec une licence valide fournie par le client. Windows 7 et Windows 10 ne reçoivent plus de mises à jour de sécurité de Microsoft : la protection repose alors sur l'antivirus et, avec le Pack 3, sur la [Protection ZTi](/services/protection-zti/). Les données des postes de travail sont sauvegardées avant toute réinstallation."
   - type: questions
     fond: ivoire
     ancre: atelier
@@ -147,7 +147,7 @@ sections:
       texte: Cliquez ici pour en savoir plus - PDF
       lien: /zti-convention-de-maintenance.pdf
   - type: texte_image
-    fond: noir
+    fond: bleu
     ancre: reclamations
     etiquette: Réclamations
     titre: Un problème ? Dites-le-nous.
