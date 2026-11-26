@@ -1,5 +1,6 @@
 ---
 titre: ZTi
+image_partage: /images/partage-accueil-v1.jpg
 description: "ZTi diagnostique, entretient et protège le parc informatique des écoles, des entreprises et des institutions à Yaoundé, depuis 2008. Diagnostic offert, sans engagement."
 sections:
   - type: accroche
