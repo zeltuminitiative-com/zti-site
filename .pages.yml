@@ -89,6 +89,8 @@ components:
           - { name: texte, component: texte }
           - { name: points, type: string, list: true, label: Points cochés }
           - { name: mention, type: string, label: Mention en italique }
+          - { name: lien, type: string, label: Lien « En savoir plus » (adresse), description: "Ex. /services/protection-zti/" }
+          - { name: lien_texte, type: string, label: Texte du lien, description: "Par défaut : En savoir plus" }
           - { name: image, type: image, label: Image (facultative) }
           - { name: image_texte, type: string, label: Description de l'image (pour les malvoyants) }
           - { name: legende, type: string, label: Légende sous l'image, description: "Une phrase qui dit de quoi il s'agit." }
