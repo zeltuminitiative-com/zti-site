@@ -113,13 +113,11 @@ sections:
     fond: blanc
     titre: Valorisation et préservation de votre investissement informatique
     slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
-  - type: demande
+  - type: demande_cibles
     fond: bleu
     ancre: demande
+    etiquette: Votre demande
     titre: Demandez votre diagnostic.
-    texte: "Décrivez votre besoin : ZTi vous recontacte au moment choisi."
+    texte: "Choisissez votre profil : ZTi vous présente le formulaire adapté à votre situation et vous recontacte au moment choisi."
     sujet: Demande de diagnostic
-    formulaire: general
-    garanties: [Offert, Sans engagement, Vous restez l'unique décideur]
-    bouton: Envoyer ma demande
 ---
