@@ -12,12 +12,14 @@ const sectionDe = (id: string, type: string) => (campagnes.find(c => c.id === id
 // 25/11 (ZTi) : seul le formulaire de la page école est terminé ; il sert de modèle aux quatre cibles (variante « cible »)
 const ecole = sectionDe('diagnostic-ecoles', 'demande');
 const besoinsPro = ['Pannes', 'Lenteurs', 'Virus / clés USB', 'Perte de données', 'Logiciels installés sans autorisation', 'Réglages modifiés'];
+// 26/11 (ZTi) : titre du formulaire selon la cible (école et particulier : titre de la page école)
+const titreCible: Record<string, string> = { entreprise: 'Réservez votre audit offert.', institution: 'Réservez votre étude de parc offerte.' };
 const cibles = [
   { cle: 'ecole', texte: 'Établissement scolaire', titre: 'Votre établissement', besoins: ecole.besoins || besoinsPro },
   { cle: 'entreprise', texte: 'Entreprise', titre: 'Votre entreprise', besoins: besoinsPro },
   { cle: 'institution', texte: 'Institution', titre: 'Votre institution', besoins: besoinsPro },
   { cle: 'particulier', texte: 'Particulier', titre: 'Vos ordinateurs', besoins: ['Ordinateur lent', 'Virus ou publicités', 'Fichiers perdus', 'Logiciels installés sans autorisation', 'Réglages modifiés'] },
-].map(c => ({ ...c, C: Demande, s: { fond: s.fond || 'bleu', ancre:   /* 26/11 : le formulaire garde la couleur de la section (page Contact : nuit) */ `demande-${c.cle}`, titre: s.formulaire_titre || ecole.titre || c.titre, texte: ecole.texte,   // 25/11 (ZTi) : même mise en forme que la page école
+].map(c => ({ ...c, C: Demande, s: { fond: s.fond || 'bleu', ancre:   /* 26/11 : le formulaire garde la couleur de la section (page Contact : nuit) */ `demande-${c.cle}`, titre: s.formulaire_titre || titreCible[c.cle] || ecole.titre || c.titre, texte: ecole.texte,   // 25/11 (ZTi) : même mise en forme que la page école
   formulaire: 'cible', cible: c.cle, besoins: c.besoins,
   // garanties de la page école pour l'école seulement (Fiche de Parc, déplacement : offre scolaire) ; ailleurs, ce qui vaut pour tous
   // 26/11 (page Préservation) : la page peut donner son titre de formulaire, ses garanties (sauf particulier), ses garanties du bouton et son bouton
