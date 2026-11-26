@@ -863,3 +863,7 @@ body:has(.accroche-d) .accroche-d.bas-remonte:not(#zti) { min-height: 100vh; min
 .btn.btn-contour .pastille { background: #02008A; color: #fff; }
 .btn.btn-contour:hover { background: #02008A; color: #fff; }
 .btn.btn-contour:hover .pastille { background: #fff; color: #02008A; }
+/* 26/11 (ZTi) : avis sur fond sombre (section Avis de l'accueil en fond noir) : texte lisible */
+.sombre .avis-carte blockquote { color: #D7DCF3; }
+.sombre .avis-carte figcaption { color: #D7DCF3; }
+.sombre .avis-carte figcaption b { color: #FFFFFF; }
