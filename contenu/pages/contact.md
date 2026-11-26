@@ -1,5 +1,6 @@
 ---
 titre: Contact
+image_partage: /images/partage-contact-v1.jpg
 description: "Écrivez à ZTi : diagnostic offert, maintenance, protection et sauvegarde de votre parc informatique, à Yaoundé."
 sections:
   - type: demande_cibles

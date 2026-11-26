@@ -1,5 +1,6 @@
 ---
 titre: Travailler avec ZTi
+image_partage: /images/partage-engagements-v1.jpg
 entete_simple: true
 description: "Nos engagements envers nos clients, nos délais et garanties, les conditions de nos interventions sur site et en atelier (Convention de maintenance), et la façon de nous adresser une réclamation."
 sections:

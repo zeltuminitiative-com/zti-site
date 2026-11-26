@@ -1,5 +1,6 @@
 ---
 titre: Audit informatique gratuit pour les PME
+image_partage: /images/partage-audit-pme-v1.jpg
 description: "ZTi Système™ : l'informatique stable des entreprises. Audit gratuit et sans engagement de vos équipements, à Yaoundé."
 en_ligne: true
 public: entreprises

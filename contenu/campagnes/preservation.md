@@ -7,7 +7,7 @@ service:
   description: "Pack 4 Préservation : entretien matériel des postes ayant reçu le Pack 3 ZTi, contrôle de la Protection ZTi, de la sécurité électrique et des sauvegardes, sans réinstallation."
   zone: Yaoundé
   offre: Réservé aux postes ayant reçu le Pack 3 au cours des 12 derniers mois
-image_partage: /images/partage.jpg
+image_partage: /images/partage-preservation-v1.jpg
 en_ligne: true
 public: ecoles
 sans_menu: true

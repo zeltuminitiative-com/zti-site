@@ -1,7 +1,7 @@
 ---
 titre: Dépannage et entretien de votre ordinateur
 description: "Ordinateur lent, virus, fichiers perdus ou cachés : ZTi remet votre ordinateur en état à Yaoundé, avec un suivi de deux semaines après chaque intervention."
-image_partage: /images/partage.jpg
+image_partage: /images/partage-particuliers-v1.jpg
 en_ligne: true
 public: particuliers
 sans_menu: true
