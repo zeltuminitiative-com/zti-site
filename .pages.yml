@@ -384,6 +384,7 @@ content:
       - { name: accroche, type: string, label: Accroche }
       - { name: resume, type: text, label: Résumé (carte de la liste des services) }
       - { name: image, type: image, label: Image }
+      - { name: image_partage, type: image, label: Image d'aperçu du lien (1200 × 630) }
       - name: publics
         type: select
         label: Publics

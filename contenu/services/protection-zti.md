@@ -3,6 +3,7 @@ titre: Protection ZTi
 accroche: "Restauration automatique de l'environnement informatique : à chaque redémarrage, vos ordinateurs retrouvent leur état de référence."
 resume: "Virus des clés USB, logiciels installés sans autorisation, réglages modifiés : tout disparaît au redémarrage."
 image: /images/protection-zti-redemarrage.webp
+image_partage: /images/partage-protection-zti-v4.jpg
 publics: [ecoles, entreprises, institutions, particuliers]
 points:
   - "À chaque redémarrage, le poste retrouve l'état de référence préparé par ZTi"
@@ -24,12 +25,11 @@ sections:
     accent: redémarrage
     texte: "La Protection ZTi restaure automatiquement l'environnement informatique : vos ordinateurs retrouvent leur état de référence."
     bouton:
-      texte: Demander un diagnostic
+      texte: Besoin de cette protection
       lien: "#demande"
     lien_secondaire:
       texte: Voir le principe
       lien: "#principe"
-    sous_bouton: Offert - Sans engagement
     image: /images/protection-zti-hero.webp
     photo_entiere: true
     presentation: plein-ecran
