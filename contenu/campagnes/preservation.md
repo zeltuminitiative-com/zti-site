@@ -44,7 +44,7 @@ sections:
       - titre: "Année 3 : un nouveau Pack 3"
         texte: "La Protection ZTi arrive au terme de ses 24 mois : un nouveau Pack 3 remet les postes à neuf et relance le cycle."
   - type: cartes
-    fond: ivoire
+    fond: noir
     etiquette: Ce que comprend le Pack 4
     titre: Entretenir et contrôler, sans réinstaller.
     texte: Le Pack 4 ne réinstalle pas votre système. Il entretient et préserve les postes déjà pris en charge par ZTi.
@@ -55,6 +55,8 @@ sections:
         texte: "Dépannage des pièces en voie de dysfonctionnement et contrôle de l'état général de chaque poste."
       - titre: Contrôle de la Protection ZTi
         texte: "Vérification du bon fonctionnement de la Protection ZTi, qui poursuit sa deuxième année sur chaque poste."
+        lien: /services/protection-zti/
+        lien_texte: En savoir plus
       - titre: Sécurité électrique et données
         texte: "Vérification des équipements de sécurité électrique. À l'administration : contrôle de la sauvegarde automatique et de l'isolation des données."
   - type: texte_image
@@ -81,11 +83,11 @@ sections:
     texte: "Le Pack 4 est accessible aux postes ayant reçu le Pack 3 au cours des 12 derniers mois, à compter de la date du procès-verbal de réception."
     questions:
       - question: La Protection ZTi est-elle prolongée ?
-        reponse: "La Protection ZTi du Pack 3 couvre 24 mois. Le Pack 4 accompagne sa deuxième année : il en contrôle le bon fonctionnement sur chaque poste. La troisième année, un nouveau Pack 3 relance le cycle."
+        reponse: "La [Protection ZTi](/services/protection-zti/) du Pack 3 couvre 24 mois. Le Pack 4 accompagne sa deuxième année : il en contrôle le bon fonctionnement sur chaque poste. La troisième année, un nouveau Pack 3 relance le cycle."
       - question: Et si nous avons ajouté de nouveaux ordinateurs ?
         reponse: "Tout nouvel ordinateur ajouté au parc reçoit d'abord le Pack 3. Il peut ensuite rejoindre le Pack 4 l'année suivante."
       - question: Le Pack 4 réinstalle-t-il le système ?
-        reponse: "Non. Le système et la Protection ZTi installés avec le Pack 3 sont conservés. Le Pack 4 entretient le matériel et contrôle que tout fonctionne."
+        reponse: "Non. Le système et la [Protection ZTi](/services/protection-zti/) installés avec le Pack 3 sont conservés. Le Pack 4 entretient le matériel et contrôle que tout fonctionne."
       - question: Comment savoir si nos postes y ont droit ?
         reponse: "Contactez ZTi : nous vérifions la date du procès-verbal de réception de votre Pack 3 et planifions l'intervention avec vous."
   - type: references
@@ -93,19 +95,16 @@ sections:
     etiquette: Nos références
     titre: Ils nous ont fait confiance.
     texte: Institutions, entreprises et établissements scolaires accompagnés par ZTi.
-  - type: demande
+  - type: demande_cibles
     fond: bleu
     ancre: demande
+    etiquette: Votre demande
     titre: Planifiez votre entretien de préservation.
-    texte: |-
-      **Interventions sur site :** du lundi au samedi, de 8 h à 15 h.
-
-      **Vos messages :** reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h.
-    sujet: Pack 4 Préservation (écoles)
-    formulaire: ecoles
-    profil: ecole
-    besoins: [Salle TIC, Secrétariat / Administration, Pannes, Lenteurs, Virus / clés USB, Perte de données]
+    texte: "Choisissez votre profil : ZTi vous présente le formulaire adapté à votre situation. ZTi vous rappelle sous 48 heures ouvrables, au moment que vous avez choisi."
+    sujet: Pack 4 Préservation
+    formulaire_titre: Planifiez votre entretien de préservation.
     garanties: [Réservé aux postes ayant reçu le Pack 3 au cours des 12 derniers mois, Déplacement compris dans la ville de Yaoundé, Prise en charge prioritaire]
+    garanties_bouton: [Sans engagement, Vous restez l'unique décideur]
     bouton: Je planifie mon entretien
   - type: signature
     fond: blanc

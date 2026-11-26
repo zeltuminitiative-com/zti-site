@@ -70,6 +70,8 @@ sections:
     titre: Un redémarrage, et le poste redevient propre.
     texte: "Virus des clés USB, logiciels installés par les élèves, réglages modifiés : tout disparaît au redémarrage. Elle ne remplace ni l'antivirus ni la sauvegarde de vos dossiers."
     mention: "En salle TIC, les fichiers laissés sur le poste sont aussi effacés. C'est voulu : un travail d'élève se garde sur sa clé."
+    lien: /services/protection-zti/
+    lien_texte: En savoir plus
     image: /images/redemarrage-salle-tic.webp
     image_texte: "Salle informatique d'école remise en état par ZTi : tous les postes démarrent sur l'écran ZTi"
     legende: "Salle informatique d'un établissement scolaire après l'intervention de ZTi : chaque poste démarre sur son état de référence."
@@ -224,15 +226,15 @@ sections:
       - question: Les fichiers sont-ils effacés au redémarrage ?
         reponse: "Au secrétariat, non : vos dossiers sont sur une partition dédiée, jamais effacée. Seul ce qui est enregistré ailleurs disparaît. ZTi vous indique cet emplacement, la Charte d'utilisation le rappelle."
       - question: Faut-il encore un antivirus ?
-        reponse: "Oui. La Protection ZTi agit au redémarrage ; pendant la journée, l'antivirus surveille les clés USB, les téléchargements et les pièces jointes. Ses mises à jour sont conservées d'un jour à l'autre."
+        reponse: "Oui. La [Protection ZTi](/services/protection-zti/) agit au redémarrage ; pendant la journée, l'antivirus surveille les clés USB, les téléchargements et les pièces jointes. Ses mises à jour sont conservées d'un jour à l'autre."
       - question: Et les mises à jour de Windows ?
         reponse: Les mises à jour automatiques, qui ralentissent ou redémarrent les postes en pleine journée, sont désactivées. Les correctifs de sécurité sont installés lors d'une maintenance planifiée avec vous.
       - question: Peut-on installer un logiciel soi-même ?
         reponse: "Un logiciel installé sans ZTi disparaît au redémarrage suivant. Pour l'ajouter durablement, contactez ZTi : il est intégré à l'état de référence du poste."
       - question: Et en cas de rançongiciel ?
-        reponse: "La Protection ZTi remet le système en état, mais ne peut pas rendre des fichiers déjà chiffrés. Vos défenses : un antivirus à jour, la prudence avec les pièces jointes et une copie régulière de vos dossiers sur un support séparé."
+        reponse: "La [Protection ZTi](/services/protection-zti/) remet le système en état, mais ne peut pas rendre des fichiers déjà chiffrés. Vos défenses : un antivirus à jour, la prudence avec les pièces jointes et une copie régulière de vos dossiers sur un support séparé."
       - question: Comment savoir si tout fonctionne ?
-        reponse: Le procès-verbal de réception constate l'état de chaque poste. Ensuite, le [Pack 4](/offres/preservation/) contrôle chaque année, poste par poste, la Protection ZTi, la sauvegarde automatique et l'isolation des données.
+        reponse: Le procès-verbal de réception constate l'état de chaque poste. Ensuite, le [Pack 4](/offres/preservation/) contrôle chaque année, poste par poste, la [Protection ZTi](/services/protection-zti/), la sauvegarde automatique et l'isolation des données.
   - type: demande
     fond: bleu
     ancre: demande

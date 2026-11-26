@@ -2,20 +2,28 @@
 titre: Contact
 description: "Écrivez à ZTi : diagnostic offert, maintenance, protection et sauvegarde de votre parc informatique, à Yaoundé."
 sections:
-  - type: demande
+  - type: demande_cibles
     fond: nuit
     ancre: demande
     etiquette: Contact
     titre: Parlons de votre parc informatique.
-    texte: "Remplissez ce formulaire : ZTi vous recontacte au moment choisi. Visites sur site de 8 h à 15 h, du lundi au samedi."
+    texte: "Choisissez votre profil : ZTi vous présente le formulaire adapté à votre situation et vous recontacte au moment choisi. Visites sur site de 8 h à 15 h, du lundi au samedi."
     sujet: Demande de contact
-    formulaire: general
-    garanties: [Offert, Sans engagement, Vous restez l'unique décideur]
-    mention: "Messages reçus 24 h/24, 7 j/7 · Réponse les jours ouvrables, de 8 h à 20 h."
-    bouton: Envoyer ma demande
   - type: texte_image
     fond: ivoire
     etiquette: Support
-    titre: Nous écrire directement
-    texte: "**E-mail** : [zeltuminitiative@gmail.com](mailto:zeltuminitiative@gmail.com)\n\n**Adresse** : Yaoundé, Cameroun"
+    titre: Nous joindre directement
+    texte: "**WhatsApp** : [+237 699 324 689](https://wa.me/237699324689?text=Bonjour%20ZTi.)\n\n**Appels** : +237 676 165 772\n\n**E-mail** : [zeltuminitiative@gmail.com](mailto:zeltuminitiative@gmail.com)\n\n**Vos messages** : reçus 24 h/24, 7 j/7, traitements et réponses les jours ouvrables, de 8 h à 20 h.\n\n**Interventions sur site** : du lundi au samedi, de 8 h à 15 h.\n\n**Adresse** : Messassi, Yaoundé, Cameroun"
+  - type: communaute
+    fond: nuit
+    titre: Restons en contact
+  - type: references
+    fond: ivoire
+    etiquette: Nos références
+    titre: Ils nous ont fait confiance.
+    texte: Institutions, entreprises et établissements scolaires accompagnés par ZTi.
+  - type: signature
+    fond: blanc
+    titre: Valorisation et préservation de votre investissement informatique
+    slogan: Avec ZTi, ne jetez plus, entretenez et rentabilisez !
 ---

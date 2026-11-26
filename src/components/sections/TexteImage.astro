@@ -1,5 +1,6 @@
 ---
 import Bouton from '../Bouton.astro';
+import Icone from '../Icone.astro';
 import { md, lien } from '../../lib/contenu';
 import { dim } from '../../lib/dimensions';
 const { s, premier = false } = Astro.props as { s: any; premier?: boolean };
@@ -16,6 +17,7 @@ const sombre = ['nuit', 'bleu', 'noir'].includes(fond);
         {s.texte && <div class="texte-riche" set:html={md(s.texte)} />}
         {s.points?.length > 0 && <ul class="liste-coches">{s.points.map((p: string) => <li>{p}</li>)}</ul>}
         {s.mention && <p class="mention" style="margin-top:18px">{s.mention}</p>}
+        {s.lien && <p style="margin-top:14px"><a class="lien" href={lien(s.lien)}>{s.lien_texte || 'En savoir plus'}<Icone nom="fleche" /></a></p>}
         {s.bouton?.texte && <div class="actions"><Bouton texte={s.bouton.texte} href={s.bouton.lien || '#demande'} /></div>}
       </div>
       {s.image && (

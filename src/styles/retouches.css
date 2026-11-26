@@ -514,6 +514,8 @@ body:has(.accroche-d).fin .pbar { opacity: 0; }
 /* pied de page, colonne Support : numéros WhatsApp et appels, à titre d'information (sans lien), précédés de leur icône */
 .pied .pied-numero { display: flex; align-items: center; gap: 10px; }
 .pied .pied-numero svg { width: 18px; height: 18px; flex: none; color: var(--lavande); }
+/* 26/11 : horaires et adresse, sur deux lignes : icône alignée sur la première ligne */
+.pied .pied-numero.pied-multi { align-items: flex-start; } .pied .pied-numero.pied-multi svg { margin-top: 3px; }
 .pied .masque { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* pied de page : colonne Support un peu plus large (e-mail avec icône sur une ligne) ; 2 colonnes sur écran moyen */
 @media (min-width: 1101px) { .pied .colonnes { grid-template-columns: 1.55fr 1fr .85fr 1.25fr; } }
@@ -823,7 +825,8 @@ main .pack-zti p { text-align: left !important; hyphens: manual !important; -web
 }
 /* page Protection ZTi (25/11) : le héro occupe tout l'écran (pas de bande de la section suivante en bas) ; l'espace
    en plus se place au-dessus des pastilles, le contenu reste groupé en bas avec la phrase finale */
-body:has(.accroche-d) .accroche-d.photo-entiere.bas-remonte:not(#zti) { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; }
+/* 26/11 : étendu à tous les héros « bas_remonte » (page Préservation : même bande claire en bas) */
+body:has(.accroche-d) .accroche-d.bas-remonte:not(#zti) { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; }
 /* page Protection ZTi (25/11) : un espace entre la phrase sous le titre et les boutons */
 .accroche-d.photo-entiere .chapo-d { margin-bottom: 32px; }
 /* demande en deux temps (25/11, page Protection ZTi) : 1. choix de la cible ; 2. le formulaire de la page dédiée */
