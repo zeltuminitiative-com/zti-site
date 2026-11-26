@@ -41,6 +41,8 @@ const services = defineCollection({
     accroche: z.string().default(''),
     resume: z.string().default(''),
     image: z.string().optional(),
+    // image d'aperçu du lien partagé (WhatsApp, Facebook), 1200 × 630 ; ex. capture du héro de Protection ZTi (26/11)
+    image_partage: z.string().optional(),
     publics: z.array(z.string()).default([]),
     points: z.array(z.string()).default([]),
     campagne: z.string().optional(),
