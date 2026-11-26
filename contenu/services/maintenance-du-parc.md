@@ -1,5 +1,6 @@
 ---
 titre: Maintenance du parc informatique
+image_partage: /images/partage-maintenance-du-parc-v1.jpg
 accroche: Des postes prêts à travailler, qui tombent moins en panne et qui durent plus longtemps.
 resume: Quatre packs d'entretien, choisis après un diagnostic offert de chaque poste.
 image: /images/service-maintenance.webp
