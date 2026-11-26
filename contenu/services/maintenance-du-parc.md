@@ -16,7 +16,7 @@ Le diagnostic montre l'état réel de chaque poste. Vous choisissez ensuite le p
 
 - **Pack 1 (Stabilité)** : des postes prêts à travailler, des données sauvegardées.
 - **Pack 2 (Fiabilité)** : moins de pannes, des postes qui durent.
-- **Pack 3 (Continuité)** : une protection durable de vos postes et de vos données, Protection ZTi incluse.
+- **Pack 3 (Continuité)** : une protection durable de vos postes et de vos données, Protection ZTi incluse ([en savoir plus](/services/protection-zti/)).
 - **Pack 4 (Préservation)** : un parc protégé, entretenu sans réinstallation.
 
 Vous signez un constat, pas une facture : postes disponibles à l'arrivée, postes disponibles au départ. Avant de payer le solde, vous vérifiez chaque poste.
