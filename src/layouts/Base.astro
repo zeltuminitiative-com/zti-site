@@ -18,10 +18,11 @@ import { reglages, lien } from '../lib/contenu';
 // sansReseaux : sans la section « ZTi sur les réseaux sociaux » (page Merci : seule la communauté WhatsApp y est proposée)
 // enteteSimple : barre du haut avec le logo seul, sans menu ni bouton (page Merci) ; le pied de page ne change pas
 // titreGoogle : titre affiché dans les résultats de recherche (balise <title>), s'il diffère du titre de la page
+// titrePartage : titre de l'aperçu du lien partagé (WhatsApp, Facebook), s'il diffère du titre de la page
 // service : données de la fiche « Service » (données structurées) de la page, si elle présente une offre
 interface Props { titre: string; description?: string; image?: string; sansMenu?: boolean; indexer?: boolean; sansReseaux?: boolean; enteteSimple?: boolean;
-  titreGoogle?: string; service?: { nom?: string; description?: string; zone?: string; offre?: string } }
-const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false, enteteSimple = false, titreGoogle, service } = Astro.props;
+  titreGoogle?: string; titrePartage?: string; service?: { nom?: string; description?: string; zone?: string; offre?: string } }
+const { titre, description, image, sansMenu = false, indexer = true, sansReseaux = false, enteteSimple = false, titreGoogle, titrePartage, service } = Astro.props;
 const r = await reglages();
 const titreComplet = titre === r.nom ? `${r.nom} | ${r.slogan}` : `${titre} | ${r.nom}`;
 const desc = description || r.description;
@@ -85,7 +86,7 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content={r.nom}>
-  <meta property="og:title" content={titreComplet}>
+  <meta property="og:title" content={titrePartage || titreComplet}>
   <meta property="og:description" content={desc}>
   <meta property="og:url" content={adresse}>
   <meta property="og:image" content={apercu}>
