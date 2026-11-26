@@ -63,7 +63,11 @@ const donnees = [
     ...(service.offre ? { offers: { '@type': 'Offer', price: '0', priceCurrency: 'XAF', description: service.offre } } : {}) }] : []),
 ];
 const json = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
-const apercu = new URL(lien(image || '/images/partage.jpg'), Astro.site).href;
+// aperçu de test (26/11) : l'image et l'adresse du lien partagé pointent vers l'aperçu lui-même
+// (sinon WhatsApp/Facebook cherchent sur le vrai site une image pas encore publiée) ; vrai site : adresse principale
+const basePartage = brancheApercu && process.env.CF_PAGES_URL ? process.env.CF_PAGES_URL : Astro.site;
+const apercu = new URL(lien(image || '/images/partage.jpg'), basePartage).href;
+const adressePartage = new URL(Astro.url.pathname, basePartage).href;
 const pixel = (r.mesures?.pixel || '').trim();
 const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
 ---
@@ -88,7 +92,7 @@ const serveur = (r.mesures?.endpoint || '').trim().replace(/\/$/, '');
   <meta property="og:site_name" content={r.nom}>
   <meta property="og:title" content={titrePartage || titreComplet}>
   <meta property="og:description" content={desc}>
-  <meta property="og:url" content={adresse}>
+  <meta property="og:url" content={adressePartage}>
   <meta property="og:image" content={apercu}>
   <meta name="twitter:card" content="summary_large_image">
   {indexer && donnees.map(d => <script type="application/ld+json" set:html={json(d)} />)}
