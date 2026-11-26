@@ -32,7 +32,7 @@ sections:
       4. [Dépannage en atelier](#atelier) : la Convention de maintenance.
       5. [Réclamations](#reclamations) : comment nous signaler un problème.
   - type: cartes
-    fond: ivoire
+    fond: noir
     ancre: engagements
     numeroter: true
     etiquette: Nos engagements
@@ -147,7 +147,7 @@ sections:
       texte: Cliquez ici pour en savoir plus - PDF
       lien: /zti-convention-de-maintenance.pdf
   - type: texte_image
-    fond: noir
+    fond: bleu
     ancre: reclamations
     etiquette: Réclamations
     titre: Un problème ? Dites-le-nous.
