@@ -83,11 +83,11 @@ sections:
     texte: "Le Pack 4 est accessible aux postes ayant reçu le Pack 3 au cours des 12 derniers mois, à compter de la date du procès-verbal de réception."
     questions:
       - question: La Protection ZTi est-elle prolongée ?
-        reponse: "La Protection ZTi du Pack 3 couvre 24 mois. Le Pack 4 accompagne sa deuxième année : il en contrôle le bon fonctionnement sur chaque poste. La troisième année, un nouveau Pack 3 relance le cycle."
+        reponse: "La [Protection ZTi](/services/protection-zti/) du Pack 3 couvre 24 mois. Le Pack 4 accompagne sa deuxième année : il en contrôle le bon fonctionnement sur chaque poste. La troisième année, un nouveau Pack 3 relance le cycle."
       - question: Et si nous avons ajouté de nouveaux ordinateurs ?
         reponse: "Tout nouvel ordinateur ajouté au parc reçoit d'abord le Pack 3. Il peut ensuite rejoindre le Pack 4 l'année suivante."
       - question: Le Pack 4 réinstalle-t-il le système ?
-        reponse: "Non. Le système et la Protection ZTi installés avec le Pack 3 sont conservés. Le Pack 4 entretient le matériel et contrôle que tout fonctionne."
+        reponse: "Non. Le système et la [Protection ZTi](/services/protection-zti/) installés avec le Pack 3 sont conservés. Le Pack 4 entretient le matériel et contrôle que tout fonctionne."
       - question: Comment savoir si nos postes y ont droit ?
         reponse: "Contactez ZTi : nous vérifions la date du procès-verbal de réception de votre Pack 3 et planifions l'intervention avec vous."
   - type: references
